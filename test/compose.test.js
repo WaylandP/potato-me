@@ -2,6 +2,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { composeSVG, cropFor, mix } from '../src/compose.js';
 import { OPTIONS, DEFAULT_STATE } from '../src/options.js';
+import { HAT_BRIM } from '../src/parts/hats.js';
 
 // Minimal well-formedness check: every opened tag closes, in order.
 function assertWellFormed(svg) {
@@ -49,18 +50,21 @@ test('every body works with every hat, item and gesture', () => {
           assertClean(composeSVG({ ...DEFAULT_STATE, body, hat, item, gesture }));
 });
 
-test('every skin works on every body with every accessory', () => {
+test('every skin works on every body with every eyewear, neckwear and facial hair', () => {
   for (const body of Object.keys(OPTIONS.body))
     for (const skin of Object.keys(OPTIONS.skin))
-      for (const accessory of Object.keys(OPTIONS.accessory))
-        assertClean(composeSVG({ ...DEFAULT_STATE, body, skin, accessory, cheeks: 'on' }));
+      for (const eyewear of Object.keys(OPTIONS.eyewear))
+        assertClean(composeSVG({ ...DEFAULT_STATE, body, skin, eyewear, cheeks: 'on' }));
+  for (const neckwear of Object.keys(OPTIONS.neckwear))
+    for (const facialHair of Object.keys(OPTIONS.facialHair))
+      assertClean(composeSVG({ ...DEFAULT_STATE, neckwear, facialHair }));
 });
 
 test('every id carries the prefix and every url(#…) points at a defined id', () => {
   for (const hat of Object.keys(OPTIONS.hat))
     for (const pattern of Object.keys(OPTIONS.pattern))
       for (const item of Object.keys(OPTIONS.item)) {
-        const svg = composeSVG({ ...DEFAULT_STATE, hat, pattern, item, accessory: 'bowtie' }, { idPrefix: 'zz' });
+        const svg = composeSVG({ ...DEFAULT_STATE, hat, pattern, item, neckwear: 'bowtie' }, { idPrefix: 'zz' });
         const defined = ids(svg);
         assert.ok(defined.length > 0);
         for (const id of defined) assert.ok(id.startsWith('zz-'), `id "${id}" lacks the prefix`);
@@ -76,18 +80,18 @@ test('id prefixes keep multiple SVGs on one page from colliding', () => {
   for (const id of ids(a)) assert.ok(!ids(b).includes(id), `id ${id} collides`);
 });
 
-test('every hat casts a shadow on the body, and no hat means no shadow', () => {
+test('every drawn hat casts a shadow on the body, and no hat means no shadow', () => {
   for (const hat of Object.keys(OPTIONS.hat)) {
     const svg = composeSVG({ ...DEFAULT_STATE, hat }, { idPrefix: 'p' });
-    assert.equal(svg.includes('url(#p-hs)'), hat !== 'none', `hat shadow for ${hat}`);
+    assert.equal(svg.includes('url(#p-hs)'), hat !== 'none' && hat in HAT_BRIM, `hat shadow for ${hat}`);
   }
 });
 
 test('shades hide the eyes, glasses keep them', () => {
   const eyes = (svg) => svg.includes('rx="13.5" ry="17.5"'); // the pupil of the default "smug" eyes
   assert.ok(eyes(composeSVG(DEFAULT_STATE)));
-  assert.ok(!eyes(composeSVG({ ...DEFAULT_STATE, accessory: 'shades' })));
-  assert.ok(eyes(composeSVG({ ...DEFAULT_STATE, accessory: 'glasses' })));
+  assert.ok(!eyes(composeSVG({ ...DEFAULT_STATE, eyewear: 'shades' })));
+  assert.ok(eyes(composeSVG({ ...DEFAULT_STATE, eyewear: 'round' })));
 });
 
 test('sign text is escaped and an empty sign still renders', () => {

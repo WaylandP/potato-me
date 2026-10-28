@@ -277,7 +277,7 @@ legend {
 legend + * { clear: both; }
 
 .grid { display: grid; gap: 12px; }
-.grid-thumb { grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); }
+.grid-thumb, .grid-multi, .grid-preset { grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); }
 .grid-swatch { grid-template-columns: repeat(auto-fill, minmax(76px, 1fr)); }
 
 .opt {
@@ -328,14 +328,16 @@ legend + * { clear: both; }
 
 .hint { margin: 0; color: var(--muted); font-size: 15px; }
 
-.sign-field {
-  margin-top: 16px;
+.text-field {
+  position: relative;
+  margin-top: 4px;
   display: grid;
   gap: 6px;
   max-width: 340px;
 }
-.sign-field label { font-weight: 600; }
-.sign-field input {
+/* The fieldset legend already names the field; keep the label for screen readers only. */
+.text-field label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.text-field input {
   min-height: 48px;
   padding: 0 14px;
   border-radius: 12px;
@@ -346,8 +348,8 @@ legend + * { clear: both; }
   letter-spacing: 0.04em;
   text-transform: uppercase;
 }
-.sign-field input:focus-visible { border-color: var(--teal); outline-offset: 1px; }
-.sign-field .hint { font-size: 14px; }
+.text-field input:focus-visible { border-color: var(--teal); outline-offset: 1px; }
+.text-field .hint { font-size: 14px; }
 
 /* --- toast --- */
 
@@ -386,6 +388,6 @@ legend + * { clear: both; }
   .btn { padding: 0 12px; }
   .tabs { padding: 8px 6px 0; gap: 0; }
   [role='tab'] { padding: 0 11px; font-size: 16px; }
-  .grid-thumb { grid-template-columns: repeat(auto-fill, minmax(92px, 1fr)); gap: 10px; }
+  .grid-thumb, .grid-multi, .grid-preset { grid-template-columns: repeat(auto-fill, minmax(92px, 1fr)); gap: 10px; }
   .thumb { width: 76px; height: 76px; }
 }

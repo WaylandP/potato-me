@@ -1,28 +1,50 @@
-import { OPTIONS, BG_COLORS, HAT_COLORS, DEFAULT_STATE, SIGN_MAX } from './options.js';
+import { OPTIONS, MULTI, TEXT, PRESETS, BG_COLORS, HAT_COLORS, DEFAULT_STATE } from './options.js';
 import { composeSVG, cropFor } from './compose.js';
-import { normalizeState, encodeState, decodeState, randomState, cleanSign } from './state.js';
+import { normalizeState, encodeState, decodeState, randomState, cleanText } from './state.js';
 import { svgToPngBlob, downloadBlob } from './export.js';
 
 // Which option groups live on which tab, and how each group is drawn.
-// "thumb" groups show a mini potato per option; "swatch" groups show a color dot.
+//   thumb   one mini potato per option
+//   swatch  a color dot per option
+//   multi   toggle buttons, pick several (MULTI in options.js)
+//   text    a short text field (TEXT in options.js)
+//   preset  one-click personalities (PRESETS in options.js)
+// `onlyWhen` hides a group (showing `hint` instead) until the state makes it relevant.
+const CAP_TEXT_HATS = ['backwardCap', 'cap', 'beanie', 'headband'];
 const TABS = {
   body: [
     { key: 'body', title: 'Shape', kind: 'thumb' },
     { key: 'skin', title: 'Skin', kind: 'thumb' },
   ],
   face: [
+    { key: 'preset', title: 'Vibe', kind: 'preset', hint: 'One click sets the eyes, eyebrows and mouth. Tweak from there.' },
     { key: 'eyes', title: 'Eyes', kind: 'thumb' },
+    { key: 'brows', title: 'Eyebrows', kind: 'thumb' },
     { key: 'mouth', title: 'Mouth', kind: 'thumb' },
     { key: 'cheeks', title: 'Cheeks', kind: 'thumb' },
+    { key: 'facialHair', title: 'Facial hair', kind: 'thumb' },
   ],
   hat: [
     { key: 'hat', title: 'Hat', kind: 'thumb' },
-    { key: 'hatColor', title: 'Hat, mug & bow tie color', kind: 'swatch', colors: HAT_COLORS },
+    { key: 'hatColor', title: 'Hat, mug & tie color', kind: 'swatch', colors: HAT_COLORS },
+    {
+      key: 'capText',
+      title: 'Cap initials',
+      kind: 'text',
+      placeholder: 'A+W',
+      onlyWhen: (s) => CAP_TEXT_HATS.includes(s.hat),
+      hint: 'Pick a cap, beanie or headband to embroider up to 3 characters on it.',
+      help: 'Up to 3 characters, embroidered on the hat.',
+    },
   ],
   gear: [
     { key: 'item', title: 'Holding', kind: 'thumb' },
-    { key: 'gesture', title: 'Free hand', kind: 'thumb', onlyWhen: (s) => s.item === 'none', hint: 'Pick “Nothing” under Holding to free up a hand.' },
-    { key: 'accessory', title: 'Accessory', kind: 'thumb' },
+    { key: 'stickers', title: 'Laptop stickers', kind: 'multi', onlyWhen: (s) => s.item === 'laptop', hint: 'Hold the laptop to pick its stickers.', help: 'Pick up to 6, in the order you want them.' },
+    { key: 'sign', title: 'Sign text', kind: 'text', placeholder: 'LGTM', onlyWhen: (s) => s.item === 'sign', hint: 'Hold the sign to write on it.', help: 'Up to 10 characters. Try LGTM, SHIP IT or 404.' },
+    { key: 'gesture', title: 'Free hand', kind: 'thumb' },
+    { key: 'eyewear', title: 'Eyewear', kind: 'thumb' },
+    { key: 'neckwear', title: 'Neckwear', kind: 'thumb' },
+    { key: 'extra', title: 'Extras', kind: 'thumb' },
   ],
   bg: [
     { key: 'bg', title: 'Color', kind: 'swatch', colors: BG_COLORS },
@@ -38,49 +60,82 @@ const preview = $('#preview');
 const panel = $('#panel');
 const toastEl = $('#toast');
 
-function setState(patch) {
-  state = normalizeState({ ...state, ...patch });
+function commit(next, { redraw = true } = {}) {
+  state = normalizeState(next);
   const hash = encodeState(state);
   history.replaceState(null, '', hash || location.pathname + location.search);
-  render();
+  if (redraw) render();
+  else renderPreview();
 }
+
+const setState = (patch) => commit({ ...state, ...patch });
 
 function renderPreview() {
   preview.innerHTML = composeSVG(state, { idPrefix: 'main', size: 512 });
 }
 
-function optionButton(group, value, label) {
-  const selected = state[group.key] === value;
+function thumbFor(candidate, category, prefix) {
+  const thumb = document.createElement('span');
+  thumb.className = 'thumb';
+  thumb.innerHTML = composeSVG(candidate, { idPrefix: prefix, size: 88, viewBox: cropFor(category, candidate) });
+  // The thumbnail's own aria-label would repeat; the text label below names it.
+  thumb.firstElementChild?.setAttribute('aria-hidden', 'true');
+  return thumb;
+}
+
+function button(group, value, label, selected, visual) {
   const btn = document.createElement('button');
   btn.type = 'button';
   btn.className = `opt opt-${group.kind}`;
   btn.setAttribute('aria-pressed', String(selected));
   btn.dataset.key = group.key;
   btn.dataset.value = value;
-
-  if (group.kind === 'swatch') {
-    const dot = document.createElement('span');
-    dot.className = 'swatch';
-    dot.style.background = group.colors[value].value;
-    btn.append(dot);
-  } else {
-    const thumb = document.createElement('span');
-    thumb.className = 'thumb';
-    const candidate = { ...state, [group.key]: value };
-    thumb.innerHTML = composeSVG(candidate, {
-      idPrefix: `t-${group.key}-${value}`,
-      size: 88,
-      viewBox: cropFor(group.key, candidate),
-    });
-    // The thumbnail's own aria-label would repeat; the text label below names it.
-    thumb.firstElementChild?.setAttribute('aria-hidden', 'true');
-    btn.append(thumb);
-  }
+  btn.append(visual);
   const text = document.createElement('span');
   text.className = 'opt-label';
   text.textContent = label;
   btn.append(text);
   return btn;
+}
+
+function optionButton(group, value, label) {
+  const prefix = `t-${group.key}-${value}`;
+  if (group.kind === 'swatch') {
+    const dot = document.createElement('span');
+    dot.className = 'swatch';
+    dot.style.background = group.colors[value].value;
+    return button(group, value, label, state[group.key] === value, dot);
+  }
+  if (group.kind === 'multi') {
+    const picked = state[group.key].includes(value);
+    const candidate = { ...state, [group.key]: [value] };
+    return button(group, value, label, picked, thumbFor(candidate, group.key, prefix));
+  }
+  if (group.kind === 'preset') {
+    const patch = PRESETS[value].patch;
+    const active = Object.entries(patch).every(([k, v]) => state[k] === v);
+    return button(group, value, label, active, thumbFor({ ...state, ...patch }, group.key, prefix));
+  }
+  return button(group, value, label, state[group.key] === value, thumbFor({ ...state, [group.key]: value }, group.key, prefix));
+}
+
+function textField(group) {
+  const spec = TEXT[group.key];
+  const wrap = document.createElement('div');
+  wrap.className = 'text-field';
+  const id = `${group.key}-input`;
+  wrap.innerHTML = `<label for="${id}">${group.title}</label>
+<input id="${id}" type="text" maxlength="${spec.max}" autocomplete="off" spellcheck="false" placeholder="${group.placeholder || ''}">
+<span class="hint">${group.help || ''}</span>`;
+  const input = wrap.querySelector('input');
+  input.value = state[group.key];
+  input.addEventListener('input', () => {
+    const clean = cleanText(group.key, input.value);
+    if (clean !== input.value) input.value = clean;
+    // Redraw only the preview so the field keeps focus while typing.
+    commit({ ...state, [group.key]: clean }, { redraw: false });
+  });
+  return wrap;
 }
 
 function renderPanel() {
@@ -101,29 +156,34 @@ function renderPanel() {
       continue;
     }
 
+    if (group.kind === 'text') {
+      fieldset.append(textField(group));
+      panel.append(fieldset);
+      continue;
+    }
+
+    if (group.hint && group.kind === 'preset') {
+      const hint = document.createElement('p');
+      hint.className = 'hint';
+      hint.textContent = group.hint;
+      fieldset.append(hint);
+    }
+
     const grid = document.createElement('div');
     grid.className = `grid grid-${group.kind}`;
-    for (const [value, label] of Object.entries(OPTIONS[group.key])) {
-      grid.append(optionButton(group, value, label));
-    }
+    const entries =
+      group.kind === 'multi'
+        ? Object.entries(MULTI[group.key].options)
+        : group.kind === 'preset'
+          ? Object.entries(PRESETS).map(([k, v]) => [k, v.label])
+          : Object.entries(OPTIONS[group.key]);
+    for (const [value, label] of entries) grid.append(optionButton(group, value, label));
     fieldset.append(grid);
-
-    if (group.key === 'item' && state.item === 'sign') {
-      const wrap = document.createElement('div');
-      wrap.className = 'sign-field';
-      wrap.innerHTML = `<label for="sign-input">Sign text</label>
-<input id="sign-input" type="text" maxlength="${SIGN_MAX}" autocomplete="off" spellcheck="false">
-<span class="hint">Up to ${SIGN_MAX} characters. Try LGTM, SHIP IT or 404.</span>`;
-      const input = wrap.querySelector('input');
-      input.value = state.sign;
-      input.addEventListener('input', () => {
-        const clean = cleanSign(input.value);
-        if (clean !== input.value) input.value = clean;
-        state = normalizeState({ ...state, sign: clean });
-        history.replaceState(null, '', encodeState(state) || location.pathname);
-        renderPreview();
-      });
-      fieldset.append(wrap);
+    if (group.help) {
+      const help = document.createElement('p');
+      help.className = 'hint';
+      help.textContent = group.help;
+      fieldset.append(help);
     }
     panel.append(fieldset);
   }
@@ -159,7 +219,20 @@ function toast(msg) {
 
 panel.addEventListener('click', (e) => {
   const btn = e.target.closest('.opt');
-  if (btn) setState({ [btn.dataset.key]: btn.dataset.value });
+  if (!btn) return;
+  const { key, value } = btn.dataset;
+  if (key === 'preset') {
+    setState(PRESETS[value].patch);
+    return;
+  }
+  if (key in MULTI) {
+    const list = state[key];
+    if (list.includes(value)) setState({ [key]: list.filter((v) => v !== value) });
+    else if (list.length >= MULTI[key].max) toast(`Up to ${MULTI[key].max}. Unpick one first.`);
+    else setState({ [key]: [...list, value] });
+    return;
+  }
+  setState({ [key]: value });
 });
 
 const tablist = document.querySelector('[role="tablist"]');
@@ -189,16 +262,14 @@ $('#crop-toggle').addEventListener('change', (e) => {
 });
 
 $('#randomize').addEventListener('click', () => {
-  state = randomState(Math.random, state.sign);
-  setState({});
+  commit(randomState(Math.random, { sign: state.sign, capText: state.capText }));
   preview.classList.remove('wiggle');
   void preview.offsetWidth; // restart the animation
   preview.classList.add('wiggle');
 });
 
 $('#reset').addEventListener('click', () => {
-  state = normalizeState(DEFAULT_STATE);
-  setState({});
+  commit(DEFAULT_STATE);
   toast('Back to the original potato.');
 });
 
@@ -233,4 +304,5 @@ window.addEventListener('hashchange', () => {
   render();
 });
 
-render();
+// Rewrite the URL once on load so links in an older format are upgraded in place.
+commit(state);
