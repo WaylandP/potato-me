@@ -2,6 +2,7 @@ import { OPTIONS, MULTI, TEXT, PRESETS, BG_COLORS, HAT_COLORS, DEFAULT_STATE } f
 import { composeSVG, cropFor } from './compose.js';
 import { normalizeState, encodeState, decodeState, randomState, cleanText } from './state.js';
 import { svgToPngBlob, downloadBlob } from './export.js';
+import { stickerSVG } from './parts/stickers.js';
 
 // Which option groups live on which tab, and how each group is drawn.
 //   thumb   one mini potato per option
@@ -108,8 +109,11 @@ function optionButton(group, value, label) {
   }
   if (group.kind === 'multi') {
     const picked = state[group.key].includes(value);
-    const candidate = { ...state, [group.key]: [value] };
-    return button(group, value, label, picked, thumbFor(candidate, group.key, prefix));
+    const thumb = document.createElement('span');
+    thumb.className = 'thumb thumb-flat';
+    thumb.innerHTML = group.key === 'stickers' ? stickerSVG(value, 88) : composeSVG({ ...state, [group.key]: [value] }, { idPrefix: prefix, size: 88 });
+    thumb.firstElementChild?.setAttribute('aria-hidden', 'true');
+    return button(group, value, label, picked, thumb);
   }
   if (group.kind === 'preset') {
     const patch = PRESETS[value].patch;
@@ -182,7 +186,7 @@ function renderPanel() {
     if (group.help) {
       const help = document.createElement('p');
       help.className = 'hint';
-      help.textContent = group.help;
+      help.textContent = group.kind === 'multi' ? `${group.help} ${state[group.key].length} of ${MULTI[group.key].max} picked.` : group.help;
       fieldset.append(help);
     }
     panel.append(fieldset);
