@@ -1,0 +1,15 @@
+{
+  "name": "potato-me",
+  "version": "0.1.0",
+  "description": "Build a potato avatar for GitHub, Slack or anywhere. No build step, no dependencies.",
+  "type": "module",
+  "private": true,
+  "license": "MIT",
+  "scripts": {
+    "dev": "python3 -m http.server 5173",
+    "test": "node --test"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

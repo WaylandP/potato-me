@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>potato-me · build your potato avatar</title>
+  <meta name="description" content="Build a potato avatar for GitHub, Slack or anywhere. Pick a shape, a face, a hat and some gear, then download a 512×512 PNG.">
+  <meta name="theme-color" content="#14A3B8">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&display=swap">
+  <link rel="stylesheet" href="src/styles.css">
+</head>
+<body>
+  <a class="skip" href="#controls">Skip to the options</a>
+
+  <header class="site-header">
+    <div class="brand">
+      <img src="favicon.svg" alt="" width="40" height="40">
+      <span class="wordmark">potato-me</span>
+    </div>
+    <p class="tagline">Build a potato. Become the potato.</p>
+  </header>
+
+  <main class="layout">
+    <section class="stage" aria-label="Your potato">
+      <div class="preview-card">
+        <div id="preview" class="preview" data-crop="on"></div>
+        <label class="toggle">
+          <input type="checkbox" id="crop-toggle" checked>
+          <span>Show avatar crop</span>
+        </label>
+      </div>
+
+      <div class="actions">
+        <button type="button" id="randomize" class="btn btn-ghost">
+          <svg aria-hidden="true" viewBox="0 0 24 24" width="20" height="20"><rect x="3.5" y="3.5" width="17" height="17" rx="4" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="8.5" cy="8.5" r="1.5" fill="currentColor"/><circle cx="15.5" cy="15.5" r="1.5" fill="currentColor"/><circle cx="12" cy="12" r="1.5" fill="currentColor"/></svg>
+          Surprise me
+        </button>
+        <button type="button" id="download-png" class="btn btn-primary">
+          <svg aria-hidden="true" viewBox="0 0 24 24" width="20" height="20"><path d="M12 4v11m0 0l-4.5-4.5M12 15l4.5-4.5M5 19h14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Download PNG
+        </button>
+        <div class="actions-row">
+          <button type="button" id="download-svg" class="btn btn-small">SVG</button>
+          <button type="button" id="copy-link" class="btn btn-small">Copy link</button>
+          <button type="button" id="reset" class="btn btn-small">Reset</button>
+        </div>
+      </div>
+      <p class="fine-print">512 × 512 PNG, sized for GitHub, Slack and Google profiles.</p>
+    </section>
+
+    <section id="controls" class="controls" aria-label="Customize">
+      <div class="tabs" role="tablist" aria-label="Parts">
+        <button type="button" role="tab" id="tab-body" aria-controls="panel" aria-selected="true" data-tab="body">Body</button>
+        <button type="button" role="tab" id="tab-face" aria-controls="panel" aria-selected="false" tabindex="-1" data-tab="face">Face</button>
+        <button type="button" role="tab" id="tab-hat" aria-controls="panel" aria-selected="false" tabindex="-1" data-tab="hat">Hat</button>
+        <button type="button" role="tab" id="tab-gear" aria-controls="panel" aria-selected="false" tabindex="-1" data-tab="gear">Gear</button>
+        <button type="button" role="tab" id="tab-bg" aria-controls="panel" aria-selected="false" tabindex="-1" data-tab="bg">Background</button>
+      </div>
+      <div id="panel" class="panel" role="tabpanel" aria-labelledby="tab-body" tabindex="0"></div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>Open source and made for fun. Your potato never leaves your browser.</p>
+  </footer>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script type="module" src="src/main.js"></script>
+</body>
+</html>
