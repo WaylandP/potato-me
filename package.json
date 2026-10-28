@@ -1,13 +1,31 @@
 {
   "name": "potato-me",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Build a potato avatar for GitHub, Slack or anywhere. No build step, no dependencies.",
   "type": "module",
   "private": true,
   "license": "MIT",
+  "author": "Wayland Pearce",
+  "homepage": "https://github.com/WaylandP/potato-me#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WaylandP/potato-me.git"
+  },
+  "bugs": {
+    "url": "https://github.com/WaylandP/potato-me/issues"
+  },
+  "keywords": [
+    "avatar",
+    "potato",
+    "generator",
+    "svg",
+    "github-avatar",
+    "profile-picture"
+  ],
   "scripts": {
-    "dev": "python3 -m http.server 5173",
-    "test": "node --test"
+    "dev": "node scripts/serve.mjs",
+    "test": "node --test",
+    "hero": "node scripts/hero.mjs"
   },
   "engines": {
     "node": ">=20"

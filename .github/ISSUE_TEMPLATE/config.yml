@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Show off your potato
+    url: https://github.com/WaylandP/potato-me/discussions
+    about: Share a link to the potato you made.

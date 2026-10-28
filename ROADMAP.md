@@ -15,14 +15,20 @@ Check a box only when the work is built, tested and visible on the deployed site
 - [x] Share links (state in the URL hash) and "Surprise me"
 - [x] Light and dark mode, keyboard-friendly tabs, reduced-motion support
 - [x] Test suite covering every option and every body × hat × item × gesture combo
-- [ ] Deploy to Vercel and add the live URL to the README
 - [x] Generate `docs/hero.png` (README banner) from the renderer
 
-## Phase 2: Polish
+## Phase 2: Art overhaul and polish (v0.2)
 
-- [ ] Refine the shaka hand so it reads at thumbnail size
+- [x] Shaded potato: skin gradient, core shadow, rim light, dimples, speckle grain, ground shadow
+- [x] Cast shadow under every hat; hats shaded per color with highlights and seams
+- [x] Mitten hands with thumbs; open waving hand; shaka that reads at thumbnail size
+- [x] Laptop lid gradient, die-cut stickers, red panda redraw; coffee and sign redraw
+- [x] New parts: party hat, beret, glasses, confetti background, Yukon gold skin
+- [x] Dependency-free dev server (`npm run dev`) and `npm run hero`
+- [x] CONTRIBUTING.md with a "draw a new part" guide and an art style checklist
+- [ ] Deploy to Vercel and add the live URL to the README
 - [ ] Self-host the Fredoka font (no third-party request)
-- [ ] Open Graph image so shared links preview the actual potato
+- [ ] Open Graph image per potato so shared links preview the actual potato (needs an edge function; static `docs/og.png` is used today)
 - [ ] Undo / redo
 - [ ] 1024 px export option
 - [ ] Accessibility pass with a screen reader (VoiceOver + NVDA)
@@ -30,7 +36,7 @@ Check a box only when the work is built, tested and visible on the deployed site
 
 ## Phase 3: More potato
 
-- [ ] More hats: beret, headband, party hat, viking helmet
+- [ ] More hats: headband, viking helmet, headphones
 - [ ] More held items: wrench, rubber duck, pizza slice, "it works on my machine" mug
 - [ ] Laptop sticker picker (choose 2–4 from a sticker set)
 - [ ] Expressions as presets (Smug, Panicked on-call, Friday deploy)
@@ -38,7 +44,6 @@ Check a box only when the work is built, tested and visible on the deployed site
 
 ## Phase 4: Community
 
-- [ ] CONTRIBUTING.md with a "draw a new part" guide and an art style checklist
 - [ ] Gallery of community potatoes (opt-in, links only, no uploads)
 - [ ] GitHub Action / CLI: `npx potato-me --hat wizard --out avatar.png`
 
