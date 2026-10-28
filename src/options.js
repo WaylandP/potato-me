@@ -1,12 +1,13 @@
-// Every choice the editor offers. Order matters: it is the order shown in the UI
-// and the order the randomizer and share links rely on.
+// Every choice the editor offers. Order matters: it is the order shown in the UI.
+// Keys are what share links store, so rename a key only with a migration in state.js.
 
 export const SKINS = {
-  russet: { label: 'Russet', base: '#B98252', shade: '#8E5C34', spot: '#6F4426', line: '#3A2414' },
-  red: { label: 'Red', base: '#C4594C', shade: '#963C33', spot: '#7A2D26', line: '#3D1714' },
-  purple: { label: 'Purple', base: '#8A5AA0', shade: '#653E7A', spot: '#4E2D60', line: '#25142F' },
-  sweet: { label: 'Sweet', base: '#E0813F', shade: '#B55E25', spot: '#8F4518', line: '#40200B' },
-  ghost: { label: 'Ghost', base: '#EADFCB', shade: '#C9B999', spot: '#A8956F', line: '#4A3D28' },
+  russet: { label: 'Russet', light: '#D9A672', base: '#BD8656', shade: '#8A5631', spot: '#6A4023', line: '#3A2414' },
+  gold: { label: 'Yukon gold', light: '#F4D98A', base: '#E2BB5B', shade: '#B58A2E', spot: '#8D6A1E', line: '#4A3410' },
+  red: { label: 'Red', light: '#E08173', base: '#C75B4E', shade: '#953A32', spot: '#772A25', line: '#3D1714' },
+  purple: { label: 'Purple', light: '#B08AC8', base: '#8C5CA4', shade: '#623B78', spot: '#4A2A5D', line: '#25142F' },
+  sweet: { label: 'Sweet', light: '#F5A868', base: '#E38443', shade: '#B35C25', spot: '#8C4418', line: '#40200B' },
+  ghost: { label: 'Ghost', light: '#FAF5EA', base: '#ECE2CF', shade: '#C7B795', spot: '#A4916A', line: '#4A3D28' },
 };
 
 export const BG_COLORS = {
@@ -36,13 +37,22 @@ export const OPTIONS = {
   eyes: { smug: 'Smug', dots: 'Dots', happy: 'Happy', wide: 'Wide', wink: 'Wink', sleepy: 'Sleepy' },
   mouth: { smirk: 'Smirk', grin: 'Grin', laugh: 'Laugh', flat: 'Flat', oh: 'Oh' },
   cheeks: { off: 'No blush', on: 'Blush' },
-  hat: { backwardCap: 'Backward cap', beanie: 'Beanie', wizard: 'Wizard', crown: 'Crown', hardhat: 'Hard hat', none: 'No hat' },
+  hat: {
+    backwardCap: 'Backward cap',
+    beanie: 'Beanie',
+    wizard: 'Wizard',
+    crown: 'Crown',
+    hardhat: 'Hard hat',
+    party: 'Party hat',
+    beret: 'Beret',
+    none: 'No hat',
+  },
   hatColor: Object.fromEntries(Object.entries(HAT_COLORS).map(([k, v]) => [k, v.label])),
-  accessory: { none: 'None', shades: 'Shades', mustache: 'Mustache', bowtie: 'Bow tie' },
+  accessory: { none: 'None', shades: 'Shades', glasses: 'Glasses', mustache: 'Mustache', bowtie: 'Bow tie' },
   item: { laptop: 'Laptop', coffee: 'Coffee', sign: 'Sign', none: 'Nothing' },
   gesture: { rest: 'Chill', wave: 'Wave', shaka: 'Shaka' },
   bg: Object.fromEntries(Object.entries(BG_COLORS).map(([k, v]) => [k, v.label])),
-  pattern: { solid: 'Solid', dots: 'Dots', rays: 'Rays', grid: 'Grid' },
+  pattern: { solid: 'Solid', dots: 'Dots', rays: 'Rays', grid: 'Grid', confetti: 'Confetti' },
 };
 
 export const DEFAULT_STATE = Object.freeze({
