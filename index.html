@@ -35,7 +35,7 @@
   <main class="layout">
     <section class="stage" aria-label="Your potato">
       <div class="preview-card">
-        <div id="preview" class="preview" data-crop="on"></div>
+        <div id="preview" class="preview is-loading" data-crop="on" aria-label="Your potato" role="img"><span class="preview-status" aria-live="polite">Loading potato…</span></div>
         <label class="toggle">
           <input type="checkbox" id="crop-toggle" checked>
           <span>Show avatar crop</span>
@@ -52,12 +52,12 @@
           Download PNG
         </button>
         <div class="actions-row">
-          <button type="button" id="download-svg" class="btn btn-small">SVG</button>
+          <button type="button" id="download-big" class="btn btn-small">1024 px</button>
           <button type="button" id="copy-link" class="btn btn-small">Copy link</button>
           <button type="button" id="reset" class="btn btn-small">Reset</button>
         </div>
       </div>
-      <p class="fine-print">512 × 512 PNG, sized for GitHub, Slack and Google profiles. Nothing is uploaded.</p>
+      <p class="fine-print">512 × 512 PNG, sized for GitHub, Slack and Google profiles, or 1024 px for anywhere bigger. Nothing is uploaded.</p>
     </section>
 
     <section id="controls" class="controls" aria-label="Customize">

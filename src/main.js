@@ -1,7 +1,7 @@
-import { OPTIONS, MULTI, TEXT, PRESETS, BG_COLORS, HAT_COLORS, DEFAULT_STATE } from './options.js';
-import { composeSVG, cropFor } from './compose.js';
+import { OPTIONS, MULTI, TEXT, PRESETS, BG_COLORS, HAT_COLORS, STICKERS, DEFAULT_STATE } from './options.js';
 import { normalizeState, encodeState, decodeState, randomState, cleanText } from './state.js';
-import { svgToPngBlob, downloadBlob } from './export.js';
+import { renderPotato, exportPng, availableOptions, missingParts, drawableState, cropBox, hasSticker, partSrc } from './raster.js';
+import { downloadBlob } from './export.js';
 import { stickerSVG } from './parts/stickers.js';
 
 // Which option groups live on which tab, and how each group is drawn.
@@ -53,16 +53,22 @@ const TABS = {
   ],
 };
 
-let state = decodeState(location.hash);
+const AVAILABLE = availableOptions();
+const MISSING = missingParts();
+
+let state = drawableState(decodeState(location.hash));
 let activeTab = 'body';
 
 const $ = (sel) => document.querySelector(sel);
 const preview = $('#preview');
 const panel = $('#panel');
 const toastEl = $('#toast');
+const previewCanvas = document.createElement('canvas');
+previewCanvas.width = previewCanvas.height = 1024;
+preview.append(previewCanvas);
 
 function commit(next, { redraw = true } = {}) {
-  state = normalizeState(next);
+  state = drawableState(next);
   const hash = encodeState(state);
   history.replaceState(null, '', hash || location.pathname + location.search);
   if (redraw) render();
@@ -71,18 +77,29 @@ function commit(next, { redraw = true } = {}) {
 
 const setState = (patch) => commit({ ...state, ...patch });
 
-function renderPreview() {
-  preview.innerHTML = composeSVG(state, { idPrefix: 'main', size: 512 });
+// --- preview ----------------------------------------------------------------
+
+let previewToken = 0;
+async function renderPreview() {
+  const token = ++previewToken;
+  document.body.dataset.rendered = 'false';
+  preview.classList.add('is-loading');
+  try {
+    const frame = await renderPotato(state, { size: 1024 });
+    if (token !== previewToken) return; // a newer render finished first
+    previewCanvas.getContext('2d').drawImage(frame, 0, 0);
+    preview.classList.remove('is-loading', 'is-failed');
+    document.body.dataset.rendered = 'true';
+  } catch (err) {
+    if (token !== previewToken) return;
+    preview.classList.remove('is-loading');
+    preview.classList.add('is-failed');
+    console.error(err);
+    toast('Some parts failed to load. Check your connection and reload.');
+  }
 }
 
-function thumbFor(candidate, category, prefix) {
-  const thumb = document.createElement('span');
-  thumb.className = 'thumb';
-  thumb.innerHTML = composeSVG(candidate, { idPrefix: prefix, size: 88, viewBox: cropFor(category, candidate) });
-  // The thumbnail's own aria-label would repeat; the text label below names it.
-  thumb.firstElementChild?.setAttribute('aria-hidden', 'true');
-  return thumb;
-}
+// --- option buttons ---------------------------------------------------------
 
 function button(group, value, label, selected, visual) {
   const btn = document.createElement('button');
@@ -99,8 +116,55 @@ function button(group, value, label, selected, visual) {
   return btn;
 }
 
+const thumbJobs = [];
+let thumbTimer = null;
+/** Thumbnails render lazily, a few per frame, so the panel appears at once and fills in. */
+function queueThumb(holder, candidate, category) {
+  thumbJobs.push([holder, candidate, category]);
+  if (!thumbTimer) thumbTimer = requestAnimationFrame(drainThumbs);
+}
+async function drainThumbs() {
+  thumbTimer = null;
+  const batch = thumbJobs.splice(0, 6);
+  await Promise.all(
+    batch.map(async ([holder, candidate, category]) => {
+      if (!holder.isConnected) return;
+      try {
+        const c = await renderPotato(candidate, { size: 176, crop: cropBox(category), thumbs: true });
+        c.setAttribute('aria-hidden', 'true');
+        holder.replaceChildren(c);
+      } catch {
+        holder.classList.add('thumb-failed');
+      }
+    }),
+  );
+  if (thumbJobs.length) thumbTimer = requestAnimationFrame(drainThumbs);
+}
+
+function potatoThumb(candidate, category) {
+  const holder = document.createElement('span');
+  holder.className = 'thumb';
+  queueThumb(holder, candidate, category);
+  return holder;
+}
+
+function stickerThumb(key) {
+  const holder = document.createElement('span');
+  holder.className = 'thumb thumb-flat';
+  if (hasSticker(key)) {
+    const img = document.createElement('img');
+    img.src = partSrc('stickers', key, true);
+    img.alt = '';
+    img.decoding = 'async';
+    holder.append(img);
+  } else {
+    holder.innerHTML = stickerSVG(key, 88);
+    holder.firstElementChild?.setAttribute('aria-hidden', 'true');
+  }
+  return holder;
+}
+
 function optionButton(group, value, label) {
-  const prefix = `t-${group.key}-${value}`;
   if (group.kind === 'swatch') {
     const dot = document.createElement('span');
     dot.className = 'swatch';
@@ -109,18 +173,21 @@ function optionButton(group, value, label) {
   }
   if (group.kind === 'multi') {
     const picked = state[group.key].includes(value);
-    const thumb = document.createElement('span');
-    thumb.className = 'thumb thumb-flat';
-    thumb.innerHTML = group.key === 'stickers' ? stickerSVG(value, 88) : composeSVG({ ...state, [group.key]: [value] }, { idPrefix: prefix, size: 88 });
-    thumb.firstElementChild?.setAttribute('aria-hidden', 'true');
-    return button(group, value, label, picked, thumb);
+    return button(group, value, label, picked, group.key === 'stickers' ? stickerThumb(value) : potatoThumb({ ...state, [group.key]: [value] }, group.key));
   }
   if (group.kind === 'preset') {
-    const patch = PRESETS[value].patch;
+    const patch = presetPatch(value);
     const active = Object.entries(patch).every(([k, v]) => state[k] === v);
-    return button(group, value, label, active, thumbFor({ ...state, ...patch }, group.key, prefix));
+    return button(group, value, label, active, potatoThumb({ ...state, ...patch }, group.key));
   }
-  return button(group, value, label, state[group.key] === value, thumbFor({ ...state, [group.key]: value }, group.key, prefix));
+  return button(group, value, label, state[group.key] === value, potatoThumb({ ...state, [group.key]: value }, group.key));
+}
+
+/** A preset's patch with any part that has no image yet left out. */
+function presetPatch(name) {
+  const out = {};
+  for (const [k, v] of Object.entries(PRESETS[name].patch)) if (!(k in AVAILABLE) || v in AVAILABLE[k]) out[k] = v;
+  return out;
 }
 
 function textField(group) {
@@ -142,8 +209,16 @@ function textField(group) {
   return wrap;
 }
 
+function note(text, className = 'hint') {
+  const p = document.createElement('p');
+  p.className = className;
+  p.textContent = text;
+  return p;
+}
+
 function renderPanel() {
   panel.replaceChildren();
+  thumbJobs.length = 0;
   for (const group of TABS[activeTab]) {
     const fieldset = document.createElement('fieldset');
     fieldset.className = 'group';
@@ -152,10 +227,7 @@ function renderPanel() {
     fieldset.append(legend);
 
     if (group.onlyWhen && !group.onlyWhen(state)) {
-      const hint = document.createElement('p');
-      hint.className = 'hint';
-      hint.textContent = group.hint;
-      fieldset.append(hint);
+      fieldset.append(note(group.hint));
       panel.append(fieldset);
       continue;
     }
@@ -166,12 +238,7 @@ function renderPanel() {
       continue;
     }
 
-    if (group.hint && group.kind === 'preset') {
-      const hint = document.createElement('p');
-      hint.className = 'hint';
-      hint.textContent = group.hint;
-      fieldset.append(hint);
-    }
+    if (group.hint && group.kind === 'preset') fieldset.append(note(group.hint));
 
     const grid = document.createElement('div');
     grid.className = `grid grid-${group.kind}`;
@@ -180,14 +247,18 @@ function renderPanel() {
         ? Object.entries(MULTI[group.key].options)
         : group.kind === 'preset'
           ? Object.entries(PRESETS).map(([k, v]) => [k, v.label])
-          : Object.entries(OPTIONS[group.key]);
+          : Object.entries(AVAILABLE[group.key] || OPTIONS[group.key]);
     for (const [value, label] of entries) grid.append(optionButton(group, value, label));
     fieldset.append(grid);
+
     if (group.help) {
-      const help = document.createElement('p');
-      help.className = 'hint';
-      help.textContent = group.kind === 'multi' ? `${group.help} ${state[group.key].length} of ${MULTI[group.key].max} picked.` : group.help;
-      fieldset.append(help);
+      const help = group.kind === 'multi' ? `${group.help} ${state[group.key].length} of ${MULTI[group.key].max} picked.` : group.help;
+      fieldset.append(note(help));
+    }
+    const missing = MISSING[group.key];
+    if (missing?.length) {
+      const labels = missing.map((k) => (group.kind === 'multi' ? STICKERS[k] : OPTIONS[group.key][k]));
+      fieldset.append(note(`Not drawn yet: ${labels.join(', ')}.`, 'hint hint-missing'));
     }
     panel.append(fieldset);
   }
@@ -216,17 +287,17 @@ function toast(msg) {
   toastEl.textContent = msg;
   toastEl.classList.add('show');
   clearTimeout(toast.t);
-  toast.t = setTimeout(() => toastEl.classList.remove('show'), 2200);
+  toast.t = setTimeout(() => toastEl.classList.remove('show'), 2600);
 }
 
-// --- events ---------------------------------------------------------------
+// --- events -----------------------------------------------------------------
 
 panel.addEventListener('click', (e) => {
   const btn = e.target.closest('.opt');
   if (!btn) return;
   const { key, value } = btn.dataset;
   if (key === 'preset') {
-    setState(PRESETS[value].patch);
+    setState(presetPatch(value));
     return;
   }
   if (key in MULTI) {
@@ -277,22 +348,23 @@ $('#reset').addEventListener('click', () => {
   toast('Back to the original potato.');
 });
 
-$('#download-png').addEventListener('click', async () => {
+async function download(size) {
+  const btn = $(size === 512 ? '#download-png' : '#download-big');
+  btn.disabled = true;
   try {
-    const blob = await svgToPngBlob(composeSVG(state, { idPrefix: 'export', size: 512 }), 512);
-    downloadBlob(blob, 'potato-me.png');
-    toast(`Saved potato-me.png (${Math.max(1, Math.round(blob.size / 1024))} KB)`);
+    const blob = await exportPng(state, size);
+    const name = size === 512 ? 'potato-me.png' : `potato-me-${size}.png`;
+    downloadBlob(blob, name);
+    toast(`Saved ${name} (${Math.max(1, Math.round(blob.size / 1024))} KB)`);
   } catch (err) {
-    toast('Download failed. Try the SVG instead.');
+    toast('Download failed. Try again in a moment.');
     console.error(err);
+  } finally {
+    btn.disabled = false;
   }
-});
-
-$('#download-svg').addEventListener('click', () => {
-  const svg = composeSVG(state, { idPrefix: 'export', size: 512 });
-  downloadBlob(new Blob([svg], { type: 'image/svg+xml' }), 'potato-me.svg');
-  toast('Saved potato-me.svg');
-});
+}
+$('#download-png').addEventListener('click', () => download(512));
+$('#download-big').addEventListener('click', () => download(1024));
 
 $('#copy-link').addEventListener('click', async () => {
   try {
@@ -304,7 +376,7 @@ $('#copy-link').addEventListener('click', async () => {
 });
 
 window.addEventListener('hashchange', () => {
-  state = decodeState(location.hash);
+  state = drawableState(decodeState(location.hash));
   render();
 });
 
