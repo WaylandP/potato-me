@@ -172,6 +172,8 @@ function remap(data, win, base, target) {
 
 const RED_WINDOW = { hue: 2, hueWidth: 16, sMin: 0.42, lMin: 0.07, lMax: 0.86 };
 const SKIN_WINDOW = { hue: 30, hueWidth: 14, sMin: 0.28, lMin: 0.2, lMax: 0.86 };
+// Only the light skin tones: eyelids and lips, not the dark brown irises.
+const SKIN_LIGHT_WINDOW = { hue: 30, hueWidth: 14, sMin: 0.28, lMin: 0.5, lMax: 0.9 };
 
 const processed = new Map();
 const PROCESSED_MAX = 60;
@@ -179,7 +181,8 @@ const PROCESSED_MAX = 60;
 /** A part image with recolor / skin tint applied, cached by (src, hat color, skin). */
 async function processedPart(group, key, src, { hatColor, skin }) {
   const wantsRecolor = FIT.recolor[group]?.includes(key) && hatColor && hatColor !== RED;
-  const wantsSkin = FIT.skinTint[group] && skin && skin !== 'russet' && !FIT.noSkinTint.includes(`${group}/${key}`);
+  const tintMode = FIT.skinTint[group];
+  const wantsSkin = tintMode && skin && skin !== 'russet' && !FIT.noSkinTint.includes(`${group}/${key}`);
   const img = await loadImage(src);
   if (!wantsRecolor && !wantsSkin) return img;
   const cacheKey = `${src}|${wantsRecolor ? hatColor : ''}|${wantsSkin ? skin : ''}`;
@@ -196,7 +199,7 @@ async function processedPart(group, key, src, { hatColor, skin }) {
   ctx.drawImage(img, 0, 0);
   const id = ctx.getImageData(0, 0, c.width, c.height);
   if (wantsRecolor) remap(id.data, RED_WINDOW, RED, hatColor);
-  if (wantsSkin) remap(id.data, SKIN_WINDOW, SKINS.russet.base, SKINS[skin].base);
+  if (wantsSkin) remap(id.data, tintMode === 'light' ? SKIN_LIGHT_WINDOW : SKIN_WINDOW, SKINS.russet.base, SKINS[skin].base);
   ctx.putImageData(id, 0, 0);
   processed.set(cacheKey, c);
   if (processed.size > PROCESSED_MAX) processed.delete(processed.keys().next().value);
@@ -207,24 +210,48 @@ async function processedPart(group, key, src, { hatColor, skin }) {
 
 /** Combined nudge/scale/rotation for a layer on this body shape. */
 export function layerTransform(group, key, shape) {
-  const t = { dx: 0, dy: 0, scale: 1, rot: 0, flip: false };
+  const t = { dx: 0, dy: 0, scale: 1, rot: 0, flip: false, spread: 0 };
   for (const o of [FIT.shapes[shape]?.[group], FIT.parts[`${group}/${key}`], FIT.parts[`${group}/${key}@${shape}`]]) {
     if (!o) continue;
     t.dx += o.dx || 0;
     t.dy += o.dy || 0;
     t.scale *= o.scale ?? 1;
     t.rot += o.rot || 0;
+    t.spread += o.spread || 0;
     if (o.flip) t.flip = !t.flip;
   }
   return t;
 }
 
-function applyTransform(ctx, group, t) {
-  const [px, py] = FIT.pivots[group] || [CANVAS / 2, CANVAS / 2];
+const pivotFor = (group, key) => FIT.pivots[`${group}/${key}`] || FIT.pivots[group] || [CANVAS / 2, CANVAS / 2];
+
+function applyTransform(ctx, group, t, key) {
+  const [px, py] = pivotFor(group, key);
   ctx.translate(px + t.dx, py + t.dy);
   ctx.scale(t.scale * (t.flip ? -1 : 1), t.scale);
   ctx.rotate((t.rot * Math.PI) / 180);
   ctx.translate(-px, -py);
+}
+
+/** Draw a layer image with its transform; a `spread` draws the two halves pushed apart. */
+function drawLayer(ctx, img, group, key, t) {
+  if (!t.spread) {
+    ctx.save();
+    applyTransform(ctx, group, t, key);
+    ctx.drawImage(img, 0, 0, CANVAS, CANVAS);
+    ctx.restore();
+    return;
+  }
+  const [px] = pivotFor(group, key);
+  for (const side of [-1, 1]) {
+    ctx.save();
+    applyTransform(ctx, group, { ...t, dx: t.dx + side * t.spread }, key);
+    ctx.beginPath();
+    ctx.rect(side < 0 ? -CANVAS : px, -CANVAS, CANVAS + (side < 0 ? px : CANVAS), CANVAS * 3);
+    ctx.clip();
+    ctx.drawImage(img, 0, 0, CANVAS, CANVAS);
+    ctx.restore();
+  }
 }
 
 // ---------------------------------------------------------------- layers
@@ -232,8 +259,14 @@ function applyTransform(ctx, group, t) {
 /** The image layers a state needs, in drawing order. */
 export function layersFor(rawState) {
   const s = drawableState(rawState);
+  // Extras draw under the hat by default; headphones go over caps and beanies, band across the hat.
+  let order = LAYER_ORDER;
+  if (s.extra === 'headphones' && FIT.headphonesOver.includes(s.hat)) {
+    order = LAYER_ORDER.filter((g) => g !== 'extra');
+    order.splice(order.indexOf('hat') + 1, 0, 'extra');
+  }
   const layers = [];
-  for (const group of LAYER_ORDER) {
+  for (const group of order) {
     const key = group === 'body' ? `${s.body}-${s.skin}` : s[group];
     if (group !== 'body' && !PARTS[group]?.[key]) continue; // "none" choices and missing images draw nothing
     layers.push({ group, key, transform: layerTransform(group, key, s.body) });
@@ -289,7 +322,7 @@ async function drawStickers(ctx, s, thumbs) {
   const bx = bl[0] - tl[0];
   const by = bl[1] - tl[1];
   ctx.save();
-  applyTransform(ctx, 'item', layerTransform('item', 'laptop', s.body));
+  applyTransform(ctx, 'item', layerTransform('item', 'laptop', s.body), 'laptop');
   ctx.transform(ax, ay, bx, by, tl[0], tl[1]); // unit square -> lid quad
   const slots = stickerSlots(keys.length);
   const lidW = Math.hypot(ax, ay);
@@ -337,7 +370,7 @@ function drawCapText(ctx, s) {
   const spec = FIT.capText[s.hat];
   if (!spec || !s.capText) return;
   ctx.save();
-  applyTransform(ctx, 'hat', layerTransform('hat', s.hat, s.body));
+  applyTransform(ctx, 'hat', layerTransform('hat', s.hat, s.body), s.hat);
   ctx.translate(spec.x, spec.y);
   ctx.rotate((spec.rot * Math.PI) / 180);
   ctx.textAlign = 'center';
@@ -396,10 +429,7 @@ export async function renderPotato(rawState, opts = {}) {
   if (bgImg) ctx.drawImage(bgImg, 0, 0, CANVAS, CANVAS);
   for (let i = 0; i < layers.length; i++) {
     const l = layers[i];
-    ctx.save();
-    applyTransform(ctx, l.group, l.transform);
-    ctx.drawImage(imgs[i], 0, 0, CANVAS, CANVAS);
-    ctx.restore();
+    drawLayer(ctx, imgs[i], l.group, l.key, l.transform);
     if (l.group === 'item' && l.key === 'laptop') await drawStickers(ctx, s, thumbs);
     if (l.group === 'hat') drawCapText(ctx, s);
   }

@@ -1,5 +1,6 @@
 import { OPTIONS, MULTI, TEXT, PRESETS, BG_COLORS, HAT_COLORS, STICKERS, DEFAULT_STATE } from './options.js';
-import { normalizeState, encodeState, decodeState, randomState, cleanText } from './state.js';
+import { encodeState, decodeState, cleanText } from './state.js';
+import { surprise } from './surprise.js';
 import { renderPotato, exportPng, availableOptions, missingParts, drawableState, cropBox, hasSticker, partSrc } from './raster.js';
 import { downloadBlob } from './export.js';
 import { stickerSVG } from './parts/stickers.js';
@@ -337,7 +338,7 @@ $('#crop-toggle').addEventListener('change', (e) => {
 });
 
 $('#randomize').addEventListener('click', () => {
-  commit(randomState(Math.random, { sign: state.sign, capText: state.capText }));
+  commit(surprise(Math.random, AVAILABLE, { sign: state.sign, capText: state.capText }));
   preview.classList.remove('wiggle');
   void preview.offsetWidth; // restart the animation
   preview.classList.add('wiggle');

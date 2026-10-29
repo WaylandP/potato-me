@@ -4,8 +4,12 @@
 // shapes:  per body shape, per layer group: nudge (dx, dy), scale about the
 //          group's pivot, rotation in degrees, flip. Classic is the baseline
 //          the parts were fitted on, so it is empty.
-// parts:   the same fields for one specific part, applied on top.
-// pivots:  the point each group scales and rotates around.
+// parts:   the same fields for one specific part ('group/key'), or for one
+//          part on one shape ('group/key@shape'), applied on top. `spread`
+//          moves the left half of the image left and the right half right by
+//          that many px, for two-sided parts like earbuds.
+// pivots:  the point each group scales and rotates around; 'group/key' entries
+//          override the group's pivot for one part.
 // recolor: parts generated in the red master color that follow the hat color.
 // capText: where the initials sit on each text-capable hat.
 // laptop:  the lid's four corners (TL, TR, BR, BL) for sticker projection.
@@ -21,6 +25,8 @@ export const FIT = {
     eyewear: [512, 437],
     neckwear: [512, 660],
     extra: [512, 350],
+    'extra/headphones': [512, 330],
+    'extra/earbuds': [512, 435],
     hat: [512, 300],
     item: [347, 620],
     gesture: [695, 630],
@@ -37,6 +43,20 @@ export const FIT = {
     'hat/wizard@round': { dy: 22 },
     'hat/chef@round': { dy: 20 },
     'hat/party@round': { dy: 16 },
+    // Headphones were rendered head-sized; the potato is the head, so the cups go out to its sides.
+    'extra/headphones': { scale: 1.8 },
+    'extra/headphones@long': { scale: 0.7, dy: 34 },
+    'extra/headphones@round': { scale: 1.1 },
+    // Earbuds were rendered between the eyes; push each one out to the side of the body.
+    'extra/earbuds': { spread: 215 },
+    'extra/earbuds@long': { spread: -95 },
+    'extra/earbuds@round': { spread: 70 },
+    // Side-of-the-head extras follow the body's edge on narrow and wide shapes.
+    'extra/earring@long': { dx: -42 },
+    'extra/earring@round': { dx: 36 },
+    'extra/flower@long': { dx: 72 },
+    'extra/flower@round': { dx: -28 },
+    'extra/bandaid@long': { dx: -10 },
   },
   recolor: {
     hat: ['backwardCap', 'cap', 'beanie', 'headband', 'bucket', 'cowboy', 'tophat', 'fedora', 'wizard', 'hardhat', 'party', 'beret', 'propeller', 'horns', 'santa'],
@@ -44,9 +64,13 @@ export const FIT = {
     extra: ['headphones'],
     item: ['coffee'],
   },
-  // Parts whose tan areas are skin and should follow the body color (arms and hands).
-  skinTint: { item: true, gesture: true },
+  // Parts whose tan areas are skin and should follow the body color: arms and hands fully,
+  // eyes and mouths only in their light tones (lids, lips) so irises and tongues keep their color.
+  skinTint: { item: 'full', gesture: 'full', eyes: 'light', mouth: 'light', cheeks: 'light' },
   noSkinTint: [],
+  // The manifest draws extras under the hat. For these hats headphones go over the hat instead,
+  // band across the cap like a gamer; everything else keeps the band tucked under the brim.
+  headphonesOver: ['backwardCap', 'cap', 'beanie', 'headband', 'halo'],
   capText: {
     backwardCap: { x: 468, y: 120, w: 118, h: 42, rot: -3, color: '#F7EBD7' },
     cap: { x: 512, y: 148, w: 190, h: 66, rot: 0, color: '#F7EBD7' },

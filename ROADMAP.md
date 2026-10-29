@@ -21,7 +21,9 @@ Check a box only when the work is built, tested and visible on the deployed site
 - [x] Thumbnails, screenshot tool, hero and link-preview card from the real app
 - [ ] Generate the 26 remaining parts: raised brows, 11 held items (boba, phone, controller, sign, pizza, donut, duck, mic, trophy, plant, nothing), 10 free-hand poses, 4 stickers (404, skull, mountains, LGTM)
 - [ ] Sign text once `item/sign.png` exists (text box in `FIT.sign`)
-- [ ] Skin masks for eyelids and lips so the smug eyes match exotic skins
+- [x] Skin masks for eyelids and lips so the smug eyes match exotic skins
+- [x] Coherent "Surprise me": a vibe for the face, matching colors, at most two worn accessories
+- [x] Headphones, earbuds, earring and flower fitted to every body shape
 - [ ] Deploy to Vercel and add the live URL to the README
 - [ ] Self-host the Fredoka font
 - [ ] Undo / redo

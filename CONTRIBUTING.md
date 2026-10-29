@@ -38,7 +38,7 @@ Parts are generated with an image model from `docs/IMAGE_PROMPTS.md`, one part p
 2. **Generate the image.** Use the master prompt and the part's line from `docs/IMAGE_PROMPTS.md`. Hats, neckwear, headphones and the mug are rendered in the red master color so the app can recolor them; arms in russet skin. Keep the laptop lid and the sign blank.
 3. **Normalize it.** 1024 × 1024, RGBA, transparent background, placed where it belongs on the canvas. Save it as `assets/parts/<group>/<key>.png`.
 4. **Record it.** Add an entry to `assets/manifest.json` (copy a neighbour; `placedBox` is the opaque bounding box) and run `npm run assets`.
-5. **Fit it.** Open `fit.html`, look at the part on Classic, Lumpy, Round and Long, nudge with the arrow keys, and paste the printed `shapes` / `parts` into `src/fit-data.js`. Red colorway parts also go in `FIT.recolor`; a held object the skin mask would catch goes in `FIT.noSkinTint`.
+5. **Fit it.** Open `fit.html`, look at the part on Classic, Lumpy, Round and Long, nudge with the arrow keys, and paste the printed `shapes` / `parts` into `src/fit-data.js`. Red colorway parts also go in `FIT.recolor`; a held object the skin mask would catch goes in `FIT.noSkinTint`. A two-sided part that was rendered too close together (earbuds) takes a `spread` instead of a scale, and a part that should scale around its own point gets a `group/key` entry in `FIT.pivots`.
 6. **Check it.** `npm test`, then `npm run shot review.png spec.json --cell 256 --cols 4` with a few combinations, and look at them in the avatar crop and the thumbnail grid.
 
 ### Art checklist

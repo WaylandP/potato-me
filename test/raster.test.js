@@ -67,13 +67,32 @@ test('layers come out in manifest order with per-shape transforms applied', () =
   const hat = layers.find((l) => l.group === 'hat');
   assert.equal(hat.transform.scale, FIT.shapes.long.hat.scale);
   const classic = layerTransform('hat', 'wizard', 'classic');
-  assert.deepEqual(classic, { dx: 0, dy: 0, scale: 1, rot: 0, flip: false });
+  assert.deepEqual(classic, { dx: 0, dy: 0, scale: 1, rot: 0, flip: false, spread: 0 });
+  assert.equal(layerTransform('extra', 'earbuds', 'long').spread, FIT.parts['extra/earbuds'].spread + FIT.parts['extra/earbuds@long'].spread);
   assert.equal(layerTransform('hat', 'tophat', 'round').dy, FIT.shapes.round.hat.dy + FIT.parts['hat/tophat@round'].dy);
 });
 
+test('headphones go under hats that cover the head and over hats that do not', () => {
+  const order = (hat) => layersFor({ ...DEFAULT_STATE, hat, extra: 'headphones' }).map((l) => l.group);
+  const under = order('tophat');
+  assert.ok(under.indexOf('extra') < under.indexOf('hat'));
+  const over = order('backwardCap');
+  assert.ok(over.indexOf('extra') > over.indexOf('hat'));
+  const none = order('none');
+  assert.ok(none.includes('extra') && !none.includes('hat'));
+});
+
 test('every recolor and skin-tint entry names an existing part', () => {
+  for (const hat of FIT.headphonesOver) assert.ok(PARTS.hat[hat], hat);
   for (const [group, keys] of Object.entries(FIT.recolor)) for (const k of keys) assert.ok(PARTS[group][k], `${group}/${k}`);
   for (const hat of Object.keys(FIT.capText)) assert.ok(PARTS.hat[hat], hat);
+  for (const key of Object.keys(FIT.parts)) {
+    const [group, rest] = key.split('/');
+    const [part, shape] = rest.split('@');
+    assert.ok(PARTS[group]?.[part], `${key} names a missing part`);
+    if (shape) assert.ok(OPTIONS.body[shape], `${key} names a missing shape`);
+  }
+  for (const key of Object.keys(FIT.pivots)) if (key.includes('/')) assert.ok(PARTS[key.split('/')[0]]?.[key.split('/')[1]], key);
   assert.equal(FIT.laptop.lid.length, 4);
   assert.deepEqual(cropBox('body'), [0, 0, 1024, 1024]);
   assert.equal(cropBox('eyes').length, 4);
