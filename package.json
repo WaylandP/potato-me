@@ -1,7 +1,7 @@
 {
   "name": "potato-me",
-  "version": "0.2.0",
-  "description": "Build a potato avatar for GitHub, Slack or anywhere. No build step, no dependencies.",
+  "version": "0.3.0",
+  "description": "Build a rendered 3D potato avatar for GitHub, Slack or anywhere. No build step, no dependencies.",
   "type": "module",
   "private": true,
   "license": "MIT",
@@ -25,7 +25,9 @@
   "scripts": {
     "dev": "node scripts/serve.mjs",
     "test": "node --test",
-    "hero": "node scripts/hero.mjs"
+    "assets": "node scripts/thumbs.mjs",
+    "hero": "node scripts/hero.mjs",
+    "shot": "node scripts/shot.mjs"
   },
   "engines": {
     "node": ">=20"

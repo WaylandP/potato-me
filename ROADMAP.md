@@ -4,48 +4,35 @@ Check a box only when the work is built, tested and visible on the deployed site
 
 ## Phase 1: MVP (v0.1)
 
-- [x] Layered SVG renderer: 4 bodies, 5 skins, 6 eyes, 5 mouths, blush
-- [x] Hats (5 + none) with 7 colors
-- [x] Gear: laptop with stickers, coffee, custom-text sign, wave and shaka poses
-- [x] Accessories: shades, mustache, bow tie
-- [x] Backgrounds: 8 colors × 4 patterns
-- [x] Live option thumbnails rendered from the real renderer
-- [x] Avatar crop preview
-- [x] 512 × 512 PNG and SVG download
-- [x] Share links (state in the URL hash) and "Surprise me"
-- [x] Light and dark mode, keyboard-friendly tabs, reduced-motion support
-- [x] Test suite covering every option and every body × hat × item × gesture combo
-- [x] Generate `docs/hero.png` (README banner) from the renderer
+- [x] Layered SVG renderer, editor, PNG export, share links, light and dark mode, tests
 
-## Phase 2: Art overhaul and polish (v0.2)
+## Phase 2: Sticker-style art and polish (v0.2)
 
-- [x] Shaded potato: skin gradient, core shadow, rim light, dimples, speckle grain, ground shadow
-- [x] Cast shadow under every hat; hats shaded per color with highlights and seams
-- [x] Mitten hands with thumbs; open waving hand; shaka that reads at thumbnail size
-- [x] Laptop lid gradient, die-cut stickers, red panda redraw; coffee and sign redraw
-- [x] New parts: party hat, beret, glasses, confetti background, Yukon gold skin
-- [x] Dependency-free dev server (`npm run dev`) and `npm run hero`
-- [x] CONTRIBUTING.md with a "draw a new part" guide and an art style checklist
+- [x] Shaded SVG potato, cast shadows under hats, mitten hands, redrawn gear, new parts
+- [x] Dependency-free dev server, hero script, CONTRIBUTING.md, issue and PR templates
+
+## Phase 3: Rendered parts (v0.3)
+
+- [x] Prompt pack for generating every part as a positioned 1024 px transparent PNG
+- [x] 138 rendered parts: 36 bodies, 14 eyes, 6 brows, 12 mouths, cheeks, facial hair, 19 hats, eyewear, neckwear, extras, 4 held items, shaka, 22 stickers
+- [x] Canvas compositor with hue-mask recoloring, skin tinting, sticker projection and cap initials
+- [x] Per-shape fitting data and `fit.html`
+- [x] Missing parts hidden and listed; old share links migrated
+- [x] Thumbnails, screenshot tool, hero and link-preview card from the real app
+- [ ] Generate the 26 remaining parts: raised brows, 11 held items (boba, phone, controller, sign, pizza, donut, duck, mic, trophy, plant, nothing), 10 free-hand poses, 4 stickers (404, skull, mountains, LGTM)
+- [ ] Sign text once `item/sign.png` exists (text box in `FIT.sign`)
+- [ ] Skin masks for eyelids and lips so the smug eyes match exotic skins
 - [ ] Deploy to Vercel and add the live URL to the README
-- [ ] Self-host the Fredoka font (no third-party request)
-- [ ] Open Graph image per potato so shared links preview the actual potato (needs an edge function; static `docs/og.png` is used today)
+- [ ] Self-host the Fredoka font
 - [ ] Undo / redo
-- [ ] 1024 px export option
 - [ ] Accessibility pass with a screen reader (VoiceOver + NVDA)
 - [ ] Lighthouse pass: performance, accessibility, best practices all 95+
 
-## Phase 3: More potato
+## Phase 4: More potato
 
-- [ ] More hats: headband, viking helmet, headphones
-- [ ] More held items: wrench, rubber duck, pizza slice, "it works on my machine" mug
-- [ ] Laptop sticker picker (choose 2–4 from a sticker set)
-- [ ] Expressions as presets (Smug, Panicked on-call, Friday deploy)
+- [ ] More hats, items and expressions from the same prompt pack
 - [ ] Seasonal packs (Halloween, holidays) behind a toggle
-
-## Phase 4: Community
-
 - [ ] Gallery of community potatoes (opt-in, links only, no uploads)
-- [ ] GitHub Action / CLI: `npx potato-me --hat wizard --out avatar.png`
 
 ## Not planned
 
