@@ -1,0 +1,4746 @@
+{
+  "version": 1,
+  "canvas": {
+    "width": 1024,
+    "height": 1024
+  },
+  "sourceRepository": "WaylandP/potato-me",
+  "sourceRef": "claude/awesome-ritchie-f0e8l9",
+  "sourceCommit": "f77b86b18836f6e49f56a78a557d17313152ad37",
+  "expectedAssetCount": 164,
+  "generatedAssetCount": 138,
+  "coordinates": "viewer-relative; held item left, gesture right",
+  "layerOrder": [
+    "body",
+    "cheeks",
+    "facialHair",
+    "mouth",
+    "eyes",
+    "brows",
+    "eyewear",
+    "neckwear",
+    "extra",
+    "hat",
+    "item",
+    "gesture"
+  ],
+  "assets": [
+    {
+      "path": "assets/parts/body/classic-russet.png",
+      "request": "The original detailed blank classic russet potato body, short legs and feet. No face or arms.",
+      "group": "body",
+      "key": "classic-russet",
+      "targetBox": [
+        245,
+        154,
+        779,
+        922
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        251,
+        72,
+        1026,
+        1191
+      ],
+      "placedBox": [
+        246,
+        154,
+        778,
+        922
+      ],
+      "flippedForConvention": false,
+      "sha256": "5c6b43e44d0b244947fa97e1cf6dec24cb59f545cff13d629e30cc1048f3297f"
+    },
+    {
+      "path": "assets/parts/body/lumpy-russet.png",
+      "request": "Full body like the base potato but a LUMPY shape: knobbly, with two or three soft bumps on the sides and top. Same skin, same legs and feet, same framing, no face, no arms, transparent background.",
+      "group": "body",
+      "key": "lumpy-russet",
+      "targetBox": [
+        235,
+        154,
+        789,
+        922
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        228,
+        46,
+        1052,
+        1191
+      ],
+      "placedBox": [
+        236,
+        154,
+        789,
+        922
+      ],
+      "flippedForConvention": false,
+      "sha256": "b39ffb680dc86a4b4a4b54be6d9454ed48293ea43c8ba9df9f30e6ac0010f115"
+    },
+    {
+      "path": "assets/parts/body/round-russet.png",
+      "request": "Full body like the base potato but a nearly spherical ROUND shape. Same skin, legs, feet, framing, no face, no arms, transparent background.",
+      "group": "body",
+      "key": "round-russet",
+      "targetBox": [
+        200,
+        154,
+        824,
+        922
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        207,
+        187,
+        1062,
+        1166
+      ],
+      "placedBox": [
+        176,
+        154,
+        847,
+        922
+      ],
+      "flippedForConvention": false,
+      "sha256": "fdb82751daf3dce5dc111dcafb67f9d5d5e86c319049aca6bdcaec9478ef9b9c"
+    },
+    {
+      "path": "assets/parts/body/long-russet.png",
+      "request": "Full body like the base potato but a tall LONG oval, fingerling-like. Same skin, legs, feet, framing, no face, no arms, transparent background.",
+      "group": "body",
+      "key": "long-russet",
+      "targetBox": [
+        310,
+        154,
+        714,
+        922
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        362,
+        57,
+        915,
+        1191
+      ],
+      "placedBox": [
+        324,
+        154,
+        699,
+        922
+      ],
+      "flippedForConvention": false,
+      "sha256": "1488a1f5db0de034e74d84d9581d5a98d7d29c875336814f45337a7a08bcf67c"
+    },
+    {
+      "path": "assets/parts/body/classic-gold.png",
+      "request": "The classic body again with Yukon gold skin: smooth thin yellow-gold skin, lighter and shinier than russet, few blotches.",
+      "group": "body",
+      "key": "classic-gold",
+      "targetBox": [
+        245,
+        154,
+        779,
+        922
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        258,
+        72,
+        1028,
+        1190
+      ],
+      "placedBox": [
+        248,
+        154,
+        777,
+        922
+      ],
+      "flippedForConvention": false,
+      "sha256": "167ddc133ee536125a59a0fa2a265ba9b3dcbfc01feb36c4a3b407984db207bc"
+    },
+    {
+      "path": "assets/parts/body/lumpy-gold.png",
+      "request": "The lumpy body again with Yukon gold skin: smooth thin yellow-gold skin, lighter and shinier than russet, few blotches.",
+      "group": "body",
+      "key": "lumpy-gold",
+      "targetBox": [
+        235,
+        154,
+        789,
+        922
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        234,
+        80,
+        1058,
+        1192
+      ],
+      "placedBox": [
+        228,
+        154,
+        797,
+        922
+      ],
+      "flippedForConvention": false,
+      "sha256": "291d995143207676131cae1a4d7c5b695b874bf20843034ec7d45b62ed6bd448"
+    },
+    {
+      "path": "assets/parts/body/round-gold.png",
+      "request": "The round body again with Yukon gold skin: smooth thin yellow-gold skin, lighter and shinier than russet, few blotches.",
+      "group": "body",
+      "key": "round-gold",
+      "targetBox": [
+        200,
+        154,
+        824,
+        922
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        198,
+        188,
+        1060,
+        1175
+      ],
+      "placedBox": [
+        176,
+        154,
+        847,
+        922
+      ],
+      "flippedForConvention": false,
+      "sha256": "1ab5ed934dd5e671b206688f78936157d8dc76dc81d302f4d81228b17c9dd070"
+    },
+    {
+      "path": "assets/parts/body/long-gold.png",
+      "request": "The long body again with Yukon gold skin: smooth thin yellow-gold skin, lighter and shinier than russet, few blotches.",
+      "group": "body",
+      "key": "long-gold",
+      "targetBox": [
+        310,
+        154,
+        714,
+        922
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        341,
+        68,
+        939,
+        1208
+      ],
+      "placedBox": [
+        310,
+        154,
+        713,
+        922
+      ],
+      "flippedForConvention": false,
+      "sha256": "2045dee090cfbb9e976f17a5e70d6e1f24325814e6e33d7187b0c83474b5adae"
+    },
+    {
+      "path": "assets/parts/body/classic-red.png",
+      "request": "The classic body again with red potato skin: rosy red-brown, smooth with a few pale dimples.",
+      "group": "body",
+      "key": "classic-red",
+      "targetBox": [
+        245,
+        154,
+        779,
+        922
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        245,
+        68,
+        1038,
+        1190
+      ],
+      "placedBox": [
+        240,
+        154,
+        783,
+        922
+      ],
+      "flippedForConvention": false,
+      "sha256": "2003a100d74c4a9b36f099ba98b5d33a4c900dfb5551c4716b8371a4eb8b0b98"
+    },
+    {
+      "path": "assets/parts/body/lumpy-red.png",
+      "request": "The lumpy body again with red potato skin: rosy red-brown, smooth with a few pale dimples.",
+      "group": "body",
+      "key": "lumpy-red",
+      "targetBox": [
+        235,
+        154,
+        789,
+        922
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        257,
+        79,
+        1016,
+        1174
+      ],
+      "placedBox": [
+        246,
+        154,
+        778,
+        922
+      ],
+      "flippedForConvention": false,
+      "sha256": "088a9c48ede1efd5dbcacab172a07ef30bf75ff5387c817cc0e6cebb54151de3"
+    },
+    {
+      "path": "assets/parts/body/round-red.png",
+      "request": "The round body again with red potato skin: rosy red-brown, smooth with a few pale dimples.",
+      "group": "body",
+      "key": "round-red",
+      "targetBox": [
+        200,
+        154,
+        824,
+        922
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        193,
+        143,
+        1086,
+        1178
+      ],
+      "placedBox": [
+        180,
+        154,
+        843,
+        922
+      ],
+      "flippedForConvention": false,
+      "sha256": "39160ff62b5dc68d118eebca6799a0b734a231fa42b0eef9e7d734a93925ed82"
+    },
+    {
+      "path": "assets/parts/body/long-red.png",
+      "request": "The long body again with red potato skin: rosy red-brown, smooth with a few pale dimples.",
+      "group": "body",
+      "key": "long-red",
+      "targetBox": [
+        310,
+        154,
+        714,
+        922
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        342,
+        55,
+        936,
+        1178
+      ],
+      "placedBox": [
+        309,
+        154,
+        715,
+        922
+      ],
+      "flippedForConvention": false,
+      "sha256": "9ab08f998d3daae39c87f3726750d7dc893499286bcbfe4975a45128ecef8611"
+    },
+    {
+      "path": "assets/parts/body/classic-purple.png",
+      "request": "The classic body again with purple potato skin: deep violet, slightly glossy.",
+      "group": "body",
+      "key": "classic-purple",
+      "targetBox": [
+        245,
+        154,
+        779,
+        922
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        249,
+        72,
+        1046,
+        1184
+      ],
+      "placedBox": [
+        237,
+        154,
+        787,
+        922
+      ],
+      "flippedForConvention": false,
+      "sha256": "ddeb243c8c5ea0d0c3a42fe3d25e7d35dcbd2ceed84481a15c1a8db5cce7d600"
+    },
+    {
+      "path": "assets/parts/body/lumpy-purple.png",
+      "request": "The lumpy body again with purple potato skin: deep violet, slightly glossy.",
+      "group": "body",
+      "key": "lumpy-purple",
+      "targetBox": [
+        235,
+        154,
+        789,
+        922
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        258,
+        46,
+        1016,
+        1190
+      ],
+      "placedBox": [
+        258,
+        154,
+        767,
+        922
+      ],
+      "flippedForConvention": false,
+      "sha256": "b4ea640dfb73e3d67fa3791e7edfda01778a7ccee564a2cdd1ce0e078252c9cc"
+    },
+    {
+      "path": "assets/parts/body/round-purple.png",
+      "request": "The round body again with purple potato skin: deep violet, slightly glossy.",
+      "group": "body",
+      "key": "round-purple",
+      "targetBox": [
+        200,
+        154,
+        824,
+        922
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        217,
+        149,
+        1069,
+        1192
+      ],
+      "placedBox": [
+        198,
+        154,
+        825,
+        922
+      ],
+      "flippedForConvention": false,
+      "sha256": "0f2e1a26cd7b3889bc38b88128ebbc197b5dc001ed6b3571cc19ce5752f03c9f"
+    },
+    {
+      "path": "assets/parts/body/long-purple.png",
+      "request": "The long body again with purple potato skin: deep violet, slightly glossy.",
+      "group": "body",
+      "key": "long-purple",
+      "targetBox": [
+        310,
+        154,
+        714,
+        922
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        323,
+        79,
+        943,
+        1190
+      ],
+      "placedBox": [
+        298,
+        154,
+        727,
+        922
+      ],
+      "flippedForConvention": false,
+      "sha256": "3776d57a128a53f61e826b67663f46121e84475b99e37688fd778cdccd69dc40"
+    },
+    {
+      "path": "assets/parts/body/classic-sweet.png",
+      "request": "The classic body again as a sweet potato: orange-copper skin with fine lengthwise streaks.",
+      "group": "body",
+      "key": "classic-sweet",
+      "targetBox": [
+        245,
+        154,
+        779,
+        922
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        252,
+        73,
+        1041,
+        1197
+      ],
+      "placedBox": [
+        242,
+        154,
+        781,
+        922
+      ],
+      "flippedForConvention": false,
+      "sha256": "02b6853a02558693571e0613ed6dad78a487388b7a51467fff6c573e6a668330"
+    },
+    {
+      "path": "assets/parts/body/lumpy-sweet.png",
+      "request": "The lumpy body again as a sweet potato: orange-copper skin with fine lengthwise streaks.",
+      "group": "body",
+      "key": "lumpy-sweet",
+      "targetBox": [
+        235,
+        154,
+        789,
+        922
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        266,
+        65,
+        1018,
+        1193
+      ],
+      "placedBox": [
+        256,
+        154,
+        768,
+        922
+      ],
+      "flippedForConvention": false,
+      "sha256": "0cb8809f955187f95cd4d0a628be81b5ac0fc513477f740e82663cf9a8394f56"
+    },
+    {
+      "path": "assets/parts/body/round-sweet.png",
+      "request": "The round body again as a sweet potato: orange-copper skin with fine lengthwise streaks.",
+      "group": "body",
+      "key": "round-sweet",
+      "targetBox": [
+        200,
+        154,
+        824,
+        922
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        195,
+        105,
+        1075,
+        1192
+      ],
+      "placedBox": [
+        201,
+        154,
+        823,
+        922
+      ],
+      "flippedForConvention": false,
+      "sha256": "d4465a5f1d271596edbd051c910f1dd50f443127f665a1135548966f72311e02"
+    },
+    {
+      "path": "assets/parts/body/long-sweet.png",
+      "request": "The long body again as a sweet potato: orange-copper skin with fine lengthwise streaks.",
+      "group": "body",
+      "key": "long-sweet",
+      "targetBox": [
+        310,
+        154,
+        714,
+        922
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        356,
+        59,
+        937,
+        1199
+      ],
+      "placedBox": [
+        316,
+        154,
+        707,
+        922
+      ],
+      "flippedForConvention": false,
+      "sha256": "3130150ab58f1bc88978a186e076e2be339af8d9ce107b0b699f39b08be7a3d6"
+    },
+    {
+      "path": "assets/parts/body/classic-blue.png",
+      "request": "The classic body again with Adirondack blue skin: dusty blue-violet with darker speckles.",
+      "group": "body",
+      "key": "classic-blue",
+      "targetBox": [
+        245,
+        154,
+        779,
+        922
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        255,
+        72,
+        1018,
+        1187
+      ],
+      "placedBox": [
+        249,
+        154,
+        775,
+        922
+      ],
+      "flippedForConvention": false,
+      "sha256": "04378e054e65b8a2f82b209b9e8f392df10b8a244d6e60632e9010a55138dc62"
+    },
+    {
+      "path": "assets/parts/body/lumpy-blue.png",
+      "request": "The lumpy body again with Adirondack blue skin: dusty blue-violet with darker speckles.",
+      "group": "body",
+      "key": "lumpy-blue",
+      "targetBox": [
+        235,
+        154,
+        789,
+        922
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        225,
+        59,
+        1030,
+        1201
+      ],
+      "placedBox": [
+        242,
+        154,
+        783,
+        922
+      ],
+      "flippedForConvention": false,
+      "sha256": "e984269140a02baf07c7a31a2f7140c3e3df1a9cfa74fe92b16835165d46b71a"
+    },
+    {
+      "path": "assets/parts/body/round-blue.png",
+      "request": "The round body again with Adirondack blue skin: dusty blue-violet with darker speckles.",
+      "group": "body",
+      "key": "round-blue",
+      "targetBox": [
+        200,
+        154,
+        824,
+        922
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        214,
+        160,
+        1060,
+        1190
+      ],
+      "placedBox": [
+        196,
+        154,
+        827,
+        922
+      ],
+      "flippedForConvention": false,
+      "sha256": "499a4fdf4bec3f63a7c5aa0988a762dcf0481a5ad692c070a312a5da2e3f96c0"
+    },
+    {
+      "path": "assets/parts/body/long-blue.png",
+      "request": "The long body again with Adirondack blue skin: dusty blue-violet with darker speckles.",
+      "group": "body",
+      "key": "long-blue",
+      "targetBox": [
+        310,
+        154,
+        714,
+        922
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        291,
+        50,
+        978,
+        1208
+      ],
+      "placedBox": [
+        284,
+        154,
+        740,
+        922
+      ],
+      "flippedForConvention": false,
+      "sha256": "77d61636b0ad3459fed7ff78aa556502cc8c7b8c21f4920a28abad09b1e566d5"
+    },
+    {
+      "path": "assets/parts/body/classic-pink.png",
+      "request": "The classic body again with pink fingerling skin: pale pink with soft blush patches.",
+      "group": "body",
+      "key": "classic-pink",
+      "targetBox": [
+        245,
+        154,
+        779,
+        922
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        234,
+        64,
+        1046,
+        1196
+      ],
+      "placedBox": [
+        236,
+        154,
+        787,
+        922
+      ],
+      "flippedForConvention": false,
+      "sha256": "ebbee9436c1fe158265e0abd0b382d0f658627e0f496bb9c7ea79f0a09530965"
+    },
+    {
+      "path": "assets/parts/body/lumpy-pink.png",
+      "request": "The lumpy body again with pink fingerling skin: pale pink with soft blush patches.",
+      "group": "body",
+      "key": "lumpy-pink",
+      "targetBox": [
+        235,
+        154,
+        789,
+        922
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        255,
+        78,
+        1027,
+        1191
+      ],
+      "placedBox": [
+        246,
+        154,
+        779,
+        922
+      ],
+      "flippedForConvention": false,
+      "sha256": "49c51dcf913aa0041d8f5683ad4d53a76eb3ec565cd99b2e205b733fe11de3fa"
+    },
+    {
+      "path": "assets/parts/body/round-pink.png",
+      "request": "The round body again with pink fingerling skin: pale pink with soft blush patches.",
+      "group": "body",
+      "key": "round-pink",
+      "targetBox": [
+        200,
+        154,
+        824,
+        922
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        208,
+        201,
+        1067,
+        1182
+      ],
+      "placedBox": [
+        176,
+        154,
+        848,
+        922
+      ],
+      "flippedForConvention": false,
+      "sha256": "4a088142815ae11f151d09985dad61f3f88077081e2ebd6a4e8a3d388526e815"
+    },
+    {
+      "path": "assets/parts/body/long-pink.png",
+      "request": "The long body again with pink fingerling skin: pale pink with soft blush patches.",
+      "group": "body",
+      "key": "long-pink",
+      "targetBox": [
+        310,
+        154,
+        714,
+        922
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        358,
+        77,
+        927,
+        1185
+      ],
+      "placedBox": [
+        315,
+        154,
+        709,
+        922
+      ],
+      "flippedForConvention": false,
+      "sha256": "3473b897ae72c3a0e4fd6c37aa755469c5273dd4da59cb07a6696ed629ff0c8b"
+    },
+    {
+      "path": "assets/parts/body/classic-ghost.png",
+      "request": "The classic body again with pale cream-white skin, faint dimples, very light blotches.",
+      "group": "body",
+      "key": "classic-ghost",
+      "targetBox": [
+        245,
+        154,
+        779,
+        922
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        261,
+        73,
+        1014,
+        1189
+      ],
+      "placedBox": [
+        253,
+        154,
+        771,
+        922
+      ],
+      "flippedForConvention": false,
+      "sha256": "0c0c28e26d58ed7bbacfddb35dffb4404664b1386558ac5f44cf30bac502b335"
+    },
+    {
+      "path": "assets/parts/body/lumpy-ghost.png",
+      "request": "The lumpy body again with pale cream-white skin, faint dimples, very light blotches.",
+      "group": "body",
+      "key": "lumpy-ghost",
+      "targetBox": [
+        235,
+        154,
+        789,
+        922
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        264,
+        74,
+        1019,
+        1196
+      ],
+      "placedBox": [
+        254,
+        154,
+        771,
+        922
+      ],
+      "flippedForConvention": false,
+      "sha256": "cbfeb44c18c6b1ba5df328de86be2b5cb955c2014a7d8351ea4814caf0bab4b1"
+    },
+    {
+      "path": "assets/parts/body/round-ghost.png",
+      "request": "The round body again with pale cream-white skin, faint dimples, very light blotches.",
+      "group": "body",
+      "key": "round-ghost",
+      "targetBox": [
+        200,
+        154,
+        824,
+        922
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        208,
+        164,
+        1064,
+        1171
+      ],
+      "placedBox": [
+        186,
+        154,
+        839,
+        922
+      ],
+      "flippedForConvention": false,
+      "sha256": "f9f204c9665b3caf567281a1b72bf9cb4bcb27411465babed0130cc0a0614f1c"
+    },
+    {
+      "path": "assets/parts/body/long-ghost.png",
+      "request": "The long body again with pale cream-white skin, faint dimples, very light blotches.",
+      "group": "body",
+      "key": "long-ghost",
+      "targetBox": [
+        310,
+        154,
+        714,
+        922
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        332,
+        42,
+        943,
+        1215
+      ],
+      "placedBox": [
+        312,
+        154,
+        712,
+        922
+      ],
+      "flippedForConvention": false,
+      "sha256": "179dbbc1512648fa4c7b7ce50e641915eb1009912be3ccf409a2ee7376a28eb9"
+    },
+    {
+      "path": "assets/parts/body/classic-zombie.png",
+      "request": "The classic body again with a sickly green-grey zombie skin, darker mottled patches, a couple of small cracks.",
+      "group": "body",
+      "key": "classic-zombie",
+      "targetBox": [
+        245,
+        154,
+        779,
+        922
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        255,
+        75,
+        1009,
+        1174
+      ],
+      "placedBox": [
+        248,
+        154,
+        775,
+        922
+      ],
+      "flippedForConvention": false,
+      "sha256": "1f3e0dd2e294025029f6ae9c8e769d1e877520ab787d83d611fb915f499f75bb"
+    },
+    {
+      "path": "assets/parts/body/lumpy-zombie.png",
+      "request": "The lumpy body again with a sickly green-grey zombie skin, darker mottled patches, a couple of small cracks.",
+      "group": "body",
+      "key": "lumpy-zombie",
+      "targetBox": [
+        235,
+        154,
+        789,
+        922
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        254,
+        70,
+        1015,
+        1171
+      ],
+      "placedBox": [
+        246,
+        154,
+        777,
+        922
+      ],
+      "flippedForConvention": false,
+      "sha256": "5f94db5468c69a129c07068e988a3dbebfe4c0ba57869ef2f6d7462bd735536b"
+    },
+    {
+      "path": "assets/parts/body/round-zombie.png",
+      "request": "The round body again with a sickly green-grey zombie skin, darker mottled patches, a couple of small cracks.",
+      "group": "body",
+      "key": "round-zombie",
+      "targetBox": [
+        200,
+        154,
+        824,
+        922
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        174,
+        117,
+        1082,
+        1169
+      ],
+      "placedBox": [
+        180,
+        154,
+        843,
+        922
+      ],
+      "flippedForConvention": false,
+      "sha256": "0200b1038427e61822670709ad82fd50b3e30707599dd4139708055017872aa3"
+    },
+    {
+      "path": "assets/parts/body/long-zombie.png",
+      "request": "The long body again with a sickly green-grey zombie skin, darker mottled patches, a couple of small cracks.",
+      "group": "body",
+      "key": "long-zombie",
+      "targetBox": [
+        310,
+        154,
+        714,
+        922
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        338,
+        58,
+        948,
+        1214
+      ],
+      "placedBox": [
+        310,
+        154,
+        715,
+        922
+      ],
+      "flippedForConvention": false,
+      "sha256": "b10616f1fb3ea5be44ae972091993b136ff84ab1a65adee439a833b3d5916afd"
+    },
+    {
+      "path": "assets/parts/eyes/smug.png",
+      "request": "Only the eyes: half-lidded, confident, glancing slightly to the viewer's right, warm brown irises, glossy highlights.",
+      "group": "eyes",
+      "key": "smug",
+      "targetBox": [
+        365,
+        393,
+        659,
+        473
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        88,
+        478,
+        1163,
+        836
+      ],
+      "placedBox": [
+        360,
+        395,
+        664,
+        480
+      ],
+      "flippedForConvention": false,
+      "sha256": "4f03b611663f886b18eac903c1c7d76d18bbb17fda7574e24570ccafc3c18ce2"
+    },
+    {
+      "path": "assets/parts/eyes/dots.png",
+      "request": "Only the eyes: small round black bead eyes with a bright highlight each.",
+      "group": "eyes",
+      "key": "dots",
+      "targetBox": [
+        393,
+        415,
+        631,
+        456
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        155,
+        442,
+        1099,
+        805
+      ],
+      "placedBox": [
+        458,
+        415,
+        565,
+        456
+      ],
+      "flippedForConvention": false,
+      "sha256": "01d4681707bf562ccbb181a0e36d4200769ee0d7992510119071622e9c6beb0d"
+    },
+    {
+      "path": "assets/parts/eyes/happy.png",
+      "request": "Only the eyes: closed, as two upward arcs, cheerful.",
+      "group": "eyes",
+      "key": "happy",
+      "targetBox": [
+        365,
+        422,
+        659,
+        450
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        103,
+        482,
+        1152,
+        783
+      ],
+      "placedBox": [
+        463,
+        422,
+        561,
+        450
+      ],
+      "flippedForConvention": false,
+      "sha256": "5400ef276c932d694922bd82687357de16a326308d65b8acb9bdf7f6afcff4f6"
+    },
+    {
+      "path": "assets/parts/eyes/wide.png",
+      "request": "Only the eyes: big round eyes with white sclera, brown irises, excited.",
+      "group": "eyes",
+      "key": "wide",
+      "targetBox": [
+        365,
+        378,
+        659,
+        478
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        53,
+        365,
+        1200,
+        912
+      ],
+      "placedBox": [
+        407,
+        378,
+        617,
+        478
+      ],
+      "flippedForConvention": false,
+      "sha256": "13e3dc227832bfc664ff37daca506e832e700431271380268433373214639ae9"
+    },
+    {
+      "path": "assets/parts/eyes/wink.png",
+      "request": "Only the eyes: the viewer's-left eye open and glossy, the right eye closed in a wink.",
+      "group": "eyes",
+      "key": "wink",
+      "targetBox": [
+        365,
+        393,
+        659,
+        473
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        72,
+        376,
+        1186,
+        905
+      ],
+      "placedBox": [
+        428,
+        393,
+        596,
+        473
+      ],
+      "flippedForConvention": false,
+      "sha256": "8e7675a29f6f2d893199d5fca46984a30db7bff63287084cd12a03f22c4014f0"
+    },
+    {
+      "path": "assets/parts/eyes/sleepy.png",
+      "request": "Only the eyes: heavy drooping lids, barely open, drowsy.",
+      "group": "eyes",
+      "key": "sleepy",
+      "targetBox": [
+        365,
+        393,
+        659,
+        473
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        55,
+        390,
+        1200,
+        871
+      ],
+      "placedBox": [
+        417,
+        393,
+        607,
+        473
+      ],
+      "flippedForConvention": false,
+      "sha256": "595e03c82aa02473cebf338c51288f331825391e060bb92aca6c97c0169c48c4"
+    },
+    {
+      "path": "assets/parts/eyes/angry.png",
+      "request": "Only the eyes: narrowed, glaring, brown irises.",
+      "group": "eyes",
+      "key": "angry",
+      "targetBox": [
+        365,
+        393,
+        659,
+        473
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        14,
+        434,
+        1241,
+        831
+      ],
+      "placedBox": [
+        388,
+        393,
+        635,
+        473
+      ],
+      "flippedForConvention": false,
+      "sha256": "95279f8bf195f956a77d32bd703aa9e76e19aba193cc62fd33fd677fe7fdd10b"
+    },
+    {
+      "path": "assets/parts/eyes/surprised.png",
+      "request": "Only the eyes: wide open with small pupils, startled.",
+      "group": "eyes",
+      "key": "surprised",
+      "targetBox": [
+        365,
+        378,
+        659,
+        478
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        78,
+        336,
+        1177,
+        920
+      ],
+      "placedBox": [
+        418,
+        378,
+        606,
+        478
+      ],
+      "flippedForConvention": false,
+      "sha256": "c1828b4302267e71848288b116d4a8528e7b82c2eb278e41130289b5a73f940e"
+    },
+    {
+      "path": "assets/parts/eyes/side.png",
+      "request": "Only the eyes: a sideways glance to the viewer's left, slightly shy.",
+      "group": "eyes",
+      "key": "side",
+      "targetBox": [
+        365,
+        393,
+        659,
+        473
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        109,
+        401,
+        1145,
+        874
+      ],
+      "placedBox": [
+        424,
+        393,
+        599,
+        473
+      ],
+      "flippedForConvention": false,
+      "sha256": "2ece6bfac76a98c10cef3f96468fab0014f5eaa5f4ef416b3443d9b341068137"
+    },
+    {
+      "path": "assets/parts/eyes/squint.png",
+      "request": "Only the eyes: tight laughing squint, both eyes nearly shut.",
+      "group": "eyes",
+      "key": "squint",
+      "targetBox": [
+        365,
+        422,
+        659,
+        450
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        43,
+        449,
+        1210,
+        820
+      ],
+      "placedBox": [
+        468,
+        422,
+        556,
+        450
+      ],
+      "flippedForConvention": false,
+      "sha256": "c08830eff9f01d668ccb080ac7cc9b055dc4b75fe545daf446e68355ea779f98"
+    },
+    {
+      "path": "assets/parts/eyes/rolling.png",
+      "request": "Only the eyes: rolled up toward the top lids, exasperated.",
+      "group": "eyes",
+      "key": "rolling",
+      "targetBox": [
+        365,
+        393,
+        659,
+        473
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        71,
+        392,
+        1183,
+        863
+      ],
+      "placedBox": [
+        418,
+        393,
+        607,
+        473
+      ],
+      "flippedForConvention": false,
+      "sha256": "2f4c50987f414e6373261ad52c06972eb2a816e18fc86a6425e7f079e54415c2"
+    },
+    {
+      "path": "assets/parts/eyes/heart.png",
+      "request": "Only the eyes: open eyes with glossy red heart-shaped pupils.",
+      "group": "eyes",
+      "key": "heart",
+      "targetBox": [
+        365,
+        378,
+        659,
+        478
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        47,
+        369,
+        1208,
+        895
+      ],
+      "placedBox": [
+        402,
+        378,
+        623,
+        478
+      ],
+      "flippedForConvention": false,
+      "sha256": "f253ef7a61917c7aede2daf73cc1f7e2b6dae6b7a394160397c10cd0e30c71d9"
+    },
+    {
+      "path": "assets/parts/eyes/stars.png",
+      "request": "Only the eyes: open eyes with sparkling gold star-shaped pupils.",
+      "group": "eyes",
+      "key": "stars",
+      "targetBox": [
+        365,
+        378,
+        659,
+        478
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        67,
+        373,
+        1187,
+        876
+      ],
+      "placedBox": [
+        400,
+        378,
+        623,
+        478
+      ],
+      "flippedForConvention": false,
+      "sha256": "cad92c25a67f8247cba51618d787295662eb3a21fdef4e1773bfb14c5da77fcb"
+    },
+    {
+      "path": "assets/parts/eyes/dead.png",
+      "request": "Only the eyes: cartoon \"X X\" eyes, two dark crosses.",
+      "group": "eyes",
+      "key": "dead",
+      "targetBox": [
+        365,
+        393,
+        659,
+        473
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        73,
+        356,
+        1181,
+        952
+      ],
+      "placedBox": [
+        438,
+        393,
+        587,
+        473
+      ],
+      "flippedForConvention": false,
+      "sha256": "d6560ae3d9cd214452c78ccf0ff0c97717ad8f4b3506f85add4c6bb55b3833e5"
+    },
+    {
+      "path": "assets/parts/brows/smug.png",
+      "request": "Only the eyebrows: thick dark brown brows, the viewer's-right one raised high, the left one lowered, like the reference.",
+      "group": "brows",
+      "key": "smug",
+      "targetBox": [
+        350,
+        327,
+        674,
+        396
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        29,
+        465,
+        1227,
+        801
+      ],
+      "placedBox": [
+        353,
+        350,
+        671,
+        407
+      ],
+      "flippedForConvention": false,
+      "sha256": "994d411cf915563605705a4ff584706bb0e66b2ec4ac04265a7e379c50ba4411"
+    },
+    {
+      "path": "assets/parts/brows/thick.png",
+      "request": "Only the eyebrows: thick dark brown brows, both gently arched, relaxed.",
+      "group": "brows",
+      "key": "thick",
+      "targetBox": [
+        350,
+        327,
+        674,
+        396
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        65,
+        468,
+        1191,
+        716
+      ],
+      "placedBox": [
+        356,
+        327,
+        669,
+        396
+      ],
+      "flippedForConvention": false,
+      "sha256": "288b12df4a79a52aab9d3514a88233de96fb49194a760a8b9efa9639eda1bf09"
+    },
+    {
+      "path": "assets/parts/brows/angry.png",
+      "request": "Only the eyebrows: thick brows slanted down toward the center.",
+      "group": "brows",
+      "key": "angry",
+      "targetBox": [
+        350,
+        327,
+        674,
+        396
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        20,
+        456,
+        1238,
+        773
+      ],
+      "placedBox": [
+        380,
+        327,
+        645,
+        396
+      ],
+      "flippedForConvention": false,
+      "sha256": "f090d6e20141e5769e2acdf3a88400f0815202c2a6b5e327d8651d4347e26831"
+    },
+    {
+      "path": "assets/parts/brows/worried.png",
+      "request": "Only the eyebrows: thick brows slanted up toward the center, anxious.",
+      "group": "brows",
+      "key": "worried",
+      "targetBox": [
+        350,
+        327,
+        674,
+        396
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        58,
+        451,
+        1197,
+        831
+      ],
+      "placedBox": [
+        408,
+        327,
+        615,
+        396
+      ],
+      "flippedForConvention": false,
+      "sha256": "977adf346740d4626a667336fbdf6170c66b1969e5760028924fc55112adc7d2"
+    },
+    {
+      "path": "assets/parts/brows/flat.png",
+      "request": "Only the eyebrows: thick, straight and low, unimpressed.",
+      "group": "brows",
+      "key": "flat",
+      "targetBox": [
+        350,
+        327,
+        674,
+        396
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        16,
+        527,
+        1238,
+        706
+      ],
+      "placedBox": [
+        350,
+        338,
+        674,
+        385
+      ],
+      "flippedForConvention": false,
+      "sha256": "0dc7e6681155f2f5fb609bc3922abbe1d462b74ebb053fde0e44b49250aa1c0a"
+    },
+    {
+      "path": "assets/parts/brows/uni.png",
+      "request": "Only the eyebrows: one thick continuous unibrow across both eyes.",
+      "group": "brows",
+      "key": "uni",
+      "targetBox": [
+        350,
+        327,
+        674,
+        396
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        18,
+        473,
+        1241,
+        823
+      ],
+      "placedBox": [
+        392,
+        327,
+        633,
+        396
+      ],
+      "flippedForConvention": false,
+      "sha256": "11f8dfa7d53f2913a1847bf40ca20ff4bfe6138ec8eb88e9a323a929853247cf"
+    },
+    {
+      "path": "assets/parts/mouth/smirk.png",
+      "request": "Only the mouth: a confident one-sided smirk, lips closed, like the reference.",
+      "group": "mouth",
+      "key": "smirk",
+      "targetBox": [
+        393,
+        535,
+        631,
+        590
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        125,
+        448,
+        1140,
+        862
+      ],
+      "placedBox": [
+        390,
+        538,
+        634,
+        590
+      ],
+      "flippedForConvention": false,
+      "sha256": "6702b6b51da987171c2fafa68d607148a444249690a7e16fb9feac877cf0e66e"
+    },
+    {
+      "path": "assets/parts/mouth/grin.png",
+      "request": "Only the mouth: a wide grin showing a row of white teeth.",
+      "group": "mouth",
+      "key": "grin",
+      "targetBox": [
+        393,
+        520,
+        631,
+        625
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        31,
+        390,
+        1223,
+        1000
+      ],
+      "placedBox": [
+        410,
+        520,
+        615,
+        625
+      ],
+      "flippedForConvention": false,
+      "sha256": "a5190752d9f25f64abfa6982c6661293118e83cabf735706907137d3a3a670a1"
+    },
+    {
+      "path": "assets/parts/mouth/laugh.png",
+      "request": "Only the mouth: open laughing mouth, tongue and upper teeth visible.",
+      "group": "mouth",
+      "key": "laugh",
+      "targetBox": [
+        393,
+        520,
+        631,
+        625
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        73,
+        323,
+        1184,
+        1059
+      ],
+      "placedBox": [
+        433,
+        520,
+        591,
+        625
+      ],
+      "flippedForConvention": false,
+      "sha256": "31f5f8e8653bfb7c3a53b434d55110ed2b080fe0a90747a1570a010e6ce8a57f"
+    },
+    {
+      "path": "assets/parts/mouth/smile.png",
+      "request": "Only the mouth: a gentle closed smile.",
+      "group": "mouth",
+      "key": "smile",
+      "targetBox": [
+        393,
+        535,
+        631,
+        590
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        99,
+        491,
+        1156,
+        920
+      ],
+      "placedBox": [
+        444,
+        535,
+        580,
+        590
+      ],
+      "flippedForConvention": false,
+      "sha256": "e4c5a29647e3f2903274993996334431785110694bd15ed55a52ad291716bd48"
+    },
+    {
+      "path": "assets/parts/mouth/flat.png",
+      "request": "Only the mouth: a straight, flat, unimpressed line.",
+      "group": "mouth",
+      "key": "flat",
+      "targetBox": [
+        407,
+        559,
+        617,
+        579
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        113,
+        555,
+        1141,
+        862
+      ],
+      "placedBox": [
+        478,
+        559,
+        545,
+        579
+      ],
+      "flippedForConvention": false,
+      "sha256": "43c08270ad6d77c037dbb77fb6269ee71e5c23001ffd97a642bbe928149be25f"
+    },
+    {
+      "path": "assets/parts/mouth/frown.png",
+      "request": "Only the mouth: a sad downturned frown.",
+      "group": "mouth",
+      "key": "frown",
+      "targetBox": [
+        393,
+        535,
+        631,
+        590
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        75,
+        360,
+        1180,
+        932
+      ],
+      "placedBox": [
+        459,
+        535,
+        565,
+        590
+      ],
+      "flippedForConvention": false,
+      "sha256": "797c1f5d9cee297ebfbe46468ab07cfe653595fbbc4749f23131207f8917c3aa"
+    },
+    {
+      "path": "assets/parts/mouth/oh.png",
+      "request": "Only the mouth: a small round open \"oh\".",
+      "group": "mouth",
+      "key": "oh",
+      "targetBox": [
+        478,
+        538,
+        546,
+        620
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        368,
+        472,
+        886,
+        947
+      ],
+      "placedBox": [
+        478,
+        548,
+        546,
+        610
+      ],
+      "flippedForConvention": false,
+      "sha256": "350b07faf81f8ff7934a34b5c95360d199b902b990043fa5a6607ca11116475d"
+    },
+    {
+      "path": "assets/parts/mouth/tongue.png",
+      "request": "Only the mouth: a playful smile with the tongue sticking out to one side.",
+      "group": "mouth",
+      "key": "tongue",
+      "targetBox": [
+        393,
+        520,
+        631,
+        625
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        45,
+        322,
+        1210,
+        1010
+      ],
+      "placedBox": [
+        423,
+        520,
+        601,
+        625
+      ],
+      "flippedForConvention": false,
+      "sha256": "70ed79b459fe13ea97b2731836e5f0e0343281ebd07418ec4128081fe3e1c603"
+    },
+    {
+      "path": "assets/parts/mouth/grit.png",
+      "request": "Only the mouth: gritted teeth, a tense wide clench.",
+      "group": "mouth",
+      "key": "grit",
+      "targetBox": [
+        393,
+        520,
+        631,
+        625
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        33,
+        322,
+        1220,
+        963
+      ],
+      "placedBox": [
+        415,
+        520,
+        609,
+        625
+      ],
+      "flippedForConvention": false,
+      "sha256": "c09a235b39d3a12d7a4d5096149c14271be530b6bc1a90e4c8d8f966359d755c"
+    },
+    {
+      "path": "assets/parts/mouth/whistle.png",
+      "request": "Only the mouth: puckered whistling lips, with two tiny music notes floating beside it.",
+      "group": "mouth",
+      "key": "whistle",
+      "targetBox": [
+        443,
+        520,
+        674,
+        605
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        175,
+        338,
+        1224,
+        936
+      ],
+      "placedBox": [
+        484,
+        520,
+        633,
+        605
+      ],
+      "flippedForConvention": false,
+      "sha256": "89613c6690fd5f5a9644f13b766ffa2a250dc15c6f2ba20563ce412eff94df59"
+    },
+    {
+      "path": "assets/parts/mouth/kiss.png",
+      "request": "Only the mouth: puckered kissing lips.",
+      "group": "mouth",
+      "key": "kiss",
+      "targetBox": [
+        464,
+        546,
+        560,
+        603
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        154,
+        272,
+        1103,
+        984
+      ],
+      "placedBox": [
+        474,
+        546,
+        550,
+        603
+      ],
+      "flippedForConvention": false,
+      "sha256": "5fd2cb8666bf40739970582640fb0be8c4ed88e712e320d35814b09bacf04ffc"
+    },
+    {
+      "path": "assets/parts/mouth/wavy.png",
+      "request": "Only the mouth: a nervous wavy squiggle mouth.",
+      "group": "mouth",
+      "key": "wavy",
+      "targetBox": [
+        407,
+        559,
+        617,
+        579
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        137,
+        464,
+        1117,
+        871
+      ],
+      "placedBox": [
+        488,
+        559,
+        536,
+        579
+      ],
+      "flippedForConvention": false,
+      "sha256": "d717c1659a03e6ecfe1cd8dfca535b56f86afbd6018cdb8f16182f4591a8643a"
+    },
+    {
+      "path": "assets/parts/cheeks/on.png",
+      "request": "Only the cheeks: two soft rosy blush ovals, one on each cheek, slightly below the eye line.",
+      "group": "cheeks",
+      "key": "on",
+      "targetBox": [
+        339,
+        472,
+        685,
+        518
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        46,
+        484,
+        1206,
+        855
+      ],
+      "placedBox": [
+        440,
+        472,
+        584,
+        518
+      ],
+      "flippedForConvention": false,
+      "sha256": "7e707b68c664ca859d1618f6101ee08f5b2c5ec38604b7503ec70d2e2b509c5b"
+    },
+    {
+      "path": "assets/parts/cheeks/freckles.png",
+      "request": "Only the cheeks: a light scatter of small darker freckles across both cheeks and the bridge between the eyes.",
+      "group": "cheeks",
+      "key": "freckles",
+      "targetBox": [
+        339,
+        472,
+        685,
+        518
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        140,
+        490,
+        1117,
+        843
+      ],
+      "placedBox": [
+        448,
+        472,
+        575,
+        518
+      ],
+      "flippedForConvention": false,
+      "sha256": "51d7817024cda76fc30eb95268e3c2f7ddd2c3d7ce307ee3dd7bbd500fed6104"
+    },
+    {
+      "path": "assets/parts/facialHair/mustache.png",
+      "request": "Only the facial hair: a classic thick dark-brown mustache above the mouth position.",
+      "group": "facialHair",
+      "key": "mustache",
+      "targetBox": [
+        365,
+        505,
+        659,
+        550
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        14,
+        466,
+        1241,
+        852
+      ],
+      "placedBox": [
+        440,
+        505,
+        583,
+        550
+      ],
+      "flippedForConvention": false,
+      "sha256": "beaf0492fdfd121a78561974fd143f600a18bbe40fa7df1b3cfd713f8189883a"
+    },
+    {
+      "path": "assets/parts/facialHair/handlebar.png",
+      "request": "Only the facial hair: a dark-brown handlebar mustache with curled waxed tips.",
+      "group": "facialHair",
+      "key": "handlebar",
+      "targetBox": [
+        365,
+        505,
+        659,
+        550
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        33,
+        476,
+        1223,
+        817
+      ],
+      "placedBox": [
+        434,
+        505,
+        591,
+        550
+      ],
+      "flippedForConvention": false,
+      "sha256": "3dd052504ce97183fbf26302a093c91b0ce78c1c51d26ab64b3b8be2e2afb233"
+    },
+    {
+      "path": "assets/parts/facialHair/goatee.png",
+      "request": "Only the facial hair: a neat dark-brown goatee under the mouth position.",
+      "group": "facialHair",
+      "key": "goatee",
+      "targetBox": [
+        452,
+        591,
+        572,
+        711
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        170,
+        428,
+        1085,
+        1039
+      ],
+      "placedBox": [
+        452,
+        611,
+        572,
+        691
+      ],
+      "flippedForConvention": false,
+      "sha256": "ceaa7f9bf8240ffa1b8a7f906b20285fa7365e4854dd9639ee3c0f84ec4f1d58"
+    },
+    {
+      "path": "assets/parts/facialHair/beard.png",
+      "request": "Only the facial hair: a full dark-brown beard wrapping the lower face, mouth area left open.",
+      "group": "facialHair",
+      "key": "beard",
+      "targetBox": [
+        350,
+        502,
+        674,
+        718
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        25,
+        208,
+        1234,
+        1130
+      ],
+      "placedBox": [
+        370,
+        502,
+        653,
+        718
+      ],
+      "flippedForConvention": false,
+      "sha256": "ac3af31facbb687b458e7e85259813a239a9486cb6d65f928ce6fc33cd93f937"
+    },
+    {
+      "path": "assets/parts/facialHair/stubble.png",
+      "request": "Only the facial hair: light dark stubble shading across the chin and jaw area.",
+      "group": "facialHair",
+      "key": "stubble",
+      "targetBox": [
+        346,
+        555,
+        678,
+        718
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        24,
+        328,
+        1234,
+        1033
+      ],
+      "placedBox": [
+        372,
+        555,
+        652,
+        718
+      ],
+      "flippedForConvention": false,
+      "sha256": "e8bd357adcef5c11ce091a61dc448017c4c2f13e94fc6f26503ff4b988315aa4"
+    },
+    {
+      "path": "assets/parts/hat/backwardCap.png",
+      "request": "Only the hat: a backward baseball cap in pure red with a subtle woven fabric texture, the adjustable strap and clasp facing the viewer, a button on top, seams, the brim pointing back-right.",
+      "group": "hat",
+      "key": "backwardCap",
+      "targetBox": [
+        270,
+        30,
+        794,
+        295
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        46,
+        235,
+        1232,
+        953
+      ],
+      "placedBox": [
+        313,
+        30,
+        751,
+        295
+      ],
+      "flippedForConvention": false,
+      "sha256": "8bdeb7a1c18cf2ec206dae5f1cc6d7c72db6602664273f22187eb791ab2739ca"
+    },
+    {
+      "path": "assets/parts/hat/cap.png",
+      "request": "Only the hat: a forward-facing baseball cap in pure red, curved brim toward the viewer, button on top, seams.",
+      "group": "hat",
+      "key": "cap",
+      "targetBox": [
+        270,
+        30,
+        794,
+        295
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        27,
+        125,
+        1224,
+        1136
+      ],
+      "placedBox": [
+        375,
+        30,
+        689,
+        295
+      ],
+      "flippedForConvention": false,
+      "sha256": "f6d5272923f05fc25ea1c95b41a6dc8687701b526e7e33aea99ec0e8fc514adf"
+    },
+    {
+      "path": "assets/parts/hat/beanie.png",
+      "request": "Only the hat: a pure red knit beanie with a folded ribbed cuff and a cream pom-pom.",
+      "group": "hat",
+      "key": "beanie",
+      "targetBox": [
+        227,
+        38,
+        797,
+        278
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        51,
+        56,
+        1204,
+        1165
+      ],
+      "placedBox": [
+        387,
+        38,
+        637,
+        278
+      ],
+      "flippedForConvention": false,
+      "sha256": "9578c0240e2d0ace85b68f7cbdde7f923ead534b03f5432c4d94a0db14764438"
+    },
+    {
+      "path": "assets/parts/hat/headband.png",
+      "request": "Only the hat: a pure red terry sweatband around the top of the head.",
+      "group": "hat",
+      "key": "headband",
+      "targetBox": [
+        275,
+        190,
+        749,
+        265
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        22,
+        316,
+        1232,
+        942
+      ],
+      "placedBox": [
+        440,
+        190,
+        585,
+        265
+      ],
+      "flippedForConvention": false,
+      "sha256": "ad94cb259de7644ad9389e3bf02ade30aafd0dacc9b0c2f5e2b3647f7d88d79a"
+    },
+    {
+      "path": "assets/parts/hat/bucket.png",
+      "request": "Only the hat: a pure red canvas bucket hat with a soft downward brim and stitched rows.",
+      "group": "hat",
+      "key": "bucket",
+      "targetBox": [
+        227,
+        38,
+        797,
+        278
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        11,
+        267,
+        1243,
+        1036
+      ],
+      "placedBox": [
+        320,
+        38,
+        704,
+        278
+      ],
+      "flippedForConvention": false,
+      "sha256": "2a2cd9a71b07fade6d9a09e9022faf42f0ed2b775bfe8be9405555203c045bd7"
+    },
+    {
+      "path": "assets/parts/hat/cowboy.png",
+      "request": "Only the hat: a pure red felt cowboy hat with a wide curved brim, pinched crown and a thin dark band.",
+      "group": "hat",
+      "key": "cowboy",
+      "targetBox": [
+        227,
+        38,
+        797,
+        278
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        9,
+        305,
+        1245,
+        968
+      ],
+      "placedBox": [
+        288,
+        38,
+        735,
+        278
+      ],
+      "flippedForConvention": false,
+      "sha256": "637aabe03a28138b0da9ca9a8e444d7135f25f1a174b7d5c6c39a2a8b054c37b"
+    },
+    {
+      "path": "assets/parts/hat/tophat.png",
+      "request": "Only the hat: a tall pure red silk top hat with a dark band and a slight sheen.",
+      "group": "hat",
+      "key": "tophat",
+      "targetBox": [
+        240,
+        10,
+        784,
+        272
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        40,
+        154,
+        1215,
+        1118
+      ],
+      "placedBox": [
+        352,
+        10,
+        671,
+        272
+      ],
+      "flippedForConvention": false,
+      "sha256": "06086e4a15efaf5311ce0a7bc7ceb6fcb2177a539f9ff550f5ddf5e03c843b6e"
+    },
+    {
+      "path": "assets/parts/hat/fedora.png",
+      "request": "Only the hat: a pure red felt fedora with a pinched crown and a dark ribbon band.",
+      "group": "hat",
+      "key": "fedora",
+      "targetBox": [
+        227,
+        38,
+        797,
+        278
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        9,
+        208,
+        1246,
+        1034
+      ],
+      "placedBox": [
+        332,
+        38,
+        691,
+        278
+      ],
+      "flippedForConvention": false,
+      "sha256": "4483ef838f516e0221cd54938f794e5cf8daa331e35f5120785140cb66fe15e1"
+    },
+    {
+      "path": "assets/parts/hat/wizard.png",
+      "request": "Only the hat: a tall pure red wizard hat with a floppy bent tip, wide brim, a dark band with a gold buckle, and a few small gold stars and a crescent moon on it.",
+      "group": "hat",
+      "key": "wizard",
+      "targetBox": [
+        240,
+        10,
+        784,
+        272
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        18,
+        92,
+        1235,
+        1191
+      ],
+      "placedBox": [
+        367,
+        10,
+        657,
+        272
+      ],
+      "flippedForConvention": false,
+      "sha256": "9ae05de446f58619a2cec1de4113055208d0e272dbcf1bbb9cdba270a446bb11"
+    },
+    {
+      "path": "assets/parts/hat/crown.png",
+      "request": "Only the hat: a gold royal crown with five points, red velvet inside, and jewels: one ruby in front, two sapphires.",
+      "group": "hat",
+      "key": "crown",
+      "targetBox": [
+        227,
+        38,
+        797,
+        278
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        33,
+        140,
+        1220,
+        1109
+      ],
+      "placedBox": [
+        365,
+        38,
+        659,
+        278
+      ],
+      "flippedForConvention": false,
+      "sha256": "3e74e742771a0b1b2f97945bec5affe79528d30abdba28c03d2c00af02f06e8c"
+    },
+    {
+      "path": "assets/parts/hat/hardhat.png",
+      "request": "Only the hat: a pure red construction hard hat with a center ridge and a wide front brim.",
+      "group": "hat",
+      "key": "hardhat",
+      "targetBox": [
+        227,
+        38,
+        797,
+        278
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        13,
+        189,
+        1241,
+        1019
+      ],
+      "placedBox": [
+        334,
+        38,
+        689,
+        278
+      ],
+      "flippedForConvention": false,
+      "sha256": "618cf9f865807d14723ed8c7151a4274d3d956ad3f5ae6e76ff5ed3963e32c78"
+    },
+    {
+      "path": "assets/parts/hat/chef.png",
+      "request": "Only the hat: a tall white pleated chef's toque.",
+      "group": "hat",
+      "key": "chef",
+      "targetBox": [
+        240,
+        10,
+        784,
+        272
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        29,
+        69,
+        1228,
+        1215
+      ],
+      "placedBox": [
+        375,
+        10,
+        649,
+        272
+      ],
+      "flippedForConvention": false,
+      "sha256": "c5bd784680375c5620f776c39fd1dbe630dc8b7d633d04d36fbc0cdc44a5d950"
+    },
+    {
+      "path": "assets/parts/hat/viking.png",
+      "request": "Only the hat: a brushed steel viking helmet with a nose guard and two curved ivory horns.",
+      "group": "hat",
+      "key": "viking",
+      "targetBox": [
+        227,
+        38,
+        797,
+        278
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        11,
+        92,
+        1243,
+        1162
+      ],
+      "placedBox": [
+        374,
+        38,
+        650,
+        278
+      ],
+      "flippedForConvention": false,
+      "sha256": "3fb8ffc9b4e84655f02a2ed33f5c44e2649d00ef19272dbe44ac40964397ce1b"
+    },
+    {
+      "path": "assets/parts/hat/party.png",
+      "request": "Only the hat: a pure red cone party hat with white diagonal stripes and a white pom-pom on the tip, slightly tilted.",
+      "group": "hat",
+      "key": "party",
+      "targetBox": [
+        240,
+        10,
+        784,
+        272
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        201,
+        45,
+        1085,
+        1202
+      ],
+      "placedBox": [
+        412,
+        10,
+        612,
+        272
+      ],
+      "flippedForConvention": false,
+      "sha256": "c15690192f11e9e245553ed16bb42bf84a0a605981f5b5ec680d559f13552eeb"
+    },
+    {
+      "path": "assets/parts/hat/beret.png",
+      "request": "Only the hat: a pure red wool beret tilted to one side with a little stem on top.",
+      "group": "hat",
+      "key": "beret",
+      "targetBox": [
+        227,
+        38,
+        797,
+        278
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        26,
+        243,
+        1238,
+        1026
+      ],
+      "placedBox": [
+        326,
+        38,
+        697,
+        278
+      ],
+      "flippedForConvention": false,
+      "sha256": "b741d60b6afc5ab7423ce54feabe3e53226e54beb4f4f470beda61590b444536"
+    },
+    {
+      "path": "assets/parts/hat/propeller.png",
+      "request": "Only the hat: a pure red beanie cap with a small spinning propeller on top.",
+      "group": "hat",
+      "key": "propeller",
+      "targetBox": [
+        227,
+        38,
+        797,
+        278
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        44,
+        146,
+        1210,
+        1165
+      ],
+      "placedBox": [
+        374,
+        38,
+        649,
+        278
+      ],
+      "flippedForConvention": false,
+      "sha256": "305c1a0820b8c03264c3331428d2df11978be183c445f3feae73d61ec8f60d4c"
+    },
+    {
+      "path": "assets/parts/hat/halo.png",
+      "request": "Only the hat: a glowing gold halo floating just above the head.",
+      "group": "hat",
+      "key": "halo",
+      "targetBox": [
+        366,
+        68,
+        658,
+        122
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        6,
+        351,
+        1251,
+        867
+      ],
+      "placedBox": [
+        447,
+        68,
+        577,
+        122
+      ],
+      "flippedForConvention": false,
+      "sha256": "d8189235f93a08bc85139f03f6d28ef9fa2cc20e9042ffc94cf2404fc181db9b"
+    },
+    {
+      "path": "assets/parts/hat/horns.png",
+      "request": "Only the hat: two small pure red devil horns on the top of the head.",
+      "group": "hat",
+      "key": "horns",
+      "targetBox": [
+        317,
+        102,
+        707,
+        226
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        110,
+        370,
+        1144,
+        753
+      ],
+      "placedBox": [
+        344,
+        102,
+        679,
+        226
+      ],
+      "flippedForConvention": false,
+      "sha256": "73650ae060dfc6b9537eca61ade46e37cd834c23786c459353cfe9243165f5dc"
+    },
+    {
+      "path": "assets/parts/hat/santa.png",
+      "request": "Only the hat: a pure red Santa hat with white fur trim and a white pom-pom hanging to one side.",
+      "group": "hat",
+      "key": "santa",
+      "targetBox": [
+        227,
+        38,
+        797,
+        278
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        25,
+        184,
+        1254,
+        1097
+      ],
+      "placedBox": [
+        350,
+        38,
+        673,
+        278
+      ],
+      "flippedForConvention": false,
+      "sha256": "789598adf3da6f177f9ad1bae064239e63e8878cf99a0a2f522f8f6c8de10664"
+    },
+    {
+      "path": "assets/parts/eyewear/shades.png",
+      "request": "Only the eyewear: black wayfarer-style sunglasses with dark glossy lenses and a subtle reflection.",
+      "group": "eyewear",
+      "key": "shades",
+      "targetBox": [
+        335,
+        386,
+        689,
+        484
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        13,
+        439,
+        1241,
+        827
+      ],
+      "placedBox": [
+        357,
+        386,
+        667,
+        484
+      ],
+      "flippedForConvention": false,
+      "sha256": "f20920959a70b48e8e1537bfba701be0e638090dd5183f721fa28ecccdcb26e6"
+    },
+    {
+      "path": "assets/parts/eyewear/aviators.png",
+      "request": "Only the eyewear: gold-rimmed aviator sunglasses with dark gradient lenses.",
+      "group": "eyewear",
+      "key": "aviators",
+      "targetBox": [
+        335,
+        386,
+        689,
+        484
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        19,
+        433,
+        1235,
+        881
+      ],
+      "placedBox": [
+        379,
+        386,
+        645,
+        484
+      ],
+      "flippedForConvention": false,
+      "sha256": "d660bbf1edc80f2dc081ac77bf803c06f5fc4c6fe21e3256011d27c4cf71264e"
+    },
+    {
+      "path": "assets/parts/eyewear/round.png",
+      "request": "Only the eyewear: round thin-wire glasses with clear lenses and a soft glint.",
+      "group": "eyewear",
+      "key": "round",
+      "targetBox": [
+        335,
+        386,
+        689,
+        484
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        14,
+        381,
+        1240,
+        862
+      ],
+      "placedBox": [
+        387,
+        386,
+        637,
+        484
+      ],
+      "flippedForConvention": false,
+      "sha256": "b1149b536dfe46b7ab3f0ca637dc538e2605c1133b23a0199c132cf1a4d501c2"
+    },
+    {
+      "path": "assets/parts/eyewear/square.png",
+      "request": "Only the eyewear: black rectangular-framed glasses with clear lenses.",
+      "group": "eyewear",
+      "key": "square",
+      "targetBox": [
+        335,
+        386,
+        689,
+        484
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        23,
+        429,
+        1232,
+        820
+      ],
+      "placedBox": [
+        360,
+        386,
+        663,
+        484
+      ],
+      "flippedForConvention": false,
+      "sha256": "6aadd1312eb572fc0915ac8726fddc150981aa426eba0572e2a7e1e9457ba384"
+    },
+    {
+      "path": "assets/parts/eyewear/monocle.png",
+      "request": "Only the eyewear: a gold-rimmed monocle over the viewer's-right eye with a thin chain hanging down.",
+      "group": "eyewear",
+      "key": "monocle",
+      "targetBox": [
+        546,
+        386,
+        668,
+        559
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        168,
+        84,
+        1078,
+        1194
+      ],
+      "placedBox": [
+        546,
+        398,
+        668,
+        547
+      ],
+      "flippedForConvention": false,
+      "sha256": "02f918d13f5260f0669eec1a01c35d22e1de34f9b491946751e6bede9e92ed66"
+    },
+    {
+      "path": "assets/parts/eyewear/eyepatch.png",
+      "request": "Only the eyewear: a black eye patch over the viewer's-left eye with a thin strap around the head.",
+      "group": "eyewear",
+      "key": "eyepatch",
+      "targetBox": [
+        269,
+        367,
+        755,
+        480
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        29,
+        395,
+        1225,
+        922
+      ],
+      "placedBox": [
+        384,
+        367,
+        640,
+        480
+      ],
+      "flippedForConvention": false,
+      "sha256": "9d62c9ce8c83ece95a4a3e1ea734b404ce222954bfd737cb21aa82e461c90810"
+    },
+    {
+      "path": "assets/parts/neckwear/bowtie.png",
+      "request": "Only the neckwear: a pure red satin bow tie.",
+      "group": "neckwear",
+      "key": "bowtie",
+      "targetBox": [
+        407,
+        627,
+        617,
+        715
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        8,
+        302,
+        1246,
+        978
+      ],
+      "placedBox": [
+        432,
+        627,
+        593,
+        715
+      ],
+      "flippedForConvention": false,
+      "sha256": "a8e2041b418e0063af880168089832bb5471d04fe4578ea188c8552f19b54ee7"
+    },
+    {
+      "path": "assets/parts/neckwear/tie.png",
+      "request": "Only the neckwear: a pure red necktie with a small knot, hanging down the front.",
+      "group": "neckwear",
+      "key": "tie",
+      "targetBox": [
+        463,
+        624,
+        561,
+        836
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        167,
+        47,
+        1088,
+        1231
+      ],
+      "placedBox": [
+        463,
+        667,
+        561,
+        793
+      ],
+      "flippedForConvention": false,
+      "sha256": "b2ae3ef0f22417270467933da0eac62bdee38640336661109b8c95aaa84b436d"
+    },
+    {
+      "path": "assets/parts/neckwear/scarf.png",
+      "request": "Only the neckwear: a chunky pure red knit scarf wrapped once with the ends hanging to one side.",
+      "group": "neckwear",
+      "key": "scarf",
+      "targetBox": [
+        287,
+        605,
+        737,
+        786
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        121,
+        92,
+        1234,
+        1170
+      ],
+      "placedBox": [
+        418,
+        605,
+        605,
+        786
+      ],
+      "flippedForConvention": false,
+      "sha256": "60869e8648c79f5de8d0aeed2efd232a26da12fc084f50c46f408d41ebf6cceb"
+    },
+    {
+      "path": "assets/parts/neckwear/chain.png",
+      "request": "Only the neckwear: a chunky gold chain necklace.",
+      "group": "neckwear",
+      "key": "chain",
+      "targetBox": [
+        287,
+        605,
+        737,
+        786
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        59,
+        177,
+        1195,
+        1100
+      ],
+      "placedBox": [
+        400,
+        605,
+        623,
+        786
+      ],
+      "flippedForConvention": false,
+      "sha256": "bfaf030ea99559a3cd30b627614527f19457adc096665a5848932b0cc1d33ada"
+    },
+    {
+      "path": "assets/parts/neckwear/lanyard.png",
+      "request": "Only the neckwear: a pure red conference lanyard with a blank white badge hanging on the chest.",
+      "group": "neckwear",
+      "key": "lanyard",
+      "targetBox": [
+        382,
+        613,
+        642,
+        799
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        124,
+        55,
+        1156,
+        1207
+      ],
+      "placedBox": [
+        428,
+        613,
+        595,
+        799
+      ],
+      "flippedForConvention": false,
+      "sha256": "abe024f83685d022f7657e21fbceea2efd01955361411e9f7d5cb9eccdcacfe4"
+    },
+    {
+      "path": "assets/parts/neckwear/bandana.png",
+      "request": "Only the neckwear: a pure red paisley bandana knotted at the front.",
+      "group": "neckwear",
+      "key": "bandana",
+      "targetBox": [
+        287,
+        605,
+        737,
+        786
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        42,
+        227,
+        1209,
+        1117
+      ],
+      "placedBox": [
+        394,
+        605,
+        631,
+        786
+      ],
+      "flippedForConvention": false,
+      "sha256": "01bfecdf8faf03461297450b41221a74952f0dcb71d48f4040acfb41d1194683"
+    },
+    {
+      "path": "assets/parts/extra/headphones.png",
+      "request": "Only the item: pure red over-ear headphones with a padded band over the top of the head and cups on both sides.",
+      "group": "extra",
+      "key": "headphones",
+      "targetBox": [
+        245,
+        205,
+        779,
+        491
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        15,
+        57,
+        1239,
+        1163
+      ],
+      "placedBox": [
+        354,
+        205,
+        671,
+        491
+      ],
+      "flippedForConvention": false,
+      "sha256": "23497792f2b2eeba46711ff7375ceb68366291ab886d9b8a122107e60182a195"
+    },
+    {
+      "path": "assets/parts/extra/earbuds.png",
+      "request": "Only the item: small white wireless earbuds, one on each side of the head.",
+      "group": "extra",
+      "key": "earbuds",
+      "targetBox": [
+        252,
+        398,
+        772,
+        472
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        38,
+        338,
+        1217,
+        952
+      ],
+      "placedBox": [
+        441,
+        398,
+        583,
+        472
+      ],
+      "flippedForConvention": false,
+      "sha256": "b673a4ce341b120d8a979e9ba6d2fefad2d8dac316f32f079984c1d8796a6251"
+    },
+    {
+      "path": "assets/parts/extra/bandaid.png",
+      "request": "Only the item: one beige adhesive bandage on the viewer's-right cheek.",
+      "group": "extra",
+      "key": "bandaid",
+      "targetBox": [
+        615,
+        488,
+        687,
+        528
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        28,
+        14,
+        1211,
+        999
+      ],
+      "placedBox": [
+        627,
+        488,
+        675,
+        528
+      ],
+      "flippedForConvention": false,
+      "sha256": "a29cf33b05fcb4d5cb6dfab4f611c88d05231b33b2334f3fd3a8f89c36519ada"
+    },
+    {
+      "path": "assets/parts/extra/earring.png",
+      "request": "Only the item: a single gold hoop earring on the viewer's-right side of the head.",
+      "group": "extra",
+      "key": "earring",
+      "targetBox": [
+        745,
+        435,
+        790,
+        511
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        333,
+        225,
+        1048,
+        1083
+      ],
+      "placedBox": [
+        745,
+        446,
+        790,
+        500
+      ],
+      "flippedForConvention": false,
+      "sha256": "13ff395c36effa1dc014af9fa28740604f7e5e9ca28b316c615db16e99006f8b"
+    },
+    {
+      "path": "assets/parts/extra/flower.png",
+      "request": "Only the item: a small pink daisy tucked at the upper left of the head.",
+      "group": "extra",
+      "key": "flower",
+      "targetBox": [
+        269,
+        253,
+        373,
+        365
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        66,
+        98,
+        1204,
+        1141
+      ],
+      "placedBox": [
+        269,
+        262,
+        373,
+        357
+      ],
+      "flippedForConvention": false,
+      "sha256": "44329cc10060f3fedd789175e9331598df72266229781377e53b119cdf5416c0"
+    },
+    {
+      "path": "assets/parts/item/laptop.png",
+      "request": "Only the viewer's-left arm, hand and item: the arm holds an open laptop from below on its palm, lid facing the viewer, tilted slightly, matte dark-gray lid with NO stickers or logos (stickers are added later), keyboard edge visible.",
+      "group": "item",
+      "key": "laptop",
+      "targetBox": [
+        23,
+        433,
+        347,
+        787
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        39,
+        284,
+        1232,
+        1007
+      ],
+      "placedBox": [
+        23,
+        512,
+        347,
+        708
+      ],
+      "flippedForConvention": true,
+      "sha256": "a407a07cd446cfa951e0580a4bb0a984d586cd4de62da36ed8365db6826268fd"
+    },
+    {
+      "path": "assets/parts/item/coffee.png",
+      "request": "Only the viewer's-left arm, hand and item: the hand holds a pure red ceramic mug of steaming coffee by the handle.",
+      "group": "item",
+      "key": "coffee",
+      "targetBox": [
+        36,
+        430,
+        323,
+        797
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        31,
+        67,
+        1227,
+        974
+      ],
+      "placedBox": [
+        36,
+        504,
+        323,
+        722
+      ],
+      "flippedForConvention": false,
+      "sha256": "9411a825933daa39f103818b63021ddf9d5226fe64cbaadde5787fba8576bc32"
+    },
+    {
+      "path": "assets/parts/item/wrench.png",
+      "request": "Only the viewer's-left arm, hand and item: the hand holds a big red adjustable wrench.",
+      "group": "item",
+      "key": "wrench",
+      "targetBox": [
+        29,
+        361,
+        317,
+        795
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        81,
+        27,
+        1208,
+        1180
+      ],
+      "placedBox": [
+        29,
+        430,
+        317,
+        725
+      ],
+      "flippedForConvention": false,
+      "sha256": "49995f16b1f00eec23c3fd015320b890472b3d047c1451bfd028cc3e487d9c78"
+    },
+    {
+      "path": "assets/parts/item/book.png",
+      "request": "Only the viewer's-left arm, hand and item: the hand holds an open hardcover book with a dark blue cover.",
+      "group": "item",
+      "key": "book",
+      "targetBox": [
+        36,
+        430,
+        323,
+        797
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        27,
+        335,
+        1239,
+        1012
+      ],
+      "placedBox": [
+        36,
+        534,
+        323,
+        694
+      ],
+      "flippedForConvention": false,
+      "sha256": "b2437b7a7c19fce5d438d4ae87dc51e4c5c4fc6366f2abbf8fab0b418d11b228"
+    },
+    {
+      "path": "assets/parts/gesture/shaka.png",
+      "request": "Only the viewer's-right arm and hand: raised, making a shaka \"hang loose\" sign, thumb and pinky out, like the reference.",
+      "group": "gesture",
+      "key": "shaka",
+      "targetBox": [
+        731,
+        465,
+        989,
+        796
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        103,
+        211,
+        1188,
+        1065
+      ],
+      "placedBox": [
+        695,
+        529,
+        953,
+        732
+      ],
+      "flippedForConvention": true,
+      "sha256": "ba2fc09405ca96a2d2beb9a20da3c103bbb9dcd6c7cfa3f302f5b9d075bdd4a2"
+    },
+    {
+      "path": "assets/parts/stickers/panda.png",
+      "request": "An adorable mischievous red panda head with rust-orange fur, cream cheeks and dark ears. Original animal character, no brand.",
+      "group": "stickers",
+      "key": "panda",
+      "targetBox": [
+        112,
+        112,
+        912,
+        912
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        36,
+        72,
+        1243,
+        1175
+      ],
+      "placedBox": [
+        112,
+        146,
+        912,
+        877
+      ],
+      "flippedForConvention": false,
+      "sha256": "c2c96b00d51af3ecd79619198aeed60e2a519d22ded81e1eca3fdfc3992e448e"
+    },
+    {
+      "path": "assets/parts/stickers/code.png",
+      "request": "A bold coding symbol: white angle brackets with a slash between them, on an indigo sticker.",
+      "group": "stickers",
+      "key": "code",
+      "targetBox": [
+        112,
+        112,
+        912,
+        912
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        81,
+        252,
+        1174,
+        1027
+      ],
+      "placedBox": [
+        112,
+        228,
+        912,
+        795
+      ],
+      "flippedForConvention": false,
+      "sha256": "4bf68d61e62f1994a53436638f7dedc5f647b8d012287f79bd7e0226524cbbb2"
+    },
+    {
+      "path": "assets/parts/stickers/terminal.png",
+      "request": "A dark charcoal terminal tile with a bright mint command prompt >_ symbol.",
+      "group": "stickers",
+      "key": "terminal",
+      "targetBox": [
+        112,
+        112,
+        912,
+        912
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        159,
+        184,
+        1096,
+        1058
+      ],
+      "placedBox": [
+        112,
+        139,
+        912,
+        885
+      ],
+      "flippedForConvention": false,
+      "sha256": "0ab3d57914959038331675e820754b866eeca9b3266d9ae083120462799c043e"
+    },
+    {
+      "path": "assets/parts/stickers/cloud.png",
+      "request": "A cheerful bright sky-blue fluffy cloud with soft sculpted shading.",
+      "group": "stickers",
+      "key": "cloud",
+      "targetBox": [
+        112,
+        112,
+        912,
+        912
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        17,
+        164,
+        1239,
+        1094
+      ],
+      "placedBox": [
+        112,
+        208,
+        912,
+        817
+      ],
+      "flippedForConvention": false,
+      "sha256": "b249dd62fec7f3c86809bd87ac19001e72ed0354fb4d63b3898a35461e141f0f"
+    },
+    {
+      "path": "assets/parts/stickers/rocket.png",
+      "request": "A tiny red and cream rocket with teal porthole and orange exhaust.",
+      "group": "stickers",
+      "key": "rocket",
+      "targetBox": [
+        112,
+        112,
+        912,
+        912
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        266,
+        81,
+        1040,
+        1175
+      ],
+      "placedBox": [
+        229,
+        112,
+        795,
+        912
+      ],
+      "flippedForConvention": false,
+      "sha256": "077115a69946182a69c90e2b4fe3070181a0398ae60a3638ddbf54009728a1b8"
+    },
+    {
+      "path": "assets/parts/stickers/bug.png",
+      "request": "A cute little emerald-green beetle with six short legs and antennae.",
+      "group": "stickers",
+      "key": "bug",
+      "targetBox": [
+        112,
+        112,
+        912,
+        912
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        58,
+        193,
+        1192,
+        1065
+      ],
+      "placedBox": [
+        112,
+        204,
+        912,
+        819
+      ],
+      "flippedForConvention": false,
+      "sha256": "25f241345bcc6f8f0b33403ea5fc29cf8bd9edd063f77fae75fb561eb9b71be0"
+    },
+    {
+      "path": "assets/parts/stickers/database.png",
+      "request": "A stack of three vivid blue database cylinder disks.",
+      "group": "stickers",
+      "key": "database",
+      "targetBox": [
+        112,
+        112,
+        912,
+        912
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        178,
+        97,
+        1080,
+        1154
+      ],
+      "placedBox": [
+        170,
+        112,
+        853,
+        912
+      ],
+      "flippedForConvention": false,
+      "sha256": "44514c52c02ceba318ab222d39afe5f50eda7f9b2156e9ddf67bdd6eeda5048f"
+    },
+    {
+      "path": "assets/parts/stickers/lock.png",
+      "request": "A bright green closed padlock with silver shackle and keyhole.",
+      "group": "stickers",
+      "key": "lock",
+      "targetBox": [
+        112,
+        112,
+        912,
+        912
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        217,
+        70,
+        1037,
+        1160
+      ],
+      "placedBox": [
+        211,
+        112,
+        813,
+        912
+      ],
+      "flippedForConvention": false,
+      "sha256": "1fa5cc2ff208f95ebd4155c4cae0e8fa98f008dc8abcf5f12c9952cdb0710b67"
+    },
+    {
+      "path": "assets/parts/stickers/flame.png",
+      "request": "A dramatic cute orange-red flame with a warm yellow inner flame.",
+      "group": "stickers",
+      "key": "flame",
+      "targetBox": [
+        112,
+        112,
+        912,
+        912
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        150,
+        22,
+        1135,
+        1231
+      ],
+      "placedBox": [
+        186,
+        112,
+        838,
+        912
+      ],
+      "flippedForConvention": false,
+      "sha256": "527ed26766ed73dee9cf724e0656b043eb5a769aebe0919c75c007d189191373"
+    },
+    {
+      "path": "assets/parts/stickers/bolt.png",
+      "request": "A single golden lightning bolt with slightly beveled edges.",
+      "group": "stickers",
+      "key": "bolt",
+      "targetBox": [
+        112,
+        112,
+        912,
+        912
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        338,
+        46,
+        938,
+        1206
+      ],
+      "placedBox": [
+        305,
+        112,
+        719,
+        912
+      ],
+      "flippedForConvention": false,
+      "sha256": "04d9a8bcd7b150bfc20d3ce9998d6c535f5302efc67696f805127b1fd693ba24"
+    },
+    {
+      "path": "assets/parts/stickers/heart.png",
+      "request": "A glossy red heart, plump sculpted volume.",
+      "group": "stickers",
+      "key": "heart",
+      "targetBox": [
+        112,
+        112,
+        912,
+        912
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        73,
+        156,
+        1182,
+        1123
+      ],
+      "placedBox": [
+        112,
+        163,
+        912,
+        861
+      ],
+      "flippedForConvention": false,
+      "sha256": "b9f519827227b5b6c19b5b3e8a9e0579ee8776aab7893f955211aded3239cf6d"
+    },
+    {
+      "path": "assets/parts/stickers/star.png",
+      "request": "A gold five-point star, plump sculpted volume.",
+      "group": "stickers",
+      "key": "star",
+      "targetBox": [
+        112,
+        112,
+        912,
+        912
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        37,
+        66,
+        1217,
+        1162
+      ],
+      "placedBox": [
+        112,
+        140,
+        912,
+        883
+      ],
+      "flippedForConvention": false,
+      "sha256": "eabae5dfded5f14b1a66aeefb601ec149de165a8f706e5df688121b8753cecf8"
+    },
+    {
+      "path": "assets/parts/stickers/ghost.png",
+      "request": "A funny tiny white ghost with two black eyes and a mischievous mouth.",
+      "group": "stickers",
+      "key": "ghost",
+      "targetBox": [
+        112,
+        112,
+        912,
+        912
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        109,
+        64,
+        1183,
+        1176
+      ],
+      "placedBox": [
+        126,
+        112,
+        899,
+        912
+      ],
+      "flippedForConvention": false,
+      "sha256": "cf7e343e661a7dbbf8ab1d75d248989b8263855749a71078019c8450ac4cdef5"
+    },
+    {
+      "path": "assets/parts/stickers/dino.png",
+      "request": "An adorable green dinosaur head with small mint spikes and cheeky expression.",
+      "group": "stickers",
+      "key": "dino",
+      "targetBox": [
+        112,
+        112,
+        912,
+        912
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        190,
+        58,
+        1114,
+        1200
+      ],
+      "placedBox": [
+        188,
+        112,
+        835,
+        912
+      ],
+      "flippedForConvention": false,
+      "sha256": "da6b47a5a7f9a0f280e9c8aa5cd9b890afcfb82537b6bc7d4333b1f7530a4dee"
+    },
+    {
+      "path": "assets/parts/stickers/duck.png",
+      "request": "A tiny classic yellow rubber duck with orange bill.",
+      "group": "stickers",
+      "key": "duck",
+      "targetBox": [
+        112,
+        112,
+        912,
+        912
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        173,
+        120,
+        1114,
+        1130
+      ],
+      "placedBox": [
+        140,
+        112,
+        885,
+        912
+      ],
+      "flippedForConvention": false,
+      "sha256": "5f1b12ea743aca2751df15ffd1e7462be13e8d08e684fbb5878ba2f38c075695"
+    },
+    {
+      "path": "assets/parts/stickers/cat.png",
+      "request": "A playful orange tabby cat head with little ears and whiskers.",
+      "group": "stickers",
+      "key": "cat",
+      "targetBox": [
+        112,
+        112,
+        912,
+        912
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        78,
+        58,
+        1221,
+        1195
+      ],
+      "placedBox": [
+        112,
+        114,
+        912,
+        910
+      ],
+      "flippedForConvention": false,
+      "sha256": "27411b9874c6dcfbf137b1d174749060f998368a47f4689ea856b53874bc6125"
+    },
+    {
+      "path": "assets/parts/stickers/gear.png",
+      "request": "A metallic blue engineering gear with eight teeth and a circular center hole.",
+      "group": "stickers",
+      "key": "gear",
+      "targetBox": [
+        112,
+        112,
+        912,
+        912
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        47,
+        47,
+        1207,
+        1191
+      ],
+      "placedBox": [
+        112,
+        118,
+        912,
+        907
+      ],
+      "flippedForConvention": false,
+      "sha256": "94378acca1d5fe55869ebb5fb7af0afdfec1105dc04d0e3a8089e4c5c47117a6"
+    },
+    {
+      "path": "assets/parts/stickers/branch.png",
+      "request": "A violet git branch icon: a vertical stem and a curved side branch with three round endpoint nodes.",
+      "group": "stickers",
+      "key": "branch",
+      "targetBox": [
+        112,
+        112,
+        912,
+        912
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        295,
+        67,
+        1023,
+        1177
+      ],
+      "placedBox": [
+        250,
+        112,
+        775,
+        912
+      ],
+      "flippedForConvention": false,
+      "sha256": "292e3aa0cc6de9b1c3fd4daf4466e219821d79141232e3ba90df7287507f56a8"
+    },
+    {
+      "path": "assets/parts/stickers/lambda.png",
+      "request": "The Greek lowercase lambda symbol \u03bb, white against a rich orange rounded tile.",
+      "group": "stickers",
+      "key": "lambda",
+      "targetBox": [
+        112,
+        112,
+        912,
+        912
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        141,
+        144,
+        1112,
+        1101
+      ],
+      "placedBox": [
+        112,
+        118,
+        912,
+        906
+      ],
+      "flippedForConvention": false,
+      "sha256": "7a98565c5ad6e920fbdedb298c186988365ff76b745ed4c5220bef86f37710ae"
+    },
+    {
+      "path": "assets/parts/stickers/pizza.png",
+      "request": "A delicious triangular pepperoni pizza slice with golden crust and melted cheese.",
+      "group": "stickers",
+      "key": "pizza",
+      "targetBox": [
+        112,
+        112,
+        912,
+        912
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        77,
+        39,
+        1237,
+        1197
+      ],
+      "placedBox": [
+        112,
+        112,
+        912,
+        911
+      ],
+      "flippedForConvention": false,
+      "sha256": "17b5ba2e0229aa73641f152759d5321aa8f5f534151d289e40b759c3838d7387"
+    },
+    {
+      "path": "assets/parts/stickers/coffee.png",
+      "request": "A small teal coffee mug with cream coffee foam and two small steam curls.",
+      "group": "stickers",
+      "key": "coffee",
+      "targetBox": [
+        112,
+        112,
+        912,
+        912
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        232,
+        75,
+        1120,
+        1165
+      ],
+      "placedBox": [
+        186,
+        112,
+        838,
+        912
+      ],
+      "flippedForConvention": false,
+      "sha256": "f83cbb4ca4ac2a28be7b984b41325d2a324514e2f7295901c4f048b9e374aa31"
+    },
+    {
+      "path": "assets/parts/stickers/planet.png",
+      "request": "A lavender ringed planet with a turquoise orbit ring and tiny star.",
+      "group": "stickers",
+      "key": "planet",
+      "targetBox": [
+        112,
+        112,
+        912,
+        912
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        29,
+        228,
+        1233,
+        1017
+      ],
+      "placedBox": [
+        112,
+        250,
+        912,
+        774
+      ],
+      "flippedForConvention": false,
+      "sha256": "f0e886ccbeb9cb6bd0bd3ca6d79689ca2dced9f841775fa6208b974606ba2fba"
+    }
+  ],
+  "fittingStatus": "Initial fitting, review in target renderer. Body variants need shape-aware offsets.",
+  "noImageRequired": {
+    "brows": [
+      "none"
+    ],
+    "cheeks": [
+      "off"
+    ],
+    "facialHair": [
+      "none"
+    ],
+    "hat": [
+      "none"
+    ],
+    "eyewear": [
+      "none"
+    ],
+    "neckwear": [
+      "none"
+    ],
+    "extra": [
+      "none"
+    ]
+  },
+  "stickers": "Independent sticker art; stamp onto laptop using perspective mapping. Do not stack at full canvas size."
+}
