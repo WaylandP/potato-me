@@ -2,6 +2,8 @@
 
 <p align="center"><strong>Build a potato. Become the potato.</strong></p>
 
+<p align="center"><a href="https://potato-me.vercel.app/"><strong>Make your potato →</strong></a></p>
+
 <p align="center">
   <a href="https://github.com/WaylandP/potato-me/actions/workflows/ci.yml"><img src="https://github.com/WaylandP/potato-me/actions/workflows/ci.yml/badge.svg?branch=main" alt="CI status on main"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="MIT license"></a>
@@ -63,7 +65,7 @@ The November 1, 2026 completion checks covered:
 - Desktop (1280 px) and phone (390 px), in light and dark mode, including keyboard selection, text editing and downloads.
 - A largest measured 512 px export of **441,284 bytes**, below 1 MB for the tested combinations. File size varies with the avatar.
 
-See the [completion record](docs/ASSET_COMPLETION.md) for scope and limitations. These are local validation results; the [roadmap](ROADMAP.md) tracks deployment verification separately.
+The production site at [potato-me.vercel.app](https://potato-me.vercel.app/) was also verified on November 1, 2026: 60 served files matched the merged source, and desktop/mobile checks passed for sign editing, keyboard gestures, share links, thumbnails and 512 px downloads in light and dark mode. See the [completion record](docs/ASSET_COMPLETION.md) for scope and limitations.
 
 ## Development
 
@@ -114,7 +116,7 @@ Serve the repository root on a static host over HTTP or HTTPS. There is **no bui
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/WaylandP/potato-me)
 
-A verified public deployment URL has not yet been recorded here. Deployment and live-site checks remain on the [roadmap](ROADMAP.md).
+The live app is **[potato-me.vercel.app](https://potato-me.vercel.app/)**. The connected Vercel project deploys `main` to production; check the deployment status and verify the live app after changes. Future work is tracked in the [roadmap](ROADMAP.md).
 
 ## Contributing and license
 
