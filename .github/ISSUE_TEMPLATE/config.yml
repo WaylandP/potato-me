@@ -1,5 +1,8 @@
 blank_issues_enabled: true
 contact_links:
-  - name: Show off your potato
-    url: https://github.com/WaylandP/potato-me/discussions
-    about: Share a link to the potato you made.
+  - name: Open the avatar editor
+    url: https://potato-me.vercel.app/
+    about: Build a potato, download a PNG or copy a share link.
+  - name: Read the roadmap
+    url: https://github.com/WaylandP/potato-me/blob/main/ROADMAP.md
+    about: Check shipped features and planned work before suggesting a change.

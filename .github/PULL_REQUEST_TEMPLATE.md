@@ -1,11 +1,14 @@
 ## What changed
 
-<!-- One or two sentences. -->
+<!-- Describe the problem and the resulting behavior. Link the relevant issue, if any. -->
 
-## Checklist
+## Validation
+
+<!-- Include the checks you actually ran and their results. Mark non-applicable items N/A. -->
 
 - [ ] `npm test` passes
-- [ ] Checked in the browser at desktop and phone widths
-- [ ] For new parts: entry in `assets/manifest.json`, `npm run assets` run, fit checked on Classic, Lumpy, Round and Long in `fit.html`
-- [ ] For art changes: screenshot on every body shape and in the avatar crop circle; `npm run hero` re-run if a hero potato was affected
-- [ ] README.md and ROADMAP.md still accurate
+- [ ] For UI changes: checked desktop and phone widths, light and dark modes, keyboard controls and affected downloads/share links
+- [ ] For new/replaced parts: manifest and checksums updated; `npm run assets` run
+- [ ] For visual changes: inspected all four body shapes, representative skins, hand grips, attachment points and the avatar crop; included screenshots
+- [ ] For renderer-wide changes: ran the inventory audit and inspected its review sheets
+- [ ] Documentation and roadmap match the shipped behavior; hero/social previews regenerated if affected

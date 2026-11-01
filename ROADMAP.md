@@ -1,43 +1,37 @@
 # Roadmap
 
-Check a box only when the work is built, tested and visible on the deployed site.
+This file separates shipped functionality from proposed work. The [changelog](CHANGELOG.md) records changes; the [live editor](https://potato-me.vercel.app/) runs from `main`. Future items have no committed delivery dates.
 
-## Phase 1: MVP (v0.1)
+## Shipped
 
-- [x] Layered SVG renderer, editor, PNG export, share links, light and dark mode, tests
+- [x] Browser editor with live preview, light/dark mode, PNG downloads at 512 and 1024 px, and share links with legacy-key migration.
+- [x] Complete 164-image inventory: all 36 body/skin combinations, faces, hats, held objects, gestures, accessories and stickers.
+- [x] Ten expression presets, coordinated randomization, editable sign/cap text, laptop stickers and supported material recoloring.
+- [x] Canvas composition with body-silhouette fitting, concealed arm roots, skin matching, protected prop materials and contact shadows.
+- [x] Replacement headband and headphone artwork, with fitted headphone bands and consistently sized ear cups.
+- [x] Fitting page, generated thumbnails, actual-app documentation images and a reproducible inventory audit.
+- [x] Static Vercel deployment, dependency-free local server, Node test suite and GitHub Actions CI.
 
-## Phase 2: Sticker-style art and polish (v0.2)
+The asset-completion and character-fitting work was verified on November 1, 2026. Read the [completion record](docs/ASSET_COMPLETION.md) and [fitting record](docs/CHARACTER_FITTING.md) for the scope of those checks. Individual-asset coverage does not mean every possible outfit combination has been reviewed.
 
-- [x] Shaded SVG potato, cast shadows under hats, mitten hands, redrawn gear, new parts
-- [x] Dependency-free dev server, hero script, CONTRIBUTING.md, issue and PR templates
+## Next priorities
 
-## Phase 3: Rendered parts (v0.3)
+- [ ] **Accessory combinations:** review more stacked outfits, especially large hats with headphones and face accessories; record and fix clipping or overlap cases.
+- [ ] **Font delivery:** self-host Fredoka so the interface no longer depends on Google Fonts.
+- [ ] **Undo / redo:** make it easy to compare edits and recover earlier choices.
+- [ ] **Accessibility:** complete manual VoiceOver and NVDA reviews, including keyboard interaction, selected states and download feedback.
+- [ ] **Performance:** run and record a Lighthouse audit; target 95+ for performance, accessibility and best practices. These scores have not been established.
 
-- [x] Prompt pack for generating every part as a positioned 1024 px transparent PNG
-- [x] 138 rendered parts: 36 bodies, 14 eyes, 6 brows, 12 mouths, cheeks, facial hair, 19 hats, eyewear, neckwear, extras, 4 held items, shaka, 22 stickers
-- [x] Canvas compositor with hue-mask recoloring, skin tinting, sticker projection and cap initials
-- [x] Per-shape fitting data and `fit.html`
-- [x] Missing parts hidden and listed; old share links migrated
-- [x] Thumbnails, screenshot tool, hero and link-preview card from the real app
-- [x] Generate the 26 remaining parts: **generated, integrated and verified in production on 2026-11-01.** Raised brows, 11 held items (boba, phone, controller, sign, pizza, donut, duck, mic, trophy, plant, nothing), 10 free-hand poses, 4 stickers (404, skull, mountains, LGTM). See the [completion record](docs/ASSET_COMPLETION.md).
-- [x] Sign text in the raster compositor — **implemented and verified in production on 2026-11-01.** Text box in `FIT.sign`.
-- [x] Skin masks for eyelids and lips so the smug eyes match exotic skins
-- [x] Coherent "Surprise me": a vibe for the face, matching colors, at most two worn accessories
-- [x] Headphones, earbuds, earring and flower fitted to every body shape
-- [x] Deploy to Vercel and add the live URL to the README — [potato-me.vercel.app](https://potato-me.vercel.app/), verified on 2026-11-01
-- [ ] Self-host the Fredoka font
-- [ ] Undo / redo
-- [ ] Accessibility pass with a screen reader (VoiceOver + NVDA)
-- [ ] Lighthouse pass: performance, accessibility, best practices all 95+
+## Later ideas
 
-The [character-fitting repair](docs/CHARACTER_FITTING.md) documents the collection-wide visual corrections, their review coverage, and the updated fitting workflow.
+- [ ] More expressions, gestures, hats and props that meet the existing fitting and visual checks.
+- [ ] Optional seasonal artwork packs.
+- [ ] An opt-in community gallery based on shared avatar links.
 
-## Phase 4: More potato
+## Earlier milestones
 
-- [ ] More hats, items and expressions from the same prompt pack
-- [ ] Seasonal packs (Halloween, holidays) behind a toggle
-- [ ] Gallery of community potatoes (opt-in, links only, no uploads)
+The v0.1 prototype used a layered SVG renderer. The v0.2 milestone added shaded vector artwork and contributor tools. The v0.3 work introduced rendered PNG parts and the Canvas compositor; v0.3.1 improves how those parts fit together. These version names describe development milestones, not a claim that historical GitHub releases were published.
 
-## Not planned
+## Outside the current scope
 
-- Accounts, uploads or server-side storage. The URL is the save file.
+Accounts, image uploads, a storage backend and editable 3D models. Avatars remain local to the browser, with URL links for saving and sharing.

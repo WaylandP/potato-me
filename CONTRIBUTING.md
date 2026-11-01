@@ -1,6 +1,6 @@
 # Contributing to potato-me
 
-Thanks for wanting to add to the potato. This is a small, dependency-free project, so the whole workflow is:
+Contributions can improve the editor, fix how a part fits or add new artwork. The app has no runtime dependencies or build step. Start with:
 
 ```bash
 git clone https://github.com/WaylandP/potato-me.git
@@ -9,7 +9,7 @@ npm run dev     # http://localhost:5173
 npm test        # Node's built-in test runner
 ```
 
-Node 20 or newer is the only requirement. The optional dev tools (`npm run assets`, `npm run hero`, `npm run shot`) need Playwright: `npm install --no-save --package-lock=false playwright && npx playwright install chromium`.
+Node 20 or newer runs the server and tests. The optional image tools (`npm run assets`, `npm run hero`, `npm run shot`) need Playwright: `npm install --no-save --package-lock=false playwright && npx playwright install chromium`.
 
 ## Where things live
 
@@ -54,8 +54,8 @@ Automatic placement is in `src/surface.js`: it anchors arms inside the body silh
 
 ## Pull requests
 
-- One part or one fix per PR, with a screenshot of a visual change on every body shape. The PR template has a checklist.
-- Keep README.md accurate and tick ROADMAP.md items only when the work is built and tested.
+- Keep each PR focused. For visual changes, include screenshots on all four body shapes and representative skins, plus the avatar crop. Inspect contact points, grips, skin edges and accessory overlaps; passing exports alone does not prove the artwork fits. The PR template has a checklist.
+- Keep README.md and CHANGELOG.md accurate. Mark ROADMAP.md work shipped only after it is built, tested and verified on the deployed site.
 - Commit messages in plain English: what changed and why.
 
 ## Reporting bugs

@@ -1,25 +1,51 @@
 <h1 align="center">potato-me 🥔</h1>
-
-<p align="center"><strong>Build a potato. Become the potato.</strong></p>
-
-<p align="center"><a href="https://potato-me.vercel.app/"><strong>Make your potato →</strong></a></p>
+<p align="center"><strong>A little potato. A lot of personality.</strong></p>
+<p align="center">Build a potato avatar with expressive faces, fitted accessories and hand poses.</p>
+<p align="center"><a href="https://potato-me.vercel.app/"><strong>Make your potato →</strong></a> · <a href="CHANGELOG.md">What's changed</a> · <a href="ROADMAP.md">What's next</a> · <a href="CONTRIBUTING.md">Contribute</a></p>
 
 <p align="center">
   <a href="https://github.com/WaylandP/potato-me/actions/workflows/ci.yml"><img src="https://github.com/WaylandP/potato-me/actions/workflows/ci.yml/badge.svg?branch=main" alt="CI status on main"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="MIT license"></a>
-  <img src="https://img.shields.io/badge/Node.js-20%2B-339933.svg" alt="Node.js 20 or newer for local tools">
-  <img src="https://img.shields.io/badge/runtime_dependencies-0-brightgreen.svg" alt="Zero runtime dependencies">
+  <a href="package.json"><img src="https://img.shields.io/badge/runtime_dependencies-0-16866b.svg" alt="Zero application runtime dependencies"></a>
 </p>
 
-Make a potato avatar for GitHub, Slack or anywhere that needs a profile picture. Choose a shape, an expression, accessories and a hand gesture, then download a **512 × 512 or 1024 × 1024 PNG**. The editor combines **164 transparent PNG assets** in your browser, with no account, build step or server-side rendering.
+<p align="center"><a href="https://potato-me.vercel.app/"><img src="docs/hero.png" alt="Five avatars made in potato-me: a laughing gold potato, a purple wizard, a laptop-carrying developer, a crowned mechanic and a party potato" width="1000"></a></p>
 
-<p align="center"><img src="docs/completion-preview.png" alt="Eight avatars assembled by potato-me, showing all four body shapes, expressive faces, laptop stickers, boba, a trophy, pizza, a controller, a donut, a plant and an editable sign, with different hand gestures" width="1000"></p>
+Make a profile picture for GitHub, Slack or anywhere else. Choose a body, expression, outfit and gesture, then download a **512 × 512 or 1024 × 1024 PNG** or copy a link to your creation. No account or installation is needed to use the [live editor](https://potato-me.vercel.app/).
 
-These examples come from the app's compositor. The artwork was generated with ChatGPT image generation in a consistent 3D-rendered style; the project does not include 3D models.
+The app combines **164 transparent PNG assets** on a Canvas in your browser. These previews are actual app output. The artwork was generated with ChatGPT image generation; its rendered appearance comes from images, not a 3D model or rig.
 
-## Run it locally
+## Make it yours
 
-Install **Node.js 20 or newer**, then:
+| Customize | Included choices |
+| --- | --- |
+| **Body** | 4 shapes × 9 skins, including Russet, Yukon gold, Purple, Ghost and Zombie |
+| **Expression** | 10 one-click vibes · 14 eyes · 7 brow styles · 12 mouths · blush or freckles · 5 facial-hair styles |
+| **Headwear** | 19 hats · 12 colors for 15 recolorable hats · up to 3 characters on supported caps, beanies and headbands |
+| **Held object** | 14 objects, from a laptop and coffee to pizza and a trophy · editable sign text up to 10 characters |
+| **Hand pose** | 11 poses, including wave, thumbs up, peace, OK, salute and flex |
+| **Accessories** | 6 eyewear styles · 6 neckwear styles · 5 extras, including headphones and earbuds |
+| **Laptop stickers** | 26 designs · select up to 6 at once |
+| **Background** | 14 colors · 12 patterns, including solid and spotlight |
+
+Optional parts can be removed, and the holding hand can be left empty. Start with a vibe or **Surprise me**, then adjust the five editor tabs. Check the circular crop guide before downloading; the exported PNG itself is square. Custom text is uppercased and restricted to supported characters.
+
+<details>
+<summary><strong>See the editor</strong></summary>
+
+![The editor with a live avatar preview and Body, Face, Hat, Gear and Background tabs](docs/screenshot.png)
+
+</details>
+
+## Project status
+
+The current source version is **0.3.1**. The rendered asset inventory is complete, and the character-fitting update is merged into `main`. Arms attach inside the body outline, facial skin follows the selected body, and hats and accessories use measured body landmarks. The headband and headphones have replacement artwork.
+
+The [fitting record](docs/CHARACTER_FITTING.md) includes the visual review and a 548-case inventory audit. These checks cover every individual asset and representative outfits; large accessories can still overlap in some combinations. See the [changelog](CHANGELOG.md) for changes and the [roadmap](ROADMAP.md) for unfinished work.
+
+## Run locally
+
+Use **Node.js 20 or newer**:
 
 ```bash
 git clone https://github.com/WaylandP/potato-me.git
@@ -27,101 +53,57 @@ cd potato-me
 npm run dev
 ```
 
-Open **<http://localhost:5173>**. There is no `npm install` step for running the app or its Node tests. The included server serves the repository as static files; any HTTP static server can do the same. Opening `index.html` directly with `file://` will not work because the app uses ES modules.
-
-## Make it yours
-
-| Control | Included choices |
-| --- | --- |
-| **Body** | 4 shapes: Classic, Lumpy, Round and Long · 9 skins, from Russet and Yukon gold to Purple, Ghost and Zombie |
-| **Face** | 10 one-click vibes · 14 eyes · 7 eyebrow styles plus no brows · 12 mouths · blush or freckles · 5 facial-hair styles |
-| **Hat** | 19 hats plus no hat · 12 color choices for 15 recolorable hats · up to 3 characters on caps, beanies and headbands |
-| **Holding** | 14 objects plus an empty hand · sign text up to 10 characters · 26 laptop stickers, with up to 6 selected at once |
-| **Free hand** | 11 poses: chill, wave, shaka, thumbs up, peace, point, rock on, OK, fist up, salute and flex |
-| **Accessories** | 6 eyewear styles · 6 neckwear styles · headphones, earbuds, band-aid, earring or flower |
-| **Background** | 14 colors · 12 patterns, including solid and a studio spotlight |
-
-1. Pick a vibe or use **Surprise me**, then adjust the details in the five editor tabs.
-2. Choose the laptop to add stickers, the sign to write a message, or a cap, beanie or headband to add initials. Text is uppercased and limited to the supported characters.
-3. Check the circular crop guide before downloading. Exports are square PNGs; the circle helps you preview an avatar crop.
-4. Copy the share link to save or share the same choices. The avatar state lives in the URL fragment, including custom text. A localhost link requires a local copy of the app; use a hosted instance for links others can open directly.
-
-<p align="center"><img src="docs/screenshot.png" alt="The potato-me editor with a live avatar preview and Body, Face, Hat, Gear and Background tabs" width="860"></p>
-
-## Privacy and storage
-
-Avatar composition and PNG export happen in your browser. The app has no accounts, upload endpoint, database or bundled analytics. Share links contain your chosen options and text, so anyone with the link can recreate that potato.
-
-The interface currently requests the Fredoka font from **Google Fonts**. Self-hosting the font is tracked in the [roadmap](ROADMAP.md); this is not a fully offline distribution.
-
-## Included artwork and visual fitting
-
-All **164 planned assets** and their thumbnails are included. Parts remain interchangeable: expressions, gestures, hats and held objects are fitted to the selected body at render time.
-
-The November 2026 visual repair changes how the whole collection is assembled:
-
-- Arm roots sit inside the actual body outline, with the body covering the joint. Hands and held objects move together, and large poses shrink around the shoulder to stay inside the avatar crop.
-- Eyelids, lips and exposed skin take their color and shading from the selected body. Eye interiors, teeth, tongues and protected prop materials retain their own colors.
-- Face proportions stay readable on narrow and wide bodies. Hats, eyewear, neckwear and side accessories use body landmarks and contact shadows.
-- New headband and headphone artwork replaces the poorly fitting originals. Headphone bands flex to the crown while ear cups retain their proportions.
-
-The [visual repair record](docs/CHARACTER_FITTING.md) documents the changes, review coverage and limitations. The earlier [asset-completion record](docs/ASSET_COMPLETION.md) is retained as history; its functional checks did not establish that the original assembly looked cohesive.
-
-## Development
+Open **<http://localhost:5173>**. Running the app and its Node tests requires no `npm install` and no build step. Use an HTTP server: opening `index.html` with `file://` does not support the app's ES modules.
 
 ```bash
-npm test          # Node's built-in test runner; no install required
-npm run dev       # Static server on port 5173
+npm test          # State, asset integrity and renderer geometry checks
 ```
 
-Image maintenance and screenshot tools use **Playwright with Chromium**. Install them locally without changing the project's dependency files:
+## How it works
+
+The editor validates choices, loads the selected PNG layers, fits them to the body silhouette and composites them in Canvas. Skin masks match exposed limbs and facial edges to the body while preserving prop materials. Colors, sign lettering, cap initials and laptop stickers are applied at render time.
+
+| Start here | Purpose |
+| --- | --- |
+| [src/main.js](src/main.js) | Editor controls, preview and downloads |
+| [src/options.js](src/options.js) / [src/state.js](src/state.js) | Choices, presets, validation and share-link encoding |
+| [src/raster.js](src/raster.js) / [src/surface.js](src/surface.js) | Canvas composition, body fitting and skin blending |
+| [src/fit-data.js](src/fit-data.js) / [fit.html](fit.html) | Placement corrections, material masks and fitting tool |
+| [assets/manifest.json](assets/manifest.json) | Inventory and checksums for all 164 source images |
+| [assets/parts/](assets/parts/) / [assets/thumbs/](assets/thumbs/) | 1024 px source PNGs and generated 256 px thumbnails |
+| [src/parts/](src/parts/) / [src/compose.js](src/compose.js) | SVG backgrounds, fallback stickers and the legacy SVG compositor |
+| [scripts/](scripts/) / [test/](test/) | Development tools and Node tests |
+
+The editor exports PNGs. The legacy SVG compositor remains in the codebase; it does not reproduce the rendered artwork.
+
+### Artwork and development tools
+
+Read [CONTRIBUTING.md](CONTRIBUTING.md) before adding or fitting a part. Option keys are part of the share-link format and must remain compatible. The [prompt guide](docs/IMAGE_PROMPTS.md), [asset-completion record](docs/ASSET_COMPLETION.md) and [fitting record](docs/CHARACTER_FITTING.md) document the artwork and its revisions.
+
+Image maintenance tools use **Playwright with Chromium**, installed locally without changing the dependency files:
 
 ```bash
 npm install --no-save --package-lock=false playwright
 npx playwright install chromium
 
-npm run assets    # Rebuild 256 px thumbnails and src/assets.js from the manifest
-npm run hero      # Rebuild docs/hero.png and docs/og.png from the app
+npm run assets    # Rebuild thumbnails and src/assets.js from the manifest
+npm run hero      # Rebuild the README banner and social preview from the app
 npm run shot -- preview.png '#item=sign&sign=SHIP%20IT&gesture=thumbsUp'
-node scripts/audit-art.mjs /tmp/potato-art-audit  # Inventory review sheets + export checks
+node scripts/audit-art.mjs /tmp/potato-art-audit
 ```
 
-Playwright is an optional development tool, not an application dependency. Commit generated thumbnails and the asset index when adding or replacing artwork.
+Playwright is optional development tooling. Visual changes need inspection on all four body shapes; a passing automated audit does not establish visual quality.
 
-### Repository map
+## Hosting and privacy
 
-| Path | Purpose |
-| --- | --- |
-| [index.html](index.html) / [src/main.js](src/main.js) | Editor page and UI behavior |
-| [fit.html](fit.html) | Preview and adjust part placement on each body shape |
-| [assets/parts/](assets/parts/) | 164 transparent, 1024 × 1024 PNG assets |
-| [assets/thumbs/](assets/thumbs/) | Generated 256 × 256 thumbnails |
-| [assets/manifest.json](assets/manifest.json) / [src/assets.js](src/assets.js) | Asset inventory and generated runtime index |
-| [src/fit-data.js](src/fit-data.js) | Placement transforms, color masks, protected regions and text placement |
-| [src/surface.js](src/surface.js) | Body-silhouette fitting, skin harmonization and contact shading |
-| [src/raster.js](src/raster.js) | Canvas composition, recoloring, stickers, lettering and PNG export |
-| [src/options.js](src/options.js) / [src/state.js](src/state.js) | Choices, presets, validation, URL encoding and legacy links |
-| [src/parts/](src/parts/) / [src/compose.js](src/compose.js) | SVG backgrounds, fallback stickers and the legacy pure SVG compositor |
-| [scripts/](scripts/) / [test/](test/) | Local tools and Node tests |
+Deploy the repository root to a static host. Use **no build command** and **`.` as the publish directory**, including `assets/` and `src/`. The connected Vercel project deploys `main` to [potato-me.vercel.app](https://potato-me.vercel.app/).
 
-### Adding or fitting a part
+Avatar composition and PNG export happen in the browser. The app has no accounts, upload endpoint, database or bundled analytics. **A share link is the save file:** its URL fragment contains the choices and custom text, and anyone with it can recreate the avatar. Use a hosted instance when sharing with others; a localhost link points to the recipient's own machine.
 
-Use the [art prompts](docs/IMAGE_PROMPTS.md) and [contributor guide](CONTRIBUTING.md). Save each part as a 1024 × 1024 transparent PNG on the shared canvas, register its stable option key and manifest entry, then run `npm run assets`. The surface renderer supplies the body fit; `fit.html` writes final corrections to `FIT.surfaceNudges` in `src/fit-data.js`. Check all four shapes and at least three skins before committing.
-
-The renderer stacks layers in manifest order, fits them to body landmarks, and blends their skin against the actual selected body image. Material masks change supported colors without shifting the entire image; `FIT.skinProtect` preserves held objects while their hands follow the skin color. Stickers are projected onto the laptop lid, and initials and sign text are drawn at render time. The [exact completion prompts](docs/ASSET_COMPLETION_PROMPTS.json) document the 26-part completion pack. The two later replacements are recorded in the manifest and visual repair record.
-
-Keep option keys compatible with existing share links. Do not hand-edit generated thumbnails or `src/assets.js`. [CLAUDE.md](CLAUDE.md) contains additional repository guidance for coding assistants.
-
-## Hosting
-
-Serve the repository root on a static host over HTTP or HTTPS. There is **no build command**, and the output/publish directory is **`.`**. Include `assets/` and `src/` (including `src/styles.css`) alongside `index.html`.
-
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/WaylandP/potato-me)
-
-The live app is **[potato-me.vercel.app](https://potato-me.vercel.app/)**. The connected Vercel project deploys `main` to production; check the deployment status and verify the live app after changes. Future work is tracked in the [roadmap](ROADMAP.md).
+The interface currently loads Fredoka from **Google Fonts**. The app is not a fully offline distribution; self-hosting the font is tracked in the roadmap.
 
 ## Contributing and license
 
-Bug reports are easier to reproduce with the avatar's share link. Open an [issue](https://github.com/WaylandP/potato-me/issues) or follow [CONTRIBUTING.md](CONTRIBUTING.md) for artwork and code changes.
+[Report a bug](https://github.com/WaylandP/potato-me/issues/new/choose) with the avatar share link, browser/device details and a screenshot when possible. Code, artwork and fitting contributions are welcome; follow the [contributor guide](CONTRIBUTING.md). Additional guidance for coding assistants is in [CLAUDE.md](CLAUDE.md).
 
-[MIT](LICENSE). The included AI-generated artwork is distributed under the same project license. Make all the potatoes.
+[MIT](LICENSE), including the project's AI-generated artwork. See [GitHub contributors](https://github.com/WaylandP/potato-me/graphs/contributors) for contribution history.
