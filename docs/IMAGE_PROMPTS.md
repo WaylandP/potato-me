@@ -255,8 +255,15 @@ layers, including the studio spotlight and floor.
 | Set | Images |
 | --- | --- |
 | Start here | 41 |
-| Everything, 4 body shapes in russet only | 111 |
-| Everything, all 36 body skins | 143 |
+| Character parts, 4 body shapes in russet only | 106 |
+| Character parts, all 36 body skins | 138 |
+| Independent laptop stickers | 26 |
+| Complete planned inventory, including stickers | 164 |
+
+The original count above was corrected against `assets/manifest.json`. All 164
+assets are now generated. `ASSET_COMPLETION_PROMPTS.json` records the precise
+prompts used for the final 26 layers, including the 404, skull, mountains and
+LGTM stickers. See `ASSET_COMPLETION.md` for integration and verification status.
 
 ## What the app does with them
 

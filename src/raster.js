@@ -201,6 +201,22 @@ async function processedPart(group, key, src, { hatColor, skin }) {
   if (wantsRecolor) remap(id.data, RED_WINDOW, RED, hatColor);
   if (wantsSkin) remap(id.data, tintMode === 'light' ? SKIN_LIGHT_WINDOW : SKIN_WINDOW, SKINS.russet.base, SKINS[skin].base);
   ctx.putImageData(id, 0, 0);
+  // Restore prop pixels after tinting the hand. Coordinates stay in the shared
+  // part canvas, including when this is a 256 px thumbnail.
+  const protect = wantsSkin && FIT.skinProtect?.[`${group}/${key}`];
+  if (protect) {
+    ctx.save();
+    ctx.scale(c.width / CANVAS, c.height / CANVAS);
+    ctx.beginPath();
+    for (const polygon of protect) {
+      polygon.forEach(([x, y], i) => i ? ctx.lineTo(x, y) : ctx.moveTo(x, y));
+      ctx.closePath();
+    }
+    ctx.clip();
+    ctx.clearRect(0, 0, CANVAS, CANVAS);
+    ctx.drawImage(img, 0, 0, CANVAS, CANVAS);
+    ctx.restore();
+  }
   processed.set(cacheKey, c);
   if (processed.size > PROCESSED_MAX) processed.delete(processed.keys().next().value);
   return c;
@@ -395,6 +411,29 @@ function drawCapText(ctx, s) {
   ctx.restore();
 }
 
+function drawSignText(ctx, s) {
+  const spec = FIT.sign;
+  if (!spec || !s.sign) return;
+  ctx.save();
+  applyTransform(ctx, 'item', layerTransform('item', 'sign', s.body), 'sign');
+  ctx.beginPath();
+  ctx.rect(spec.x, spec.y, spec.w, spec.h);
+  ctx.clip();
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.fillStyle = spec.color;
+  let size = spec.fontSize;
+  const font = (px) => `900 ${px}px Fredoka, "Arial Black", Arial, sans-serif`;
+  ctx.font = font(size);
+  const width = ctx.measureText(s.sign).width;
+  if (width > spec.w) {
+    size *= spec.w / width;
+    ctx.font = font(size);
+  }
+  ctx.fillText(s.sign, spec.x + spec.w / 2, spec.y + spec.h / 2);
+  ctx.restore();
+}
+
 // ---------------------------------------------------------------- render
 
 /**
@@ -431,6 +470,7 @@ export async function renderPotato(rawState, opts = {}) {
     const l = layers[i];
     drawLayer(ctx, imgs[i], l.group, l.key, l.transform);
     if (l.group === 'item' && l.key === 'laptop') await drawStickers(ctx, s, thumbs);
+    if (l.group === 'item' && l.key === 'sign') drawSignText(ctx, s);
     if (l.group === 'hat') drawCapText(ctx, s);
   }
   return canvas;

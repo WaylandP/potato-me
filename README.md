@@ -27,12 +27,12 @@ A web app for making a rendered 3D potato avatar for GitHub, Slack, Google or an
 | **Body** | 4 shapes (Classic, Lumpy, Round, Long) × 9 skins (Russet, Yukon gold, Red, Purple, Sweet, Adirondack blue, Fingerling pink, Ghost, Zombie) |
 | **Face** | 10 one-click vibes · 14 eyes · 7 eyebrows · 12 mouths · blush or freckles · 5 kinds of facial hair |
 | **Hat** | 19 hats, each in 12 colors · initials embroidered on caps, beanies and headbands |
-| **Gear** | Hold a laptop, a coffee, a wrench or a book · 26 laptop stickers, pick up to 6 · shaka free hand · 6 kinds of eyewear · 6 kinds of neckwear · headphones, earbuds, band-aid, earring or flower |
+| **Gear** | 15 held-item choices including an empty hand · editable sign text · 26 laptop stickers, pick up to 6 · 11 free-hand poses · 6 kinds of eyewear · 6 kinds of neckwear · headphones, earbuds, band-aid, earring or flower |
 | **Background** | 14 colors × 12 patterns, including a studio spotlight |
 
 That's tens of trillions of combinations before you pick stickers or type on the cap. **Surprise me** picks one for you.
 
-A few parts are still being rendered and show up as "not drawn yet" in the editor: ten more free-hand poses, eleven more things to hold (including the sign), raised eyebrows and four stickers. `docs/IMAGE_PROMPTS.md` has the prompt for each one.
+All 164 planned rendered assets are included. The completion pack adds raised eyebrows, ten free-hand poses, eleven held-item choices and four stickers. The sign stays blank in its source artwork; your text is drawn in the browser. Food, gold, clay and wood use protected regions so changing skin color preserves those materials. See `docs/ASSET_COMPLETION.md` for validation and delivery status.
 
 ## Run it locally
 
@@ -70,7 +70,7 @@ It's a static site, so any static host works with no build command and `.` as th
 ```
 index.html            the editor
 fit.html              fitting page: nudge any part on any body shape, copy the result into fit-data.js
-assets/parts/         138 rendered parts, 1024 px transparent PNGs placed on a shared canvas
+assets/parts/         164 rendered parts, 1024 px transparent PNGs placed on a shared canvas
 assets/thumbs/        256 px copies for the option grids (generated)
 assets/manifest.json  inventory of the parts with placement boxes and checksums
 src/assets.js         static index of the parts (generated from the manifest)
