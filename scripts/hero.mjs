@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// Builds the README banner (docs/hero.png) and the link-preview card
+// Builds the reusable banner (docs/hero.png) and the link-preview card
 // (docs/og.png) from the real app, so the docs never drift from the art.
 //
 //   npm run hero
@@ -13,7 +13,7 @@ import { fileURLToPath } from 'node:url';
 
 const root = fileURLToPath(new URL('..', import.meta.url));
 
-// Five potatoes that show off the range. Keep them in sync with README.md's alt text.
+// Five potatoes that show off the range in the banner and link-preview card.
 export const HERO_POTATOES = [
   '#body=round&skin=gold&hat=beanie&hatColor=red&item=coffee&eyes=happy&mouth=grin&cheeks=on&bg=coral&pattern=dots',
   '#body=long&skin=purple&hat=wizard&hatColor=purple&eyes=wide&brows=raised&mouth=oh&item=book&bg=navy&pattern=stars',
@@ -67,7 +67,7 @@ p{position:absolute;left:76px;top:200px;margin:0;font-size:34px;font-weight:600;
 .sub{top:252px;font-size:24px;font-weight:500;color:#5C7572}
 .row{position:absolute;left:72px;top:330px;display:flex;gap:22px}
 .pill{position:absolute;right:72px;top:96px;background:#C4402A;color:#fff;font-weight:700;font-size:22px;padding:14px 22px;border-radius:999px}
-</style></head><body><h1>potato-me 🥔</h1><p>Build a potato. Become the potato.</p><p class="sub">Free potato avatars for GitHub, Slack and anywhere else. Nothing uploaded.</p><div class="pill">Open source · no build step</div><div class="row">${row}</div></body></html>`);
+</style></head><body><h1>potato-me</h1><p>Build a potato. Become the potato.</p><p class="sub">Free potato avatars for GitHub, Slack and anywhere else. Nothing uploaded.</p><div class="pill">Open source · no build step</div><div class="row">${row}</div></body></html>`);
   await og.screenshot({ path: root + 'docs/og.png' });
   console.log('wrote docs/og.png');
 } finally {

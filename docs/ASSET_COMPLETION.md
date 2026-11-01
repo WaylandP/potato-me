@@ -1,8 +1,9 @@
 # Rendered asset completion — November 1, 2026
 
-The final 26 missing assets are generated and integrated locally. The inventory
-now contains all 164 planned assets. The previous 138 full-resolution PNGs are
-unchanged. This work has not been pushed, merged or deployed.
+The final 26 missing assets are generated and integrated with the renderer. The
+inventory now contains all 164 planned assets. The previous 138 full-resolution
+PNGs are unchanged. Deployment verification is tracked separately in the
+[roadmap](../ROADMAP.md).
 
 ![Examples assembled by the app](completion-preview.png)
 
@@ -17,7 +18,7 @@ unchanged. This work has not been pushed, merged or deployed.
 
 All new assets are 1024 × 1024 transparent PNGs. Each was generated separately
 with the built-in image-generation tool using existing PNGs as visual references.
-The exact prompts are in `ASSET_COMPLETION_PROMPTS.json`. Normalization resizes
+The exact prompts are in [ASSET_COMPLETION_PROMPTS.json](ASSET_COMPLETION_PROMPTS.json). Normalization resizes
 the canvas and clears imperceptible alpha values of 1/255 or less; artwork is
 fitted through uniform transforms in `src/fit-data.js` without distortion.
 
@@ -56,16 +57,16 @@ files were retained to avoid unrelated browser-encoder differences.
 These checks cover the new asset pack and representative combinations. They are
 not a claim to have visually reviewed every possible avatar combination.
 
-## Delivery status
+## Repository status
 
-Based on `WaylandP/potato-me` main commit
+This completion work builds on `WaylandP/potato-me` main commit
 `237f1977929f7543f519c793fdd6805fe9ca11a3`.
 
-The completion ZIP is additive: it contains the 26 new part PNGs, their
-thumbnails, original renders, updated manifest/index/fitting/renderer files,
-tests, prompts and this preview. It requires the existing repository and its
-138 prior PNGs. Use a working branch; merge source changes if your checkout has
-changed since the base commit. Run `npm run assets` and `npm test` after applying.
+The repository contains the complete 164-part inventory, generated thumbnails,
+fitting data and compositor changes. No separate asset pack is needed to run
+this checkout. Follow the [README](../README.md) for setup and the
+[contributor guide](../CONTRIBUTING.md) when changing artwork.
 
-Roadmap checkboxes requiring deployed verification remain open. Publishing and
-deployment require the owner's authorization.
+Roadmap checkboxes requiring deployed verification remain open until the work
+is built, tested and visible on the deployed site. The validation above was run
+locally; it does not establish a live deployment.
