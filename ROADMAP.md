@@ -30,6 +30,8 @@ Check a box only when the work is built, tested and visible on the deployed site
 - [ ] Accessibility pass with a screen reader (VoiceOver + NVDA)
 - [ ] Lighthouse pass: performance, accessibility, best practices all 95+
 
+The [character-fitting repair](docs/CHARACTER_FITTING.md) documents the collection-wide visual corrections, their review coverage, and the updated fitting workflow.
+
 ## Phase 4: More potato
 
 - [ ] More hats, items and expressions from the same prompt pack

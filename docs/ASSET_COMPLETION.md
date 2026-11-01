@@ -1,12 +1,14 @@
 # Rendered asset completion — November 1, 2026
 
-The final 26 missing assets are generated and integrated with the renderer. The
+> Historical delivery record. The later [character-fitting repair](CHARACTER_FITTING.md) supersedes the fitting and visual-quality claims below.
+
+The final 26 missing assets were generated and integrated with the renderer. The
 inventory now contains all 164 planned assets. The previous 138 full-resolution
 PNGs are unchanged. The completed pack is live at
 [potato-me.vercel.app](https://potato-me.vercel.app/) and was verified in
 production on November 1, 2026.
 
-![Examples assembled by the app](completion-preview.png)
+The [README](../README.md) shows the current renderer.
 
 ## Added artwork
 

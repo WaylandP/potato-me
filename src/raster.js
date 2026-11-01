@@ -1,10 +1,9 @@
 // Canvas compositor for the rendered PNG parts (assets/parts). Browser only.
 //
 // Every part image is a 1024x1024 transparent PNG already placed on a shared
-// canvas, so a potato is just the layers drawn in order with small per-shape
-// transforms from src/fit-data.js. On top of that: red garments are recolored
-// to the chosen hat color, arms are tinted to the chosen skin, stickers are
-// projected onto the laptop lid, and cap initials are lettered on.
+// canvas. surface.js seats them on the selected body's silhouette, harmonizes
+// exposed skin, and adds contact shading. Garments keep their material masks;
+// stickers and lettering follow the final fitted prop transform.
 
 import { PARTS, NO_IMAGE, LAYER_ORDER, CANVAS } from './assets.js';
 import { FIT } from './fit-data.js';
@@ -13,6 +12,7 @@ import { normalizeState } from './state.js';
 import { Defs } from './draw.js';
 import { background } from './parts/background.js';
 import { stickerSVG } from './parts/stickers.js';
+import { bodySurface, surfaceTransform, integratedLayer, contactShadow } from './surface.js';
 
 const RED = '#C8372D';
 
@@ -171,21 +171,15 @@ function remap(data, win, base, target) {
 }
 
 const RED_WINDOW = { hue: 2, hueWidth: 16, sMin: 0.42, lMin: 0.07, lMax: 0.86 };
-const SKIN_WINDOW = { hue: 30, hueWidth: 14, sMin: 0.28, lMin: 0.2, lMax: 0.86 };
-// Only the light skin tones: eyelids and lips, not the dark brown irises.
-const SKIN_LIGHT_WINDOW = { hue: 30, hueWidth: 14, sMin: 0.28, lMin: 0.5, lMax: 0.9 };
-
 const processed = new Map();
 const PROCESSED_MAX = 60;
 
-/** A part image with recolor / skin tint applied, cached by (src, hat color, skin). */
-async function processedPart(group, key, src, { hatColor, skin }) {
+/** Garment recoloring only; skin is harmonized against the actual body later. */
+async function processedPart(group, key, src, { hatColor }) {
   const wantsRecolor = FIT.recolor[group]?.includes(key) && hatColor && hatColor !== RED;
-  const tintMode = FIT.skinTint[group];
-  const wantsSkin = tintMode && skin && skin !== 'russet' && !FIT.noSkinTint.includes(`${group}/${key}`);
   const img = await loadImage(src);
-  if (!wantsRecolor && !wantsSkin) return img;
-  const cacheKey = `${src}|${wantsRecolor ? hatColor : ''}|${wantsSkin ? skin : ''}`;
+  if (!wantsRecolor) return img;
+  const cacheKey = `${src}|${hatColor}`;
   if (processed.has(cacheKey)) {
     const v = processed.get(cacheKey);
     processed.delete(cacheKey);
@@ -199,24 +193,7 @@ async function processedPart(group, key, src, { hatColor, skin }) {
   ctx.drawImage(img, 0, 0);
   const id = ctx.getImageData(0, 0, c.width, c.height);
   if (wantsRecolor) remap(id.data, RED_WINDOW, RED, hatColor);
-  if (wantsSkin) remap(id.data, tintMode === 'light' ? SKIN_LIGHT_WINDOW : SKIN_WINDOW, SKINS.russet.base, SKINS[skin].base);
   ctx.putImageData(id, 0, 0);
-  // Restore prop pixels after tinting the hand. Coordinates stay in the shared
-  // part canvas, including when this is a 256 px thumbnail.
-  const protect = wantsSkin && FIT.skinProtect?.[`${group}/${key}`];
-  if (protect) {
-    ctx.save();
-    ctx.scale(c.width / CANVAS, c.height / CANVAS);
-    ctx.beginPath();
-    for (const polygon of protect) {
-      polygon.forEach(([x, y], i) => i ? ctx.lineTo(x, y) : ctx.moveTo(x, y));
-      ctx.closePath();
-    }
-    ctx.clip();
-    ctx.clearRect(0, 0, CANVAS, CANVAS);
-    ctx.drawImage(img, 0, 0, CANVAS, CANVAS);
-    ctx.restore();
-  }
   processed.set(cacheKey, c);
   if (processed.size > PROCESSED_MAX) processed.delete(processed.keys().next().value);
   return c;
@@ -329,7 +306,7 @@ function stickerSlots(n) {
   return slots;
 }
 
-async function drawStickers(ctx, s, thumbs) {
+async function drawStickers(ctx, s, thumbs, transform) {
   const keys = s.stickers.slice(0, MULTI.stickers.max);
   if (!keys.length) return;
   const [tl, tr, , bl] = FIT.laptop.lid;
@@ -338,7 +315,7 @@ async function drawStickers(ctx, s, thumbs) {
   const bx = bl[0] - tl[0];
   const by = bl[1] - tl[1];
   ctx.save();
-  applyTransform(ctx, 'item', layerTransform('item', 'laptop', s.body), 'laptop');
+  applyTransform(ctx, 'item', transform || layerTransform('item', 'laptop', s.body), 'laptop');
   ctx.transform(ax, ay, bx, by, tl[0], tl[1]); // unit square -> lid quad
   const slots = stickerSlots(keys.length);
   const lidW = Math.hypot(ax, ay);
@@ -382,11 +359,11 @@ async function drawStickers(ctx, s, thumbs) {
   ctx.restore();
 }
 
-function drawCapText(ctx, s) {
+function drawCapText(ctx, s, transform) {
   const spec = FIT.capText[s.hat];
   if (!spec || !s.capText) return;
   ctx.save();
-  applyTransform(ctx, 'hat', layerTransform('hat', s.hat, s.body), s.hat);
+  applyTransform(ctx, 'hat', transform || layerTransform('hat', s.hat, s.body), s.hat);
   ctx.translate(spec.x, spec.y);
   ctx.rotate((spec.rot * Math.PI) / 180);
   ctx.textAlign = 'center';
@@ -411,11 +388,11 @@ function drawCapText(ctx, s) {
   ctx.restore();
 }
 
-function drawSignText(ctx, s) {
+function drawSignText(ctx, s, transform) {
   const spec = FIT.sign;
   if (!spec || !s.sign) return;
   ctx.save();
-  applyTransform(ctx, 'item', layerTransform('item', 'sign', s.body), 'sign');
+  applyTransform(ctx, 'item', transform || layerTransform('item', 'sign', s.body), 'sign');
   ctx.beginPath();
   ctx.rect(spec.x, spec.y, spec.w, spec.h);
   ctx.clip();
@@ -466,12 +443,20 @@ export async function renderPotato(rawState, opts = {}) {
   const k = size / crop[2];
   ctx.setTransform(k, 0, 0, k, -crop[0] * k, -crop[1] * k);
   if (bgImg) ctx.drawImage(bgImg, 0, 0, CANVAS, CANVAS);
+  const body = imgs[layers.findIndex(l => l.group === 'body')];
+  const surface = bodySurface(body, s.body);
+  const workSize = thumbs ? 256 : 1024;
   for (let i = 0; i < layers.length; i++) {
     const l = layers[i];
-    drawLayer(ctx, imgs[i], l.group, l.key, l.transform);
-    if (l.group === 'item' && l.key === 'laptop') await drawStickers(ctx, s, thumbs);
-    if (l.group === 'item' && l.key === 'sign') drawSignText(ctx, s);
-    if (l.group === 'hat') drawCapText(ctx, s);
+    if (l.group === 'body') { drawLayer(ctx, imgs[i], l.group, l.key, l.transform); continue; }
+    const transform = surfaceTransform(l, imgs[i], surface, s);
+    const plane = integratedLayer(imgs[i], l.group, l.key, transform, surface, workSize);
+    const shadow = contactShadow(plane, body, l.group, workSize);
+    if (shadow) ctx.drawImage(shadow, 0, 0, CANVAS, CANVAS);
+    ctx.drawImage(plane, 0, 0, CANVAS, CANVAS);
+    if (l.group === 'item' && l.key === 'laptop') await drawStickers(ctx, s, thumbs, transform);
+    if (l.group === 'item' && l.key === 'sign') drawSignText(ctx, s, transform);
+    if (l.group === 'hat') drawCapText(ctx, s, transform);
   }
   return canvas;
 }

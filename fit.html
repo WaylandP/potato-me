@@ -24,7 +24,7 @@
 <body>
   <header class="site-header">
     <div class="brand"><img src="favicon.png" alt="" width="40" height="40"><span class="wordmark">potato-me</span></div>
-    <p class="tagline">Part fitting. Nudge a layer, then paste the result into <code>src/fit-data.js</code>.</p>
+    <p class="tagline">Part fitting. Adjust the automatic body fit, then paste the result into <code>src/fit-data.js</code>.</p>
     <a class="gh-link" href="./">Back to the editor</a>
   </header>
   <main class="fit">
@@ -45,7 +45,7 @@
         <label><input id="flip" type="checkbox"> flip</label>
       </div>
       <p class="fit-keys">With the preview focused: <kbd>←</kbd><kbd>→</kbd><kbd>↑</kbd><kbd>↓</kbd> nudge 1 px (hold <kbd>Shift</kbd> for 10), <kbd>+</kbd>/<kbd>−</kbd> scale, <kbd>[</kbd>/<kbd>]</kbd> rotate, <kbd>F</kbd> flip, <kbd>0</kbd> reset this entry.</p>
-      <label>Result: the <code>shapes</code> and <code>parts</code> sections of src/fit-data.js <textarea id="out" readonly spellcheck="false"></textarea></label>
+      <label>Result: the <code>surfaceNudges</code> section of src/fit-data.js <textarea id="out" readonly spellcheck="false"></textarea></label>
       <div class="actions-row"><button type="button" id="copy" class="btn btn-small">Copy result</button><button type="button" id="reset" class="btn btn-small">Discard all edits</button></div>
     </section>
   </main>

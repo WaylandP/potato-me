@@ -1,4 +1,4 @@
-// The fitting page: adjust FIT.shapes / FIT.parts live and copy the result into src/fit-data.js.
+// The fitting page: adjust FIT.surfaceNudges.shapes / FIT.surfaceNudges.parts live and copy the result into src/fit-data.js.
 import { OPTIONS, SKINS, DEFAULT_STATE } from './options.js';
 import { FIT } from './fit-data.js';
 import { LAYER_ORDER } from './assets.js';
@@ -30,13 +30,13 @@ function entry(create = false) {
   const part = $('#part').value;
   const scope = $('#scope').value;
   if (scope === 'shape') {
-    FIT.shapes[shape] ||= {};
-    if (create) FIT.shapes[shape][group] ||= {};
-    return FIT.shapes[shape][group];
+    FIT.surfaceNudges.shapes[shape] ||= {};
+    if (create) FIT.surfaceNudges.shapes[shape][group] ||= {};
+    return FIT.surfaceNudges.shapes[shape][group];
   }
   const key = scope === 'part' ? `${group}/${part}` : `${group}/${part}@${shape}`;
-  if (create) FIT.parts[key] ||= {};
-  return FIT.parts[key];
+  if (create) FIT.surfaceNudges.parts[key] ||= {};
+  return FIT.surfaceNudges.parts[key];
 }
 
 function loadControls() {
@@ -60,8 +60,8 @@ function saveControls() {
 }
 
 function prune() {
-  for (const [shape, groups] of Object.entries(FIT.shapes)) for (const [g, o] of Object.entries(groups)) if (!Object.keys(o).length) delete groups[g];
-  for (const [k, o] of Object.entries(FIT.parts)) if (!Object.keys(o).length) delete FIT.parts[k];
+  for (const [shape, groups] of Object.entries(FIT.surfaceNudges.shapes)) for (const [g, o] of Object.entries(groups)) if (!Object.keys(o).length) delete groups[g];
+  for (const [k, o] of Object.entries(FIT.surfaceNudges.parts)) if (!Object.keys(o).length) delete FIT.surfaceNudges.parts[k];
 }
 
 function state() {
@@ -81,7 +81,7 @@ async function draw() {
 }
 
 function printResult() {
-  const lines = ['  shapes: ' + JSON.stringify(FIT.shapes, null, 2).replace(/\n/g, '\n  ') + ',', '  parts: ' + JSON.stringify(FIT.parts, null, 2).replace(/\n/g, '\n  ') + ','];
+  const lines = ['  surfaceNudges: { shapes: ' + JSON.stringify(FIT.surfaceNudges.shapes, null, 2).replace(/\n/g, '\n  ') + ',', '  parts: ' + JSON.stringify(FIT.surfaceNudges.parts, null, 2).replace(/\n/g, '\n  ') + ' },'];
   $('#out').value = lines.join('\n').replace(/"(\w+)":/g, '$1:').replace(/"/g, "'");
 }
 
