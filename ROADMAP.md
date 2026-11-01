@@ -19,12 +19,12 @@ Check a box only when the work is built, tested and visible on the deployed site
 - [x] Per-shape fitting data and `fit.html`
 - [x] Missing parts hidden and listed; old share links migrated
 - [x] Thumbnails, screenshot tool, hero and link-preview card from the real app
-- [ ] Generate the 26 remaining parts: **generated, integrated and locally verified on 2026-11-01; deployment verification pending.** Raised brows, 11 held items (boba, phone, controller, sign, pizza, donut, duck, mic, trophy, plant, nothing), 10 free-hand poses, 4 stickers (404, skull, mountains, LGTM). See the [completion record](docs/ASSET_COMPLETION.md).
-- [ ] Sign text once `item/sign.png` exists — **implemented and locally verified in the raster compositor; deployment verification pending.** Text box in `FIT.sign`.
+- [x] Generate the 26 remaining parts: **generated, integrated and verified in production on 2026-11-01.** Raised brows, 11 held items (boba, phone, controller, sign, pizza, donut, duck, mic, trophy, plant, nothing), 10 free-hand poses, 4 stickers (404, skull, mountains, LGTM). See the [completion record](docs/ASSET_COMPLETION.md).
+- [x] Sign text in the raster compositor — **implemented and verified in production on 2026-11-01.** Text box in `FIT.sign`.
 - [x] Skin masks for eyelids and lips so the smug eyes match exotic skins
 - [x] Coherent "Surprise me": a vibe for the face, matching colors, at most two worn accessories
 - [x] Headphones, earbuds, earring and flower fitted to every body shape
-- [ ] Deploy to Vercel and add the live URL to the README
+- [x] Deploy to Vercel and add the live URL to the README — [potato-me.vercel.app](https://potato-me.vercel.app/), verified on 2026-11-01
 - [ ] Self-host the Fredoka font
 - [ ] Undo / redo
 - [ ] Accessibility pass with a screen reader (VoiceOver + NVDA)

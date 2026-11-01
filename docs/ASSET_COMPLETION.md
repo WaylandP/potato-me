@@ -2,8 +2,9 @@
 
 The final 26 missing assets are generated and integrated with the renderer. The
 inventory now contains all 164 planned assets. The previous 138 full-resolution
-PNGs are unchanged. Deployment verification is tracked separately in the
-[roadmap](../ROADMAP.md).
+PNGs are unchanged. The completed pack is live at
+[potato-me.vercel.app](https://potato-me.vercel.app/) and was verified in
+production on November 1, 2026.
 
 ![Examples assembled by the app](completion-preview.png)
 
@@ -57,6 +58,27 @@ files were retained to avoid unrelated browser-encoder differences.
 These checks cover the new asset pack and representative combinations. They are
 not a claim to have visually reviewed every possible avatar combination.
 
+## Production verification — November 1, 2026
+
+PR [#1](https://github.com/WaylandP/potato-me/pull/1) merged as
+`8ad8773dbe94754c4ad23f74f0edcba3f38f6e74`. Vercel automatically deployed that
+commit to production, reached `READY`, and assigned
+[potato-me.vercel.app](https://potato-me.vercel.app/).
+
+- The public URL returned HTTP 200 without authentication.
+- SHA-256 checks matched 60 served files to the merged source: all 26 new parts,
+  their 26 thumbnails, and eight application/manifest files. No planned parts
+  were missing from the live inventory.
+- Four browser checks covered desktop (1280 px) and phone (390 px), each in
+  light and dark mode, with one of the four body shapes in each check.
+- Sign editing, mouse/keyboard gesture selection, thumbnails, share-link reload,
+  and the actual Download PNG button passed. No horizontal overflow, browser
+  errors, or failed resource requests were observed.
+- Downloaded PNGs were 512 × 512; the largest of these four exports was
+  434,303 bytes.
+- Vercel reported no runtime errors in the one-hour window checked. This static
+  app renders in the browser; the browser checks provide the client-side evidence.
+
 ## Repository status
 
 This completion work builds on `WaylandP/potato-me` main commit
@@ -67,6 +89,6 @@ fitting data and compositor changes. No separate asset pack is needed to run
 this checkout. Follow the [README](../README.md) for setup and the
 [contributor guide](../CONTRIBUTING.md) when changing artwork.
 
-Roadmap checkboxes requiring deployed verification remain open until the work
-is built, tested and visible on the deployed site. The validation above was run
-locally; it does not establish a live deployment.
+The completion-pack, sign-text and deployment roadmap items are checked after
+local and production verification. Remaining roadmap items retain their own
+completion criteria.
