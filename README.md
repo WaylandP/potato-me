@@ -54,18 +54,18 @@ Avatar composition and PNG export happen in your browser. The app has no account
 
 The interface currently requests the Fredoka font from **Google Fonts**. Self-hosting the font is tracked in the [roadmap](ROADMAP.md); this is not a fully offline distribution.
 
-## Included artwork and verification
+## Included artwork and visual fitting
 
-All **164 planned assets** and their thumbnails are included. The final 26 additions complete the raised eyebrows, held items, free-hand poses and laptop stickers. The sign's lettering is drawn by the app, and protected prop regions preserve food, gold, wood and clay colors when the potato's skin changes.
+All **164 planned assets** and their thumbnails are included. Parts remain interchangeable: expressions, gestures, hats and held objects are fitted to the selected body at render time.
 
-The November 1, 2026 completion checks covered:
+The November 2026 visual repair changes how the whole collection is assembled:
 
-- **32 passing Node tests**, including asset inventory, fitting data, URL state and missing-part fallback.
-- **312 rendered and exported combinations**: 26 new options × 4 body shapes × 3 skins.
-- Desktop (1280 px) and phone (390 px), in light and dark mode, including keyboard selection, text editing and downloads.
-- A largest measured 512 px export of **441,284 bytes**, below 1 MB for the tested combinations. File size varies with the avatar.
+- Arm roots sit inside the actual body outline, with the body covering the joint. Hands and held objects move together, and large poses shrink around the shoulder to stay inside the avatar crop.
+- Eyelids, lips and exposed skin take their color and shading from the selected body. Eye interiors, teeth, tongues and protected prop materials retain their own colors.
+- Face proportions stay readable on narrow and wide bodies. Hats, eyewear, neckwear and side accessories use body landmarks and contact shadows.
+- New headband and headphone artwork replaces the poorly fitting originals. Headphone bands flex to the crown while ear cups retain their proportions.
 
-The production site at [potato-me.vercel.app](https://potato-me.vercel.app/) was also verified on November 1, 2026: 60 served files matched the merged source, and desktop/mobile checks passed for sign editing, keyboard gestures, share links, thumbnails and 512 px downloads in light and dark mode. See the [completion record](docs/ASSET_COMPLETION.md) for scope and limitations.
+The [visual repair record](docs/CHARACTER_FITTING.md) documents the changes, review coverage and limitations. The earlier [asset-completion record](docs/ASSET_COMPLETION.md) is retained as history; its functional checks did not establish that the original assembly looked cohesive.
 
 ## Development
 
@@ -83,6 +83,7 @@ npx playwright install chromium
 npm run assets    # Rebuild 256 px thumbnails and src/assets.js from the manifest
 npm run hero      # Rebuild docs/hero.png and docs/og.png from the app
 npm run shot -- preview.png '#item=sign&sign=SHIP%20IT&gesture=thumbsUp'
+node scripts/audit-art.mjs /tmp/potato-art-audit  # Inventory review sheets + export checks
 ```
 
 Playwright is an optional development tool, not an application dependency. Commit generated thumbnails and the asset index when adding or replacing artwork.
@@ -97,6 +98,7 @@ Playwright is an optional development tool, not an application dependency. Commi
 | [assets/thumbs/](assets/thumbs/) | Generated 256 × 256 thumbnails |
 | [assets/manifest.json](assets/manifest.json) / [src/assets.js](src/assets.js) | Asset inventory and generated runtime index |
 | [src/fit-data.js](src/fit-data.js) | Placement transforms, color masks, protected regions and text placement |
+| [src/surface.js](src/surface.js) | Body-silhouette fitting, skin harmonization and contact shading |
 | [src/raster.js](src/raster.js) | Canvas composition, recoloring, stickers, lettering and PNG export |
 | [src/options.js](src/options.js) / [src/state.js](src/state.js) | Choices, presets, validation, URL encoding and legacy links |
 | [src/parts/](src/parts/) / [src/compose.js](src/compose.js) | SVG backgrounds, fallback stickers and the legacy pure SVG compositor |
@@ -104,9 +106,9 @@ Playwright is an optional development tool, not an application dependency. Commi
 
 ### Adding or fitting a part
 
-Use the [art prompts](docs/IMAGE_PROMPTS.md) and [contributor guide](CONTRIBUTING.md). Save each part as a 1024 × 1024 transparent PNG on the shared canvas, register its stable option key and manifest entry, then run `npm run assets`. Fit it with `fit.html` and `src/fit-data.js`, and check all four shapes and at least three skins before committing.
+Use the [art prompts](docs/IMAGE_PROMPTS.md) and [contributor guide](CONTRIBUTING.md). Save each part as a 1024 × 1024 transparent PNG on the shared canvas, register its stable option key and manifest entry, then run `npm run assets`. The surface renderer supplies the body fit; `fit.html` writes final corrections to `FIT.surfaceNudges` in `src/fit-data.js`. Check all four shapes and at least three skins before committing.
 
-The renderer stacks layers in manifest order and applies per-shape transforms. Color masks change supported materials without shifting the entire image; `FIT.skinProtect` preserves held objects while their hands follow the skin color. Stickers are projected onto the laptop lid, and initials and sign text are drawn at render time. The [exact completion prompts](docs/ASSET_COMPLETION_PROMPTS.json) document the newest artwork.
+The renderer stacks layers in manifest order, fits them to body landmarks, and blends their skin against the actual selected body image. Material masks change supported colors without shifting the entire image; `FIT.skinProtect` preserves held objects while their hands follow the skin color. Stickers are projected onto the laptop lid, and initials and sign text are drawn at render time. The [exact completion prompts](docs/ASSET_COMPLETION_PROMPTS.json) document the 26-part completion pack. The two later replacements are recorded in the manifest and visual repair record.
 
 Keep option keys compatible with existing share links. Do not hand-edit generated thumbnails or `src/assets.js`. [CLAUDE.md](CLAUDE.md) contains additional repository guidance for coding assistants.
 

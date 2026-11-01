@@ -493,10 +493,10 @@ export const PARTS = {
       278
     ],
     "headband": [
-      440,
-      190,
-      585,
-      265
+      45,
+      331,
+      979,
+      665
     ],
     "bucket": [
       320,
@@ -667,10 +667,10 @@ export const PARTS = {
   },
   "extra": {
     "headphones": [
-      354,
-      205,
-      671,
-      491
+      143,
+      178,
+      879,
+      740
     ],
     "earbuds": [
       441,

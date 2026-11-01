@@ -94,11 +94,11 @@ test('headphones go under hats that cover the head and over hats that do not', (
   assert.ok(none.includes('extra') && !none.includes('hat'));
 });
 
-test('every recolor and skin-tint entry names an existing part', () => {
+test('every material and fitting entry names an existing part', () => {
   for (const hat of FIT.headphonesOver) assert.ok(PARTS.hat[hat], hat);
   for (const [group, keys] of Object.entries(FIT.recolor)) for (const k of keys) assert.ok(PARTS[group][k], `${group}/${k}`);
   for (const hat of Object.keys(FIT.capText)) assert.ok(PARTS.hat[hat], hat);
-  for (const key of Object.keys(FIT.parts)) {
+  for (const key of [...Object.keys(FIT.parts), ...Object.keys(FIT.surfaceNudges.parts), ...Object.keys(FIT.surfaceRoots), ...Object.keys(FIT.skinProtect)]) {
     const [group, rest] = key.split('/');
     const [part, shape] = rest.split('@');
     assert.ok(PARTS[group]?.[part], `${key} names a missing part`);

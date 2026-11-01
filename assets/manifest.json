@@ -2679,37 +2679,38 @@
     },
     {
       "path": "assets/parts/hat/headband.png",
-      "request": "Only the hat: a pure red terry sweatband around the top of the head.",
+      "request": "Wide continuous knitted forehead band, shaped to wrap the head; no floating ring.",
       "group": "hat",
       "key": "headband",
       "targetBox": [
-        275,
-        190,
-        749,
-        265
+        45,
+        331,
+        979,
+        665
       ],
       "status": "generated",
       "width": 1024,
       "height": 1024,
       "alpha": true,
       "sourceSize": [
-        1254,
-        1254
+        1280,
+        1280
       ],
       "sourceCrop": [
-        22,
-        316,
-        1232,
-        942
+        0,
+        0,
+        1280,
+        1280
       ],
       "placedBox": [
-        440,
-        190,
-        585,
-        265
+        45,
+        331,
+        979,
+        665
       ],
       "flippedForConvention": false,
-      "sha256": "ad94cb259de7644ad9389e3bf02ade30aafd0dacc9b0c2f5e2b3647f7d88d79a"
+      "sha256": "34ffdc2ee4c4c444e3fcc479f4946511969d2c3d34f2ea34abbb5bf631daaa67",
+      "normalization": "Full transparent canvas resized to 1024; body fit applied at render time."
     },
     {
       "path": "assets/parts/hat/bucket.png",
@@ -3631,37 +3632,38 @@
     },
     {
       "path": "assets/parts/extra/headphones.png",
-      "request": "Only the item: pure red over-ear headphones with a padded band over the top of the head and cups on both sides.",
+      "request": "Wide fitted headphones with slim inward-facing cups and a curved headband.",
       "group": "extra",
       "key": "headphones",
       "targetBox": [
-        245,
-        205,
-        779,
-        491
+        143,
+        178,
+        879,
+        740
       ],
       "status": "generated",
       "width": 1024,
       "height": 1024,
       "alpha": true,
       "sourceSize": [
-        1254,
-        1254
+        1280,
+        1280
       ],
       "sourceCrop": [
-        15,
-        57,
-        1239,
-        1163
+        0,
+        0,
+        1280,
+        1280
       ],
       "placedBox": [
-        354,
-        205,
-        671,
-        491
+        143,
+        178,
+        879,
+        740
       ],
       "flippedForConvention": false,
-      "sha256": "23497792f2b2eeba46711ff7375ceb68366291ab886d9b8a122107e60182a195"
+      "sha256": "bbadc3cf4bd144cfacc68a3fa7a04599a86463241df9fb4c21b671130409898b",
+      "normalization": "Full transparent canvas resized to 1024; body fit applied at render time."
     },
     {
       "path": "assets/parts/extra/earbuds.png",
@@ -4583,7 +4585,7 @@
     },
     {
       "path": "assets/parts/stickers/lambda.png",
-      "request": "The Greek lowercase lambda symbol λ, white against a rich orange rounded tile.",
+      "request": "The Greek lowercase lambda symbol \u03bb, white against a rich orange rounded tile.",
       "group": "stickers",
       "key": "lambda",
       "targetBox": [

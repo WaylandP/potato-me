@@ -1,5 +1,6 @@
 // Fitting data for the rendered PNG parts. Edit with fit.html (it prints this
-// file) or by hand. All coordinates are on the 1024 px part canvas.
+// surfaceNudges section) or by hand. All coordinates use the 1024 px canvas.
+// surface.js computes the body-aware fit; surfaceNudges applies final corrections.
 //
 // shapes:  per body shape, per layer group: nudge (dx, dy), scale about the
 //          group's pivot, rotation in degrees, flip. Classic is the baseline
@@ -107,13 +108,19 @@ export const FIT = {
     extra: ['headphones'],
     item: ['coffee'],
   },
-  // Parts whose tan areas are skin and should follow the body color: arms and hands fully,
-  // eyes and mouths only in their light tones (lids, lips) so irises and tongues keep their color.
-  skinTint: { item: 'full', gesture: 'full', eyes: 'light', mouth: 'light', cheeks: 'light' },
-  noSkinTint: [],
+  // Corrections applied after silhouette fitting; edited by fit.html.
+  surfaceNudges: { shapes: {}, parts: {} },
+  // These original arms were painted facing inward. Mirror about their real
+  // shoulder, keeping the hand and prop together as one rigid image.
+  surfaceRoots: {
+    'item/coffee': { point: [57, 603], flip: true },
+    'item/book': { point: [64, 604], flip: true },
+  },
   // Prop silhouettes in the original 1024 px part canvas. Restore these after
   // skin tint so food, gold, wood and clay keep their rendered material colors.
   skinProtect: {
+    'item/coffee': [[[218, 495], [330, 495], [330, 735], [218, 735]]],
+    'item/book': [[[128, 530], [325, 530], [325, 698], [180, 698], [180, 642], [147, 610], [125, 610]]],
     'item/boba': [
       [[74,330],[260,330],[260,596],[236,611],[236,662],[205,705],[117,705],[117,692],[128,672],[122,651],[129,635],[122,614],[128,594],[120,582],[120,465],[74,465]],
     ],
@@ -142,7 +149,7 @@ export const FIT = {
     backwardCap: { x: 468, y: 120, w: 118, h: 42, rot: -3, color: '#F7EBD7' },
     cap: { x: 512, y: 148, w: 190, h: 66, rot: 0, color: '#F7EBD7' },
     beanie: { x: 512, y: 226, w: 170, h: 54, rot: 0, color: '#F7EBD7' },
-    headband: { x: 512, y: 226, w: 150, h: 36, rot: 0, color: '#F7EBD7' },
+    headband: { x: 512, y: 448, w: 360, h: 70, rot: 0, color: '#F7EBD7' },
   },
   laptop: { lid: [[26, 514], [197, 523], [224, 668], [50, 652]] },
   sign: { x: 65, y: 390, w: 258, h: 180, fontSize: 58, color: '#173D40' },
