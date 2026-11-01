@@ -32,4 +32,10 @@ Local verification on November 1, 2026 ([machine-readable report](character-fit-
 
 The Node suite includes landmark alignment, beard-opening alignment, manual fitting and headphone-band regression checks, alongside the existing inventory and state checks.
 
+## Production verification
+
+After [PR #3](https://github.com/WaylandP/potato-me/pull/3) merged, the production deployment of `e5991a12687cf881163964df5e048dd95c58030d` was checked at [potato-me.vercel.app](https://potato-me.vercel.app/) on November 1, 2026. All 67 sampled application and asset files matched the merged source. Desktop and phone flows in both themes passed sign editing, keyboard gesture selection, thumbnail loading, share-link reload and PNG downloads, with no horizontal overflow or application/request errors. The largest of those four downloads was 428,093 bytes. The fitting editor also passed. The production results are included in the [verification report](character-fit-verification.json).
+
+## Known limits
+
 This is a modular 2D compositor using rendered artwork, not a 3D rig. Arbitrary combinations of multiple large accessories can still overlap. Review coverage is every individual asset and representative combined outfits, not the combinatorial product of every setting.

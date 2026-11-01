@@ -1,18 +1,28 @@
 ---
 name: Bug report
-about: Something renders wrong, won't download or breaks on your device
+about: Report a rendering, control, download or sharing problem
 title: "Bug: "
 labels: bug
 ---
 
 ## What happened?
 
-## Share link
+<!-- Describe what you expected and what happened instead. -->
 
-<!-- Paste the URL from the address bar (it contains the exact potato). -->
+## Steps to reproduce
+
+1.
+2.
+3.
+
+## Avatar share link
+
+<!-- Use Copy link in the live editor. The link includes your choices and any custom text; check it before posting. -->
 
 ## Browser and device
 
-<!-- e.g. Safari 18 on iPhone 15, Firefox 130 on Windows -->
+<!-- Browser/version, operating system, device and whether the problem occurs at desktop or phone width. -->
 
-## Screenshot (optional)
+## Screenshot
+
+<!-- Especially useful for fitting problems: show the whole avatar and identify the part, grip, overlap or skin mismatch. -->
