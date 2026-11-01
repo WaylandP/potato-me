@@ -8,7 +8,7 @@
   "sourceRef": "claude/awesome-ritchie-f0e8l9",
   "sourceCommit": "f77b86b18836f6e49f56a78a557d17313152ad37",
   "expectedAssetCount": 164,
-  "generatedAssetCount": 138,
+  "generatedAssetCount": 164,
   "coordinates": "viewer-relative; held item left, gesture right",
   "layerOrder": [
     "body",
@@ -4583,7 +4583,7 @@
     },
     {
       "path": "assets/parts/stickers/lambda.png",
-      "request": "The Greek lowercase lambda symbol \u03bb, white against a rich orange rounded tile.",
+      "request": "The Greek lowercase lambda symbol λ, white against a rich orange rounded tile.",
       "group": "stickers",
       "key": "lambda",
       "targetBox": [
@@ -4716,6 +4716,604 @@
       ],
       "flippedForConvention": false,
       "sha256": "f0e886ccbeb9cb6bd0bd3ca6d79689ca2dced9f841775fa6208b974606ba2fba"
+    },
+    {
+      "path": "assets/parts/gesture/thumbsUp.png",
+      "request": "Only the viewer's-right arm and hand: a big thumbs up.",
+      "group": "gesture",
+      "key": "thumbsUp",
+      "targetBox": [
+        731,
+        465,
+        989,
+        796
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "placedBox": [
+        678,
+        474,
+        967,
+        772
+      ],
+      "sha256": "7c818bccf9e16981f8a2fd924fdc29b42b297830c4d6da8df497994a82f5eccf"
+    },
+    {
+      "path": "assets/parts/brows/raised.png",
+      "request": "Only the eyebrows: both thick brows arched high, surprised or excited.",
+      "group": "brows",
+      "key": "raised",
+      "targetBox": [
+        350,
+        327,
+        674,
+        396
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "placedBox": [
+        353,
+        322,
+        672,
+        402
+      ],
+      "sha256": "297ab15cb705511f6770e6eb10bca6f4dc14a5f9541a4c0bf700d4477cf0260e"
+    },
+    {
+      "path": "assets/parts/gesture/wave.png",
+      "request": "Only the viewer's-right arm and hand: raised beside the head, open palm waving.",
+      "group": "gesture",
+      "key": "wave",
+      "targetBox": [
+        731,
+        465,
+        989,
+        796
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "placedBox": [
+        658,
+        420,
+        982,
+        762
+      ],
+      "sha256": "1042499958fb19a002e06b7c1d7658be423e7a2916ad362daff8339d14e563fd"
+    },
+    {
+      "path": "assets/parts/gesture/peace.png",
+      "request": "Only the viewer's-right arm and hand: a peace sign with two fingers up.",
+      "group": "gesture",
+      "key": "peace",
+      "targetBox": [
+        731,
+        465,
+        989,
+        796
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "placedBox": [
+        683,
+        378,
+        954,
+        726
+      ],
+      "sha256": "efd716dda422870a39927664e8665a102a30b214b0827b4f8dbc7d6bbc42c146"
+    },
+    {
+      "path": "assets/parts/gesture/point.png",
+      "request": "Only the viewer's-right arm and hand: pointing straight at the viewer.",
+      "group": "gesture",
+      "key": "point",
+      "targetBox": [
+        731,
+        465,
+        989,
+        796
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "placedBox": [
+        683,
+        492,
+        959,
+        757
+      ],
+      "sha256": "bfd68c395d150b2a6d01375f999cede280868e0d0a5ea0ba51f133c0f15ab9a4"
+    },
+    {
+      "path": "assets/parts/gesture/rock.png",
+      "request": "Only the viewer's-right arm and hand: the rock-on horns sign, index and pinky up.",
+      "group": "gesture",
+      "key": "rock",
+      "targetBox": [
+        731,
+        465,
+        989,
+        796
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "placedBox": [
+        645,
+        422,
+        958,
+        760
+      ],
+      "sha256": "fe11e7b023f583f8f41b9dcc95fd03dab0bf8a950b398e18287e701cc5979cab"
+    },
+    {
+      "path": "assets/parts/gesture/ok.png",
+      "request": "Only the viewer's-right arm and hand: the OK sign, thumb and index in a circle.",
+      "group": "gesture",
+      "key": "ok",
+      "targetBox": [
+        731,
+        465,
+        989,
+        796
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "placedBox": [
+        635,
+        383,
+        1001,
+        787
+      ],
+      "sha256": "2a1f5d8c40f70bed51078125c4c79967d3bf681c69abcef61ec01b708fbfc245"
+    },
+    {
+      "path": "assets/parts/gesture/fist.png",
+      "request": "Only the viewer's-right arm and hand: a fist raised in the air.",
+      "group": "gesture",
+      "key": "fist",
+      "targetBox": [
+        731,
+        465,
+        989,
+        796
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "placedBox": [
+        675,
+        443,
+        951,
+        773
+      ],
+      "sha256": "e28fc9702cd1edae3ddbd0fda7691140cba9fd39cc6a6cd186766ec56b3173c4"
+    },
+    {
+      "path": "assets/parts/gesture/rest.png",
+      "request": "Only the viewer's-right arm and hand: resting relaxed at the side, hand open.",
+      "group": "gesture",
+      "key": "rest",
+      "targetBox": [
+        729,
+        603,
+        832,
+        813
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "placedBox": [
+        698,
+        594,
+        910,
+        882
+      ],
+      "sha256": "8405ef4e68dcd0748148f1c051778bc36bfe4448e919acb584ad10b79f7a5482"
+    },
+    {
+      "path": "assets/parts/gesture/salute.png",
+      "request": "Only the viewer's-right arm and hand: a crisp salute with the hand at the brow.",
+      "group": "gesture",
+      "key": "salute",
+      "targetBox": [
+        726,
+        364,
+        969,
+        726
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "placedBox": [
+        682,
+        377,
+        962,
+        714
+      ],
+      "sha256": "91ea80f889df2f56c2193a126eba852bc051872ffafc65562977f81b783d07a9"
+    },
+    {
+      "path": "assets/parts/gesture/flex.png",
+      "request": "Only the viewer's-right arm and hand: a cartoon bicep flex, arm bent, fist up.",
+      "group": "gesture",
+      "key": "flex",
+      "targetBox": [
+        731,
+        465,
+        989,
+        796
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "placedBox": [
+        648,
+        439,
+        966,
+        760
+      ],
+      "sha256": "7bfd9da5cd6ad43539d367b7efb88cc6594ad57ce4e1e49967e86042e4d39d3a"
+    },
+    {
+      "path": "assets/parts/item/none.png",
+      "request": "Only the viewer's-left arm and hand: the arm resting relaxed at the side, hand open, holding nothing.",
+      "group": "item",
+      "key": "none",
+      "targetBox": [
+        192,
+        603,
+        295,
+        813
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "placedBox": [
+        172,
+        575,
+        380,
+        901
+      ],
+      "sha256": "fa24373eeb0484bec15137b0d6c21b755ebc210f70330c693024ba9b4cc6ff0e"
+    },
+    {
+      "path": "assets/parts/item/phone.png",
+      "request": "Only the viewer's-left arm, hand and item: the hand holds up a modern smartphone, screen toward the viewer, dark blank screen.",
+      "group": "item",
+      "key": "phone",
+      "targetBox": [
+        36,
+        430,
+        323,
+        797
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "placedBox": [
+        136,
+        451,
+        486,
+        754
+      ],
+      "sha256": "10cc6bbbb96184e55e9bef41000dbeb341992335491b6828e7255be03c5995cb"
+    },
+    {
+      "path": "assets/parts/item/boba.png",
+      "request": "Only the viewer's-left arm, hand and item: the hand holds a clear plastic boba tea cup with milk tea, black tapioca pearls and a wide straw.",
+      "group": "item",
+      "key": "boba",
+      "targetBox": [
+        36,
+        430,
+        323,
+        797
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "placedBox": [
+        63,
+        336,
+        406,
+        776
+      ],
+      "sha256": "213f15fdf27e1507f638d2a7718738d53ca725fb9a058912daf757a066f29a0f"
+    },
+    {
+      "path": "assets/parts/item/controller.png",
+      "request": "Only the viewer's-left arm, hand and item: the hand holds a dark game controller with colored buttons.",
+      "group": "item",
+      "key": "controller",
+      "targetBox": [
+        36,
+        430,
+        323,
+        797
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "placedBox": [
+        59,
+        499,
+        544,
+        811
+      ],
+      "sha256": "6f1480478767ee6c598fe7e732b1d1c99544c7c0b42e3d8e56371419f91accaa"
+    },
+    {
+      "path": "assets/parts/item/sign.png",
+      "request": "Only the viewer's-left arm, hand and item: the hand holds a wooden stick with a blank white rectangular sign board on top, board facing the viewer, nothing written on it.",
+      "group": "item",
+      "key": "sign",
+      "targetBox": [
+        29,
+        361,
+        317,
+        795
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "placedBox": [
+        51,
+        370,
+        436,
+        812
+      ],
+      "sha256": "988eaf1b029957c26b822f428c62508da85b7be34439382daf10d3892ba79ed0"
+    },
+    {
+      "path": "assets/parts/item/pizza.png",
+      "request": "Only the viewer's-left arm, hand and item: the hand holds a slice of pepperoni pizza with a stretchy cheese pull.",
+      "group": "item",
+      "key": "pizza",
+      "targetBox": [
+        36,
+        430,
+        323,
+        797
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "placedBox": [
+        55,
+        396,
+        552,
+        807
+      ],
+      "sha256": "bbcdd6cf4c73cb8d9adb569ba040a45484e411b7ae57f438eb1d5e08bdafe121"
+    },
+    {
+      "path": "assets/parts/item/donut.png",
+      "request": "Only the viewer's-left arm, hand and item: the hand holds a pink-frosted donut with rainbow sprinkles, one bite taken.",
+      "group": "item",
+      "key": "donut",
+      "targetBox": [
+        36,
+        430,
+        323,
+        797
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "placedBox": [
+        64,
+        405,
+        431,
+        787
+      ],
+      "sha256": "b5def482dc9e8fa85a10a2f8c426e4bfb1aa0ccd8e41e606feaad9e1f0341ec5"
+    },
+    {
+      "path": "assets/parts/item/duck.png",
+      "request": "Only the viewer's-left arm, hand and item: the hand holds a classic yellow rubber duck.",
+      "group": "item",
+      "key": "duck",
+      "targetBox": [
+        36,
+        430,
+        323,
+        797
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "placedBox": [
+        81,
+        458,
+        558,
+        809
+      ],
+      "sha256": "81aa074b3496cbb91e20d701d728e7eb6b01872d07d5926d153efe33a0c02cef"
+    },
+    {
+      "path": "assets/parts/item/mic.png",
+      "request": "Only the viewer's-left arm, hand and item: the hand holds a silver handheld stage microphone.",
+      "group": "item",
+      "key": "mic",
+      "targetBox": [
+        36,
+        430,
+        323,
+        797
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "placedBox": [
+        118,
+        413,
+        612,
+        872
+      ],
+      "sha256": "5f7fb8f8b80a5544585655d12d9c632589068c43c3b49b9fbd0a80f99e1c99fe"
+    },
+    {
+      "path": "assets/parts/item/trophy.png",
+      "request": "Only the viewer's-left arm, hand and item: the hand holds up a shiny gold trophy cup with handles.",
+      "group": "item",
+      "key": "trophy",
+      "targetBox": [
+        29,
+        361,
+        317,
+        795
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "placedBox": [
+        79,
+        370,
+        494,
+        800
+      ],
+      "sha256": "4680100dba282c81775c5ab8fbc5a93d3a69043537ea0cbfc471f7de33b46f63"
+    },
+    {
+      "path": "assets/parts/item/plant.png",
+      "request": "Only the viewer's-left arm, hand and item: the hand holds a small terracotta pot with a green succulent.",
+      "group": "item",
+      "key": "plant",
+      "targetBox": [
+        36,
+        430,
+        323,
+        797
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "placedBox": [
+        56,
+        406,
+        565,
+        846
+      ],
+      "sha256": "d54bcc06fe5db36c4b028869ac3e8962be6e7c31f526fe6337e0ea629a82e306"
+    },
+    {
+      "path": "assets/parts/stickers/notFound.png",
+      "request": "A charcoal sticker with the exact bold readable text 404 in coral red.",
+      "group": "stickers",
+      "key": "notFound",
+      "targetBox": [
+        112,
+        112,
+        912,
+        912
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "placedBox": [
+        105,
+        132,
+        919,
+        889
+      ],
+      "sha256": "26f4ef0fd51b3b4ac819e0990370d84cd838f1d485db31a2bd580aefe76cb198"
+    },
+    {
+      "path": "assets/parts/stickers/skull.png",
+      "request": "A cute ivory skull with large black eye cavities and little teeth, playful not gruesome.",
+      "group": "stickers",
+      "key": "skull",
+      "targetBox": [
+        112,
+        112,
+        912,
+        912
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "placedBox": [
+        123,
+        116,
+        898,
+        906
+      ],
+      "sha256": "4de7766fb919eb53e9c08d2a809d567d3ec7189663e52f002b7d9eb85081ce7f"
+    },
+    {
+      "path": "assets/parts/stickers/lgtm.png",
+      "request": "A deep teal rounded badge with the exact bold cream uppercase text LGTM.",
+      "group": "stickers",
+      "key": "lgtm",
+      "targetBox": [
+        112,
+        112,
+        912,
+        912
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "placedBox": [
+        71,
+        254,
+        952,
+        764
+      ],
+      "sha256": "263d1764ccdad4753e498b261acc8bc1adaa400be5c28c9c7b4548403551db70"
+    },
+    {
+      "path": "assets/parts/stickers/mountain.png",
+      "request": "Two alpine mountain peaks with snowy white tips, a deep teal foothill and coral sun.",
+      "group": "stickers",
+      "key": "mountain",
+      "targetBox": [
+        112,
+        112,
+        912,
+        912
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "placedBox": [
+        73,
+        202,
+        957,
+        911
+      ],
+      "sha256": "dc0fabd64c2c8cfbdd70ed61544bb7f0b4b5e47a9160f41e16e057b43153436b"
     }
   ],
   "fittingStatus": "Initial fitting, review in target renderer. Body variants need shape-aware offsets.",

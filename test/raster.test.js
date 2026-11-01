@@ -49,12 +49,24 @@ test('the default potato and every preset draw entirely from existing images', (
   }
 });
 
-test('choices without an image fall back to a drawable one', () => {
+test('completed choices remain selected and no planned parts are missing', () => {
   const s = drawableState({ ...DEFAULT_STATE, gesture: 'wave', item: 'pizza' });
-  assert.equal(s.gesture, 'shaka');
-  assert.equal(s.item, 'laptop');
-  assert.ok(missingParts().gesture.includes('wave'));
-  assert.ok(missingParts().stickers.includes('lgtm'));
+  assert.equal(s.gesture, 'wave');
+  assert.equal(s.item, 'pizza');
+  assert.deepEqual(missingParts(), {});
+});
+
+test('a temporarily unavailable part still falls back without a broken request', () => {
+  const wave = PARTS.gesture.wave;
+  try {
+    delete PARTS.gesture.wave;
+    const s = drawableState({ ...DEFAULT_STATE, gesture: 'wave' });
+    assert.notEqual(s.gesture, 'wave');
+    assert.ok(PARTS.gesture[s.gesture]);
+    assert.ok(missingParts().gesture.includes('wave'));
+  } finally {
+    PARTS.gesture.wave = wave;
+  }
 });
 
 test('layers come out in manifest order with per-shape transforms applied', () => {
