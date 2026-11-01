@@ -56,12 +56,12 @@ export const FIT = {
     'gesture/ok@round': {"scale":0.84,"dx":-12,"dy":-6},
     'gesture/fist': {"scale":0.7609,"dx":30.22,"dy":-8.8},
     'gesture/fist@round': {"scale":0.84,"dx":-12,"dy":-6},
-    'gesture/rest': {"scale":0.65,"dx":3.55,"dy":-4.35},
+    'gesture/rest': { scale: .85 },
     'gesture/salute': {"scale":0.83,"dx":20.79,"dy":-40.01},
     'gesture/salute@round': {"scale":0.84,"dx":-12,"dy":-6},
     'gesture/flex': {"scale":0.6604,"dx":46.04,"dy":14.15},
     'gesture/flex@round': {"scale":0.84,"dx":-12,"dy":-6},
-    'item/none': {"scale":0.65,"dx":-43.95,"dy":11.5},
+    'item/none': { scale: .85 },
     'item/phone': {"scale":0.8,"dx":-128.2,"dy":12.8},
     'item/phone@round': {"scale":0.84,"dx":12,"dy":-6},
     'item/boba': {"scale":0.7955,"dx":-63.93,"dy":-4.09},
@@ -113,6 +113,8 @@ export const FIT = {
   // These original arms were painted facing inward. Mirror about their real
   // shoulder, keeping the hand and prop together as one rigid image.
   surfaceRoots: {
+    'gesture/rest': { point: [735, 592] },
+    'item/none': { point: [735, 592], flip: true },
     'item/coffee': { point: [57, 603], flip: true },
     'item/book': { point: [64, 604], flip: true },
   },
@@ -146,7 +148,7 @@ export const FIT = {
   // band across the cap like a gamer; everything else keeps the band tucked under the brim.
   headphonesOver: ['backwardCap', 'cap', 'beanie', 'headband', 'halo'],
   capText: {
-    backwardCap: { x: 468, y: 120, w: 118, h: 42, rot: -3, color: '#F7EBD7' },
+    backwardCap: { x: 435, y: 119, w: 102, h: 36, rot: -7, color: '#F7EBD7' },
     cap: { x: 512, y: 148, w: 190, h: 66, rot: 0, color: '#F7EBD7' },
     beanie: { x: 512, y: 226, w: 170, h: 54, rot: 0, color: '#F7EBD7' },
     headband: { x: 512, y: 448, w: 360, h: 70, rot: 0, color: '#F7EBD7' },

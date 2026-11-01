@@ -2,6 +2,7 @@
 // Pixel analysis stays in the browser; no external service or generated avatar is used.
 import { PARTS, CANVAS } from './assets.js';
 import { FIT } from './fit-data.js';
+import { LruCache } from './cache.js';
 
 const clamp = (v, a = 0, b = 1) => Math.max(a, Math.min(b, v));
 const smooth = v => { const t = clamp(v); return t * t * (3 - 2 * t); };
@@ -84,7 +85,9 @@ function skinAnalysis(img, group, key) {
     const i = p * 4, r = data[i], g = data[i + 1], b = data[i + 2];
     const x = p % SIZE, y = (p / SIZE) | 0;
     const max = Math.max(r, g, b), min = Math.min(r, g, b);
-    candidate[p] = data[i + 3] > 12 && r > g * 1.035 && g > b * 1.07 && r - b > 40 && max > 58 && (max - min) / max > .28 && !protectedRegions.some(poly => polygonContains(x * 4, y * 4, poly)) && !enclosedFeature(x, y) && !(group === 'facialHair' && max < 145) ? 1 : 0;
+    const facial = ['eyes', 'mouth', 'cheeks', 'facialHair'].includes(group);
+    const warm = facial ? r > g * .98 && g > b * 1.03 && r - b > 12 && max > 38 : r > g * 1.035 && g > b * 1.07 && r - b > 40 && max > 58 && (max - min) / max > .28;
+    candidate[p] = data[i + 3] > 12 && warm && !protectedRegions.some(poly => polygonContains(x * 4, y * 4, poly)) && !enclosedFeature(x, y) && !(group === 'facialHair' && max < 145) ? 1 : 0;
     dist[p] = data[i + 3] < 20 ? 0 : 100;
   }
   // Only potato-colored regions connected to an exterior edge are skin. This
@@ -124,7 +127,7 @@ function skinAnalysis(img, group, key) {
 }
 function projected(point, t, pivot) {
   const a = t.rot * Math.PI / 180, x = point[0] - pivot[0], y = point[1] - pivot[1];
-  return [pivot[0] + t.dx + (x * Math.cos(a) - y * Math.sin(a)) * t.scale * (t.flip ? -1 : 1), pivot[1] + t.dy + (x * Math.sin(a) + y * Math.cos(a)) * t.scale];
+  return [pivot[0] + t.dx + (x * Math.cos(a) - y * Math.sin(a)) * t.scale * (t.flip ? -1 : 1), pivot[1] + t.dy + (x * Math.sin(a) + y * Math.cos(a)) * t.scale * (t.aspectY || 1)];
 }
 export function surfaceTransform(layer, img, surface, state) {
   const { group, key } = layer, t = { ...layer.transform };
@@ -136,7 +139,12 @@ export function surfaceTransform(layer, img, surface, state) {
     const specificRoot = FIT.surfaceRoots?.[`${group}/${key}`];
     const root = specificRoot?.point || skinAnalysis(img, group, key).root;
     if (specificRoot?.flip) t.flip = !t.flip;
-    const x = group === 'item' ? surface.left + 30 : surface.right - 30;
+    // The laptop sits partly in front of the torso, as an object held in a
+    // bent arm would. Its supporting hand must not be shrunk into a thumbnail.
+    const inset = key === 'laptop' ? 135 : key === 'shaka' ? 58 : 30;
+    if (key === 'laptop') t.scale = 1.05;
+    if (key === 'shaka') t.scale *= 1.16;
+    const x = group === 'item' ? surface.left + inset : surface.right - inset;
     move(root, [x, surface.shoulderY]);
     t.root = [x, surface.shoulderY];
     // Keep the hand/prop inside an avatar crop without moving its shoulder.
@@ -157,7 +165,8 @@ export function surfaceTransform(layer, img, surface, state) {
     move(center, [surface.center, surface.eyeY]);
   } else if (group === 'brows') {
     t.scale = surface.featureWidth * .63 / width;
-    move(center, [surface.center, surface.eyeY - (['wide', 'surprised', 'stars', 'heart', 'rolling'].includes(state.eyes) ? 76 : 56)]);
+    const lift = key === 'raised' ? 21 : key === 'worried' ? 8 : 0;
+    move(center, [surface.center, surface.eyeY - (['wide', 'surprised', 'stars', 'heart', 'rolling'].includes(state.eyes) ? 76 : 56) - lift]);
   } else if (group === 'mouth') {
     const ratio = { smirk: .48, grin: .49, laugh: .46, smile: .45, flat: .35, frown: .39, oh: .20, tongue: .44, grit: .42, whistle: .23, kiss: .23, wavy: .40 }[key];
     t.scale = surface.featureWidth * ratio / width;
@@ -175,7 +184,7 @@ export function surfaceTransform(layer, img, surface, state) {
     move(center, [surface.center + (key === 'monocle' ? surface.featureWidth * .18 : 0), surface.eyeY + 2]);
   } else if (group === 'hat') {
     const fitting = {
-      backwardCap: [270, .92], cap: [270, 1.10], beanie: [300, 1.02], headband: [307, 1.08], bucket: [290, 1.18], cowboy: [265, 1.50], tophat: [272, 1.27], fedora: [270, 1.35], wizard: [268, 1.23], crown: [268, .95], hardhat: [285, 1.14], chef: [285, 1.05], viking: [285, 1.62], party: [260, .76], beret: [287, 1.18], propeller: [285, 1.02], halo: [192, .95], horns: [265, 1.18], santa: [285, 1.10],
+      backwardCap: [290, 1.12], cap: [270, 1.10], beanie: [300, 1.02], headband: [307, 1.08], bucket: [290, 1.18], cowboy: [265, 1.50], tophat: [272, 1.27], fedora: [270, 1.35], wizard: [268, 1.23], crown: [268, .95], hardhat: [285, 1.14], chef: [285, 1.05], viking: [285, 1.62], party: [260, .76], beret: [287, 1.18], propeller: [285, 1.02], halo: [192, .95], horns: [265, 1.18], santa: [285, 1.10],
     }[key];
     const seat = fitting[0] + (key === 'halo' ? 0 : key === 'headband' ? 14 : 48), sides = surface.row(seat), targetWidth = (sides[1] - sides[0]) * fitting[1];
     t.scale = targetWidth / width;
@@ -184,11 +193,24 @@ export function surfaceTransform(layer, img, surface, state) {
     const top = projected([center[0], box[1]], t, pivot)[1];
     if (top < 35) { const factor = (seat - 35) / (seat - top); t.scale *= factor; move([center[0], baseY], [surface.center, seat]); }
   } else if (group === 'neckwear') {
-    const sides = surface.row(658), w = sides[1] - sides[0];
-    const ratios = { bowtie: .40, tie: .29, scarf: .68, chain: .62, lanyard: .52, bandana: .65 };
-    const maxHeight = { bowtie: 94, tie: 180, scarf: 238, chain: 185, lanyard: 218, bandana: 188 }[key];
-    t.scale = Math.min(w * ratios[key] / width, maxHeight / height);
-    move([center[0], box[1]], [surface.center, surface.eyeY + 139]);
+    // A potato has no neck: the cloth wraps the upper torso. The visible
+    // front band reaches both silhouette edges; its tails hang below it.
+    const seat = surface.eyeY + (key === 'bandana' ? 124 : 110);
+    const sides = surface.row(seat + 28);
+    // The bandana knot and scarf tails extend beyond the body-wrap anchors.
+    const span = key === 'bandana' ? [.02, .88] : key === 'scarf' ? [.02, .95] : [0, 1];
+    const bandWidth = width * (span[1] - span[0]);
+    const bandCenter = box[0] + width * (span[0] + span[1]) / 2;
+    t.scale = (sides[1] - sides[0] + 12) / bandWidth;
+    const maxHeight = { bowtie: 155, tie: 270, scarf: 280, chain: 220, lanyard: 280, bandana: 225 }[key];
+    if (key === 'lanyard') {
+      const shorten = Math.max(0, height - maxHeight / t.scale);
+      t.warp = { sourceTop: box[1], join: box[1] + height * .64, topOffset: shorten };
+      move([bandCenter, box[1] + shorten], [surface.center, seat]);
+    } else {
+      t.aspectY = Math.min(1, maxHeight / (height * t.scale));
+      move([bandCenter, box[1]], [surface.center, seat]);
+    }
   } else if (group === 'extra' && key === 'headphones') {
     t.scale = (surface.faceWidth + 65) / width;
     move([center[0], box[3] - height * .20], [surface.center, surface.eyeY + 4]);
@@ -232,7 +254,7 @@ export function drawTransformed(ctx, img, group, key, t) {
   const pivot = FIT.pivots[`${group}/${key}`] || FIT.pivots[group] || [512, 512];
   const draw = (side = 0) => {
     ctx.save(); ctx.translate(pivot[0] + t.dx + side * t.spread, pivot[1] + t.dy);
-    ctx.scale(t.scale * (t.flip ? -1 : 1), t.scale); ctx.rotate(t.rot * Math.PI / 180); ctx.translate(-pivot[0], -pivot[1]);
+    ctx.scale(t.scale * (t.flip ? -1 : 1), t.scale * (t.aspectY || 1)); ctx.rotate(t.rot * Math.PI / 180); ctx.translate(-pivot[0], -pivot[1]);
     if (side) { ctx.beginPath(); ctx.rect(side < 0 ? -CANVAS : pivot[0], -CANVAS, CANVAS + (side < 0 ? pivot[0] : CANVAS), CANVAS * 3); ctx.clip(); }
     if (t.warp) {
       // Flex only the headband; the cups keep their proportions.
@@ -247,10 +269,20 @@ export function drawTransformed(ctx, img, group, key, t) {
   };
   if (t.spread) { draw(-1); draw(1); } else draw();
 }
+const integrated = new LruCache(12 * 1024 * 1024);
+const objectIds = new WeakMap(); let nextId = 0;
+const idFor = object => { if (!objectIds.has(object)) objectIds.set(object, ++nextId); return objectIds.get(object); };
 export function integratedLayer(img, group, key, t, surface, size) {
+  const cacheKey = `${idFor(img)}|${idFor(surface)}|${group}/${key}|${size}|${JSON.stringify(t)}`;
+  if (integrated.has(cacheKey)) return integrated.get(cacheKey);
+  const result = integrate(img, group, key, t, surface, size);
+  integrated.set(cacheKey, result, size * size);
+  return result;
+}
+function integrate(img, group, key, t, surface, size) {
   const c = canvas(size), ctx = c.getContext('2d', { willReadFrequently: true });
   ctx.scale(size / CANVAS, size / CANVAS); drawTransformed(ctx, img, group, key, t);
-  const limb = group === 'item' || group === 'gesture', face = group === 'eyes' || group === 'mouth' || group === 'cheeks' || (group === 'brows' && ['angry', 'worried', 'flat'].includes(key)) || (group === 'facialHair' && ['stubble', 'beard'].includes(key));
+  const limb = group === 'item' || group === 'gesture', face = group === 'eyes' || group === 'mouth' || group === 'cheeks' || (group === 'facialHair' && ['stubble', 'beard'].includes(key));
   if (!limb && !face) return c;
   const analysis = skinAnalysis(img, group, key);
   const mask = canvas(size), mctx = mask.getContext('2d', { willReadFrequently: true });
@@ -276,23 +308,28 @@ export function integratedLayer(img, group, key, t, surface, size) {
       }
       if (face) {
         // Translucent skin rims reveal the body's own pores and shading.
-        data[i + 3] *= 1 - .72 * w * (1 - weights[i + 1] / 255);
+        data[i + 3] *= 1 - w * (.16 + .84 * (1 - weights[i + 1] / 255));
       }
     }
-    if (limb) {
+    if (limb && w > .01) {
       const distance = Math.hypot(wx - t.root[0], wy - t.root[1]);
-      const underBody = sample(wx, wy, true)[3] * smooth((128 - distance) / 62);
+      // Occlude only exposed potato skin at the attachment. A laptop lid,
+      // drink or other protected prop can overlap the torso without holes.
+      const underBody = w * sample(wx, wy, true)[3] * smooth((104 - distance) / 50);
       data[i + 3] *= 1 - underBody;
     }
   }
   ctx.putImageData(id, 0, 0); return c;
 }
+const shadows = new WeakMap();
 export function contactShadow(layer, body, group, size) {
   const settings = { eyes: [4, 0, .13], mouth: [3, 1, .10], hat: [9, 7, .25], eyewear: [4, 3, .17], neckwear: [8, 5, .20], extra: [6, 3, .18], facialHair: [3, 2, .12], brows: [2, 1, .10] }[group];
   if (!settings) return null;
-  const c = canvas(size), ctx = c.getContext('2d');
+  if (shadows.has(layer)) return shadows.get(layer);
+  const c = canvas(size), ctx = c.getContext('2d', { willReadFrequently: true });
   ctx.filter = `blur(${settings[0] * size / CANVAS}px)`;
   ctx.drawImage(layer, 0, settings[1] * size / CANVAS);
   ctx.filter = 'none'; ctx.globalCompositeOperation = 'source-in'; ctx.fillStyle = `rgba(27, 15, 8, ${settings[2]})`; ctx.fillRect(0, 0, size, size);
-  ctx.globalCompositeOperation = 'destination-in'; ctx.drawImage(body, 0, 0, size, size); return c;
+  ctx.globalCompositeOperation = 'destination-in'; ctx.drawImage(body, 0, 0, size, size);
+  shadows.set(layer, c); return c;
 }

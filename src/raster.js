@@ -13,6 +13,7 @@ import { Defs } from './draw.js';
 import { background } from './parts/background.js';
 import { stickerSVG } from './parts/stickers.js';
 import { bodySurface, surfaceTransform, integratedLayer, contactShadow } from './surface.js';
+import { LruCache } from './cache.js';
 
 const RED = '#C8372D';
 
@@ -71,7 +72,7 @@ export function drawableState(rawState) {
 
 // ------------------------------------------------------------- image cache
 
-const images = new Map();
+const images = new LruCache(12 * 1024 * 1024);
 
 /** Load (and decode) an image once. Rejects on a missing file so callers can report it. */
 export function loadImage(src) {
@@ -88,6 +89,7 @@ export function loadImage(src) {
         };
         img.src = src;
       }),
+      src.includes('/thumbs/') ? 256 * 256 : src.startsWith('data:') ? 512 * 512 : 1024 * 1024,
     );
   }
   return images.get(src);
@@ -171,8 +173,7 @@ function remap(data, win, base, target) {
 }
 
 const RED_WINDOW = { hue: 2, hueWidth: 16, sMin: 0.42, lMin: 0.07, lMax: 0.86 };
-const processed = new Map();
-const PROCESSED_MAX = 60;
+const processed = new LruCache(6 * 1024 * 1024);
 
 /** Garment recoloring only; skin is harmonized against the actual body later. */
 async function processedPart(group, key, src, { hatColor }) {
@@ -181,10 +182,7 @@ async function processedPart(group, key, src, { hatColor }) {
   if (!wantsRecolor) return img;
   const cacheKey = `${src}|${hatColor}`;
   if (processed.has(cacheKey)) {
-    const v = processed.get(cacheKey);
-    processed.delete(cacheKey);
-    processed.set(cacheKey, v); // refresh LRU position
-    return v;
+    return processed.get(cacheKey);
   }
   const c = document.createElement('canvas');
   c.width = img.naturalWidth;
@@ -194,8 +192,7 @@ async function processedPart(group, key, src, { hatColor }) {
   const id = ctx.getImageData(0, 0, c.width, c.height);
   if (wantsRecolor) remap(id.data, RED_WINDOW, RED, hatColor);
   ctx.putImageData(id, 0, 0);
-  processed.set(cacheKey, c);
-  if (processed.size > PROCESSED_MAX) processed.delete(processed.keys().next().value);
+  processed.set(cacheKey, c, c.width * c.height);
   return c;
 }
 
@@ -267,7 +264,7 @@ export function layersFor(rawState) {
   return layers;
 }
 
-const bgImages = new Map();
+const bgImages = new LruCache(12);
 
 /** The SVG background drawn by the vector renderer, rasterized once per color/pattern. */
 function backgroundImage(bg, pattern) {
@@ -451,7 +448,7 @@ export async function renderPotato(rawState, opts = {}) {
     if (l.group === 'body') { drawLayer(ctx, imgs[i], l.group, l.key, l.transform); continue; }
     const transform = surfaceTransform(l, imgs[i], surface, s);
     const plane = integratedLayer(imgs[i], l.group, l.key, transform, surface, workSize);
-    const shadow = contactShadow(plane, body, l.group, workSize);
+    const shadow = l.group === 'hat' && l.key === 'halo' ? null : contactShadow(plane, body, l.group, workSize);
     if (shadow) ctx.drawImage(shadow, 0, 0, CANVAS, CANVAS);
     ctx.drawImage(plane, 0, 0, CANVAS, CANVAS);
     if (l.group === 'item' && l.key === 'laptop') await drawStickers(ctx, s, thumbs, transform);
@@ -476,7 +473,7 @@ export async function exportPng(rawState, size = 512) {
 export function cropBox(category) {
   if (['eyes', 'brows', 'mouth', 'cheeks', 'facialHair', 'eyewear', 'preset'].includes(category)) return [292, 300, 440, 440];
   if (['hat', 'hatColor', 'capText', 'extra'].includes(category)) return [212, 0, 600, 600];
-  if (category === 'neckwear') return [292, 520, 440, 440];
+  if (category === 'neckwear') return [180, 450, 664, 500];
   if (category === 'item') return [0, 380, 620, 620];
   if (category === 'gesture') return [404, 380, 620, 620];
   return [0, 0, CANVAS, CANVAS];

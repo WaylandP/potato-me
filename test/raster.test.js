@@ -1,6 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
+import { createHash } from 'node:crypto';
 import { PARTS, LAYER_ORDER, NO_IMAGE } from '../src/assets.js';
 import { availableOptions, missingParts, drawableState, layerTransform, layersFor, cropBox } from '../src/raster.js';
 import { OPTIONS, SKINS, MULTI, DEFAULT_STATE, PRESETS } from '../src/options.js';
@@ -12,6 +13,23 @@ test('the asset index matches assets/manifest.json', async () => {
   assert.equal(indexed, manifest.assets.length, 'run npm run assets after changing the manifest');
   for (const a of manifest.assets) assert.deepEqual(PARTS[a.group][a.key], a.placedBox, a.path);
   assert.deepEqual(LAYER_ORDER, manifest.layerOrder);
+});
+
+test('all shipped source PNGs match the manifest, canvas size and RGBA format', async () => {
+  const manifest = JSON.parse(await readFile(new URL('../assets/manifest.json', import.meta.url), 'utf8'));
+  for (const asset of manifest.assets) {
+    const png = await readFile(new URL('../' + asset.path, import.meta.url));
+    assert.equal(png.subarray(1, 4).toString(), 'PNG', asset.path);
+    assert.equal(png.readUInt32BE(16), 1024, asset.path);
+    assert.equal(png.readUInt32BE(20), 1024, asset.path);
+    assert.equal(png[25], 6, `${asset.path}: RGBA required`);
+    assert.equal(createHash('sha256').update(png).digest('hex'), asset.sha256, asset.path);
+  }
+});
+
+test('a full beard falls in front of a worn scarf instead of being cut across by it', () => {
+  const layers = layersFor({ ...DEFAULT_STATE, neckwear: 'scarf', facialHair: 'beard' }).map(l => l.group);
+  assert.ok(layers.indexOf('neckwear') < layers.indexOf('facialHair'));
 });
 
 test('every indexed part is a real option key, and every option is either drawn, a none choice, or listed as missing', () => {

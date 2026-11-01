@@ -78,9 +78,11 @@ export function randomState(rng = Math.random, keep = {}) {
   for (const key of MULTI_KEYS) {
     const spec = MULTI[key];
     const count = 2 + Math.floor(rng() * (spec.max - 1));
-    const picks = new Set();
-    while (picks.size < count) picks.add(pick(spec.options));
-    out[key] = [...picks];
+    const pool = Object.keys(spec.options);
+    out[key] = [];
+    while (out[key].length < count && pool.length) {
+      out[key].push(pool.splice(Math.floor(rng() * pool.length) % pool.length, 1)[0]);
+    }
   }
   for (const key of TEXT_KEYS) out[key] = key in keep ? keep[key] : DEFAULT_STATE[key];
   return normalizeState(out);

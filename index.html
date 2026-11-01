@@ -12,9 +12,6 @@
   <meta property="og:image" content="https://raw.githubusercontent.com/WaylandP/potato-me/main/docs/og.png">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="icon" href="favicon.png" type="image/png" sizes="128x128">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&display=swap">
   <link rel="stylesheet" href="src/styles.css">
 </head>
 <body>
@@ -36,6 +33,7 @@
     <section class="stage" aria-label="Your potato">
       <div class="preview-card">
         <div id="preview" class="preview is-loading" data-crop="on" aria-label="Your potato" role="img"><span class="preview-status" aria-live="polite">Loading potato…</span></div>
+        <button type="button" id="retry-preview" class="btn btn-small" hidden>Try loading again</button>
         <label class="toggle">
           <input type="checkbox" id="crop-toggle" checked>
           <span>Show avatar crop</span>
@@ -60,7 +58,7 @@
       <p class="fine-print">512 × 512 PNG, sized for GitHub, Slack and Google profiles, or 1024 px for anywhere bigger. Nothing is uploaded.</p>
     </section>
 
-    <section id="controls" class="controls" aria-label="Customize">
+    <section id="controls" class="controls" aria-label="Customize" tabindex="-1">
       <div class="tabs" role="tablist" aria-label="Parts">
         <button type="button" role="tab" id="tab-body" aria-controls="panel" aria-selected="true" data-tab="body">Body</button>
         <button type="button" role="tab" id="tab-face" aria-controls="panel" aria-selected="false" tabindex="-1" data-tab="face">Face</button>

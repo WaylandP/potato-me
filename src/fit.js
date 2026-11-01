@@ -1,7 +1,7 @@
 // The fitting page: adjust FIT.surfaceNudges.shapes / FIT.surfaceNudges.parts live and copy the result into src/fit-data.js.
 import { OPTIONS, SKINS, DEFAULT_STATE } from './options.js';
 import { FIT } from './fit-data.js';
-import { LAYER_ORDER } from './assets.js';
+import { LAYER_ORDER, PARTS } from './assets.js';
 import { renderPotato, availableOptions } from './raster.js';
 
 const $ = (s) => document.querySelector(s);
@@ -19,7 +19,7 @@ fill($('#group'), LAYER_ORDER.filter((g) => g !== 'body').map((g) => [g, g]), 'h
 
 function fillParts() {
   const group = $('#group').value;
-  fill($('#part'), Object.entries(avail[group] || {}).filter(([k]) => !['none', 'off'].includes(k)));
+  fill($('#part'), Object.entries(avail[group] || {}).filter(([k]) => PARTS[group]?.[k]));
 }
 fillParts();
 
@@ -48,7 +48,11 @@ function loadControls() {
 function saveControls() {
   const e = entry(true);
   for (const f of fields) {
-    const v = Number($('#' + f).value);
+    const input = $('#' + f);
+    if (!input.value.trim()) continue;
+    let v = Number(input.value);
+    if (!Number.isFinite(v)) continue;
+    if (f === 'scale') v = Math.max(.05, Math.min(4, v));
     if ((f === 'scale' && v === 1) || (f !== 'scale' && v === 0)) delete e[f];
     else e[f] = f === 'scale' ? Math.round(v * 1000) / 1000 : Math.round(v * 2) / 2;
   }
@@ -67,17 +71,21 @@ function prune() {
 function state() {
   const group = $('#group').value;
   const s = { ...DEFAULT_STATE, body: $('#shape').value, skin: $('#skin').value, capText: 'A+W' };
-  if (group === 'item' || group === 'gesture' || group === 'hat') s[group] = $('#part').value;
-  else s[group] = $('#part').value;
+  s[group] = $('#part').value;
   return s;
 }
 
 let token = 0;
 async function draw() {
   const t = ++token;
-  const c = await renderPotato(state(), { size: 1024 });
-  if (t !== token) return;
-  stage.getContext('2d').drawImage(c, 0, 0);
+  try {
+    const c = await renderPotato(state(), { size: 1024 });
+    if (t !== token) return;
+    stage.getContext('2d').drawImage(c, 0, 0);
+    $('#fit-status').textContent = '';
+  } catch {
+    if (t === token) $('#fit-status').textContent = 'Couldn’t load this part. Check your connection and choose it again.';
+  }
 }
 
 function printResult() {
@@ -118,7 +126,10 @@ stage.addEventListener('keydown', (e) => {
   }
 });
 
-$('#copy').addEventListener('click', () => navigator.clipboard.writeText($('#out').value));
+$('#copy').addEventListener('click', async () => {
+  try { await navigator.clipboard.writeText($('#out').value); $('#fit-status').textContent = 'Fitting data copied.'; }
+  catch { $('#out').focus(); $('#out').select(); $('#fit-status').textContent = 'Copy the selected fitting data.'; }
+});
 $('#reset').addEventListener('click', () => location.reload());
 
 loadControls();
