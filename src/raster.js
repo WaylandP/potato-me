@@ -7,12 +7,12 @@
 
 import { PARTS, NO_IMAGE, LAYER_ORDER, CANVAS } from './assets.js';
 import { FIT } from './fit-data.js';
-import { SKINS, HAT_COLORS, BG_COLORS, OPTIONS, MULTI } from './options.js';
+import { SKINS, HAT_COLORS, HAIR_COLORS, BG_COLORS, OPTIONS, MULTI } from './options.js';
 import { normalizeState } from './state.js';
 import { Defs } from './draw.js';
 import { background } from './parts/background.js';
 import { stickerSVG } from './parts/stickers.js';
-import { bodySurface, surfaceTransform, integratedLayer, contactShadow, drawTransformed, hatFrame } from './surface.js';
+import { bodySurface, surfaceTransform, integratedLayer, contactShadow, drawTransformed, headFrame } from './surface.js';
 import { LruCache } from './cache.js';
 
 const RED = '#C8372D';
@@ -35,7 +35,7 @@ export function availableOptions() {
   for (const [group, options] of Object.entries(OPTIONS)) {
     if (group === 'body') out.body = Object.fromEntries(Object.entries(options).filter(([shape]) => Object.keys(SKINS).some((s) => hasBody(shape, s))));
     else if (group === 'skin') out.skin = Object.fromEntries(Object.entries(options).filter(([skin]) => Object.keys(OPTIONS.body).some((b) => hasBody(b, skin))));
-    else if (group === 'bg' || group === 'pattern' || group === 'hatColor') out[group] = options;
+    else if (['bg', 'pattern', 'hatColor', 'hairColor'].includes(group)) out[group] = options;
     else out[group] = Object.fromEntries(Object.entries(options).filter(([key]) => hasPart(group, key)));
   }
   return out;
@@ -46,7 +46,7 @@ export function missingParts() {
   const avail = availableOptions();
   const out = {};
   for (const [group, options] of Object.entries(OPTIONS)) {
-    if (['bg', 'pattern', 'hatColor', 'body', 'skin'].includes(group)) continue;
+    if (['bg', 'pattern', 'hatColor', 'hairColor', 'body', 'skin'].includes(group)) continue;
     const missing = Object.keys(options).filter((k) => !(k in avail[group]));
     if (missing.length) out[group] = missing;
   }
@@ -176,11 +176,12 @@ const RED_WINDOW = { hue: 2, hueWidth: 16, sMin: 0.42, lMin: 0.07, lMax: 0.86 };
 const processed = new LruCache(6 * 1024 * 1024);
 
 /** Garment recoloring only; skin is harmonized against the actual body later. */
-async function processedPart(group, key, src, { hatColor }) {
+async function processedPart(group, key, src, { hatColor, hairColor }) {
   const wantsRecolor = FIT.recolor[group]?.includes(key) && hatColor && hatColor !== RED;
+  const wantsHair = group === 'hair' && hairColor !== '#704328';
   const img = await loadImage(src);
-  if (!wantsRecolor) return img;
-  const cacheKey = `${src}|${hatColor}`;
+  if (!wantsRecolor && !wantsHair) return img;
+  const cacheKey = `${src}|${hatColor}|${hairColor}`;
   if (processed.has(cacheKey)) {
     return processed.get(cacheKey);
   }
@@ -191,6 +192,15 @@ async function processedPart(group, key, src, { hatColor }) {
   ctx.drawImage(img, 0, 0);
   const id = ctx.getImageData(0, 0, c.width, c.height);
   if (wantsRecolor) remap(id.data, RED_WINDOW, RED, hatColor);
+  if (wantsHair) {
+    // This image contains hair only: preserve strand contrast and alpha,
+    // while using an independent material color for the whole hairstyle.
+    const target = hexToRgb(hairColor);
+    for (let i = 0; i < id.data.length; i += 4) if (id.data[i + 3]) {
+      const light = (.2126 * id.data[i] + .7152 * id.data[i + 1] + .0722 * id.data[i + 2]) / 75;
+      for (let c = 0; c < 3; c++) id.data[i + c] = Math.min(255, target[c] * Math.pow(light, .9));
+    }
+  }
   ctx.putImageData(id, 0, 0);
   processed.set(cacheKey, c, c.width * c.height);
   return c;
@@ -258,6 +268,10 @@ export function layersFor(rawState) {
   if (s.extra === 'headphones' && FIT.headphonesOver.includes(s.hat)) {
     order = order.filter((g) => g !== 'extra');
     order.splice(order.indexOf('hat') + 1, 0, 'extra');
+  }
+  if (s.hair !== 'none' && ['earbuds', 'earring', 'bandaid'].includes(s.extra)) {
+    order = order.filter(g => g !== 'extra');
+    order.splice(order.indexOf('hair'), 0, 'extra');
   }
   const layers = [];
   for (const group of order) {
@@ -436,13 +450,14 @@ export async function renderPotato(rawState, opts = {}) {
   const thumbs = Boolean(opts.thumbs);
   const canvas = opts.canvas || document.createElement('canvas');
   const hatColor = HAT_COLORS[s.hatColor].value;
+  const hairColor = HAIR_COLORS[s.hairColor].value;
   if ((s.capText && FIT.capText[s.hat]) || (s.item === 'sign' && s.sign)) await readyLettering();
 
   // Load everything first so the frame is drawn in one go (no flashing).
   const layers = layersFor(s);
   const [bgImg, ...imgs] = await Promise.all([
     opts.background === false ? null : backgroundImage(s.bg, s.pattern),
-    ...layers.map((l) => processedPart(l.group, l.key, partSrc(l.group, l.key, thumbs), { hatColor, skin: s.skin })),
+    ...layers.map((l) => processedPart(l.group, l.key, partSrc(l.group, l.key, thumbs), { hatColor, hairColor, skin: s.skin })),
   ]);
 
   canvas.width = size;
@@ -456,9 +471,9 @@ export async function renderPotato(rawState, opts = {}) {
   const surface = bodySurface(body, s.body);
   const workSize = thumbs ? 256 : 1024;
   const transforms = layers.map((l, i) => l.group === 'body' ? l.transform : surfaceTransform(l, imgs[i], surface, s));
-  const hi = layers.findIndex(l => l.group === 'hat');
-  if (hi !== -1) {
-    const frame = hatFrame(imgs[hi], layers[hi].key, transforms[hi]);
+  const head = layers.flatMap((l, i) => ['hat', 'hair'].includes(l.group) ? [{ ...l, img: imgs[i], transform: transforms[i] }] : []);
+  if (head.length) {
+    const frame = headFrame(head);
     ctx.translate(512, 512); ctx.scale(frame.scale, frame.scale); ctx.translate(-512, -frame.centerY);
   }
   for (let i = 0; i < layers.length; i++) {
@@ -466,11 +481,11 @@ export async function renderPotato(rawState, opts = {}) {
     if (l.group === 'body') { drawLayer(ctx, imgs[i], l.group, l.key, l.transform); continue; }
     const transform = transforms[i];
     const plane = integratedLayer(imgs[i], l.group, l.key, transform, surface, workSize);
-    const shadow = l.group === 'hat' && l.key === 'halo' ? null : contactShadow(plane, body, l.group, workSize);
+    const shadow = l.group === 'hat' && l.key === 'halo' ? null : contactShadow(plane, body, l.group === 'gesture' && l.key === 'hip' ? 'handOnHip' : l.group, workSize);
     if (shadow) ctx.drawImage(shadow, 0, 0, CANVAS, CANVAS);
     // Wearables can extend beyond the original 1024 world canvas. Draw their
     // original image into the fitted scene so tall tips are never pre-clipped.
-    if (['hat', 'extra', 'neckwear', 'eyewear', 'brows'].includes(l.group)) drawTransformed(ctx, imgs[i], l.group, l.key, transform);
+    if (['hair', 'hat', 'extra', 'neckwear', 'eyewear', 'brows', 'jewelry'].includes(l.group)) drawTransformed(ctx, imgs[i], l.group, l.key, transform);
     else ctx.drawImage(plane, 0, 0, CANVAS, CANVAS);
     if (l.group === 'item' && l.key === 'laptop') await drawStickers(ctx, s, thumbs, transform);
     if (l.group === 'item' && l.key === 'sign') drawSignText(ctx, s, transform);
@@ -493,7 +508,10 @@ export async function exportPng(rawState, size = 512) {
 /** Crop regions (1024 space) used for option thumbnails. */
 export function cropBox(category) {
   if (['eyes', 'brows', 'mouth', 'cheeks', 'facialHair', 'eyewear', 'preset'].includes(category)) return [292, 300, 440, 440];
-  if (['hat', 'hatColor', 'capText', 'extra'].includes(category)) return [212, 0, 600, 600];
+  if (['hat', 'hatColor', 'capText'].includes(category)) return [212, 0, 600, 600];
+  if (category === 'extra') return [112, 180, 800, 650];
+  if (['hair', 'hairColor'].includes(category)) return [112, 40, 800, 800];
+  if (category === 'jewelry') return [152, 290, 720, 500];
   if (category === 'neckwear') return [180, 450, 664, 500];
   if (category === 'item') return [0, 380, 620, 620];
   if (category === 'gesture') return [404, 380, 620, 620];

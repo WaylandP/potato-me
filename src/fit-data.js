@@ -18,6 +18,8 @@
 export const FIT = {
   pivots: {
     body: [512, 922],
+    hair: [512, 300],
+    jewelry: [512, 480],
     cheeks: [512, 495],
     facialHair: [512, 560],
     mouth: [512, 560],
@@ -103,9 +105,10 @@ export const FIT = {
     'extra/bandaid@long': { dx: -10 },
   },
   recolor: {
-    hat: ['backwardCap', 'cap', 'beanie', 'headband', 'bucket', 'cowboy', 'tophat', 'fedora', 'wizard', 'hardhat', 'party', 'beret', 'propeller', 'horns', 'santa'],
+    hat: ['backwardCap', 'cap', 'beanie', 'headband', 'bucket', 'cowboy', 'tophat', 'fedora', 'wizard', 'hardhat', 'party', 'beret', 'propeller', 'horns', 'santa', 'bow', 'sunhat'],
     neckwear: ['bowtie', 'tie', 'scarf', 'lanyard', 'bandana'],
-    extra: ['headphones'],
+    extra: ['headphones', 'scrunchie'],
+    eyewear: ['catEye'],
     item: ['coffee'],
   },
   // First substantial crown row in each source image, excluding pompoms,
@@ -113,7 +116,7 @@ export const FIT = {
   hatCrownY: {
     backwardCap: 56, cap: 58, beanie: 121, bucket: 51, cowboy: 97,
     tophat: 18, fedora: 49, wizard: 125, hardhat: 74, chef: 30,
-    viking: 107, party: 122, beret: 84, propeller: 106, santa: 66,
+    viking: 107, party: 122, beret: 84, propeller: 106, santa: 66, sunhat: 80,
   },
   // Corrections applied after silhouette fitting; edited by fit.html.
   surfaceNudges: { shapes: {}, parts: {} },
@@ -124,10 +127,32 @@ export const FIT = {
     'item/none': { point: [735, 592], flip: true },
     'item/coffee': { point: [57, 603], flip: true },
     'item/book': { point: [64, 604], flip: true },
+    'item/bouquet': { point: [363, 565], inset: 110 },
+    'item/handbag': { point: [352, 550], inset: 110, dy: -30 },
+    'item/teacup': { point: [355, 577], inset: 110 },
+    'item/palette': { point: [355, 565], inset: 110 },
+    'gesture/fingerHeart': { point: [700, 673], inset: 58 },
+    'gesture/palmUp': { point: [683, 606], inset: 85, scale: 1.1 },
+    'gesture/hip': { point: [690, 550], inset: 60, dy: -35, scale: .8, rot: 20 },
   },
   // Prop silhouettes in the original 1024 px part canvas. Restore these after
   // skin tint so food, gold, wood and clay keep their rendered material colors.
   skinProtect: {
+    'item/palette': [
+      [[65,578],[223,578],[224,624],[207,624],[198,626],[195,639],[216,651],[232,657],[232,664],[217,664],[213,678],[188,687],[187,676],[177,672],[169,675],[164,686],[157,675],[149,675],[142,679],[139,690],[130,682],[96,672],[65,650]],
+    ],
+    'item/bouquet': [
+      [[60,420],[250,420],[250,600],[196,600],[190,608],[161,608],[150,620],[120,622],[110,650],[95,640],[105,600],[60,600]],
+      [[163,678],[191,674],[191,714],[163,714]],
+    ],
+    'item/handbag': [
+      [[65,690],[265,690],[265,840],[65,840]],
+      [[126,696],[130,663],[143,648],[147,663],[139,699]],
+      [[199,655],[212,665],[227,700],[215,706],[207,679]],
+    ],
+    'item/teacup': [
+      [[65,608],[174,608],[183,616],[188,628],[188,650],[179,665],[173,690],[65,690]],
+    ],
     'mouth/whistle': [[[597, 514], [639, 514], [639, 591], [597, 591]]],
     'item/wrench': [
       [[24,426],[136,426],[155,558],[144,571],[108,571],[100,552],[24,526]],

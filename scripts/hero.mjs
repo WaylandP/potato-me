@@ -16,11 +16,11 @@ const root = fileURLToPath(new URL('..', import.meta.url));
 
 // Five potatoes that show off the range in the banner and link-preview card.
 export const HERO_POTATOES = [
-  '#body=round&skin=gold&hat=beanie&hatColor=red&item=coffee&eyes=happy&mouth=grin&cheeks=on&bg=coral&pattern=dots',
-  '#body=long&skin=purple&hat=wizard&hatColor=purple&eyes=wide&brows=raised&mouth=oh&item=book&bg=navy&pattern=stars',
+  '#body=pear&skin=pink&hair=waves&hairColor=blonde&hat=flowerCrown&neckwear=pendant&item=bouquet&gesture=hip&eyes=almond&brows=softArch&mouth=smile&bg=mint&pattern=spotlight',
+  '#body=petite&skin=gold&hair=curls&hairColor=black&hat=bow&hatColor=pink&jewelry=pearlDrops&item=teacup&gesture=palmUp&eyes=joyLashes&brows=softArch&mouth=laugh&bg=coral',
   '#',
-  '#body=lumpy&skin=zombie&hat=crown&eyewear=shades&neckwear=chain&item=wrench&mouth=grin&eyes=angry&brows=angry&bg=mint&pattern=hex',
-  '#body=classic&skin=sweet&hat=party&hatColor=teal&facialHair=mustache&eyes=wink&mouth=laugh&cheeks=freckles&stickers=rocket,bolt,dino,planet&bg=sky&pattern=confetti',
+  '#body=long&skin=purple&hat=wizard&hatColor=purple&eyes=wide&brows=raised&mouth=grin&item=book&gesture=fist&bg=navy&pattern=stars',
+  '#body=round&skin=ghost&hair=braids&hairColor=copper&hat=sunhat&hatColor=teal&item=palette&gesture=peace&eyes=almond&brows=softArch&mouth=smile&bg=sky',
 ];
 
 let chromium;
@@ -84,13 +84,13 @@ p{position:absolute;left:76px;top:200px;margin:0;font-size:34px;font-weight:600;
   // Keep the larger artwork gallery reproducible as well.
   const gallerySpec = [
     ['Ship it.', '#capText=A%2BW'],
-    ['Cozy company.', '#body=round&skin=gold&hat=beanie&hatColor=red&neckwear=scarf&item=boba&gesture=wave&eyes=wide&brows=raised&mouth=laugh&bg=coral'],
+    ['Just for you.', HERO_POTATOES[0]],
+    ['Tea & company.', HERO_POTATOES[1]],
     ['Tiny victory.', '#body=long&skin=purple&hat=wizard&hatColor=purple&item=trophy&gesture=fist&eyes=stars&brows=raised&mouth=grin&bg=navy'],
     ['Chef approved.', '#body=lumpy&skin=sweet&hat=chef&item=pizza&gesture=ok&eyes=wink&brows=smug&mouth=tongue&bg=mint'],
-    ['Game face.', '#skin=blue&hatColor=teal&item=controller&gesture=rock&eyes=angry&brows=angry&mouth=grit&bg=sky'],
-    ['Excellent taste.', '#body=round&skin=red&hat=beret&hatColor=navy&item=donut&gesture=peace&eyes=side&brows=flat&mouth=smile&bg=cream'],
-    ['Rooting for you.', '#body=lumpy&skin=ghost&hat=fedora&hatColor=brown&item=plant&gesture=flex&extra=flower&eyes=wide&brows=raised&mouth=smile&bg=lavender'],
-    ['Your words.', '#body=long&skin=gold&hat=none&item=sign&sign=POTATO!&gesture=salute&eyes=wide&brows=raised&mouth=grin'],
+    ['Make something.', HERO_POTATOES[4]],
+    ['One more chapter.', '#skin=blue&hair=bun&hairColor=silver&hat=none&eyewear=catEye&hatColor=red&jewelry=hoops&item=book&gesture=palmUp&eyes=almond&brows=softArch&mouth=smile&bg=cream'],
+    ['Your words.', '#body=petite&skin=pink&hair=pixie&hairColor=rose&hat=none&item=sign&sign=LOVE%20YOU&gesture=fingerHeart&eyes=lashWink&brows=softArch&mouth=smile&bg=lavender'],
   ];
   const gallery = [];
   for (const [label, hash] of gallerySpec) {

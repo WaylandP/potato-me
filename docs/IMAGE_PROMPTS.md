@@ -4,7 +4,7 @@ These prompts produce the art for a layered PNG version of potato-me: ChatGPT
 renders every part as its own 1024 × 1024 transparent PNG, drawn as if it were
 sitting on one shared base potato, and the app stacks the layers.
 
-This is the original generation guide. All 164 assets exist. For replacement neckwear, cap, brows, resting hands and stubble, use the later [audit prompts](PUBLIC_AUDIT_PROMPTS.json) and [fitting requirements](PUBLIC_AUDIT.md); those supersede the short original prompts below.
+This is the original generation guide for the first 164 assets. The current inventory has 222 source PNGs; the 58 additions and replacement smile are recorded in [expansion-prompts.json](expansion-prompts.json), with fitting and validation in [EVERYDAY_AUDIT.md](EVERYDAY_AUDIT.md). For replacement neckwear, cap, brows, resting hands and stubble, use the later [audit prompts](PUBLIC_AUDIT_PROMPTS.json) and [fitting requirements](PUBLIC_AUDIT.md); those supersede the short original prompts below.
 
 How to use this file:
 

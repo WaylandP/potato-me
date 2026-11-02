@@ -50,8 +50,17 @@ export const HAT_COLORS = {
   brown: { label: 'Brown', value: '#7A4B2A' },
 };
 
+export const HAIR_COLORS = {
+  chestnut: { label: 'Chestnut', value: '#704328' },
+  black: { label: 'Soft black', value: '#25201E' },
+  blonde: { label: 'Honey blonde', value: '#B48B4F' },
+  copper: { label: 'Copper', value: '#A6532E' },
+  silver: { label: 'Silver', value: '#AAA6A2' },
+  rose: { label: 'Rose', value: '#A95D7B' },
+};
+
 export const OPTIONS = {
-  body: { classic: 'Classic', lumpy: 'Lumpy', round: 'Round', long: 'Long' },
+  body: { classic: 'Classic', lumpy: 'Lumpy', round: 'Round', long: 'Long', pear: 'Pear', petite: 'Petite' },
   skin: Object.fromEntries(Object.entries(SKINS).map(([k, v]) => [k, v.label])),
   eyes: {
     smug: 'Smug',
@@ -68,8 +77,11 @@ export const OPTIONS = {
     heart: 'Hearts',
     stars: 'Stars',
     dead: 'Dead',
+    almond: 'Almond & lashes',
+    lashWink: 'Playful lash wink',
+    joyLashes: 'Joyful lashes',
   },
-  brows: { smug: 'Smug', thick: 'Thick', angry: 'Angry', worried: 'Worried', raised: 'Raised', flat: 'Flat', uni: 'Unibrow', none: 'None' },
+  brows: { smug: 'Smug', thick: 'Thick', angry: 'Angry', worried: 'Worried', raised: 'Raised', flat: 'Flat', uni: 'Unibrow', softArch: 'Soft arch', none: 'None' },
   mouth: {
     smirk: 'Smirk',
     grin: 'Grin',
@@ -86,6 +98,8 @@ export const OPTIONS = {
   },
   cheeks: { off: 'Plain', on: 'Blush', freckles: 'Freckles' },
   facialHair: { none: 'None', mustache: 'Mustache', handlebar: 'Handlebar', goatee: 'Goatee', beard: 'Beard', stubble: 'Stubble' },
+  hair: { none: 'No hair', bob: 'Side-part bob', waves: 'Soft waves', curls: 'Natural curls', pixie: 'Pixie crop', braids: 'Twin braids', bun: 'Soft bun' },
+  hairColor: Object.fromEntries(Object.entries(HAIR_COLORS).map(([k, v]) => [k, v.label])),
   hat: {
     backwardCap: 'Backward cap',
     cap: 'Cap',
@@ -106,6 +120,9 @@ export const OPTIONS = {
     halo: 'Halo',
     horns: 'Horns',
     santa: 'Santa',
+    bow: 'Grosgrain bow',
+    flowerCrown: 'Flower crown',
+    sunhat: 'Straw sunhat',
     none: 'No hat',
   },
   hatColor: Object.fromEntries(Object.entries(HAT_COLORS).map(([k, v]) => [k, v.label])),
@@ -124,6 +141,10 @@ export const OPTIONS = {
     mic: 'Mic',
     trophy: 'Trophy',
     plant: 'Plant',
+    bouquet: 'Flower bouquet',
+    handbag: 'Leather handbag',
+    teacup: 'Floral teacup',
+    palette: 'Artist palette',
     none: 'Nothing',
   },
   gesture: {
@@ -138,10 +159,14 @@ export const OPTIONS = {
     fist: 'Fist up',
     salute: 'Salute',
     flex: 'Flex',
+    fingerHeart: 'Finger heart',
+    palmUp: 'Welcome',
+    hip: 'Hand on hip',
   },
-  eyewear: { none: 'None', shades: 'Shades', aviators: 'Aviators', round: 'Round glasses', square: 'Square glasses', monocle: 'Monocle', eyepatch: 'Eye patch' },
-  neckwear: { none: 'None', bowtie: 'Bow tie', tie: 'Necktie', scarf: 'Scarf', chain: 'Chain', lanyard: 'Lanyard', bandana: 'Bandana' },
-  extra: { none: 'None', headphones: 'Headphones', earbuds: 'Earbuds', bandaid: 'Band-aid', earring: 'Earring', flower: 'Flower' },
+  eyewear: { none: 'None', shades: 'Shades', aviators: 'Aviators', round: 'Round glasses', square: 'Square glasses', monocle: 'Monocle', eyepatch: 'Eye patch', catEye: 'Cat-eye glasses' },
+  neckwear: { none: 'None', bowtie: 'Bow tie', tie: 'Necktie', scarf: 'Scarf', chain: 'Chain', lanyard: 'Lanyard', bandana: 'Bandana', pearls: 'Pearl necklace', pendant: 'Heart pendant' },
+  jewelry: { none: 'None', hoops: 'Gold hoops', pearlDrops: 'Pearl drops', starStuds: 'Star studs' },
+  extra: { none: 'None', headphones: 'Headphones', earbuds: 'Earbuds', bandaid: 'Band-aid', earring: 'Earring', flower: 'Flower', barrette: 'Leaf barrette', scrunchie: 'Satin bow clip' },
   bg: Object.fromEntries(Object.entries(BG_COLORS).map(([k, v]) => [k, v.label])),
   pattern: {
     solid: 'Solid',
@@ -186,7 +211,19 @@ export const STICKERS = {
   planet: 'Planet',
   skull: 'Skull',
   mountain: 'Mountains',
-  lgtm: 'LGTM',
+  lgtm: 'Looks good to me (LGTM)',
+  sunflower: 'Sunflower',
+  butterfly: 'Butterfly',
+  rainbow: 'Rainbow',
+  moon: 'Moon & stars',
+  books: 'Book lover',
+  music: 'Music',
+  paw: 'Pet paw',
+  strawberry: 'Strawberry',
+  bee: 'Honeybee',
+  teapot: 'Tea time',
+  camera: 'Camera',
+  yarn: 'Yarn heart',
 };
 
 export const MULTI = {
@@ -203,16 +240,20 @@ export const TEXT = {
 
 /** One-click personalities: a patch of face options (and sometimes more) applied over the current potato. */
 export const PRESETS = {
-  smug: { label: 'Smug dev', patch: { eyes: 'smug', brows: 'smug', mouth: 'smirk', cheeks: 'off' } },
+  smug: { label: 'Confident', patch: { eyes: 'smug', brows: 'smug', mouth: 'smirk', cheeks: 'off' } },
   hype: { label: 'Hype', patch: { eyes: 'stars', brows: 'raised', mouth: 'laugh', cheeks: 'on' } },
-  chill: { label: 'Chill', patch: { eyes: 'sleepy', brows: 'flat', mouth: 'smile', cheeks: 'off', eyewear: 'shades' } },
-  oncall: { label: 'On call', patch: { eyes: 'wide', brows: 'worried', mouth: 'wavy', cheeks: 'off' } },
-  villain: { label: 'Villain', patch: { eyes: 'angry', brows: 'angry', mouth: 'grin', cheeks: 'off', facialHair: 'goatee' } },
-  nerd: { label: 'Nerd', patch: { eyes: 'dots', brows: 'raised', mouth: 'grin', cheeks: 'freckles', eyewear: 'round' } },
+  chill: { label: 'Chill', patch: { eyes: 'sleepy', brows: 'flat', mouth: 'smile', cheeks: 'off' } },
+  oncall: { label: 'Need coffee', patch: { eyes: 'wide', brows: 'worried', mouth: 'wavy', cheeks: 'off' } },
+  villain: { label: 'Mischief', patch: { eyes: 'angry', brows: 'angry', mouth: 'grin', cheeks: 'off' } },
+  nerd: { label: 'Bookish', patch: { eyes: 'dots', brows: 'raised', mouth: 'grin', cheeks: 'freckles' } },
   shy: { label: 'Shy', patch: { eyes: 'side', brows: 'worried', mouth: 'smile', cheeks: 'on' } },
   salty: { label: 'Salty', patch: { eyes: 'rolling', brows: 'flat', mouth: 'flat', cheeks: 'off' } },
   sleepy: { label: 'Zzz', patch: { eyes: 'sleepy', brows: 'flat', mouth: 'oh', cheeks: 'off' } },
-  party: { label: 'Party', patch: { eyes: 'happy', brows: 'raised', mouth: 'laugh', cheeks: 'on', hat: 'party' } },
+  party: { label: 'Party', patch: { eyes: 'happy', brows: 'raised', mouth: 'laugh', cheeks: 'on' } },
+  kind: { label: 'Warm welcome', patch: { eyes: 'almond', brows: 'softArch', mouth: 'smile', cheeks: 'on' } },
+  playful: { label: 'Playful', patch: { eyes: 'lashWink', brows: 'softArch', mouth: 'smirk', cheeks: 'off' } },
+  joy: { label: 'Pure joy', patch: { eyes: 'joyLashes', brows: 'softArch', mouth: 'laugh', cheeks: 'on' } },
+  love: { label: 'Sending love', patch: { eyes: 'almond', brows: 'softArch', mouth: 'kiss', cheeks: 'on' } },
 };
 
 /** Keys from older share links, mapped onto today's keys. */
@@ -233,6 +274,8 @@ export const DEFAULT_STATE = Object.freeze({
   mouth: 'smirk',
   cheeks: 'off',
   facialHair: 'none',
+  hair: 'none',
+  hairColor: 'chestnut',
   hat: 'backwardCap',
   hatColor: 'black',
   item: 'laptop',
@@ -240,6 +283,7 @@ export const DEFAULT_STATE = Object.freeze({
   eyewear: 'none',
   neckwear: 'none',
   extra: 'none',
+  jewelry: 'none',
   bg: 'ocean',
   pattern: 'spotlight',
   stickers: MULTI.stickers.default,

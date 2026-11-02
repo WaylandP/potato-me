@@ -54,14 +54,17 @@ export function surprise(rng = Math.random, available = OPTIONS, keep = {}) {
   if (chance(rng, 0.35)) s.mouth = pickFrom(rng, keys('mouth'));
   if (chance(rng, 0.25)) s.cheeks = pickFrom(rng, keys('cheeks'));
   s.facialHair = chance(rng, 0.22) ? pickFrom(rng, keys('facialHair').filter((k) => k !== 'none')) : 'none';
+  s.hair = chance(rng, .65) ? pickFrom(rng, keys('hair').filter(k => k !== 'none')) : 'none';
+  s.hairColor = pickFrom(rng, keys('hairColor'));
+  s.jewelry = chance(rng, .35) ? pickFrom(rng, keys('jewelry').filter(k => k !== 'none')) : 'none';
 
   // Hat and colors.
-  s.hat = chance(rng, 0.85) ? pickFrom(rng, keys('hat').filter((k) => k !== 'none')) : 'none';
+  s.hat = chance(rng, s.hair === 'none' ? .85 : .38) ? pickFrom(rng, keys('hat').filter((k) => k !== 'none')) : 'none';
   const hatColors = keys('hatColor').filter((k) => !(BAD_HAT_COLOR[s.skin] || []).includes(k));
   s.hatColor = pickFrom(rng, hatColors);
   s.capText = keep.capText ?? '';
 
-  // Gear: one item, a few stickers, and at most two worn accessories.
+  // Gear: one item, a few stickers, and up to two additional worn accessories.
   s.item = pickFrom(rng, keys('item'));
   s.gesture = pickFrom(rng, keys('gesture'));
   const stickerKeys = Object.keys(MULTI.stickers.options);

@@ -23,8 +23,8 @@ try {
   page.on('pageerror', e => report.errors.push(e.message));
   page.on('request', r => report.requests.push(r.url().split('#')[0]));
   const ready = () => page.waitForFunction(() => document.body.dataset.rendered === 'true');
-  const thumbs = () => page.waitForFunction(() => [...document.querySelectorAll('.thumb')].every(t => t.querySelector('canvas, img, svg')), null, { timeout: 60000 });
-  const shot = async name => { await page.screenshot({ path: `${out}/${name}.png`, fullPage: true }); report.screenshots.push(name + '.png'); };
+  const thumbs = () => page.waitForFunction(() => [...document.querySelectorAll('.thumb')].every(t => t.querySelector('canvas, svg') || (t.querySelector('img')?.complete && t.querySelector('img')?.naturalWidth > 0)), null, { timeout: 60000 });
+  const shot = async name => { await thumbs(); await page.screenshot({ path: `${out}/${name}.png`, fullPage: true }); report.screenshots.push(name + '.png'); };
   const pick = async (key, value) => { await page.locator(`[data-key="${key}"][data-value="${value}"]`).click(); await ready(); assert.equal(await page.locator(`[data-key="${key}"][data-value="${value}"]`).getAttribute('aria-pressed'), 'true'); };
   const tab = async key => { await page.locator(`#tab-${key}`).click(); await thumbs(); };
   await page.goto(base); await ready(); await thumbs();
@@ -38,9 +38,11 @@ try {
   await page.keyboard.press('End'); assert.equal(await page.locator('#tab-bg').getAttribute('aria-selected'), 'true');
   await page.keyboard.press('Home'); assert.equal(await page.locator('#tab-body').getAttribute('aria-selected'), 'true');
   report.checks.push('Keyboard tabs, selected states, focus and skip link preserve the avatar.');
-  await tab('hat'); await pick('hat', 'backwardCap'); await page.locator('#capText-input').fill('a+w'); await ready(); assert.equal(await page.locator('#capText-input').inputValue(), 'A+W');
+  await tab('body'); await pick('body', 'pear');
+  await tab('hat'); await pick('hair', 'waves'); await pick('hairColor', 'silver');
+  await pick('hat', 'backwardCap'); await page.locator('#capText-input').fill('a+w'); await ready(); assert.equal(await page.locator('#capText-input').inputValue(), 'A+W');
   await tab('gear'); await pick('item', 'sign'); await page.locator('#sign-input').fill('ship it'); await ready(); assert.equal(await page.locator('#sign-input').inputValue(), 'SHIP IT');
-  await pick('neckwear', 'scarf'); await pick('gesture', 'wave');
+  await pick('jewelry', 'pearlDrops'); await pick('neckwear', 'pearls'); await pick('gesture', 'fingerHeart');
   await page.locator('#copy-link').click(); const copied = await page.evaluate(() => navigator.clipboard.readText()); assert.equal(copied, page.url());
   const beforeReload = await page.locator('#preview canvas').evaluate(c => c.toDataURL());
   await page.reload(); await ready(); assert.equal(await page.locator('#preview canvas').evaluate(c => c.toDataURL()), beforeReload);
@@ -62,9 +64,33 @@ try {
   for (let i = 0; i < 7; i++) await all.nth(i).click();
   assert.equal(await page.locator('[data-key="stickers"][aria-pressed="true"]').count(), 6);
   report.checks.push('Laptop sticker limit permits six selections and rejects a seventh.');
+  for (const button of await all.all()) if (await button.getAttribute('aria-pressed') === 'true') await button.click();
+  for (const sticker of ['sunflower', 'butterfly', 'books', 'music', 'camera', 'yarn']) await pick('stickers', sticker);
+  assert.equal(await page.locator('[data-key="stickers"][aria-pressed="true"]').count(), 6);
+  await shot('new-stickers');
+  await tab('body'); await pick('body', 'petite'); await tab('hat'); await pick('hair', 'braids'); await pick('hairColor', 'copper'); await pick('hat', 'flowerCrown');
+  await tab('gear'); await pick('jewelry', 'hoops'); await pick('item', 'bouquet'); await pick('gesture', 'hip'); await shot('everyday-style');
+  report.checks.push('New body shapes, hair colors, jewelry, props, gestures and six new stickers are reachable through the actual controls.');
   for (const colorScheme of ['light', 'dark']) {
     await page.setViewportSize({ width: 390, height: 844 }); await page.emulateMedia({ colorScheme, reducedMotion: 'reduce' });
-    await page.goto(base); await ready(); await thumbs(); await shot(`mobile-${colorScheme}`);
+    await page.goto(base); await ready(); await thumbs();
+    // Compare finished concurrent thumbnails with fresh sequential renders.
+    // Readback also flushes deferred canvas painting before full-page captures.
+    const incomplete = await page.evaluate(async () => {
+      const { renderPotato, cropBox } = await import('./src/raster.js');
+      const { DEFAULT_STATE } = await import('./src/options.js');
+      const mismatches = [];
+      for (const button of document.querySelectorAll('[data-key="body"], [data-key="skin"]')) {
+        const c = button.querySelector('canvas');
+        const fresh = await renderPotato({ ...DEFAULT_STATE, [button.dataset.key]: button.dataset.value }, { size: 176, crop: cropBox(button.dataset.key), thumbs: true });
+        const actual = c.getContext('2d').getImageData(0, 0, 176, 176).data;
+        const expected = fresh.getContext('2d').getImageData(0, 0, 176, 176).data;
+        if (actual.some((v, i) => Math.abs(v - expected[i]) > 2)) mismatches.push(`${button.dataset.key}/${button.dataset.value}`);
+      }
+      return mismatches;
+    });
+    assert.deepEqual(incomplete, []);
+    await shot(`mobile-${colorScheme}`);
     for (const key of ['body', 'face', 'hat', 'gear', 'bg']) {
       await tab(key);
       assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth));
@@ -73,6 +99,7 @@ try {
     }
     await page.locator('#controls').screenshot({ path: `${out}/mobile-${colorScheme}-controls.png` });
   }
+  report.checks.push('Concurrent body/skin thumbnails match sequential renders in both mobile themes (2-channel-value tolerance).');
   report.checks.push('390 px light/dark layouts: no horizontal overflow; all visible buttons meet 44 × 44 px.');
   const recovery = await context.newPage();
   await recovery.route('**/assets/parts/body/classic-russet.png', route => route.abort());

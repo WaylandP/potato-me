@@ -2,6 +2,7 @@
 
 > Historical delivery record. The later [character-fitting repair](CHARACTER_FITTING.md) and [v0.4.0 public audit](PUBLIC_AUDIT.md) supersede the fitting and visual-quality claims below.
 
+Current coverage and the expanded inventory are documented in [EVERYDAY_AUDIT.md](EVERYDAY_AUDIT.md).
 The final 26 missing assets were generated and integrated with the renderer. The
 inventory now contains all 164 planned assets. The previous 138 full-resolution
 PNGs are unchanged. The completed pack is live at

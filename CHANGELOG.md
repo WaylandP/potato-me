@@ -2,6 +2,30 @@
 
 Notable changes to the source. Version numbers match `package.json`; tags and downloadable release archives are listed separately on [GitHub Releases](https://github.com/WaylandP/potato-me/releases).
 
+## 0.5.0 — 2026-11-02
+
+### More ways to make it yours
+
+- Add Pear and Petite bodies in all nine skins, bringing the catalog to six shapes and 54 body/skin combinations.
+- Add six detailed hairstyles with six hair colors; three lash expressions, soft-arch brows and a lighter smile; four additional face presets.
+- Add a bow, flower crown, straw sunhat, cat-eye glasses, three earring pairs, pearl necklace, heart pendant, leaf barrette and satin bow clip. Every style is available to every body.
+- Add bouquet, leather handbag, floral teacup and artist palette props, plus finger heart, open palm and hand-on-hip gestures.
+- Add twelve stickers: sunflower, butterfly, rainbow, moon, books, music, paw, strawberry, bee, teapot, camera and yarn. There are now 38 designs, with up to six on a laptop.
+
+### Fit and clarity
+
+- Fit hair around the face opening and crown; let hats occlude it naturally and frame both hair and hats within the avatar crop. Keep earrings and skin-mounted extras beneath long hair.
+- Keep hats seated on the crown and clear of the eyes, including Petite and narrow bodies with hair. Preserve prop materials while matching hand skin; place the hip pose against the body.
+- Reveal neckwear and small extras in their option thumbnails; center accessory crops around the face instead of leaving them at the bottom edge.
+- Rename the Hat tab to Style, explain “LGTM” as “Looks good to me,” and replace developer-specific vibe labels while retaining their share keys.
+- Preserve hairstyles and accessories when choosing a face vibe. Expand Surprise me and regenerate the public gallery with a broader range of styles and interests.
+
+### Verification
+
+- Add complete PNG chunk/decompression checks, deterministic pairwise outfit generation with an independent coverage verifier, and hairstyle interaction audits.
+- Expand the existing inventory and interaction matrices to all six shapes; extend browser checks to new controls, sharing and downloads.
+- See [EVERYDAY_AUDIT.md](docs/EVERYDAY_AUDIT.md) for the actual checks, repairs and limitations. The inventory is 222 source images: 58 additions and one replacement smile. Existing share keys remain supported.
+
 ## 0.4.0 — 2026-11-02
 
 ### Artwork and fitting

@@ -1,4 +1,4 @@
-import { OPTIONS, MULTI, TEXT, PRESETS, BG_COLORS, HAT_COLORS, STICKERS, DEFAULT_STATE } from './options.js';
+import { OPTIONS, MULTI, TEXT, PRESETS, BG_COLORS, HAT_COLORS, HAIR_COLORS, STICKERS, DEFAULT_STATE } from './options.js';
 import { encodeState, decodeState, cleanText } from './state.js';
 import { surprise } from './surprise.js';
 import { renderPotato, exportPng, availableOptions, missingParts, drawableState, cropBox, hasSticker, partSrc } from './raster.js';
@@ -27,8 +27,10 @@ const TABS = {
     { key: 'facialHair', title: 'Facial hair', kind: 'thumb' },
   ],
   hat: [
+    { key: 'hair', title: 'Hair', kind: 'thumb', help: 'Every style works with every body. Mix hair, hats and accessories your way.' },
+    { key: 'hairColor', title: 'Hair color', kind: 'swatch', colors: HAIR_COLORS, onlyWhen: s => s.hair !== 'none', hint: 'Choose a hairstyle to change its color.' },
     { key: 'hat', title: 'Hat', kind: 'thumb' },
-    { key: 'hatColor', title: 'Fabric & mug color', kind: 'swatch', colors: HAT_COLORS, help: 'Colors supported hats, neckwear, headphones and the coffee mug. Metal and white trim keep their own colors.' },
+    { key: 'hatColor', title: 'Accent color', kind: 'swatch', colors: HAT_COLORS, help: 'Colors supported hats, neckwear, headphones, ribbon clips, cat-eye frames and the coffee mug. Straw, metal, pearls and white trim keep their own colors.' },
     {
       key: 'capText',
       title: 'Cap initials',
@@ -42,10 +44,11 @@ const TABS = {
   gear: [
     { key: 'item', title: 'Holding', kind: 'thumb' },
     { key: 'stickers', title: 'Laptop stickers', kind: 'multi', onlyWhen: (s) => s.item === 'laptop', hint: 'Hold the laptop to pick its stickers.', help: 'Pick up to 6, in the order you want them.' },
-    { key: 'sign', title: 'Sign text', kind: 'text', placeholder: 'LGTM', onlyWhen: (s) => s.item === 'sign', hint: 'Hold the sign to write on it.', help: 'Up to 10 characters. Try LGTM, SHIP IT or 404.' },
+    { key: 'sign', title: 'Sign text', kind: 'text', placeholder: 'HI THERE!', onlyWhen: (s) => s.item === 'sign', hint: 'Hold the sign to write on it.', help: 'Up to 10 characters. Try HI THERE!, LOVE YOU or YOU GOT IT. LGTM means “Looks good to me”.' },
     { key: 'gesture', title: 'Free hand', kind: 'thumb' },
     { key: 'eyewear', title: 'Eyewear', kind: 'thumb' },
     { key: 'neckwear', title: 'Neckwear', kind: 'thumb' },
+    { key: 'jewelry', title: 'Earrings', kind: 'thumb', help: 'Long hair may cover earrings, just as it does when worn.' },
     { key: 'extra', title: 'Extras', kind: 'thumb' },
   ],
   bg: [
@@ -96,7 +99,7 @@ async function renderPreview() {
     preview.querySelector('.preview-status').textContent = '';
     document.body.dataset.rendered = 'true';
     preview.setAttribute('aria-busy', 'false');
-    preview.setAttribute('aria-label', `${OPTIONS.skin[state.skin]} ${OPTIONS.body[state.body].toLowerCase()} potato: ${OPTIONS.eyes[state.eyes].toLowerCase()} eyes, ${OPTIONS.mouth[state.mouth].toLowerCase()} mouth, ${OPTIONS.hat[state.hat].toLowerCase()}, holding ${OPTIONS.item[state.item].toLowerCase()}, ${OPTIONS.gesture[state.gesture].toLowerCase()} gesture.`);
+    preview.setAttribute('aria-label', `${OPTIONS.skin[state.skin]} ${OPTIONS.body[state.body].toLowerCase()} potato: ${OPTIONS.eyes[state.eyes].toLowerCase()} eyes, ${OPTIONS.mouth[state.mouth].toLowerCase()} mouth, ${OPTIONS.hair[state.hair].toLowerCase()}, ${OPTIONS.hat[state.hat].toLowerCase()}, ${OPTIONS.jewelry[state.jewelry].toLowerCase()} earrings, holding ${OPTIONS.item[state.item].toLowerCase()}, ${OPTIONS.gesture[state.gesture].toLowerCase()} gesture.`);
   } catch (err) {
     if (token !== previewToken) return;
     preview.classList.remove('is-loading');
@@ -158,10 +161,13 @@ function potatoThumb(candidate, category) {
   // avatar is wearing shades, a beard or a brim that would cover it.
   const shown = { ...candidate };
   if (['eyes', 'brows', 'mouth', 'cheeks', 'facialHair', 'preset'].includes(category)) {
-    shown.hat = 'none'; shown.extra = 'none'; shown.eyewear = 'none';
+    shown.hat = 'none'; shown.hair = 'none'; shown.extra = 'none'; shown.eyewear = 'none';
     if (category !== 'facialHair' && category !== 'preset') shown.facialHair = 'none';
   }
-  if (category === 'neckwear') shown.facialHair = 'none';
+  if (category === 'neckwear') { shown.facialHair = 'none'; shown.hair = 'none'; }
+  if (category === 'extra') { shown.hat = 'none'; shown.hair = 'none'; }
+  if (category === 'hair') { shown.hat = 'none'; shown.extra = 'none'; }
+  if (category === 'jewelry') { shown.hair = 'none'; shown.extra = 'none'; shown.hat = 'none'; }
   queueThumb(holder, shown, category);
   return holder;
 }

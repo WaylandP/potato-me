@@ -2,7 +2,7 @@
 // Render real PNG compositions, not the legacy SVG renderer.
 // Optional Playwright: node scripts/audit-project.mjs /tmp/audit inventory
 // Modes: inventory, headwear, expressions, facial-hair, eyewear, poses,
-// colors, backgrounds, details. Trailing filters: category or category/key
+// colors, hair, pairwise, backgrounds, details. Trailing filters: category or category/key
 // for inventory, category for colors, category/key for the other modes.
 import { createRequire } from 'node:module';
 import { spawn } from 'node:child_process';
@@ -13,6 +13,7 @@ import { PARTS } from '../src/assets.js';
 import { OPTIONS, DEFAULT_STATE, PRESETS, STICKERS } from '../src/options.js';
 import { surprise } from '../src/surprise.js';
 import { FIT } from '../src/fit-data.js';
+import { pairwiseCases, verifyPairCoverage } from './pairwise.mjs';
 
 const { chromium } = createRequire(import.meta.url)('playwright');
 const root = fileURLToPath(new URL('..', import.meta.url));
@@ -21,6 +22,7 @@ const mode = process.argv[3] || 'inventory', filters = process.argv.slice(4);
 const shapes = Object.keys(OPTIONS.body), skins = Object.keys(OPTIONS.skin);
 const baseline = { ...DEFAULT_STATE, hat: 'none', item: 'none', gesture: 'rest', bg: 'cream', pattern: 'solid', capText: '' };
 const batches = [];
+let pairCoverage;
 const add = (name, cases) => batches.push({ name, cases });
 const frame = (label, patch) => ({ label, state: { ...baseline, ...patch } });
 const crossBodies = (label, patch) => shapes.flatMap(body => skins.map(skin => frame(`${label} · ${body}/${skin}`, { body, skin, ...patch })));
@@ -34,20 +36,33 @@ if (mode === 'inventory') {
     }
   }
 } else if (mode === 'headwear') {
-  for (const hat of Object.keys(OPTIONS.hat)) add(hat, shapes.flatMap((body, i) => Object.keys(OPTIONS.extra).map(extra => frame(`${hat}/${extra} · ${body}`, { body, skin: skins[i * 2], hat, extra }))));
+  for (const hat of Object.keys(OPTIONS.hat)) add(hat, shapes.flatMap((body, i) => Object.keys(OPTIONS.extra).map(extra => frame(`${hat}/${extra} · ${body}`, { body, skin: skins[(i * 2) % skins.length], hat, extra }))));
 } else if (mode === 'expressions') {
-  for (const mouth of Object.keys(OPTIONS.mouth)) add(mouth, Object.keys(OPTIONS.eyes).flatMap((eyes, i) => Object.keys(OPTIONS.brows).map((brows, j) => frame(`${eyes}/${brows}/${mouth}`, { mouth, eyes, brows, body: shapes[(i + j) % 4], skin: skins[(i * 3 + j) % 9] }))));
+  for (const mouth of Object.keys(OPTIONS.mouth)) add(mouth, Object.keys(OPTIONS.eyes).flatMap((eyes, i) => Object.keys(OPTIONS.brows).map((brows, j) => frame(`${eyes}/${brows}/${mouth}`, { mouth, eyes, brows, body: shapes[(i + j) % shapes.length], skin: skins[(i * 3 + j) % skins.length] }))));
 } else if (mode === 'facial-hair') {
-  for (const facialHair of Object.keys(OPTIONS.facialHair)) for (const neckwear of Object.keys(OPTIONS.neckwear)) add(`${facialHair}-${neckwear}`, shapes.flatMap((body, i) => Object.keys(OPTIONS.mouth).map(mouth => frame(`${mouth} · ${body}`, { body, skin: skins[i * 2], facialHair, neckwear, mouth, eyes: 'wide', brows: 'raised' }))));
+  for (const facialHair of Object.keys(OPTIONS.facialHair)) for (const neckwear of Object.keys(OPTIONS.neckwear)) add(`${facialHair}-${neckwear}`, shapes.flatMap((body, i) => Object.keys(OPTIONS.mouth).map(mouth => frame(`${mouth} · ${body}`, { body, skin: skins[(i * 2) % skins.length], facialHair, neckwear, mouth, eyes: 'wide', brows: 'raised' }))));
 } else if (mode === 'eyewear') {
-  for (const eyewear of Object.keys(OPTIONS.eyewear)) add(eyewear, shapes.flatMap((body, i) => Object.keys(OPTIONS.eyes).map(eyes => frame(`${eyes} · ${body}`, { body, skin: skins[i * 2], eyewear, eyes }))));
+  for (const eyewear of Object.keys(OPTIONS.eyewear)) add(eyewear, shapes.flatMap((body, i) => Object.keys(OPTIONS.eyes).map(eyes => frame(`${eyes} · ${body}`, { body, skin: skins[(i * 2) % skins.length], eyewear, eyes }))));
 } else if (mode === 'poses') {
-  for (const item of Object.keys(OPTIONS.item)) add(item, shapes.flatMap((body, i) => Object.keys(OPTIONS.gesture).map(gesture => frame(`${item}/${gesture} · ${body}`, { body, skin: skins[i * 2], item, gesture, hat: gesture === 'salute' ? 'backwardCap' : 'none' }))));
+  for (const item of Object.keys(OPTIONS.item)) add(item, shapes.flatMap((body, i) => Object.keys(OPTIONS.gesture).map(gesture => frame(`${item}/${gesture} · ${body}`, { body, skin: skins[(i * 2) % skins.length], item, gesture, hat: gesture === 'salute' ? 'backwardCap' : 'none' }))));
 } else if (mode === 'colors') {
   for (const [group, keys] of Object.entries(FIT.recolor)) {
     if (filters.length && !filters.includes(group)) continue;
-    for (const key of keys) add(`${group}-${key}`, shapes.flatMap((body, i) => Object.keys(OPTIONS.hatColor).map(hatColor => frame(`${hatColor} · ${body}`, { body, skin: skins[i * 2], [group]: key, hatColor, capText: 'A+W' }))));
+    for (const key of keys) add(`${group}-${key}`, shapes.flatMap((body, i) => Object.keys(OPTIONS.hatColor).map(hatColor => frame(`${hatColor} · ${body}`, { body, skin: skins[(i * 2) % skins.length], [group]: key, hatColor, capText: 'A+W' }))));
   }
+} else if (mode === 'hair') {
+  for (const hair of Object.keys(PARTS.hair)) {
+    add(`${hair}-hats`, shapes.flatMap((body, i) => Object.keys(OPTIONS.hat).map(hat => frame(`${body}/${hat}`, { body, skin: skins[i % skins.length], hair, hat, eyes: 'almond', brows: 'softArch', mouth: 'smile' }))));
+    add(`${hair}-extras`, shapes.flatMap((body, i) => Object.keys(OPTIONS.extra).map(extra => frame(`${body}/${extra}`, { body, skin: skins[(i * 2) % skins.length], hair, extra }))));
+    add(`${hair}-jewelry`, shapes.flatMap((body, i) => Object.keys(OPTIONS.jewelry).flatMap(jewelry => Object.keys(OPTIONS.neckwear).map(neckwear => frame(`${body}/${jewelry}/${neckwear}`, { body, skin: skins[(i * 2) % skins.length], hair, jewelry, neckwear, eyes: 'almond', brows: 'softArch', mouth: 'smile' })))));
+    add(`${hair}-colors`, shapes.flatMap((body, i) => Object.keys(OPTIONS.hairColor).map(hairColor => frame(`${body}/${hairColor}`, { body, skin: skins[(i * 2) % skins.length], hair, hairColor }))));
+  }
+} else if (mode === 'pairwise') {
+  const factors = Object.fromEntries(Object.entries(OPTIONS).map(([key, values]) => [key, Object.keys(values)]));
+  const rows = pairwiseCases(factors);
+  pairCoverage = verifyPairCoverage(factors, rows);
+  if (pairCoverage.missing.length) throw Error('Covering array has missing pairs');
+  for (let i = 0; i < rows.length; i += 56) add(`outfits-${i}`, rows.slice(i, i + 56).map((state, j) => frame(`pairwise ${i + j + 1}`, state)));
 } else if (mode === 'backgrounds') {
   for (const pattern of Object.keys(OPTIONS.pattern)) add(pattern, Object.keys(OPTIONS.bg).map(bg => frame(`${pattern}/${bg}`, { ...DEFAULT_STATE, pattern, bg })));
 } else if (mode === 'details') {
@@ -62,6 +77,7 @@ if (mode === 'inventory') {
 
 await mkdir(out, { recursive: true });
 const report = { mode, automatedCases: 0, exports: 0, thumbnails: 0, maxExportBytes: 0, circleFindings: [], sheets: [], errors: [], visualReview: 'pending; rendering success is not visual approval' };
+if (pairCoverage) report.pairCoverage = pairCoverage;
 const port = 5700 + Math.floor(Math.random() * 600);
 const server = spawn(process.execPath, [root + 'scripts/serve.mjs'], { env: { ...process.env, PORT: String(port) }, stdio: 'ignore' });
 await new Promise(r => setTimeout(r, 600));
