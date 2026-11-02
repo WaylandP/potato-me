@@ -33,19 +33,21 @@ test/                 node:test suites
 
 ## Adding a part
 
-Parts are generated with an image model, one part per image, positioned as if it sat on the base potato (`assets/parts/body/classic-russet.png`). Read `docs/IMAGE_PROMPTS.md` for the original design guide and `docs/PUBLIC_AUDIT_PROMPTS.json` for the replacement artwork used in v0.4.0.
+Parts are generated with an image model, one part per image, positioned as if it sat on the base potato (`assets/parts/body/classic-russet.png`). Read `docs/IMAGE_PROMPTS.md` for the original design guide and `docs/PUBLIC_AUDIT_PROMPTS.json` for the replacement artwork used in v0.4.0. New hairstyles, shapes and accessories are recorded in `docs/expansion-prompts.json`.
 
 1. **Register the key.** For a brand-new option, add it to the right group in `OPTIONS` (`src/options.js`). Keys end up in share links, so pick a name you can live with.
 2. **Generate the image.** Use the master prompt and the part's line from `docs/IMAGE_PROMPTS.md`. Hats, neckwear, headphones and the mug are rendered in the red master color so the app can recolor them; arms in russet skin. Keep the laptop lid and the sign blank.
 3. **Normalize it.** 1024 × 1024, RGBA, transparent background, placed where it belongs on the canvas. Save it as `assets/parts/<group>/<key>.png`.
 4. **Record it.** Add an entry to `assets/manifest.json` (copy a neighbour; `placedBox` is the opaque bounding box) and run `npm run assets`. To update only changed thumbnails, use `npm run assets -- neckwear/scarf hat/backwardCap`; the complete index is always rebuilt.
-5. **Fit it.** Open `fit.html`, look at the part on Classic, Lumpy, Round and Long, nudge with the arrow keys, and paste the printed `surfaceNudges` into `src/fit-data.js`. Red colorway parts also go in `FIT.recolor`; use `FIT.skinProtect` polygons to preserve held objects while their hands remain tintable. The surface renderer samples the selected body for skin color; protect objects in source-image coordinates. A two-sided part that was rendered too close together (earbuds) takes a `spread` instead of a scale, and a part that should scale around its own point gets a `group/key` entry in `FIT.pivots`.
+5. **Fit it.** Open `fit.html`, look at the part on Classic, Lumpy, Round, Long, Pear and Petite, nudge with the arrow keys, and paste the printed `surfaceNudges` into `src/fit-data.js`. Red colorway parts also go in `FIT.recolor`; use `FIT.skinProtect` polygons to preserve held objects while their hands remain tintable. The surface renderer samples the selected body for skin color; protect objects in source-image coordinates. A two-sided part that was rendered too close together (earbuds) takes a `spread` instead of a scale, and a part that should scale around its own point gets a `group/key` entry in `FIT.pivots`.
 Automatic placement is in `src/surface.js`: it anchors arms inside the body silhouette, aligns face parts to shared landmarks, seats hats and worn accessories, and flexes headphone bands while preserving ear cups. `FIT.shapes` and `FIT.parts` retain baseline sizing; `FIT.surfaceNudges` applies manual corrections after this fit. For a reversed or unusual arm, record its actual shoulder in `FIT.surfaceRoots`.
 
-6. **Check it.** `npm test`, then `npm run shot review.png spec.json --cell 256 --cols 4` with a few combinations, and look at them in the avatar crop and the thumbnail grid. For an inventory-wide review, run `npm run audit -- /tmp/potato-art-audit inventory`. It writes review sheets and a JSON report, exercising full PNG exports, thumbnails and share-state round trips for every asset. Passing checks do not replace viewing the sheets. Run the affected interaction modes (`headwear`, `expressions`, `facial-hair`, `eyewear`, `poses`, `colors`, `backgrounds`, `details`) and `npm run audit:ui -- /tmp/potato-ui`; see [PUBLIC_AUDIT.md](docs/PUBLIC_AUDIT.md) for the matrix definitions.
+6. **Check it.** `npm test`, then `npm run shot review.png spec.json --cell 256 --cols 4` with a few combinations, and look at them in the avatar crop and the thumbnail grid. For an inventory-wide review, run `npm run audit -- /tmp/potato-art-audit inventory`. It writes review sheets and a JSON report, exercising full PNG exports, thumbnails and share-state round trips for every asset. Passing checks do not replace viewing the sheets. Run the affected interaction modes (`headwear`, `expressions`, `facial-hair`, `eyewear`, `poses`, `colors`, `backgrounds`, `details`, `hair`, `pairwise`) and `npm run audit:ui -- /tmp/potato-ui`; see [EVERYDAY_AUDIT.md](docs/EVERYDAY_AUDIT.md) for the current matrix definitions.
 
 ### Art checklist
 
+- Offer every style on every body shape. Keep labels understandable without developer jargon. Preserve existing share keys.
+- Hair must follow the crown and leave a usable face opening; hats occlude it with their silhouette, never a straight crop. Earrings sit beneath long hair.
 - Neckwear must wrap the broad upper torso with sides turning behind it: no narrow human-neck ring. Keep knots, collars and gravity-correct tails proportionate.
 - Same camera, scale and upper-left light as the base potato. Straight-on front view.
 - Only the requested part in the image. No potato, no shadow, no text, no background.
@@ -55,7 +57,7 @@ Automatic placement is in `src/surface.js`: it anchors arms inside the body silh
 
 ## Pull requests
 
-- Keep each PR focused. For visual changes, include screenshots on all four body shapes and representative skins, plus the avatar crop. Inspect contact points, grips, skin edges and accessory overlaps; passing exports alone does not prove the artwork fits. The PR template has a checklist.
+- Keep each PR focused. For visual changes, include screenshots on all six body shapes and representative skins, plus the avatar crop. Inspect contact points, grips, skin edges and accessory overlaps; passing exports alone does not prove the artwork fits. The PR template has a checklist.
 - Keep README.md and CHANGELOG.md accurate. Mark ROADMAP.md work shipped only after it is built, tested and verified on the deployed site.
 - Commit messages in plain English: what changed and why.
 

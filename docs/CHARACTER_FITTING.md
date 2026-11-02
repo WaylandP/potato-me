@@ -2,6 +2,7 @@
 
 > Historical delivery record. The [v0.4.0 public audit](PUBLIC_AUDIT.md) supersedes this visual review, asset-replacement count and font status.
 
+Current coverage and the expanded inventory are documented in [EVERYDAY_AUDIT.md](EVERYDAY_AUDIT.md).
 The completed inventory still looked assembled from unrelated stickers: rounded arm ends sat on top of bodies, faces kept tan rims on other skins, and several accessories floated or were out of proportion. Asset counts and successful exports did not catch these visual defects.
 
 The [README](../README.md) and [current gallery](completion-preview.png) show the latest renderer.

@@ -2,6 +2,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
+import { inflateSync } from 'node:zlib';
 import { PARTS, LAYER_ORDER, NO_IMAGE } from '../src/assets.js';
 import { availableOptions, missingParts, drawableState, layerTransform, layersFor, cropBox } from '../src/raster.js';
 import { OPTIONS, SKINS, MULTI, DEFAULT_STATE, PRESETS } from '../src/options.js';
@@ -23,6 +24,16 @@ test('all shipped source PNGs match the manifest, canvas size and RGBA format', 
     assert.equal(png.readUInt32BE(16), 1024, asset.path);
     assert.equal(png.readUInt32BE(20), 1024, asset.path);
     assert.equal(png[25], 6, `${asset.path}: RGBA required`);
+    const chunks = []; let ended = false;
+    for (let offset = 8; offset + 12 <= png.length;) {
+      const length = png.readUInt32BE(offset), type = png.toString('ascii', offset + 4, offset + 8);
+      assert.ok(offset + length + 12 <= png.length, `${asset.path}: truncated ${type} chunk`);
+      if (type === 'IDAT') chunks.push(png.subarray(offset + 8, offset + 8 + length));
+      if (type === 'IEND') ended = true;
+      offset += length + 12;
+    }
+    assert.ok(ended && chunks.length, `${asset.path}: complete PNG required`);
+    assert.equal(inflateSync(Buffer.concat(chunks)).length, 1024 * (1024 * 4 + 1), `${asset.path}: complete RGBA scanlines required`);
     assert.equal(createHash('sha256').update(png).digest('hex'), asset.sha256, asset.path);
   }
 });

@@ -95,3 +95,13 @@ test('tall-hat framing retains proportions and keeps the full original crop insi
   for (const [x, y] of [...points, ...originalCircle]) assert.ok(Math.hypot((x - 512) * frame.scale, (y - frame.centerY) * frame.scale) <= 492.00001);
   assert.deepEqual(frameForPoints([[400, 100], [620, 100]]), { scale: 1, centerY: 512 });
 });
+
+test('wide hats leave the eye line clear on a short body, with or without hair', () => {
+  const petite = { ...surface, crownY: 300, eyeY: 475, row: () => [220, 804] };
+  for (const hair of ['none', 'curls']) for (const key of ['chef', 'cap', 'sunhat', 'tophat', 'beanie']) {
+    const b = PARTS.hat[key];
+    const t = fit('hat', key, petite, { ...DEFAULT_STATE, body: 'petite', hair });
+    const bottom = point('hat', key, t, [(b[0] + b[2]) / 2, b[3]])[1];
+    assert.ok(bottom < petite.eyeY - 25, `${key}/${hair} obscures the eye opening`);
+  }
+});

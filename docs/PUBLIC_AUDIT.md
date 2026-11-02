@@ -1,8 +1,10 @@
 # Public-quality audit — v0.4.0
 
+Historical v0.4.0 record. The current expansion is documented in [EVERYDAY_AUDIT.md](EVERYDAY_AUDIT.md). The gallery below is regenerated from the latest editor and is not a snapshot of v0.4.0.
+
 Reviewed November 1–2, 2026. This update addresses the unnatural attachment of arms, faces and accessories, especially the scarf. The original detailed russet character guided the material detail, expression, cap stitching and hand proportions.
 
-![Eight avatars rendered by the current editor, including the rebuilt scarf and cap](completion-preview.png)
+![Eight avatars rendered by the current editor](completion-preview.png)
 
 The inventory remains **164 source PNGs**. Fourteen source files were replaced using thirteen accepted generated images: the relaxed arm is shared by the empty holding hand and free-hand layer. No public options were removed. Existing share keys remain supported.
 

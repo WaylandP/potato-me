@@ -1,0 +1,734 @@
+{
+  "tool": "Built-in image_gen",
+  "date": "2026-11-02",
+  "assets": [
+    {
+      "key": "body/pear-russet",
+      "prompt": "Use case: stylized-concept. Asset type: modular 3D potato avatar body, transparent PNG. Reference image is the exact material/lighting style, not an edit target. Create one NEW pear-shaped blank potato: slender softly rounded crown, pronounced wider round lower belly, naturally asymmetrical organic silhouette, two short stubby legs with wide rounded potato feet. No face, arms, clothing, hair or accessories. Russet potato skin with sharp high-detail natural corky pores, small dark eyes, tiny sprouts, warm golden skin, soft upper-left studio light and subtle lower-right shade. Front view, centered, upright, full body entirely in frame. Same appealing polished 3D cartoon realism as reference. Clearly different pear silhouette, not a duplicate of classic. Transparent background, no floor or backdrop. No text. This body should feel sweet and confident without human gender anatomy.",
+      "box": [
+        220,
+        154,
+        804,
+        922
+      ],
+      "path": "assets/parts/body/pear-russet.png",
+      "generationFile": "exec-17cd7e0d-2f99-4e1d-9a05-b318b436ed0c.png"
+    },
+    {
+      "key": "body/petite-russet",
+      "prompt": "Use case: stylized-concept. Asset type: modular 3D potato avatar body, transparent PNG. Reference is material/lighting style. Create one NEW petite potato: compact short rounded oval body, gently flattened crown, little soft side bulges, two short sturdy legs and rounded feet. It is broad and squat but a rounded rectangular oval, NOT a sphere. No face, arms, clothing, hair or accessories. Detailed organic russet skin: corky texture, pores, small irregular dark eyes, tiny sprouts. Warm studio upper-left lighting, subtle lower-right shading. Front view centered, entire body fits inside frame, generous clear margin. Same detailed 3D cartoon-realism reference. Transparent background. No floor, text or watermark. Gender-neutral body.",
+      "box": [
+        190,
+        260,
+        834,
+        922
+      ],
+      "path": "assets/parts/body/petite-russet.png",
+      "generationFile": "exec-1757305b-d174-41c7-9d4c-ecb864373e70.png"
+    },
+    {
+      "key": "hair/bob",
+      "prompt": "Use case: stylized-concept. Asset type: one modular hairstyle sprite on transparent background for detailed 3D potato avatar. Create a rich chestnut chin-length bob wig with side part, smooth sculpted locks and individual fine glossy hair strands, curved crown dome and two side locks ending in softly turned-under tips. Front facing. Empty transparent face opening wide and tall, like an upside-down U. The crown follows a broad rounded potato head, NOT a narrow human head. No head, face, skin, mannequin, body, neck, accessories or text. Crown width approximately 600 pixels on a 1024 square; side locks frame an empty central opening 420 pixels wide and 400 pixels tall. The hair is the only visible object. Even upper-left studio key light, subtle amber highlights and deep brown shadows, premium 3D animated-film material, high detail. Entire wig fits within frame. Genuine transparent background and transparent opening.",
+      "box": [
+        180,
+        120,
+        844,
+        700
+      ],
+      "path": "assets/parts/hair/bob.png",
+      "generationFile": "exec-a402959d-f9b6-4f5e-a703-a87e55fd8ce0.png"
+    },
+    {
+      "key": "body/pear-gold",
+      "box": [
+        220,
+        154,
+        804,
+        922
+      ],
+      "prompt": "Use case: precise-object-edit. Asset type: transparent potato body sprite. Edit the reference body ONLY to change its potato skin material to Yukon gold: light warm yellow-gold skin with fine pale pores and fewer dark speckles. Preserve EXACT silhouette, pear/compact body proportions, crown shape, feet, legs, placement, pose, framing, lighting direction and detailed 3D realism. No face, no arms, no hair, no clothing, no accessories. Skin color should shade naturally, not look like paint. Clear microscopic pores and organic detail. Genuine transparent background. No added floor, text or watermark. Keep whole body inside frame.",
+      "path": "assets/parts/body/pear-gold.png",
+      "generationFile": "exec-5e4954ee-33e4-4d9a-b4fb-a95ffca5c4d9.png",
+      "reference": "assets/parts/body/pear-russet.png"
+    },
+    {
+      "key": "body/pear-red",
+      "box": [
+        220,
+        154,
+        804,
+        922
+      ],
+      "prompt": "Use case: precise-object-edit. Asset type: transparent potato body sprite. Edit the reference body ONLY to change its potato skin material to red potato: muted rosy red-brown skin with natural pale lenticels and subtle earthy mottling. Preserve EXACT silhouette, pear/compact body proportions, crown shape, feet, legs, placement, pose, framing, lighting direction and detailed 3D realism. No face, no arms, no hair, no clothing, no accessories. Skin color should shade naturally, not look like paint. Clear microscopic pores and organic detail. Genuine transparent background. No added floor, text or watermark. Keep whole body inside frame.",
+      "path": "assets/parts/body/pear-red.png",
+      "generationFile": "exec-f738a844-8ecc-4889-8e21-e9c6a2b5de85.png",
+      "reference": "assets/parts/body/pear-russet.png"
+    },
+    {
+      "key": "body/pear-purple",
+      "box": [
+        220,
+        154,
+        804,
+        922
+      ],
+      "prompt": "Use case: precise-object-edit. Asset type: transparent potato body sprite. Edit the reference body ONLY to change its potato skin material to purple potato: deep violet-purple skin with fine dark pores and lavender highlights. Preserve EXACT silhouette, pear/compact body proportions, crown shape, feet, legs, placement, pose, framing, lighting direction and detailed 3D realism. No face, no arms, no hair, no clothing, no accessories. Skin color should shade naturally, not look like paint. Clear microscopic pores and organic detail. Genuine transparent background. No added floor, text or watermark. Keep whole body inside frame.",
+      "path": "assets/parts/body/pear-purple.png",
+      "generationFile": "exec-234d783c-21c0-4d52-92d2-a4756976f8ec.png",
+      "reference": "assets/parts/body/pear-russet.png"
+    },
+    {
+      "key": "body/pear-sweet",
+      "box": [
+        220,
+        154,
+        804,
+        922
+      ],
+      "prompt": "Use case: precise-object-edit. Asset type: transparent potato body sprite. Edit the reference body ONLY to change its potato skin material to sweet potato: warm terracotta-orange skin, thin russet striations and natural root texture. Preserve EXACT silhouette, pear/compact body proportions, crown shape, feet, legs, placement, pose, framing, lighting direction and detailed 3D realism. No face, no arms, no hair, no clothing, no accessories. Skin color should shade naturally, not look like paint. Clear microscopic pores and organic detail. Genuine transparent background. No added floor, text or watermark. Keep whole body inside frame.",
+      "path": "assets/parts/body/pear-sweet.png",
+      "generationFile": "exec-bb97c83a-e1e6-4a74-9d07-0c30e3629b31.png",
+      "reference": "assets/parts/body/pear-russet.png"
+    },
+    {
+      "key": "body/petite-gold",
+      "box": [
+        190,
+        260,
+        834,
+        922
+      ],
+      "prompt": "Use case: precise-object-edit. Asset type: transparent potato body sprite. Edit the reference body ONLY to change its potato skin material to Yukon gold: light warm yellow-gold skin with fine pale pores and fewer dark speckles. Preserve EXACT silhouette, pear/compact body proportions, crown shape, feet, legs, placement, pose, framing, lighting direction and detailed 3D realism. No face, no arms, no hair, no clothing, no accessories. Skin color should shade naturally, not look like paint. Clear microscopic pores and organic detail. Genuine transparent background. No added floor, text or watermark. Keep whole body inside frame.",
+      "path": "assets/parts/body/petite-gold.png",
+      "generationFile": "exec-5880007d-de4a-4c71-bd80-a159f4525488.png",
+      "reference": "assets/parts/body/petite-russet.png"
+    },
+    {
+      "key": "body/petite-red",
+      "box": [
+        190,
+        260,
+        834,
+        922
+      ],
+      "prompt": "Use case: precise-object-edit. Asset type: transparent potato body sprite. Edit the reference body ONLY to change its potato skin material to red potato: muted rosy red-brown skin with natural pale lenticels and subtle earthy mottling. Preserve EXACT silhouette, pear/compact body proportions, crown shape, feet, legs, placement, pose, framing, lighting direction and detailed 3D realism. No face, no arms, no hair, no clothing, no accessories. Skin color should shade naturally, not look like paint. Clear microscopic pores and organic detail. Genuine transparent background. No added floor, text or watermark. Keep whole body inside frame.",
+      "path": "assets/parts/body/petite-red.png",
+      "generationFile": "exec-847d66f4-7b48-492b-b072-dd912b8ce148.png",
+      "reference": "assets/parts/body/petite-russet.png"
+    },
+    {
+      "key": "body/petite-purple",
+      "box": [
+        190,
+        260,
+        834,
+        922
+      ],
+      "prompt": "Use case: precise-object-edit. Asset type: transparent potato body sprite. Edit the reference body ONLY to change its potato skin material to purple potato: deep violet-purple skin with fine dark pores and lavender highlights. Preserve EXACT silhouette, pear/compact body proportions, crown shape, feet, legs, placement, pose, framing, lighting direction and detailed 3D realism. No face, no arms, no hair, no clothing, no accessories. Skin color should shade naturally, not look like paint. Clear microscopic pores and organic detail. Genuine transparent background. No added floor, text or watermark. Keep whole body inside frame.",
+      "path": "assets/parts/body/petite-purple.png",
+      "generationFile": "exec-852ff31b-fe5f-443d-a534-5c6bd3a63b9c.png",
+      "reference": "assets/parts/body/petite-russet.png"
+    },
+    {
+      "key": "body/petite-sweet",
+      "box": [
+        190,
+        260,
+        834,
+        922
+      ],
+      "prompt": "Use case: precise-object-edit. Asset type: transparent potato body sprite. Edit the reference body ONLY to change its potato skin material to sweet potato: warm terracotta-orange skin, thin russet striations and natural root texture. Preserve EXACT silhouette, pear/compact body proportions, crown shape, feet, legs, placement, pose, framing, lighting direction and detailed 3D realism. No face, no arms, no hair, no clothing, no accessories. Skin color should shade naturally, not look like paint. Clear microscopic pores and organic detail. Genuine transparent background. No added floor, text or watermark. Keep whole body inside frame.",
+      "path": "assets/parts/body/petite-sweet.png",
+      "generationFile": "exec-8f89d3ae-5fe9-407e-ad57-ab9db9abe27a.png",
+      "reference": "assets/parts/body/petite-russet.png"
+    },
+    {
+      "key": "body/pear-blue",
+      "box": [
+        220,
+        154,
+        804,
+        922
+      ],
+      "prompt": "Use case: precise-object-edit. Asset type: transparent potato body sprite. Edit reference body ONLY to change skin material to Adirondack blue: muted blue-lavender potato skin, irregular indigo pores and pale cool highlights. Preserve EXACT silhouette, body proportions, crown, feet, legs, placement, pose, framing, upper-left lighting and detailed 3D realism. No face, arms, hair, clothing or accessories. Natural detailed pores and organic texture, subtle color variation, no flat painted look. Genuine transparent background. No floor, text or watermark.",
+      "path": "assets/parts/body/pear-blue.png",
+      "generationFile": "exec-dc5f3b3b-c56d-44cb-a07b-7c5a59b8143e.png",
+      "reference": "assets/parts/body/pear-russet.png"
+    },
+    {
+      "key": "body/pear-pink",
+      "box": [
+        220,
+        154,
+        804,
+        922
+      ],
+      "prompt": "Use case: precise-object-edit. Asset type: transparent potato body sprite. Edit reference body ONLY to change skin material to fingerling pink: dusty warm blush-pink skin, natural darker pink freckles and warm cream highlights. Preserve EXACT silhouette, body proportions, crown, feet, legs, placement, pose, framing, upper-left lighting and detailed 3D realism. No face, arms, hair, clothing or accessories. Natural detailed pores and organic texture, subtle color variation, no flat painted look. Genuine transparent background. No floor, text or watermark.",
+      "path": "assets/parts/body/pear-pink.png",
+      "generationFile": "exec-2e6eda4f-ac57-4778-ab10-8e3006e030ba.png",
+      "reference": "assets/parts/body/pear-russet.png"
+    },
+    {
+      "key": "body/pear-ghost",
+      "box": [
+        220,
+        154,
+        804,
+        922
+      ],
+      "prompt": "Use case: precise-object-edit. Asset type: transparent potato body sprite. Edit reference body ONLY to change skin material to ghost potato: pale warm ivory skin with subtle tan pores and creamy texture, not translucent. Preserve EXACT silhouette, body proportions, crown, feet, legs, placement, pose, framing, upper-left lighting and detailed 3D realism. No face, arms, hair, clothing or accessories. Natural detailed pores and organic texture, subtle color variation, no flat painted look. Genuine transparent background. No floor, text or watermark.",
+      "path": "assets/parts/body/pear-ghost.png",
+      "generationFile": "exec-d936b275-241c-4dc2-ad4f-7ca91386208e.png",
+      "reference": "assets/parts/body/pear-russet.png"
+    },
+    {
+      "key": "body/pear-zombie",
+      "box": [
+        220,
+        154,
+        804,
+        922
+      ],
+      "prompt": "Use case: precise-object-edit. Asset type: transparent potato body sprite. Edit reference body ONLY to change skin material to fantasy zombie potato: muted sage olive-green skin with naturally earthy freckles, soft yellow-green highlights, friendly not rotten. Preserve EXACT silhouette, body proportions, crown, feet, legs, placement, pose, framing, upper-left lighting and detailed 3D realism. No face, arms, hair, clothing or accessories. Natural detailed pores and organic texture, subtle color variation, no flat painted look. Genuine transparent background. No floor, text or watermark.",
+      "path": "assets/parts/body/pear-zombie.png",
+      "generationFile": "exec-1473c354-368b-4325-bfb6-09095f910207.png",
+      "reference": "assets/parts/body/pear-russet.png"
+    },
+    {
+      "key": "body/petite-blue",
+      "box": [
+        190,
+        260,
+        834,
+        922
+      ],
+      "prompt": "Use case: precise-object-edit. Asset type: transparent potato body sprite. Edit reference body ONLY to change skin material to Adirondack blue: muted blue-lavender potato skin, irregular indigo pores and pale cool highlights. Preserve EXACT silhouette, body proportions, crown, feet, legs, placement, pose, framing, upper-left lighting and detailed 3D realism. No face, arms, hair, clothing or accessories. Natural detailed pores and organic texture, subtle color variation, no flat painted look. Genuine transparent background. No floor, text or watermark.",
+      "path": "assets/parts/body/petite-blue.png",
+      "generationFile": "exec-06cba2db-9be2-4f0d-b608-a9255e187d90.png",
+      "reference": "assets/parts/body/petite-russet.png"
+    },
+    {
+      "key": "body/petite-pink",
+      "box": [
+        190,
+        260,
+        834,
+        922
+      ],
+      "prompt": "Use case: precise-object-edit. Asset type: transparent potato body sprite. Edit reference body ONLY to change skin material to fingerling pink: dusty warm blush-pink skin, natural darker pink freckles and warm cream highlights. Preserve EXACT silhouette, body proportions, crown, feet, legs, placement, pose, framing, upper-left lighting and detailed 3D realism. No face, arms, hair, clothing or accessories. Natural detailed pores and organic texture, subtle color variation, no flat painted look. Genuine transparent background. No floor, text or watermark.",
+      "path": "assets/parts/body/petite-pink.png",
+      "generationFile": "exec-c2d1f970-b73f-4d2a-90af-f8ac02cfc3b0.png",
+      "reference": "assets/parts/body/petite-russet.png"
+    },
+    {
+      "key": "body/petite-ghost",
+      "box": [
+        190,
+        260,
+        834,
+        922
+      ],
+      "prompt": "Use case: precise-object-edit. Asset type: transparent potato body sprite. Edit reference body ONLY to change skin material to ghost potato: pale warm ivory skin with subtle tan pores and creamy texture, not translucent. Preserve EXACT silhouette, body proportions, crown, feet, legs, placement, pose, framing, upper-left lighting and detailed 3D realism. No face, arms, hair, clothing or accessories. Natural detailed pores and organic texture, subtle color variation, no flat painted look. Genuine transparent background. No floor, text or watermark.",
+      "path": "assets/parts/body/petite-ghost.png",
+      "generationFile": "exec-981c6ee5-832a-4a0a-abdb-8951c7026b41.png",
+      "reference": "assets/parts/body/petite-russet.png"
+    },
+    {
+      "key": "body/petite-zombie",
+      "box": [
+        190,
+        260,
+        834,
+        922
+      ],
+      "prompt": "Use case: precise-object-edit. Asset type: transparent potato body sprite. Edit reference body ONLY to change skin material to fantasy zombie potato: muted sage olive-green skin with naturally earthy freckles, soft yellow-green highlights, friendly not rotten. Preserve EXACT silhouette, body proportions, crown, feet, legs, placement, pose, framing, upper-left lighting and detailed 3D realism. No face, arms, hair, clothing or accessories. Natural detailed pores and organic texture, subtle color variation, no flat painted look. Genuine transparent background. No floor, text or watermark.",
+      "path": "assets/parts/body/petite-zombie.png",
+      "generationFile": "exec-d8511485-dd2b-48e9-88fc-5c3a9ed1275d.png",
+      "reference": "assets/parts/body/petite-russet.png"
+    },
+    {
+      "key": "hair/braids",
+      "box": [
+        180,
+        100,
+        844,
+        780
+      ],
+      "prompt": "Use case: stylized-concept. Asset type: one transparent modular hairstyle sprite for a detailed 3D potato avatar. Front-facing hair ONLY, broad round head proportions. The central face opening must be genuinely transparent, broad enough for a wide potato face: no head, face, skin, eyes, mannequin, neck, shoulders, clothing, background, text or watermarks. Rich chestnut brown hair, detailed individual strands and dimensional locks, upper-left warm studio light, deep natural shadows. Whole hairstyle contained with generous margins. Two neat medium-length three-strand braids hanging down at either side, a broad center-parted crown, braided hair roots and subtle flyaways. Ends secured with simple small dark brown hair ties. Wide transparent face opening; no hair crossing the middle. Crisp believable interwoven braid anatomy.",
+      "path": "assets/parts/hair/braids.png",
+      "generationFile": "exec-468d6d40-56fb-48bc-ae21-f697599f1201.png"
+    },
+    {
+      "key": "hair/bun",
+      "box": [
+        180,
+        55,
+        844,
+        480
+      ],
+      "prompt": "Use case: stylized-concept. Asset type: one transparent modular hairstyle sprite for a detailed 3D potato avatar. Front-facing hair ONLY, broad round head proportions. The central face opening must be genuinely transparent, broad enough for a wide potato face: no head, face, skin, eyes, mannequin, neck, shoulders, clothing, background, text or watermarks. Rich chestnut brown hair, detailed individual strands and dimensional locks, upper-left warm studio light, deep natural shadows. Whole hairstyle contained with generous margins. A relaxed low-volume high bun gathered at the crown, swept-back hair forming a broad cap with wide transparent empty face opening below, two delicate short wisps at the temples. The bun shows clearly wound locks, slight flyaways and a neat organic silhouette. No ribbon or accessories.",
+      "path": "assets/parts/hair/bun.png",
+      "generationFile": "exec-4fea4206-4f3d-4efd-8953-3f8163891ce8.png"
+    },
+    {
+      "key": "eyes/almond",
+      "box": [
+        300,
+        380,
+        724,
+        478
+      ],
+      "prompt": "Use case: stylized-concept. Asset type: a single modular transparent PNG part for a high-detail 3D potato avatar. Premium animated-film realism, soft upper-left studio lighting, believable material microtexture and natural depth. Entire part centered, isolated, fully inside frame, transparent background, no mannequin, full character, body, text or watermark. ONLY a matched pair of expressive warm brown almond-shaped eyes, evenly spaced and front-facing. Bright moist corneas and small accurate catchlights. A few fine dark eyelashes along the upper outer corners, natural and subtle. Thin warm russet potato-textured eyelid rims around eyes, seamless tapered edge, minimal surrounding skin. NO eyebrows, nose, mouth, face or additional eyes. Relaxed friendly gaze, open eyes, each iris and pupil centered appropriately.",
+      "path": "assets/parts/eyes/almond.png",
+      "generationFile": "exec-76915a64-7151-4db5-a941-71fc6839d6c4.png"
+    },
+    {
+      "key": "eyes/lashWink",
+      "box": [
+        300,
+        380,
+        724,
+        478
+      ],
+      "prompt": "Use case: stylized-concept. Asset type: a single modular transparent PNG part for a high-detail 3D potato avatar. Premium animated-film realism, soft upper-left studio lighting, believable material microtexture and natural depth. Entire part centered, isolated, fully inside frame, transparent background, no mannequin, full character, body, text or watermark. ONLY a pair of potato-character eyes: viewer-left eye open with warm brown iris and bright catchlight, viewer-right eye closed in a playful wink. Subtle fine upper outer eyelashes on both eyes. Warm russet potato-textured thin eyelids, minimal surrounding skin, tapered edges. Front-facing, even spacing. NO brows, nose, mouth, face, body, extra eyes or decorations.",
+      "path": "assets/parts/eyes/lashWink.png",
+      "generationFile": "exec-6d35fbf7-b7db-49b6-b0b4-2ca2c0a67072.png"
+    },
+    {
+      "key": "eyes/joyLashes",
+      "box": [
+        300,
+        392,
+        724,
+        454
+      ],
+      "prompt": "Use case: stylized-concept. Asset type: a single modular transparent PNG part for a high-detail 3D potato avatar. Premium animated-film realism, soft upper-left studio lighting, believable material microtexture and natural depth. Entire part centered, isolated, fully inside frame, transparent background, no mannequin, full character, body, text or watermark. ONLY a pair of closed joyful smiling eyes: two upward arched gently squeezed eyelid shapes with small fine outer lashes, happy relaxed expression. Dark delicate lash line and thin warm russet potato skin eyelid rims. Front-facing, even spacing. No eyeballs visible. NO eyebrows, nose, mouth, face, body or cheek patches. Minimal surrounding skin, tapered edge.",
+      "path": "assets/parts/eyes/joyLashes.png",
+      "generationFile": "exec-361f298a-47a3-4f28-b54d-a2455f43954f.png"
+    },
+    {
+      "key": "brows/softArch",
+      "box": [
+        310,
+        340,
+        714,
+        390
+      ],
+      "prompt": "Use case: stylized-concept. Asset type: a single modular transparent PNG part for a high-detail 3D potato avatar. Premium animated-film realism, soft upper-left studio lighting, believable material microtexture and natural depth. Entire part centered, isolated, fully inside frame, transparent background, no mannequin, full character, body, text or watermark. ONLY two soft slender gently arched dark brown eyebrows, front-facing even spacing, delicately tapered tails and individual fine hairs. Warm friendly balanced expression, not angry, not surprise. High detail hair strands and soft dimension. No skin, eyes, face or other features.",
+      "path": "assets/parts/brows/softArch.png",
+      "generationFile": "exec-662a1a52-f485-4572-b043-adb1c8f9f910.png"
+    },
+    {
+      "key": "mouth/smile",
+      "box": [
+        410,
+        535,
+        614,
+        580
+      ],
+      "prompt": "Use case: stylized-concept. Asset type: a single modular transparent PNG part for a high-detail 3D potato avatar. Premium animated-film realism, soft upper-left studio lighting, believable material microtexture and natural depth. Entire part centered, isolated, fully inside frame, transparent background, no mannequin, full character, body, text or watermark. ONLY a gentle CLOSED smiling mouth for a russet potato character. A very slim curved dark smile crease with tiny corner dimples, subtle thin potato-skin lower lip merging into nothing at its edges. No large swollen lips, no duckbill, no teeth or tongue, no floating skin patch. Soft natural friendly upturned smile. Warm russet textured material, original classic mascot realism. Mouth only, no other face parts. Wide shallow arc, overall height under one fifth its width.",
+      "path": "assets/parts/mouth/smile.png",
+      "generationFile": "exec-0931fb59-41e2-4b30-ab5c-3f81df2d4a0d.png"
+    },
+    {
+      "key": "hat/bow",
+      "box": [
+        310,
+        140,
+        560,
+        340
+      ],
+      "prompt": "Use case: stylized-concept. Asset type: a single modular transparent PNG part for a high-detail 3D potato avatar. Premium animated-film realism, soft upper-left studio lighting, believable material microtexture and natural depth. Entire part centered, isolated, fully inside frame, transparent background, no mannequin, full character, body, text or watermark. ONLY a beautifully tied red grosgrain hair bow, dimensional folded loops, pinched center knot and two short fishtail ribbon ends. Fine woven rib texture, natural cloth creases and soft shadow inside loops. Slight three-quarter perspective as worn atop the left side of a head, bow facing forward. No clip visible, no hair, no head, no body.",
+      "path": "assets/parts/hat/bow.png",
+      "generationFile": "exec-24468b28-4a7a-4068-87a4-16b021504bbd.png"
+    },
+    {
+      "key": "hat/flowerCrown",
+      "box": [
+        210,
+        190,
+        814,
+        340
+      ],
+      "prompt": "Use case: stylized-concept. Asset type: a single modular transparent PNG part for a high-detail 3D potato avatar. Premium animated-film realism, soft upper-left studio lighting, believable material microtexture and natural depth. Entire part centered, isolated, fully inside frame, transparent background, no mannequin, full character, body, text or watermark. ONLY a delicate wearable floral crown seen from front, gently curved elliptical arc of small cream daisies and blush roses with rich green leaves and fine twisted stems. A low graceful floral wreath, physically connected flowers and stems, subtle perspective with ends curving backward. Central opening transparent. No head, no hair, no face. Detailed real petals with soft 3D animated-film polish.",
+      "path": "assets/parts/hat/flowerCrown.png",
+      "generationFile": "exec-69e4679c-350f-437a-a04a-e8c269dd82dd.png"
+    },
+    {
+      "key": "hat/sunhat",
+      "box": [
+        120,
+        80,
+        904,
+        350
+      ],
+      "prompt": "Use case: stylized-concept. Asset type: a single modular transparent PNG part for a high-detail 3D potato avatar. Premium animated-film realism, soft upper-left studio lighting, believable material microtexture and natural depth. Entire part centered, isolated, fully inside frame, transparent background, no mannequin, full character, body, text or watermark. ONLY a straw sunhat for a broad round potato head, front view slightly elevated. Natural fine woven honey straw, softly rounded low crown, wide gently curved brim and a red grosgrain ribbon band tied in a small bow at viewer-right. Brim creates believable shade under crown. No face, head, hair or body, no words. Fully contained in frame.",
+      "path": "assets/parts/hat/sunhat.png",
+      "generationFile": "exec-5982bd28-7a5b-4c81-9a35-2459ecd88d11.png"
+    },
+    {
+      "key": "jewelry/hoops",
+      "box": [
+        270,
+        455,
+        754,
+        575
+      ],
+      "prompt": "Use case: stylized-concept. Asset type: one transparent PNG accessory sprite for a highly detailed 3D potato avatar. Soft upper-left studio lighting, premium animated-film realism, crisp realistic material detail. Fully inside frame with clear margin. Genuine transparent background. No head, face, body, mannequin, text, watermark or extra objects. A matched pair of small elegant polished gold hoop earrings. Front view slightly angled to show hoop thickness, each hoop physically joined to a tiny stud attachment at top. Space the two earrings widely apart with entirely transparent middle. Warm realistic metallic reflections, thin graceful rounded hoops.",
+      "path": "assets/parts/jewelry/hoops.png",
+      "generationFile": "exec-4158e56a-52bd-450a-929b-7f7e8372c8ff.png"
+    },
+    {
+      "key": "jewelry/pearlDrops",
+      "box": [
+        270,
+        455,
+        754,
+        565
+      ],
+      "prompt": "Use case: stylized-concept. Asset type: one transparent PNG accessory sprite for a highly detailed 3D potato avatar. Soft upper-left studio lighting, premium animated-film realism, crisp realistic material detail. Fully inside frame with clear margin. Genuine transparent background. No head, face, body, mannequin, text, watermark or extra objects. A matched pair of delicate pearl drop earrings, each with one small gold stud, a tiny gold link and a luminous creamy white oval pearl hanging below. Perfectly connected links, subtle pearl iridescence. Earrings widely spaced apart with transparent middle. Front view.",
+      "path": "assets/parts/jewelry/pearlDrops.png",
+      "generationFile": "exec-bceedc06-be6e-4056-8215-c17f9988f52b.png"
+    },
+    {
+      "key": "jewelry/starStuds",
+      "box": [
+        270,
+        455,
+        754,
+        515
+      ],
+      "prompt": "Use case: stylized-concept. Asset type: one transparent PNG accessory sprite for a highly detailed 3D potato avatar. Soft upper-left studio lighting, premium animated-film realism, crisp realistic material detail. Fully inside frame with clear margin. Genuine transparent background. No head, face, body, mannequin, text, watermark or extra objects. A matched pair of petite five-point star stud earrings in brushed warm gold, softly rounded dimensional edges, tiny engraved starburst detail. Front view, two stars widely spaced apart with empty transparent center, no visible long backing pins.",
+      "path": "assets/parts/jewelry/starStuds.png",
+      "generationFile": "exec-5cbba0b9-5b20-44e5-a34e-9b50f9cd08ae.png"
+    },
+    {
+      "key": "neckwear/pearls",
+      "box": [
+        230,
+        600,
+        794,
+        750
+      ],
+      "prompt": "Use case: stylized-concept. Asset type: one transparent PNG accessory sprite for a highly detailed 3D potato avatar. Soft upper-left studio lighting, premium animated-film realism, crisp realistic material detail. Fully inside frame with clear margin. Genuine transparent background. No head, face, body, mannequin, text, watermark or extra objects. ONLY the visible FRONT segment of a pearl necklace worn around the upper torso of a round potato. A single shallow U-shaped curved strand of small luminous cream pearls, draping down at center. Left and right ends curve subtly backward in perspective. No complete closed oval and no rear half of necklace. Fine gold links just visible between pearls; evenly graded realistic beads with subtle highlights. Width about four times height.",
+      "path": "assets/parts/neckwear/pearls.png",
+      "generationFile": "exec-13641f8c-76c2-4dc8-8831-ca8d0bbd8641.png"
+    },
+    {
+      "key": "neckwear/pendant",
+      "box": [
+        230,
+        600,
+        794,
+        760
+      ],
+      "prompt": "Use case: stylized-concept. Asset type: one transparent PNG accessory sprite for a highly detailed 3D potato avatar. Soft upper-left studio lighting, premium animated-film realism, crisp realistic material detail. Fully inside frame with clear margin. Genuine transparent background. No head, face, body, mannequin, text, watermark or extra objects. ONLY the visible FRONT portion of a delicate gold chain necklace, a graceful shallow U shape with a small dimensional rose-gold heart pendant at the lowest center. Physically linked fine chain, pendant attached by an accurate tiny gold bail. Ends curve backward slightly at left and right. No back half/closed oval of necklace. No body. Width about 3.5 times height, not a long V.",
+      "path": "assets/parts/neckwear/pendant.png",
+      "generationFile": "exec-a9769e30-d312-4561-87ce-1ae3c88a9421.png"
+    },
+    {
+      "key": "extra/barrette",
+      "box": [
+        280,
+        335,
+        410,
+        410
+      ],
+      "prompt": "Use case: stylized-concept. Asset type: one transparent PNG accessory sprite for a highly detailed 3D potato avatar. Soft upper-left studio lighting, premium animated-film realism, crisp realistic material detail. Fully inside frame with clear margin. Genuine transparent background. No head, face, body, mannequin, text, watermark or extra objects. One small elegant golden leaf-shaped hair barrette, curved slightly to follow the side of a head. Detailed engraved veins, polished edge, satin gold center. Horizontal diagonal tilt of about 20 degrees. No hair, head, face or hands. Compact wearable clip, not a crown.",
+      "path": "assets/parts/extra/barrette.png",
+      "generationFile": "exec-f5d20282-8f52-459e-a32a-7781cfc78aba.png"
+    },
+    {
+      "key": "extra/scrunchie",
+      "box": [
+        260,
+        300,
+        410,
+        440
+      ],
+      "prompt": "Use case: stylized-concept. Asset type: one transparent PNG accessory sprite for a highly detailed 3D potato avatar. Soft upper-left studio lighting, premium animated-film realism, crisp realistic material detail. Fully inside frame with clear margin. Genuine transparent background. No head, face, body, mannequin, text, watermark or extra objects. One red satin bow hair clip: small tidy bow with two dimensional folded loops and short tapering ribbon tails. Fine silky weave, natural fold shadows, subtle seam detail, front view angled slightly as worn at the temple. No hair, head or face.",
+      "path": "assets/parts/extra/scrunchie.png",
+      "generationFile": "exec-37d3bec7-9283-4f56-a218-9e877e5788f2.png"
+    },
+    {
+      "key": "gesture/fingerHeart",
+      "box": [
+        650,
+        410,
+        960,
+        760
+      ],
+      "prompt": "Use case: stylized-concept. Asset type: ONE isolated modular potato-character arm with attached hand, transparent PNG. No body, face, shoulder torso, other arm, full character, backdrop, floor, text or watermark. Warm russet potato skin, detailed natural pores and small freckles, soft upper-left studio light and lower-right shadow, rounded appealing 3D cartoon realism. Anatomically coherent single hand, exactly five fingers total including thumb, no extra digits or fused fingers. The arm is short and softly curved with a natural wrist and elbow; its blunt shoulder end will attach to a body in a compositor. Entire arm and object contained with generous margin. Arm goes from a blunt shoulder end at LOWER LEFT, curves out to a raised hand at UPPER RIGHT, palm facing viewer. Hand makes a clear one-handed finger-heart: thumb and index finger cross at their tips forming the tiny heart notch, other three fingers curled naturally into the palm. No drawn heart icon, jewelry, nails or props. Precise thumb/index overlap, softly rounded believable knuckles.",
+      "path": "assets/parts/gesture/fingerHeart.png",
+      "generationFile": "exec-4778dc6b-00a5-4bf5-8062-4ad34c9a83b5.png"
+    },
+    {
+      "key": "gesture/palmUp",
+      "box": [
+        650,
+        520,
+        960,
+        790
+      ],
+      "prompt": "Use case: stylized-concept. Asset type: ONE isolated modular potato-character arm with attached hand, transparent PNG. No body, face, shoulder torso, other arm, full character, backdrop, floor, text or watermark. Warm russet potato skin, detailed natural pores and small freckles, soft upper-left studio light and lower-right shadow, rounded appealing 3D cartoon realism. Anatomically coherent single hand, exactly five fingers total including thumb, no extra digits or fused fingers. The arm is short and softly curved with a natural wrist and elbow; its blunt shoulder end will attach to a body in a compositor. Entire arm and object contained with generous margin. Arm extends from blunt shoulder end at UPPER LEFT, bends gently down and then outward to an OPEN PALM-UP hand at RIGHT, as if warmly presenting or inviting. Relaxed thumb and four gently curved fingers, clearly readable cupped palm, natural tendons and rounded fingertips. No props or jewelry.",
+      "path": "assets/parts/gesture/palmUp.png",
+      "generationFile": "exec-d9cbb35a-03c3-4147-a78c-8bb646d11487.png"
+    },
+    {
+      "key": "gesture/hip",
+      "box": [
+        650,
+        510,
+        915,
+        810
+      ],
+      "prompt": "Use case: stylized-concept. Asset type: ONE isolated modular potato-character arm with attached hand, transparent PNG. No body, face, shoulder torso, other arm, full character, backdrop, floor, text or watermark. Warm russet potato skin, detailed natural pores and small freckles, soft upper-left studio light and lower-right shadow, rounded appealing 3D cartoon realism. Anatomically coherent single hand, exactly five fingers total including thumb, no extra digits or fused fingers. The arm is short and softly curved with a natural wrist and elbow; its blunt shoulder end will attach to a body in a compositor. Entire arm and object contained with generous margin. A bent arm for a hand-on-hip pose: blunt shoulder end at UPPER LEFT, upper arm slopes out to elbow at RIGHT, forearm bends back inward to hand at LOWER LEFT. The open relaxed hand rests on an invisible hip, thumb pointing inward, four fingers together pointing downward. Hand is fully visible and empty. Clear triangular bend with transparent opening between arm segments. No body or hip visible. Natural compact pose, no extra limbs.",
+      "path": "assets/parts/gesture/hip.png",
+      "generationFile": "exec-016a6d24-8815-45f9-95e2-05846f906aec.png"
+    },
+    {
+      "key": "item/bouquet",
+      "box": [
+        70,
+        370,
+        390,
+        780
+      ],
+      "prompt": "Use case: stylized-concept. Asset type: ONE isolated modular potato-character arm with attached hand, transparent PNG. No body, face, shoulder torso, other arm, full character, backdrop, floor, text or watermark. Warm russet potato skin, detailed natural pores and small freckles, soft upper-left studio light and lower-right shadow, rounded appealing 3D cartoon realism. Anatomically coherent single hand, exactly five fingers total including thumb, no extra digits or fused fingers. The arm is short and softly curved with a natural wrist and elbow; its blunt shoulder end will attach to a body in a compositor. Entire arm and object contained with generous margin. Arm starts at blunt shoulder end at UPPER RIGHT and bends down to a hand at LEFT holding the stems of a small beautiful bouquet upright. Hand wraps naturally around tied green stems below blossoms, thumb opposed to fingers, grip makes physical contact. Bouquet has three pink peonies, two cream daisies, eucalyptus leaves, a small red ribbon around stems. Delicate layered petals and leaf veins. Flowers at upper-left, hand below, arm to right. No wrapping paper.",
+      "path": "assets/parts/item/bouquet.png",
+      "generationFile": "exec-084d4ee7-7378-41c6-a6b4-cdb0b0500c58.png"
+    },
+    {
+      "key": "item/handbag",
+      "box": [
+        70,
+        470,
+        390,
+        880
+      ],
+      "prompt": "Use case: stylized-concept. Asset type: ONE isolated modular potato-character arm with attached hand, transparent PNG. No body, face, shoulder torso, other arm, full character, backdrop, floor, text or watermark. Warm russet potato skin, detailed natural pores and small freckles, soft upper-left studio light and lower-right shadow, rounded appealing 3D cartoon realism. Anatomically coherent single hand, exactly five fingers total including thumb, no extra digits or fused fingers. The arm is short and softly curved with a natural wrist and elbow; its blunt shoulder end will attach to a body in a compositor. Entire arm and object contained with generous margin. Arm starts at blunt shoulder end at UPPER RIGHT and reaches diagonally down-left. Hand naturally hooks fingers around the top of one rounded handle of a small red leather handbag hanging below the hand at LOWER LEFT. Correct gravity: handle under fingers, handbag hanging down, no floating bag. Rich red leather grain, neat edge stitching, gold clasp and tiny metal handle mounts. Compact elegant structured bag, no logo. Entire arm and bag visible.",
+      "path": "assets/parts/item/handbag.png",
+      "generationFile": "exec-1b67a937-885a-4f86-b70c-d9e563d966d5.png"
+    },
+    {
+      "key": "item/teacup",
+      "box": [
+        70,
+        470,
+        390,
+        780
+      ],
+      "prompt": "Use case: stylized-concept. Asset type: ONE isolated modular potato-character arm with attached hand, transparent PNG. No body, face, shoulder torso, other arm, full character, backdrop, floor, text or watermark. Warm russet potato skin, detailed natural pores and small freckles, soft upper-left studio light and lower-right shadow, rounded appealing 3D cartoon realism. Anatomically coherent single hand, exactly five fingers total including thumb, no extra digits or fused fingers. The arm is short and softly curved with a natural wrist and elbow; its blunt shoulder end will attach to a body in a compositor. Entire arm and object contained with generous margin. Arm starts at blunt shoulder end at UPPER RIGHT and bends down-left into a hand holding a delicate ivory porcelain teacup at LEFT. Thumb and index naturally grip the loop handle, remaining fingers curl beneath/behind, no fingers passing through ceramic. Small blue painted floral pattern and fine gold rim on cup, warm tea visible inside, subtle glaze reflections. No saucer, steam, other hand or text.",
+      "path": "assets/parts/item/teacup.png",
+      "generationFile": "exec-bbbfb13b-9a06-43a3-9e27-73f95f877c03.png"
+    },
+    {
+      "key": "item/palette",
+      "box": [
+        70,
+        440,
+        390,
+        800
+      ],
+      "prompt": "Use case: stylized-concept. Asset type: ONE isolated modular potato-character arm with attached hand, transparent PNG. No body, face, shoulder torso, other arm, full character, backdrop, floor, text or watermark. Warm russet potato skin, detailed natural pores and small freckles, soft upper-left studio light and lower-right shadow, rounded appealing 3D cartoon realism. Anatomically coherent single hand, exactly five fingers total including thumb, no extra digits or fused fingers. The arm is short and softly curved with a natural wrist and elbow; its blunt shoulder end will attach to a body in a compositor. Entire arm and object contained with generous margin. Arm starts at blunt shoulder end at UPPER RIGHT and curves down-left to a hand holding an oval walnut wooden artist palette at LEFT. Thumb goes through the actual thumb hole, other fingers support the palette from below. Six distinct small glossy paint dabs red yellow blue green white pink. Fine wood grain and beveled edge. One slender brush rests across the palette, naturally supported. No text or extra hand.",
+      "path": "assets/parts/item/palette.png",
+      "generationFile": "exec-2f3b3db5-6aef-41c6-82dc-6d9d0744fafc.png"
+    },
+    {
+      "key": "hair/curls",
+      "box": [
+        160,
+        100,
+        864,
+        700
+      ],
+      "prompt": "Use case: background-extraction. Edit the attached hairstyle sprite to remove ALL brown atmospheric glow and broad semitransparent backdrop around and within the hair. Preserve the hair's exact style, strands, shape, texture, chestnut color and highlights. Output ONLY solid opaque detailed hair with natural fine strand edges, clean transparent gaps between curls, and a completely transparent empty face opening. Absolutely no colored haze, fog, soft blob, shadow plane or background pixels. Truly transparent PNG. Do not add a face or mannequin.",
+      "path": "assets/parts/hair/curls.png",
+      "generationFile": "exec-7a4949e0-5743-4893-900b-285d4af6a3da.png"
+    },
+    {
+      "key": "hair/pixie",
+      "box": [
+        200,
+        100,
+        824,
+        480
+      ],
+      "prompt": "Use case: background-extraction. Edit the attached hairstyle sprite to remove ALL brown atmospheric glow and broad semitransparent backdrop around and within the hair. Preserve the hair's exact style, strands, shape, texture, chestnut color and highlights. Output ONLY solid opaque detailed hair with natural fine strand edges, clean transparent gaps between curls, and a completely transparent empty face opening. Absolutely no colored haze, fog, soft blob, shadow plane or background pixels. Truly transparent PNG. Do not add a face or mannequin.",
+      "path": "assets/parts/hair/pixie.png",
+      "generationFile": "exec-1140be9e-77ba-46b6-938f-915a4028a8a1.png"
+    },
+    {
+      "key": "stickers/sunflower",
+      "box": [
+        112,
+        112,
+        912,
+        912
+      ],
+      "prompt": "Use case: stylized-concept. Asset type: ONE original die-cut laptop sticker, transparent PNG. Detailed dimensional illustration with clean bold silhouette, subtle enamel-like shading, crisp small-scale readability and a narrow white die-cut outline. Entire sticker centered, fills most of square frame with generous margin. Transparent background, no lettering, watermark, logos, photograph or sticker sheet. Upper-left lighting. A cheerful golden sunflower with two staggered layers of detailed yellow petals, a richly textured dark seed center and two little green leaves.",
+      "path": "assets/parts/stickers/sunflower.png",
+      "generationFile": "exec-09a661a8-6d1d-4129-a04f-b32f3a7cbda5.png"
+    },
+    {
+      "key": "stickers/butterfly",
+      "box": [
+        112,
+        112,
+        912,
+        912
+      ],
+      "prompt": "Use case: stylized-concept. Asset type: ONE original die-cut laptop sticker, transparent PNG. Detailed dimensional illustration with clean bold silhouette, subtle enamel-like shading, crisp small-scale readability and a narrow white die-cut outline. Entire sticker centered, fills most of square frame with generous margin. Transparent background, no lettering, watermark, logos, photograph or sticker sheet. Upper-left lighting. One graceful butterfly with symmetric lilac and teal wings, fine dark vein patterns, four complete wings and two fine antennae. Friendly elegant illustration.",
+      "path": "assets/parts/stickers/butterfly.png",
+      "generationFile": "exec-e7941a54-dcec-4a83-828c-ba6d7be7c29c.png"
+    },
+    {
+      "key": "stickers/rainbow",
+      "box": [
+        112,
+        112,
+        912,
+        912
+      ],
+      "prompt": "Use case: stylized-concept. Asset type: ONE original die-cut laptop sticker, transparent PNG. Detailed dimensional illustration with clean bold silhouette, subtle enamel-like shading, crisp small-scale readability and a narrow white die-cut outline. Entire sticker centered, fills most of square frame with generous margin. Transparent background, no lettering, watermark, logos, photograph or sticker sheet. Upper-left lighting. A softly rounded rainbow with six distinct colorful bands, cream puffy clouds at both ends, a tiny golden sparkle beside it.",
+      "path": "assets/parts/stickers/rainbow.png",
+      "generationFile": "exec-b39d0183-8c4f-42a7-a355-7c0a0e13e62e.png"
+    },
+    {
+      "key": "stickers/moon",
+      "box": [
+        112,
+        112,
+        912,
+        912
+      ],
+      "prompt": "Use case: stylized-concept. Asset type: ONE original die-cut laptop sticker, transparent PNG. Detailed dimensional illustration with clean bold silhouette, subtle enamel-like shading, crisp small-scale readability and a narrow white die-cut outline. Entire sticker centered, fills most of square frame with generous margin. Transparent background, no lettering, watermark, logos, photograph or sticker sheet. Upper-left lighting. A luminous pale-gold crescent moon cradling three small stars, delicate crater texture and midnight-blue accent.",
+      "path": "assets/parts/stickers/moon.png",
+      "generationFile": "exec-3400266a-a7bb-4f33-8cff-741337827315.png"
+    },
+    {
+      "key": "stickers/books",
+      "box": [
+        112,
+        112,
+        912,
+        912
+      ],
+      "prompt": "Use case: stylized-concept. Asset type: ONE original die-cut laptop sticker, transparent PNG. Detailed dimensional illustration with clean bold silhouette, subtle enamel-like shading, crisp small-scale readability and a narrow white die-cut outline. Entire sticker centered, fills most of square frame with generous margin. Transparent background, no lettering, watermark, logos, photograph or sticker sheet. Upper-left lighting. A cozy stack of three beautiful closed books, teal coral and mustard cloth covers, crisp cream page edges and one red bookmark.",
+      "path": "assets/parts/stickers/books.png",
+      "generationFile": "exec-b55794c4-a918-43ca-9cae-741eba6bc534.png"
+    },
+    {
+      "key": "stickers/music",
+      "box": [
+        112,
+        112,
+        912,
+        912
+      ],
+      "prompt": "Use case: stylized-concept. Asset type: ONE original die-cut laptop sticker, transparent PNG. Detailed dimensional illustration with clean bold silhouette, subtle enamel-like shading, crisp small-scale readability and a narrow white die-cut outline. Entire sticker centered, fills most of square frame with generous margin. Transparent background, no lettering, watermark, logos, photograph or sticker sheet. Upper-left lighting. A pair of joined musical eighth notes with a small pink heart accent, deep plum glossy enamel and fine gold edge details.",
+      "path": "assets/parts/stickers/music.png",
+      "generationFile": "exec-9a882c98-aa56-444a-80f9-ea2e8c0a7d78.png"
+    },
+    {
+      "key": "stickers/paw",
+      "box": [
+        112,
+        112,
+        912,
+        912
+      ],
+      "prompt": "Use case: stylized-concept. Asset type: ONE original die-cut laptop sticker, transparent PNG. Detailed dimensional illustration with clean bold silhouette, subtle enamel-like shading, crisp small-scale readability and a narrow white die-cut outline. Entire sticker centered, fills most of square frame with generous margin. Transparent background, no lettering, watermark, logos, photograph or sticker sheet. Upper-left lighting. One friendly pet paw print: four rounded small toe pads above one large heart-shaped central pad. Warm coral and dusty rose, soft dimensional shading.",
+      "path": "assets/parts/stickers/paw.png",
+      "generationFile": "exec-4e994e8d-7f4c-45c4-ad3e-76c0a9c942f3.png"
+    },
+    {
+      "key": "stickers/strawberry",
+      "box": [
+        112,
+        112,
+        912,
+        912
+      ],
+      "prompt": "Use case: stylized-concept. Asset type: ONE original die-cut laptop sticker, transparent PNG. Detailed dimensional illustration with clean bold silhouette, subtle enamel-like shading, crisp small-scale readability and a narrow white die-cut outline. Entire sticker centered, fills most of square frame with generous margin. Transparent background, no lettering, watermark, logos, photograph or sticker sheet. Upper-left lighting. One ripe bright red strawberry with natural golden seeds, fresh green leafy calyx, subtle highlights and cheerful rounded proportions.",
+      "path": "assets/parts/stickers/strawberry.png",
+      "generationFile": "exec-88990d37-c3ea-42c6-ac6e-7b2352bf522e.png"
+    },
+    {
+      "key": "stickers/bee",
+      "box": [
+        112,
+        112,
+        912,
+        912
+      ],
+      "prompt": "Use case: stylized-concept. Asset type: ONE original die-cut laptop sticker, transparent PNG. Detailed dimensional illustration with clean bold silhouette, subtle enamel-like shading, crisp small-scale readability and a narrow white die-cut outline. Entire sticker centered, fills most of square frame with generous margin. Transparent background, no lettering, watermark, logos, photograph or sticker sheet. Upper-left lighting. One adorable fuzzy honeybee, striped yellow and charcoal body, exactly six tiny legs, two translucent wings and two antennae. Warm friendly expressive eyes.",
+      "path": "assets/parts/stickers/bee.png",
+      "generationFile": "exec-a31456db-ee9a-43a5-a82a-997c38c38517.png"
+    },
+    {
+      "key": "stickers/teapot",
+      "box": [
+        112,
+        112,
+        912,
+        912
+      ],
+      "prompt": "Use case: stylized-concept. Asset type: ONE original die-cut laptop sticker, transparent PNG. Detailed dimensional illustration with clean bold silhouette, subtle enamel-like shading, crisp small-scale readability and a narrow white die-cut outline. Entire sticker centered, fills most of square frame with generous margin. Transparent background, no lettering, watermark, logos, photograph or sticker sheet. Upper-left lighting. One cozy ivory ceramic teapot with a small blue painted daisy, gold rim, a proper curved spout, opposite rounded handle and fitted lid.",
+      "path": "assets/parts/stickers/teapot.png",
+      "generationFile": "exec-19fc88fb-11f8-4259-a040-b2ad821d30b6.png"
+    },
+    {
+      "key": "stickers/camera",
+      "box": [
+        112,
+        112,
+        912,
+        912
+      ],
+      "prompt": "Use case: stylized-concept. Asset type: ONE original die-cut laptop sticker, transparent PNG. Detailed dimensional illustration with clean bold silhouette, subtle enamel-like shading, crisp small-scale readability and a narrow white die-cut outline. Entire sticker centered, fills most of square frame with generous margin. Transparent background, no lettering, watermark, logos, photograph or sticker sheet. Upper-left lighting. A charming small vintage teal camera, round dark lens with blue reflections, silver top plate, tiny coral shutter button and neat leather texture.",
+      "path": "assets/parts/stickers/camera.png",
+      "generationFile": "exec-25ac0fcc-c212-42ee-82de-b948c51ef656.png"
+    },
+    {
+      "key": "stickers/yarn",
+      "box": [
+        112,
+        112,
+        912,
+        912
+      ],
+      "prompt": "Use case: stylized-concept. Asset type: ONE original die-cut laptop sticker, transparent PNG. Detailed dimensional illustration with clean bold silhouette, subtle enamel-like shading, crisp small-scale readability and a narrow white die-cut outline. Entire sticker centered, fills most of square frame with generous margin. Transparent background, no lettering, watermark, logos, photograph or sticker sheet. Upper-left lighting. One coral ball of yarn with clearly interwoven strands and two wooden knitting needles crossing behind it; a loose yarn tail curls into a small heart.",
+      "path": "assets/parts/stickers/yarn.png",
+      "generationFile": "exec-7caaa211-2416-48ac-9447-9366778870c2.png"
+    },
+    {
+      "key": "hair/waves",
+      "prompt": "Use case: precise-object-edit. Edit this isolated chestnut wavy hairstyle sprite. Keep its exact rich hair-strand texture, brown color, upper-left light, off-center part, broad crown, long gentle waves and transparent background. CRITICAL CHANGE: move the two side sections OUTWARD and make them less bulky, so the empty transparent face opening is at least 60% of the TOTAL hairstyle width all the way from below the fringe to the bottom ends. No inward curl or lock may narrow the face opening at cheek or mouth height. The opening must be a wide, roughly vertical-sided upside-down U, not a keyhole or hourglass. The face must be unobstructed when assembled on a round potato. The hair remains connected across the crown and flows naturally at the sides. Only hair, no skin, face, head, mannequin or other objects. Transparent PNG, no backdrop or haze.",
+      "box": [
+        160,
+        100,
+        864,
+        790
+      ],
+      "path": "assets/parts/hair/waves.png",
+      "generationFile": "exec-df32c381-71ef-4961-be25-1cf41bea314e.png",
+      "reference": "exec-38958479-2238-40a1-87d3-266ffedc6ac3.png"
+    },
+    {
+      "key": "eyewear/catEye",
+      "box": [
+        300,
+        382,
+        724,
+        485
+      ],
+      "prompt": "Use case: precise-object-edit. Correct these red cat-eye glasses for a FRONT-FACING WORN avatar sprite. Keep exact red acetate frame shape, upswept corners, fine gold hinge studs and polished material. Unfold the temple arms so they project straight back behind the hinges and are NOT visible through either lens. Remove all red diagonal arms from the lens openings. Lens openings must be almost completely transparent with only very subtle small edge reflections, no white fill or fog, so eyes behind remain clearly visible. No head or eyes. Transparent background, no text or brand markings. One isolated pair of wearable glasses fully inside frame.",
+      "path": "assets/parts/eyewear/catEye.png",
+      "generationFile": "exec-d8a35ad6-3858-470c-90ae-e9adcb56d2a6.png",
+      "reference": "exec-6ccbef15-cf27-4a11-8884-3fa90a830454.png"
+    }
+  ],
+  "normalization": "Transparent artwork was cropped to its alpha bounds, uniformly resized into its target box, then centered on a 1024 x 1024 RGBA canvas. No hand-painted corrections were applied. Shipped image checksums and actual bounds are in assets/manifest.json.",
+  "references": "Reference filenames identify generation inputs; temporary generation files are not shipped. Repository paths identify the normalized versions of those assets."
+}

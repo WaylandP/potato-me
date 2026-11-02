@@ -1,0 +1,2367 @@
+{
+  "version": "0.5.0",
+  "reviewDate": "2026-11-02",
+  "baseCommit": "9cc7ba28deb2944186ada3b5aecf07e93994a608",
+  "environment": {
+    "node": "24.22.1",
+    "browser": "Chromium 153 on Linux",
+    "mobile": "390 px viewport emulation, not physical devices"
+  },
+  "inventory": {
+    "sourceImages": 222,
+    "thumbnails": 222,
+    "sourceDimensions": [
+      1024,
+      1024
+    ],
+    "thumbnailDimensions": [
+      256,
+      256
+    ],
+    "newSourceImages": 58,
+    "replacementSourceImages": 1
+  },
+  "totalCaseExecutions": 23922,
+  "countWarning": "Suites overlap. This is not a unique-avatar count or full Cartesian coverage. The final head inventory rerun replaces prior cases.",
+  "automatedSuites": [
+    {
+      "mode": "inventory",
+      "automatedCases": 9126,
+      "exports": 9126,
+      "thumbnails": 9126,
+      "maxExportBytes": 460976,
+      "circleFindings": [],
+      "errors": [],
+      "run": "v05-inventory",
+      "reportSha256": "f79605bb76c4bf9e36b0bd72d53176a81e71d49c9ab8e9696b16a88b5925edf5",
+      "finalReviewedSheets": 141
+    },
+    {
+      "mode": "inventory",
+      "automatedCases": 1512,
+      "exports": 1512,
+      "thumbnails": 1512,
+      "maxExportBytes": 460976,
+      "circleFindings": [],
+      "errors": [],
+      "run": "v05-inventory-head-v4",
+      "reportSha256": "c0c67b4321072453fe704be68ddfbc82dcba480b4bd00bbd995a5c6ecd51b6a1",
+      "finalReviewedSheets": 28,
+      "replaces": "Hair and hat cases in the inventory run; not additive to total."
+    },
+    {
+      "mode": "hair",
+      "automatedCases": 2628,
+      "exports": 0,
+      "thumbnails": 0,
+      "maxExportBytes": 0,
+      "circleFindings": [],
+      "errors": [],
+      "run": "v05-hair-v4",
+      "reportSha256": "343d281f118c9bba73fff27bb0c8bbbcf204d39d73f226403ad8a83f34369478",
+      "finalReviewedSheets": 54
+    },
+    {
+      "mode": "headwear",
+      "automatedCases": 1104,
+      "exports": 0,
+      "thumbnails": 0,
+      "maxExportBytes": 0,
+      "circleFindings": [],
+      "errors": [],
+      "run": "v05-headwear-v4",
+      "reportSha256": "cc37a0645abf7d9237bd4f9d51ee418ce1f00e6305bf9c4b11da81fb93060438",
+      "finalReviewedSheets": 23
+    },
+    {
+      "mode": "colors",
+      "automatedCases": 1872,
+      "exports": 0,
+      "thumbnails": 0,
+      "maxExportBytes": 0,
+      "circleFindings": [],
+      "errors": [],
+      "run": "v05-colors-v4",
+      "reportSha256": "3ea9c33c240a2c513823f54b3b1e87f4336abed69e6a879b0ffeeb98d9fc8a1b",
+      "finalReviewedSheets": 52
+    },
+    {
+      "mode": "expressions",
+      "automatedCases": 1836,
+      "exports": 0,
+      "thumbnails": 0,
+      "maxExportBytes": 0,
+      "circleFindings": [],
+      "errors": [],
+      "run": "v05-expressions",
+      "reportSha256": "b5929444c3556c4accc241b079847b39e78bd10c2fe3fcdb88543d7483da69d8",
+      "finalReviewedSheets": 36
+    },
+    {
+      "mode": "facial-hair",
+      "automatedCases": 3888,
+      "exports": 0,
+      "thumbnails": 0,
+      "maxExportBytes": 0,
+      "circleFindings": [],
+      "errors": [],
+      "run": "v05-facial-hair",
+      "reportSha256": "62177a6f1e0191a3b7689d8ce7d16e0933eb40f9af6ad4ed05d2d7db8113375c",
+      "finalReviewedSheets": 108
+    },
+    {
+      "mode": "poses",
+      "automatedCases": 1596,
+      "exports": 0,
+      "thumbnails": 0,
+      "maxExportBytes": 0,
+      "circleFindings": [],
+      "errors": [],
+      "run": "v05-final-poses",
+      "reportSha256": "29ff93e23816598b0c47bf1c9be9269d87fe8afaefb16ee8df519417140f73a8",
+      "finalReviewedSheets": 38
+    },
+    {
+      "mode": "eyewear",
+      "automatedCases": 816,
+      "exports": 0,
+      "thumbnails": 0,
+      "maxExportBytes": 0,
+      "circleFindings": [],
+      "errors": [],
+      "run": "v05-final-eyewear",
+      "reportSha256": "490e95da7d5a46696829561e99c6fd6dafab32a53f45e250a9e220d230bcc431",
+      "finalReviewedSheets": 16
+    },
+    {
+      "mode": "pairwise",
+      "automatedCases": 464,
+      "exports": 0,
+      "thumbnails": 0,
+      "maxExportBytes": 0,
+      "circleFindings": [],
+      "errors": [],
+      "pairCoverage": {
+        "factors": 19,
+        "cases": 464,
+        "requiredPairs": 18324,
+        "coveredPairs": 18324,
+        "missing": []
+      },
+      "run": "v05-final-pairwise",
+      "reportSha256": "83ccbbe1d069048a39d629b541e489705458f369e9b131f568574a0c15f71bb7",
+      "finalReviewedSheets": 9
+    },
+    {
+      "mode": "details",
+      "automatedCases": 424,
+      "exports": 0,
+      "thumbnails": 0,
+      "maxExportBytes": 0,
+      "circleFindings": [],
+      "errors": [],
+      "run": "v05-final-details",
+      "reportSha256": "d856f887054b0217f13e6c2fc9bd3add7f4cb5e2a8ac565361865c80ab99b9a6",
+      "finalReviewedSheets": 9
+    },
+    {
+      "mode": "backgrounds",
+      "automatedCases": 168,
+      "exports": 0,
+      "thumbnails": 0,
+      "maxExportBytes": 0,
+      "circleFindings": [],
+      "errors": [],
+      "run": "v05-final-backgrounds",
+      "reportSha256": "5867811b0a2b86a63f1d83e532de8380ad52cba741ef038cbc11faa8d257a012",
+      "finalReviewedSheets": 12
+    }
+  ],
+  "nodeTests": {
+    "passed": 48,
+    "failed": 0
+  },
+  "localBrowser": {
+    "checks": [
+      "All five tabs render their option thumbnails without failed images.",
+      "Keyboard tabs, selected states, focus and skip link preserve the avatar.",
+      "Text normalization, copied share URL and reload reproduce the exact canvas.",
+      "512 px download: valid PNG, 414818 bytes.",
+      "1024 px download: valid PNG, 1814535 bytes.",
+      "Crop toggle, reset and Surprise me update the real preview.",
+      "Laptop sticker limit permits six selections and rejects a seventh.",
+      "New body shapes, hair colors, jewelry, props, gestures and six new stickers are reachable through the actual controls.",
+      "Concurrent body/skin thumbnails match sequential renders in both mobile themes (2-channel-value tolerance).",
+      "390 px light/dark layouts: no horizontal overflow; all visible buttons meet 44 \u00d7 44 px.",
+      "Failed body request shows retry; retry recovers after the connection is restored.",
+      "Fitting tool includes empty holding hand, guards invalid scale input and fits its mobile controls without overflow.",
+      "Editor and fitting tool make no third-party requests."
+    ],
+    "screenshots": [
+      "desktop-light.png",
+      "desktop-body.png",
+      "desktop-face.png",
+      "desktop-hat.png",
+      "desktop-gear.png",
+      "desktop-bg.png",
+      "new-stickers.png",
+      "everyday-style.png",
+      "mobile-light.png",
+      "mobile-dark.png",
+      "fit-tool.png"
+    ],
+    "errors": []
+  },
+  "visualReview": {
+    "method": "Every listed contact sheet was opened and visually inspected by the coding assistant after automated rendering. This is separate from automated pass/fail.",
+    "reviewedSheets": 526,
+    "unresolvedBlockingFindings": [],
+    "sheets": [
+      {
+        "file": "v05-inventory/body-0.png",
+        "sha256": "6955acd9bf848ee30e87ca0c23729f79e21da2926847bb52be5782cc645d9cb1"
+      },
+      {
+        "file": "v05-inventory/brows-angry-0.png",
+        "sha256": "a953c68b82302c1965c04ea0d739c64791e2b80dfae241281d4b76a3a17ac5d5"
+      },
+      {
+        "file": "v05-inventory/brows-flat-0.png",
+        "sha256": "abe451b77d94ad4d4571d4c991dd8de557dee78db2c51c5b3aed7c57caf4ba97"
+      },
+      {
+        "file": "v05-inventory/brows-raised-0.png",
+        "sha256": "1aa25973efffb98552367e74327e9a434cf5ef22eaa9d41a0fcab57de8c8d669"
+      },
+      {
+        "file": "v05-inventory/brows-smug-0.png",
+        "sha256": "44491cc4f9fec3cec798fe88ed7978c775a84683a675cfa2fdb1e8c9c5735bbb"
+      },
+      {
+        "file": "v05-inventory/brows-softArch-0.png",
+        "sha256": "7b3d5044616587a7a4f5af3eeeedb070e429e54a7384f6a77a0215c2934d25df"
+      },
+      {
+        "file": "v05-inventory/brows-thick-0.png",
+        "sha256": "fc31dba5660233553be387a3941d276d2f3ec1070baa6ec34c139c9862bd8170"
+      },
+      {
+        "file": "v05-inventory/brows-uni-0.png",
+        "sha256": "b6084219c4a71bfdd8e09f3aa4cb00bef296af5bdfeafee60735650aa3932eed"
+      },
+      {
+        "file": "v05-inventory/brows-worried-0.png",
+        "sha256": "e7cc8cb6eca7598832487f98fa9abc301c7e81efc7160a06ecbaaef03847d6db"
+      },
+      {
+        "file": "v05-inventory/cheeks-freckles-0.png",
+        "sha256": "e040924267c464fcec0492a087afe92730d89cb0be3d6a49dbd459ca59b3dbea"
+      },
+      {
+        "file": "v05-inventory/cheeks-on-0.png",
+        "sha256": "9998069cbe21902dcc77c7bf5c9bce7c79ef23aa46ab6811aedd1987ee4ebbd1"
+      },
+      {
+        "file": "v05-inventory/extra-bandaid-0.png",
+        "sha256": "5a840018feaa57fade12dad38ae0f1a8e15b3a207aa2b58668ced6424c16f73d"
+      },
+      {
+        "file": "v05-inventory/extra-barrette-0.png",
+        "sha256": "c4e2d81fc8662b32ea125e4bf85ed178bcfa8f24b123f3ba3906839b7a303571"
+      },
+      {
+        "file": "v05-inventory/extra-earbuds-0.png",
+        "sha256": "bdc02d18641a86c87bf8889cfea4c5400407dc1c7825cd347f30fe03062c4194"
+      },
+      {
+        "file": "v05-inventory/extra-earring-0.png",
+        "sha256": "ccc2eeefe6b32bceb2ef7cf088e0c25c7f04e2333ec0efaa89c925ef968ca707"
+      },
+      {
+        "file": "v05-inventory/extra-flower-0.png",
+        "sha256": "fb8e60b80d05b49390fd2c96d30956900e2fb8d0e476115a03969239a60f04c2"
+      },
+      {
+        "file": "v05-inventory/extra-headphones-0.png",
+        "sha256": "bf7487a2bb3f313c9a9d1efc1d8466a73445a0afa8ad727830a5d0236c5c49c0"
+      },
+      {
+        "file": "v05-inventory/extra-scrunchie-0.png",
+        "sha256": "d9b0a33b4700dbc2a90dff9a7e5880284eb64761cec3f19fb4e9adbe35be5600"
+      },
+      {
+        "file": "v05-inventory/eyes-almond-0.png",
+        "sha256": "83f765f787560e696eae5fe5309ecc4287d28ee4630931d1f28cc45bf00a19ec"
+      },
+      {
+        "file": "v05-inventory/eyes-angry-0.png",
+        "sha256": "12c52260cc7cbf901683a603c6dce92502eb1127e18b3ee40fddf4b4842dacd8"
+      },
+      {
+        "file": "v05-inventory/eyes-dead-0.png",
+        "sha256": "8ba998ca11a04505e1862e2f78cbf91c626f04092ae7e20f1d84363322b4a6b9"
+      },
+      {
+        "file": "v05-inventory/eyes-dots-0.png",
+        "sha256": "c322ee027a6851795e3f13f08ace97239dd782281df7321ddae9b979e07d2460"
+      },
+      {
+        "file": "v05-inventory/eyes-happy-0.png",
+        "sha256": "6b05e1c9026a26c036e6fca7d01dc76ac94e9a8e371d5f0704c39687093c6589"
+      },
+      {
+        "file": "v05-inventory/eyes-heart-0.png",
+        "sha256": "17a480e913522ad6b093a5ee7b4812fceea6c4a8de4ca286d04986c1de2fbe5b"
+      },
+      {
+        "file": "v05-inventory/eyes-joyLashes-0.png",
+        "sha256": "cbdff507190155a87265243a41c07416539566134ee6c48761a375cff5c9f188"
+      },
+      {
+        "file": "v05-inventory/eyes-lashWink-0.png",
+        "sha256": "e7f2f7b7d50e9a521bb3b8e44427bd9b4b81d51c2bf861daf4f723f9dd81cb76"
+      },
+      {
+        "file": "v05-inventory/eyes-rolling-0.png",
+        "sha256": "689ac2349b6478b406a50f533e9dca9b228600290320d309597063590b1c85e8"
+      },
+      {
+        "file": "v05-inventory/eyes-side-0.png",
+        "sha256": "c6a022166c18cbbb9b3bf8d9b4f81f4cbf564a1cd7b190b370250ddf6b77d2cd"
+      },
+      {
+        "file": "v05-inventory/eyes-sleepy-0.png",
+        "sha256": "bf00c6345341dd021c4ba871c33dd795ffc57cbed0ab37be565638d42a22eeac"
+      },
+      {
+        "file": "v05-inventory/eyes-smug-0.png",
+        "sha256": "f23ac98b939756a83bea648b00e09579762580554d8a718a4e4ee366fbd5786b"
+      },
+      {
+        "file": "v05-inventory/eyes-squint-0.png",
+        "sha256": "53865e3431c28cc5ad569370f3ddb6deed5f9730a25dd08ae52d37cc2bdd4239"
+      },
+      {
+        "file": "v05-inventory/eyes-stars-0.png",
+        "sha256": "3042b973f2f166772a6390fbaf8abf076055e9024ff00d76be456442a62101e9"
+      },
+      {
+        "file": "v05-inventory/eyes-surprised-0.png",
+        "sha256": "e173dcc3444be42aead28b3040ac5250393a578a6848e70da3ba8e22a8ec0dd9"
+      },
+      {
+        "file": "v05-inventory/eyes-wide-0.png",
+        "sha256": "a6e03cd4d5b1463115bbb9ff1fff1bc9287d2624470ba723318cddfb9fcc94e3"
+      },
+      {
+        "file": "v05-inventory/eyes-wink-0.png",
+        "sha256": "591c2ac4937d949b9628db7cb477335dc84bbe6d56e69729eda0e545c8a27b20"
+      },
+      {
+        "file": "v05-inventory/eyewear-aviators-0.png",
+        "sha256": "0b80ccffdde483bc75d634dae27a465785762d67473e5f7aa0b7b757e1c68ffe"
+      },
+      {
+        "file": "v05-inventory/eyewear-catEye-0.png",
+        "sha256": "8826daae4ff6af49f15b3c0cd7c52d2bfe9b0cc6d37782a38ac60ff727629861"
+      },
+      {
+        "file": "v05-inventory/eyewear-eyepatch-0.png",
+        "sha256": "fdb3291bff64a180b747b9ded34f697906e1dad5eae520157816a08f80a4290e"
+      },
+      {
+        "file": "v05-inventory/eyewear-monocle-0.png",
+        "sha256": "25fc85bf1d373d8e57631decb1ca889fc9632ba4cae29efbaa5063a24b310f37"
+      },
+      {
+        "file": "v05-inventory/eyewear-round-0.png",
+        "sha256": "b82a4dc043c59baff8ad9e45e26cd57ef395c561bfef117ab94d9161c478007b"
+      },
+      {
+        "file": "v05-inventory/eyewear-shades-0.png",
+        "sha256": "1979d42677e67910afe0be4d87286718cc60546617f63be4c815a7a1adf41b0f"
+      },
+      {
+        "file": "v05-inventory/eyewear-square-0.png",
+        "sha256": "48f9f0dfc7d722c8ee79e0a476a10b7b3f38fab3d00905cb67e49505d73ccdf8"
+      },
+      {
+        "file": "v05-inventory/facialHair-beard-0.png",
+        "sha256": "fbe55ccb85f2e411bf2afc09537aa6a3f196361c9b5a8227dd3fc08296acd084"
+      },
+      {
+        "file": "v05-inventory/facialHair-goatee-0.png",
+        "sha256": "4aa3e7c45fb27e41268141c18b7e4c09cdf15e03e70760caabd8b66e8f6e18c8"
+      },
+      {
+        "file": "v05-inventory/facialHair-handlebar-0.png",
+        "sha256": "b8afa4ef5bad02418d375f8ea263a4253e44ea38bb0e2f11b1022558fa2325e2"
+      },
+      {
+        "file": "v05-inventory/facialHair-mustache-0.png",
+        "sha256": "16b7a9b4aedf5efa36c6aa8a5627deff32f4ecb557595f6900fb72173a3dfdf3"
+      },
+      {
+        "file": "v05-inventory/facialHair-stubble-0.png",
+        "sha256": "6d7939bf8723ec258d438b2672305cecd7333020dbb5680321704d276461f420"
+      },
+      {
+        "file": "v05-inventory/gesture-fingerHeart-0.png",
+        "sha256": "696f16e1cce461a7e45c1b8d6a1cecf13bd4b37f4844170f59f9af61f4e6d929"
+      },
+      {
+        "file": "v05-inventory/gesture-fist-0.png",
+        "sha256": "e7a6e8b1e06e18b8f1413ff2182abdc80febf8616b61bb59f31550b5c142cc95"
+      },
+      {
+        "file": "v05-inventory/gesture-flex-0.png",
+        "sha256": "cd006e130a7b6a19d14fc082f40abfc213f8ecc6a0bc9c5a623ef4ca389d3973"
+      },
+      {
+        "file": "v05-inventory/gesture-hip-0.png",
+        "sha256": "c42dd351d2e31e865fa99a80a0afea9a1e9df8455141209ca78b43996a34a027"
+      },
+      {
+        "file": "v05-inventory/gesture-ok-0.png",
+        "sha256": "834789ce81ab098719ae710a54f89428e34c2366abdc02aca08f1d654f857b0d"
+      },
+      {
+        "file": "v05-inventory/gesture-palmUp-0.png",
+        "sha256": "5cd69af5d3a4575ffd1e18a757279d28475d3395eb9bac20d8c909d8a8ab06a3"
+      },
+      {
+        "file": "v05-inventory/gesture-peace-0.png",
+        "sha256": "795ff99049fb80acf15ffe8f7626c04c51491a92042bfeb18d67b5524af924db"
+      },
+      {
+        "file": "v05-inventory/gesture-point-0.png",
+        "sha256": "f05352e6c87d8abde0ac73ac3d702c3ae57db83a07653efad39c2d3b550aab22"
+      },
+      {
+        "file": "v05-inventory/gesture-rest-0.png",
+        "sha256": "e16648b67e76742c81d7089fe2a64212b577078eed34748afc55384eb6ce9789"
+      },
+      {
+        "file": "v05-inventory/gesture-rock-0.png",
+        "sha256": "00da64334611ba4c00b0d31245c4c7e83fd925725c18cc992434aac4f9498877"
+      },
+      {
+        "file": "v05-inventory/gesture-salute-0.png",
+        "sha256": "3e3522b31a9e0f623af5183eafb04fd52d666336aebf618751a8c3878ceb3fe9"
+      },
+      {
+        "file": "v05-inventory/gesture-shaka-0.png",
+        "sha256": "3d3f0b7d0310fb4a3e3de1023a16603488c949b3227b307f5f88b57146e07a3d"
+      },
+      {
+        "file": "v05-inventory/gesture-thumbsUp-0.png",
+        "sha256": "76f637636d47847572bff349fd634af42529a0794e4c2c06b39652608a23ce11"
+      },
+      {
+        "file": "v05-inventory/gesture-wave-0.png",
+        "sha256": "9c204047de22f05cbff8d6644189fcca5f6cb73495af183a0d368235b44e919b"
+      },
+      {
+        "file": "v05-inventory/item-boba-0.png",
+        "sha256": "ccdeca966951ee85e1c9d1055e1bc544b29b322b92ca5fb24c5d633d69fb759d"
+      },
+      {
+        "file": "v05-inventory/item-book-0.png",
+        "sha256": "2e7fbb867c5ceabaca12a3fddc0e8484d33081b0783a47929404f75375ba2363"
+      },
+      {
+        "file": "v05-inventory/item-bouquet-0.png",
+        "sha256": "edd88326746c8e3f363516b23696df38fbeb4b9ebe35348025eab588a874b034"
+      },
+      {
+        "file": "v05-inventory/item-coffee-0.png",
+        "sha256": "db513f6e6f0b5c1ec9149783df30ecf20af9d48debbf35d083a446ceacabd85e"
+      },
+      {
+        "file": "v05-inventory/item-controller-0.png",
+        "sha256": "cf7177f1a7d52967c4014cfdb4229ce278500ba13514f60c3af85593f9b62ec6"
+      },
+      {
+        "file": "v05-inventory/item-donut-0.png",
+        "sha256": "52f6871bcfb0875150d6c8e8b9a95abeb1b5e5aba0bb2d56a7e3c2726b6b5201"
+      },
+      {
+        "file": "v05-inventory/item-duck-0.png",
+        "sha256": "1e07877f43aa0bd71f88398215f0d6f81dee046dd25a581ddf667baf084b7fb3"
+      },
+      {
+        "file": "v05-inventory/item-handbag-0.png",
+        "sha256": "6e1e8a2039be457a3e494730404148f3c1f1e26f0b10053a90939d2e50167ef2"
+      },
+      {
+        "file": "v05-inventory/item-laptop-0.png",
+        "sha256": "3972d21ebea7949b839c1ee58b9456a4c8af69798d3f62a91892a3ac77c8d119"
+      },
+      {
+        "file": "v05-inventory/item-mic-0.png",
+        "sha256": "b4774e58e9daf83857fcfe6c4ba6946453886b3856530c9496be65d14185a86d"
+      },
+      {
+        "file": "v05-inventory/item-none-0.png",
+        "sha256": "9c38b3188004d92c64b0c56db051ffcb072db8b00aeb8ce97c278b44269f6bda"
+      },
+      {
+        "file": "v05-inventory/item-palette-0.png",
+        "sha256": "b3cc3d46e1cd42231ef09703bf348a6931a904223795bcb63e3e381df2396c16"
+      },
+      {
+        "file": "v05-inventory/item-phone-0.png",
+        "sha256": "0057a50407abcba2c169c1beff007425aad74e72c9c602dc77d4a676e201fed5"
+      },
+      {
+        "file": "v05-inventory/item-pizza-0.png",
+        "sha256": "85c369d76db43668563c1df7c0046d6fdff5533c3b97ef40e4e16b09bc9c033c"
+      },
+      {
+        "file": "v05-inventory/item-plant-0.png",
+        "sha256": "c0a37f7c76e93cf54860cb6e4cc829bfd9dc8491f3519a730993c814dfdcb5a4"
+      },
+      {
+        "file": "v05-inventory/item-sign-0.png",
+        "sha256": "15fec4ead28c1dcfded2f23a4d67fb7ac7482b798f1b18dfe0bcd0cc83a58ca4"
+      },
+      {
+        "file": "v05-inventory/item-teacup-0.png",
+        "sha256": "6c66151f594795dbaa44b6ba24d6ccf469a01235dcbd17f41bed27d07cfe95ed"
+      },
+      {
+        "file": "v05-inventory/item-trophy-0.png",
+        "sha256": "01d3b8fdb9a2e518a960647bd7417e72b817342207fa568691cbcdd80b6226c7"
+      },
+      {
+        "file": "v05-inventory/item-wrench-0.png",
+        "sha256": "ada72a882e580e67de705346395dae27380ecdbf84c2994a87868661015a91b8"
+      },
+      {
+        "file": "v05-inventory/jewelry-hoops-0.png",
+        "sha256": "477d088dde7bb1833e3a4c1e2fb1ef6c7fa771b28a53e9d26e3b63046f747c2f"
+      },
+      {
+        "file": "v05-inventory/jewelry-pearlDrops-0.png",
+        "sha256": "d44064a69b4b1da0eea325ae68a26544a9eebcb2949dd26c3d07b996063f91a9"
+      },
+      {
+        "file": "v05-inventory/jewelry-starStuds-0.png",
+        "sha256": "f59f3f09ec94c91d67cacadec08c9236377943a5aff4bdcd2a02a1ea66b2734e"
+      },
+      {
+        "file": "v05-inventory/mouth-flat-0.png",
+        "sha256": "645aa35ed7b875947bbea41ef3afde0a880f2d0b3ff43a9326d5ccd3ed38100a"
+      },
+      {
+        "file": "v05-inventory/mouth-frown-0.png",
+        "sha256": "878cb9c566aaaea80864c945cbf0015cbf1326ef717e480c9c5aba40a40aca54"
+      },
+      {
+        "file": "v05-inventory/mouth-grin-0.png",
+        "sha256": "aa84f5536f5728613a51fc08d2cbd2ec896a835dcc6aba2e28c25898f23c6b1c"
+      },
+      {
+        "file": "v05-inventory/mouth-grit-0.png",
+        "sha256": "357bfed46019162051c287b11430e2adfebfa64a815f2e39b3ff0d1a3bc06fe7"
+      },
+      {
+        "file": "v05-inventory/mouth-kiss-0.png",
+        "sha256": "b2b7bea0aed8f62b5010ee0464513414f1fb6244953c033a6b2522fced8af625"
+      },
+      {
+        "file": "v05-inventory/mouth-laugh-0.png",
+        "sha256": "c71f030666da613e7675ac881a5523986def9721726b1adbc45b5acbd2bf826e"
+      },
+      {
+        "file": "v05-inventory/mouth-oh-0.png",
+        "sha256": "d8072bb3215269c71b040c8c831de84758781f90b07672ebadf62c04725638d2"
+      },
+      {
+        "file": "v05-inventory/mouth-smile-0.png",
+        "sha256": "5107372ec2653bc5ab782b7c7d279c1fb9d42b19717399b881566cc89ec3d040"
+      },
+      {
+        "file": "v05-inventory/mouth-smirk-0.png",
+        "sha256": "6eba29deef512f6fc6bec42f9113aa8ebb9933b240f4977464d7b6428282b618"
+      },
+      {
+        "file": "v05-inventory/mouth-tongue-0.png",
+        "sha256": "c769c5ebfcc8b9778c08489ec9523688045c24ffb744108e2bd0891eb2817564"
+      },
+      {
+        "file": "v05-inventory/mouth-wavy-0.png",
+        "sha256": "23db13673979c8d8e0884f3c31b733d49e2d31f29ba2aceb135236f3c28e06c8"
+      },
+      {
+        "file": "v05-inventory/mouth-whistle-0.png",
+        "sha256": "abc96d4891cf8ed0440d7e4696de8c584e0eb0430c36698309215779723c99f0"
+      },
+      {
+        "file": "v05-inventory/neckwear-bandana-0.png",
+        "sha256": "4712fa505aaeb877dacf1f9d67fce4c0063b6867199bb051e4f4fea6022f97d8"
+      },
+      {
+        "file": "v05-inventory/neckwear-bowtie-0.png",
+        "sha256": "cd3fe485d1170d28cff1c23398d2b9b7f3426a5e2f517ceaca7860bb6fc62437"
+      },
+      {
+        "file": "v05-inventory/neckwear-chain-0.png",
+        "sha256": "60872055dae8e75f23b81398b37fccdf9469215a23dd80389c769d19426bb816"
+      },
+      {
+        "file": "v05-inventory/neckwear-lanyard-0.png",
+        "sha256": "425e83e1aa5263cf657907214770cc8aa3ee696ef338b6d51573d74220079429"
+      },
+      {
+        "file": "v05-inventory/neckwear-pearls-0.png",
+        "sha256": "491ae72d07998436062fc78cea894a07960a005ee12e1db4d4875c6b906c50d7"
+      },
+      {
+        "file": "v05-inventory/neckwear-pendant-0.png",
+        "sha256": "a4a498a9ba4c8e0a412516e5e0877c4ca53a708585b9693c65e959cb17ad69eb"
+      },
+      {
+        "file": "v05-inventory/neckwear-scarf-0.png",
+        "sha256": "98240aeaac850eef849767b135a4b77dbaec38fe09a38c29d2f2ddfae6445122"
+      },
+      {
+        "file": "v05-inventory/neckwear-tie-0.png",
+        "sha256": "068d47c279928cc40fc29054f135ff5b1da3ff1f30483e93488684ea604d01b3"
+      },
+      {
+        "file": "v05-inventory/stickers-bee-0.png",
+        "sha256": "aef95f64fe3e675ae152258ee172285586a06f377c782f8d98f4517ce723f538"
+      },
+      {
+        "file": "v05-inventory/stickers-bolt-0.png",
+        "sha256": "2fd8470fcf431ca9cf158e0f15fa8994005170ec1ac0083f8080f449a817f064"
+      },
+      {
+        "file": "v05-inventory/stickers-books-0.png",
+        "sha256": "288835ad51c1fdbeb64a352c74862f3fadcb0d5289ecfd2bf0c92505a7f9cc60"
+      },
+      {
+        "file": "v05-inventory/stickers-branch-0.png",
+        "sha256": "da685516877acea068b4cf00c473359b563ccc553a862f35f991f8448dbb0516"
+      },
+      {
+        "file": "v05-inventory/stickers-bug-0.png",
+        "sha256": "805817f1722e239404c4a29148ba56b5ed3874719f20743cefda43889ca00e53"
+      },
+      {
+        "file": "v05-inventory/stickers-butterfly-0.png",
+        "sha256": "bb97b77b2de82949d276548bf3ff0797b8121bc1eb72af4c7fe6f09b2dc525d7"
+      },
+      {
+        "file": "v05-inventory/stickers-camera-0.png",
+        "sha256": "23c0ecdeb29ea88b85f3d46c98c0c4f5f953281e025c090d66d4309795ab365c"
+      },
+      {
+        "file": "v05-inventory/stickers-cat-0.png",
+        "sha256": "b3d7e57f92340f42d85ee09bb2d251194c70dce6ff01f533824bc03107007a87"
+      },
+      {
+        "file": "v05-inventory/stickers-cloud-0.png",
+        "sha256": "92b46b0f292254e1874d72e118b84534b72c6c1e2e687f40a882b1b767c088e1"
+      },
+      {
+        "file": "v05-inventory/stickers-code-0.png",
+        "sha256": "eb4941c767bed2a2e7f239ad6ed03a48aab507dfb1158fd750595628148f2f64"
+      },
+      {
+        "file": "v05-inventory/stickers-coffee-0.png",
+        "sha256": "eb1a18fe90064d292b9067e268c0f80cfe64507d4ed90d37224d512847c03f5a"
+      },
+      {
+        "file": "v05-inventory/stickers-database-0.png",
+        "sha256": "69cd989eed3ff15343aa6eb676a550443f7a61a90604b375cf5baf661a9e47e6"
+      },
+      {
+        "file": "v05-inventory/stickers-dino-0.png",
+        "sha256": "f7fc9143e937c4f23080e6b12641dd328b9ddccfcbe9ef7caefb410d3bc7aba6"
+      },
+      {
+        "file": "v05-inventory/stickers-duck-0.png",
+        "sha256": "39db00111e6fae990ce887b2eb5b31c3c8e9935005d7ad5aa79a5ab3e17cf10d"
+      },
+      {
+        "file": "v05-inventory/stickers-flame-0.png",
+        "sha256": "9808e3eab1eb7a9217fb17c5ecca60d645964cb804527033a8f81d37709a0bed"
+      },
+      {
+        "file": "v05-inventory/stickers-gear-0.png",
+        "sha256": "3b512268e966cb6f6ba810f2276847bd17f152bca43d367fe53ca383e138a8a0"
+      },
+      {
+        "file": "v05-inventory/stickers-ghost-0.png",
+        "sha256": "28a11a2ba3dae50d68dd8fba5cb8454a0a8beae39d4867cd91962f9ac11b627c"
+      },
+      {
+        "file": "v05-inventory/stickers-heart-0.png",
+        "sha256": "e6fe99f309ab93d424328718582759d46e5b3facbc474f2cac8bdaea2c16fe25"
+      },
+      {
+        "file": "v05-inventory/stickers-lambda-0.png",
+        "sha256": "9d8e783116b17ce381961b1c19d29bc46d857b507ae60edffa63f9a0a4995fb2"
+      },
+      {
+        "file": "v05-inventory/stickers-lgtm-0.png",
+        "sha256": "1ce113caad414ea56836ca205d6585bb2a6dee274616d6cf4a0869e7977b34fa"
+      },
+      {
+        "file": "v05-inventory/stickers-lock-0.png",
+        "sha256": "11d5c95eff4f51a4202ed0ae53f98adbe90df340d0f69a52931fde8220031216"
+      },
+      {
+        "file": "v05-inventory/stickers-moon-0.png",
+        "sha256": "808d2a5cac7c63c6c3cdc627906baa5f79962831dc5611db52115d6307535968"
+      },
+      {
+        "file": "v05-inventory/stickers-mountain-0.png",
+        "sha256": "328a459637cc235b619213874d1939477a44216156a04742d11cef9cdf68c15f"
+      },
+      {
+        "file": "v05-inventory/stickers-music-0.png",
+        "sha256": "ff461d2cc58b05043d58da722ffed98a21ee08d9fe90bedd074236e6964b4320"
+      },
+      {
+        "file": "v05-inventory/stickers-notFound-0.png",
+        "sha256": "f994b335f441acd3f7e7ef6eba6a55e0eb61306f2646bdf6809aa4f97cb34715"
+      },
+      {
+        "file": "v05-inventory/stickers-panda-0.png",
+        "sha256": "e1324a7be8e287f0c0e3ff6a0ae179e3c37bb50ce70d95db210098518c04a35a"
+      },
+      {
+        "file": "v05-inventory/stickers-paw-0.png",
+        "sha256": "879dbc9e7a228acc019fbf599aa600740d39a22305c8c05d25310774689bf9e0"
+      },
+      {
+        "file": "v05-inventory/stickers-pizza-0.png",
+        "sha256": "e75546b86a8224e830188717ad9a0f4c0b8bb740a3b41ee420b77b2ce680ce7e"
+      },
+      {
+        "file": "v05-inventory/stickers-planet-0.png",
+        "sha256": "5edc96ae77a3450e7eb0a3c3ba93ff501edd7c912e5766ae9e77522eb101604f"
+      },
+      {
+        "file": "v05-inventory/stickers-rainbow-0.png",
+        "sha256": "60bf671b01dc3320443fd949877b7b80d3a03b4433f761cd96f7261f33d281c3"
+      },
+      {
+        "file": "v05-inventory/stickers-rocket-0.png",
+        "sha256": "fd2416f4ada803518cdb30c7e2e24b4a2cc731f85ebb185e88e8dd20e168aeee"
+      },
+      {
+        "file": "v05-inventory/stickers-skull-0.png",
+        "sha256": "9bac106d54cdcfad9efa43708739c4908dcee1f4992262cabfea5c75c1918861"
+      },
+      {
+        "file": "v05-inventory/stickers-star-0.png",
+        "sha256": "52bfedd8c2b315c4aa5f73724bf4d4972ccd1311fa16b8a564d643bc6286200d"
+      },
+      {
+        "file": "v05-inventory/stickers-strawberry-0.png",
+        "sha256": "ac14019e8ac26d13e7b29057c7d5b73e057fceccf46313e6f45b3a68bfda5d21"
+      },
+      {
+        "file": "v05-inventory/stickers-sunflower-0.png",
+        "sha256": "b6ad397b7a70d75be1ca5da34ac852c26fd8c4b53c407751070678c3aaf808ad"
+      },
+      {
+        "file": "v05-inventory/stickers-teapot-0.png",
+        "sha256": "d729740d9e7db445b0135dc295e6bc26b41d28e254402d1db5ed359c9e0128b7"
+      },
+      {
+        "file": "v05-inventory/stickers-terminal-0.png",
+        "sha256": "19c2aa77e910bfe2aac0d3f22574e786277f781449984d7773e373ffa540224a"
+      },
+      {
+        "file": "v05-inventory/stickers-yarn-0.png",
+        "sha256": "d001155f519422dfc17c1b146084502627194b15a13c3067cdeecc0254568924"
+      },
+      {
+        "file": "v05-inventory-head-v4/hair-bob-0.png",
+        "sha256": "9b345c3ab39dbae13c9b3e7bcd91ee1868f555393c9042b7b2ddea66b2cc743c"
+      },
+      {
+        "file": "v05-inventory-head-v4/hair-braids-0.png",
+        "sha256": "3a69693810e7c7569811a91b0b920613c9238295f50d3293fd03e8fef43aaea3"
+      },
+      {
+        "file": "v05-inventory-head-v4/hair-bun-0.png",
+        "sha256": "2f3043b70675b7d58a0669d4f79b2fc9ecd0d440df2598f2eb289a1760247107"
+      },
+      {
+        "file": "v05-inventory-head-v4/hair-curls-0.png",
+        "sha256": "d899a33d863b8889755c5e0837b9c8efbf68f4af1c0581440cf73c184ea2863b"
+      },
+      {
+        "file": "v05-inventory-head-v4/hair-pixie-0.png",
+        "sha256": "8712a668c1bbf3d55732022562d680ccf9a07854a7793a5cf7c95ec06f1360f7"
+      },
+      {
+        "file": "v05-inventory-head-v4/hair-waves-0.png",
+        "sha256": "1a37f38d77d3c5af28d7ac7796cae87314f23faf968b95ace276cc81b86b5a45"
+      },
+      {
+        "file": "v05-inventory-head-v4/hat-backwardCap-0.png",
+        "sha256": "be0c76e24181bcdb0dc66079a31e412be476e6beef43e1985a3f7fffac63e983"
+      },
+      {
+        "file": "v05-inventory-head-v4/hat-beanie-0.png",
+        "sha256": "99d918527b3250321ac07a5eb8648101a65aa660e5f4ec8fa66b0e9d76f243fb"
+      },
+      {
+        "file": "v05-inventory-head-v4/hat-beret-0.png",
+        "sha256": "3e058aaffc4e2424325a474d3eb6b3b0a2a37e5def6999eea58210c05aa9d3c7"
+      },
+      {
+        "file": "v05-inventory-head-v4/hat-bow-0.png",
+        "sha256": "09ee529e1a2f4a460dd0290346d0933751e86c1a11e80d032f0726f0dd3f88c4"
+      },
+      {
+        "file": "v05-inventory-head-v4/hat-bucket-0.png",
+        "sha256": "4eb283f2a0e9f0b2959ee908f1bbfdf0607633bb904cb3511c2895f4dc70707c"
+      },
+      {
+        "file": "v05-inventory-head-v4/hat-cap-0.png",
+        "sha256": "7ad9cd1dfcfc740f4febb7629640f43410180412bccb4ddce164680a66c76bec"
+      },
+      {
+        "file": "v05-inventory-head-v4/hat-chef-0.png",
+        "sha256": "0097e264d45e7fb8e15ad5150d7002363adee0e7457a7d4b41aaed4b213bdde2"
+      },
+      {
+        "file": "v05-inventory-head-v4/hat-cowboy-0.png",
+        "sha256": "1b0194eb242fa68467900db536a5fb66ab33b09f2a962e3c265809eb6b5f443d"
+      },
+      {
+        "file": "v05-inventory-head-v4/hat-crown-0.png",
+        "sha256": "c18a146cd3520924048b63f1e2d71c6bccc8bf3c595ecc06fca6a64f9fdfcf74"
+      },
+      {
+        "file": "v05-inventory-head-v4/hat-fedora-0.png",
+        "sha256": "93a8e78508779a76c2b64f9a744dc2d164b492e19f0d0ce86198b31ce114cb34"
+      },
+      {
+        "file": "v05-inventory-head-v4/hat-flowerCrown-0.png",
+        "sha256": "850bc9c49654fadbd82665dcd56f2a62ce76bd96f50f79d94dc3f0f3c5391a6b"
+      },
+      {
+        "file": "v05-inventory-head-v4/hat-halo-0.png",
+        "sha256": "fe213818bb7e3c0051971aae79aee00513239b47764853b3048a86941c1ac5f8"
+      },
+      {
+        "file": "v05-inventory-head-v4/hat-hardhat-0.png",
+        "sha256": "f0dde464b532a84e26b207e07ea5d2879fee3996ac3e3699415fff8809c86aa4"
+      },
+      {
+        "file": "v05-inventory-head-v4/hat-headband-0.png",
+        "sha256": "558f8d0c9de33e4130602f69f2a33e2821f9aac02e707ff0b394f2d1b3520376"
+      },
+      {
+        "file": "v05-inventory-head-v4/hat-horns-0.png",
+        "sha256": "3a8bda9e4c081d866d46d9310013bb18ec2d8da305c065deb83d458edc85e909"
+      },
+      {
+        "file": "v05-inventory-head-v4/hat-party-0.png",
+        "sha256": "72d185e0392765934da6fe98b2d8a1c3fe07f6e7a2f997d3723a2752b86e9c80"
+      },
+      {
+        "file": "v05-inventory-head-v4/hat-propeller-0.png",
+        "sha256": "6da3c81a3a065273e41e27b0c6f42efac1af9bb399ccbdfa6bc6ab7adfff7263"
+      },
+      {
+        "file": "v05-inventory-head-v4/hat-santa-0.png",
+        "sha256": "96ff716cfbb2097c30ac465ea0a424701f5f37f6be8719b80bb83c3c4bd702ca"
+      },
+      {
+        "file": "v05-inventory-head-v4/hat-sunhat-0.png",
+        "sha256": "d8df522f3481f4d57404113aae39228668fff492b2a31aad33bf083fccb0dcff"
+      },
+      {
+        "file": "v05-inventory-head-v4/hat-tophat-0.png",
+        "sha256": "d7d4a21f1437513c5f60186185e1c68807b5fedb5543a86edd19288fdce57b63"
+      },
+      {
+        "file": "v05-inventory-head-v4/hat-viking-0.png",
+        "sha256": "b9ba3e2b50ab814eb7b92df8b63804baedd999f6a780b9b6f4e36c2ad02ff454"
+      },
+      {
+        "file": "v05-inventory-head-v4/hat-wizard-0.png",
+        "sha256": "4d612c37f044470164ad55881221b9cdf1d03b1568e1aa4811537351d7c839b1"
+      },
+      {
+        "file": "v05-hair-v4/bob-colors-0.png",
+        "sha256": "9a24a45bbe8c0cd51f5fa26e26989cf3640a17dfb56a1eb99c6d785325447f24"
+      },
+      {
+        "file": "v05-hair-v4/bob-extras-0.png",
+        "sha256": "c15742f76125051b3b64ec33d797621c65a3bede5a3b4699be208aede91709dc"
+      },
+      {
+        "file": "v05-hair-v4/bob-hats-0.png",
+        "sha256": "849e498c0b46795027d6daee34a4186c33f5ca26d9c7e033b21aacb64b24c397"
+      },
+      {
+        "file": "v05-hair-v4/bob-hats-112.png",
+        "sha256": "fdb6773490274caa472cc248b5803f8231104d38c2d5fd417528927823b6504a"
+      },
+      {
+        "file": "v05-hair-v4/bob-hats-56.png",
+        "sha256": "05e75276a029564e8e6d075d9ca29bf1da84ae2e2e11de4049dc8e3512840b48"
+      },
+      {
+        "file": "v05-hair-v4/bob-jewelry-0.png",
+        "sha256": "40a2280da031a26419ef2c8e13062ce02e9f18ec6e24fe6acceab7b92c143940"
+      },
+      {
+        "file": "v05-hair-v4/bob-jewelry-112.png",
+        "sha256": "cc8ee7e8f90ba56eaf83ad8f42556292e98ab5dbb6d507b51b779f1a0bed4b27"
+      },
+      {
+        "file": "v05-hair-v4/bob-jewelry-168.png",
+        "sha256": "ac6c5ecec3fadac2cc92509922cb7d38300c636d19c2ddefe803899531d2508f"
+      },
+      {
+        "file": "v05-hair-v4/bob-jewelry-56.png",
+        "sha256": "9d6cd06e393cff6a2b114b00a31823a4747c0e897fb9224c7770ff3b6f79bd2d"
+      },
+      {
+        "file": "v05-hair-v4/braids-colors-0.png",
+        "sha256": "a3a8628c63f639c7d0bcabbf1c0b8a5a2eea5648acb1b2b6087a7523ba776e04"
+      },
+      {
+        "file": "v05-hair-v4/braids-extras-0.png",
+        "sha256": "ef2ea2ac3a4a1b4ef688e74b0dc33648560fc6ca732526268f74afb10c5692ba"
+      },
+      {
+        "file": "v05-hair-v4/braids-hats-0.png",
+        "sha256": "d113b6f243814f4303b1557f4983cbfa5d9b2f7493d22c6fc3a47c1a4c38324f"
+      },
+      {
+        "file": "v05-hair-v4/braids-hats-112.png",
+        "sha256": "841ec78575bbf23845d5749903663bae88c3cbe113e20383afe6bd4500dca19b"
+      },
+      {
+        "file": "v05-hair-v4/braids-hats-56.png",
+        "sha256": "4c225f6c4a3c06d51a60816e9b511d1f75df0062ff8257f46f206877d57a8ed7"
+      },
+      {
+        "file": "v05-hair-v4/braids-jewelry-0.png",
+        "sha256": "545b120ec51ded78f0113080c139ca39e8b5509ad8d3f63f998d3078a85d727d"
+      },
+      {
+        "file": "v05-hair-v4/braids-jewelry-112.png",
+        "sha256": "13ace0b012ef5ecdde5a324f3e216ac092802579abd46325bd87708f1062aea0"
+      },
+      {
+        "file": "v05-hair-v4/braids-jewelry-168.png",
+        "sha256": "01c64386370ca09f56e5a2d7349033b71ee2a9bcfe63a4f8d92bdad25481ddc4"
+      },
+      {
+        "file": "v05-hair-v4/braids-jewelry-56.png",
+        "sha256": "a2fc5a901198ccfbb19378c4fa6d18976e0ca0e24b31879666b746eb9888e685"
+      },
+      {
+        "file": "v05-hair-v4/bun-colors-0.png",
+        "sha256": "586b6ac8ab9b282955ec3d30754406443b1ef37608e40b7255e0d3bf30683867"
+      },
+      {
+        "file": "v05-hair-v4/bun-extras-0.png",
+        "sha256": "94627830d675d3fefb81694bf1699f16204f7436074de266e0ba3c42668db68c"
+      },
+      {
+        "file": "v05-hair-v4/bun-hats-0.png",
+        "sha256": "7f73d89ddb9f864b81bc7ce25a73d7dff4691daa0b4b2dc794b0b58f189d838b"
+      },
+      {
+        "file": "v05-hair-v4/bun-hats-112.png",
+        "sha256": "2b99282257b2f78276a294524ed33b422ced67dbefd47b04cf53534a60f85d36"
+      },
+      {
+        "file": "v05-hair-v4/bun-hats-56.png",
+        "sha256": "c1ee101c3e4f967aaf6d11e44407b9476f863d979405016a3fd7c5caa43c14e7"
+      },
+      {
+        "file": "v05-hair-v4/bun-jewelry-0.png",
+        "sha256": "7cea1f47edbffddcf6c15ec8898399ea0a255f51f074810c89136c5927a31872"
+      },
+      {
+        "file": "v05-hair-v4/bun-jewelry-112.png",
+        "sha256": "dfcc9fa7f0ad97916f3956b5053bc0ca1a9ef267231ff70f4fe18cd6c5bfa90c"
+      },
+      {
+        "file": "v05-hair-v4/bun-jewelry-168.png",
+        "sha256": "d1f2f6e456998c188985ac79303035a6e44df31c68e29dbf47d2555860f9f899"
+      },
+      {
+        "file": "v05-hair-v4/bun-jewelry-56.png",
+        "sha256": "20ae91c5cbcfc114d55bf3728f60d57adae3d6502f9367e1bc156762d6c0a6f9"
+      },
+      {
+        "file": "v05-hair-v4/curls-colors-0.png",
+        "sha256": "f0e1eb49412d463b4fa2030967cf6aafddd1b3d30e12e31a22790d35271338de"
+      },
+      {
+        "file": "v05-hair-v4/curls-extras-0.png",
+        "sha256": "1efa798cfed6ee2a5b67c939f2896015503561eee74bd8c0b3b5efe9886d8226"
+      },
+      {
+        "file": "v05-hair-v4/curls-hats-0.png",
+        "sha256": "fca80ff630b2764da0c2fe43e912ebd1b8aba61088ed927c4a82b4c8672076d5"
+      },
+      {
+        "file": "v05-hair-v4/curls-hats-112.png",
+        "sha256": "52ac8e9a7b6490704ae228d7639cba04131dccbfcc949db7dfb35fb04eed2dd5"
+      },
+      {
+        "file": "v05-hair-v4/curls-hats-56.png",
+        "sha256": "d57e6643dad6febe9d617822420719965b1ab554ed31007889a12547dd67f101"
+      },
+      {
+        "file": "v05-hair-v4/curls-jewelry-0.png",
+        "sha256": "9ff6b7408d6c587297f002e969675c9eb7218d9fffca395a51f2d70e074f4998"
+      },
+      {
+        "file": "v05-hair-v4/curls-jewelry-112.png",
+        "sha256": "a4ff981efa6119aa1627937a0d5b2cd359fd1fef88f99e5b08efaff8b1f757af"
+      },
+      {
+        "file": "v05-hair-v4/curls-jewelry-168.png",
+        "sha256": "6d2fecd3b4071a7cd1bde578122fd4a02f5f0fb2f0d1f7f7efbc77dae50681e6"
+      },
+      {
+        "file": "v05-hair-v4/curls-jewelry-56.png",
+        "sha256": "7668e8437b25aa303b8d8664b4f49c67515605dfda25e29faf698c79b9d13d2b"
+      },
+      {
+        "file": "v05-hair-v4/pixie-colors-0.png",
+        "sha256": "0acf55f67dd2a948128af478053722a9093355cca5a4582494fa5abf7993043b"
+      },
+      {
+        "file": "v05-hair-v4/pixie-extras-0.png",
+        "sha256": "cfeaa6534ff69667aaf896a52bd926128b1c146c21e43d46fc2a233082a8d0f7"
+      },
+      {
+        "file": "v05-hair-v4/pixie-hats-0.png",
+        "sha256": "af765899a746f49318f664fbf0690d972269acfd7adc6c456f42c1e16485cee9"
+      },
+      {
+        "file": "v05-hair-v4/pixie-hats-112.png",
+        "sha256": "625daa1fd52425224bb4d3b54b8b0d922cea916f92f3cb2f8f82307497bce9a4"
+      },
+      {
+        "file": "v05-hair-v4/pixie-hats-56.png",
+        "sha256": "f0874cfa40d85aa90449720fd9332dfd0c5e72607403b4b7fe8e2466c76db92c"
+      },
+      {
+        "file": "v05-hair-v4/pixie-jewelry-0.png",
+        "sha256": "e09fd2aca6c2a75ee907a53ab7667c352e7512557e4796b69b45a2e1f7a9976c"
+      },
+      {
+        "file": "v05-hair-v4/pixie-jewelry-112.png",
+        "sha256": "316e068453584585a1bb46d73cdb50be9321684d1e2eadfc474ad30df50cf85b"
+      },
+      {
+        "file": "v05-hair-v4/pixie-jewelry-168.png",
+        "sha256": "7a15c431e8fd1ba99a3a5b285da97a91e5067e99b7f6f42331c758f17ccf5257"
+      },
+      {
+        "file": "v05-hair-v4/pixie-jewelry-56.png",
+        "sha256": "a24415c4dd38e3eac688f37a6ad325b9c58e5e30e31e151acb5c25c9f3d9bd76"
+      },
+      {
+        "file": "v05-hair-v4/waves-colors-0.png",
+        "sha256": "6dc2c1a23cddb3eb2d5362f46091bfbadb5950993fb00b04c2545665e2a47fb0"
+      },
+      {
+        "file": "v05-hair-v4/waves-extras-0.png",
+        "sha256": "592a6e6098d9450229cb433c55e71ae4d22ec5be9f1e2ee3d907b08df0605125"
+      },
+      {
+        "file": "v05-hair-v4/waves-hats-0.png",
+        "sha256": "e1ea0212b46ee19ee7c6156e6a2c042f2f00936f8ee2aac57d3042a4753b9e8c"
+      },
+      {
+        "file": "v05-hair-v4/waves-hats-112.png",
+        "sha256": "911b4e65e9dde72d32589f69243f95c055247ae2317fd21f098f578bdc505bc4"
+      },
+      {
+        "file": "v05-hair-v4/waves-hats-56.png",
+        "sha256": "d2b60ac5423ec37800bc6c7c696aab5939f28e062cdc92c7391bc774452b3308"
+      },
+      {
+        "file": "v05-hair-v4/waves-jewelry-0.png",
+        "sha256": "2e352cc54ce47c5eb4a92c51078d2bd730a488da99d8439e85a855fcd0eb744b"
+      },
+      {
+        "file": "v05-hair-v4/waves-jewelry-112.png",
+        "sha256": "ca895f2b87bd329e0c9fd57cc4108d17339c08b85ec5c8e54fd2d8186b66a31e"
+      },
+      {
+        "file": "v05-hair-v4/waves-jewelry-168.png",
+        "sha256": "4525e913f56b7c4d51ad3ab45ee0f436a1d6356a96520f0268da4c01c9669a55"
+      },
+      {
+        "file": "v05-hair-v4/waves-jewelry-56.png",
+        "sha256": "eaf599923e92877a8b2871d5000007f2b99f9e183c40bbe07b4028780616f095"
+      },
+      {
+        "file": "v05-headwear-v4/backwardCap-0.png",
+        "sha256": "d122728f73b7bbe92c411f2d9803530d8bf3c0511f446b8f549373cb064a0237"
+      },
+      {
+        "file": "v05-headwear-v4/beanie-0.png",
+        "sha256": "eed110076d3e2490c11c464f4191b84bf6d3b9562a182acc56948b94cfe445fc"
+      },
+      {
+        "file": "v05-headwear-v4/beret-0.png",
+        "sha256": "f81fd0b4ec0008fc116828dadfaf519086bf9979a1e28ee178b62949f091c2c0"
+      },
+      {
+        "file": "v05-headwear-v4/bow-0.png",
+        "sha256": "3ca7dff4f1968c24f25873aa5b936d3b9e83df2a8990f3487d24c7d80cb50f0e"
+      },
+      {
+        "file": "v05-headwear-v4/bucket-0.png",
+        "sha256": "7a0ee553b440ec4b6c9934d555d93c1797b379227f0d5d769ff9548ce00bc449"
+      },
+      {
+        "file": "v05-headwear-v4/cap-0.png",
+        "sha256": "3bdd0a1ebe798521db8f7314e6fe31b73c2231b58bd3aded076f2abb2973b043"
+      },
+      {
+        "file": "v05-headwear-v4/chef-0.png",
+        "sha256": "bbf1d5ab989cc4eea7c41c255b0ae6bb006ededeb32fbcf46725f72cccbe67d8"
+      },
+      {
+        "file": "v05-headwear-v4/cowboy-0.png",
+        "sha256": "9117c3942e4d4c82ae52761a8d6bb34584778ae6b198f1c7e47512804b651824"
+      },
+      {
+        "file": "v05-headwear-v4/crown-0.png",
+        "sha256": "b94fb96a09207ad79bc85646eb68850630801dacbfae6b40902a25ece08c12bb"
+      },
+      {
+        "file": "v05-headwear-v4/fedora-0.png",
+        "sha256": "9a777042659777c52258c7e70172fa428a052081919a565422a0fdf301b8570f"
+      },
+      {
+        "file": "v05-headwear-v4/flowerCrown-0.png",
+        "sha256": "999950115be8d49bf6ffc21ffdca452901f8c2d8a5f86e2f59a27e136fa6d0e3"
+      },
+      {
+        "file": "v05-headwear-v4/halo-0.png",
+        "sha256": "069893d295946252aac58b2e390bd4c354ce3d7011c84cf5ddc39adfbdcf3a17"
+      },
+      {
+        "file": "v05-headwear-v4/hardhat-0.png",
+        "sha256": "05edc8e54a38872d8c00b1f45b4bb674fe345336eea2f61e01effc15b2baac4b"
+      },
+      {
+        "file": "v05-headwear-v4/headband-0.png",
+        "sha256": "15930cfe74b3f710fe0a38caeb9684f7da0f1050a6a3851653226f481f982110"
+      },
+      {
+        "file": "v05-headwear-v4/horns-0.png",
+        "sha256": "68d8669813b46c2f5c381bf8386f51359060420edebbdb6b15e7397c09fad69b"
+      },
+      {
+        "file": "v05-headwear-v4/none-0.png",
+        "sha256": "5ae794904c10df6f712fdde5d213d3f85375bc5e7466057afd72f2f4092b8e18"
+      },
+      {
+        "file": "v05-headwear-v4/party-0.png",
+        "sha256": "a8ca4cb2abd6b2338259e193c3f6076cff050cc20a748d86a875c8bc9dd2c2d9"
+      },
+      {
+        "file": "v05-headwear-v4/propeller-0.png",
+        "sha256": "b2794455b0b693c72c1627069cbafbdd94b863b6d67d07f14cc1cc32864a167d"
+      },
+      {
+        "file": "v05-headwear-v4/santa-0.png",
+        "sha256": "933ad0a9f9c586696d57dba0c01d8b54242b2abb8c970a8fba4cdf5a693fac17"
+      },
+      {
+        "file": "v05-headwear-v4/sunhat-0.png",
+        "sha256": "674d85f4da3dcb5922081515ebda7044af2a098562f9bd7dac384637c3179428"
+      },
+      {
+        "file": "v05-headwear-v4/tophat-0.png",
+        "sha256": "e6803b4b999fa03403a6c4306436f0983de9abb2aace208a0dfceb7098d93dcf"
+      },
+      {
+        "file": "v05-headwear-v4/viking-0.png",
+        "sha256": "554cedc8c5734030898517263793a834f9175d59acc11f6f0c5690697c2a4e19"
+      },
+      {
+        "file": "v05-headwear-v4/wizard-0.png",
+        "sha256": "ea34e04fe5040dffaef6d7f34ae1ab2fa7b679bc1a165edc0b7ab3431b7b0a83"
+      },
+      {
+        "file": "v05-colors-v4/extra-headphones-0.png",
+        "sha256": "290e0d0ce5c3d3c7f3a20a8b20807562b0143cc6e3df80bb9322141b2c6cad7d"
+      },
+      {
+        "file": "v05-colors-v4/extra-headphones-56.png",
+        "sha256": "91eed237ec91f23ef9488b0fb64e173c6d21c570746191764e3d9ad11e51ad08"
+      },
+      {
+        "file": "v05-colors-v4/extra-scrunchie-0.png",
+        "sha256": "63de60f3537ec1bc0df5287bbcfc009ca3dba1703cfd488c790efda592a1c47e"
+      },
+      {
+        "file": "v05-colors-v4/extra-scrunchie-56.png",
+        "sha256": "f2405a77823d543bf2448c96d4eef356e386606cf4f5fd3cbccc81b6294d7627"
+      },
+      {
+        "file": "v05-colors-v4/eyewear-catEye-0.png",
+        "sha256": "39619a94ad24bc345ffd8a7ee4ea494a68fa7ded40944441bc273aa5b1e78e15"
+      },
+      {
+        "file": "v05-colors-v4/eyewear-catEye-56.png",
+        "sha256": "119c0a5c10edf80e850b49cf19124030272dc7e065e0566437537972f4772ed5"
+      },
+      {
+        "file": "v05-colors-v4/hat-backwardCap-0.png",
+        "sha256": "6caaf3884026a7405c5cbebb9e5c7c31f5b7a9e95895c24c0663ad141914dc6b"
+      },
+      {
+        "file": "v05-colors-v4/hat-backwardCap-56.png",
+        "sha256": "595e03839466e47defce8e57f2192c3754d869fc5edfe1f8a45ddf8017e020fb"
+      },
+      {
+        "file": "v05-colors-v4/hat-beanie-0.png",
+        "sha256": "140014d85430a5133333c9a679b2b385b81f1c59a09ad7ab8315098cfea6ec22"
+      },
+      {
+        "file": "v05-colors-v4/hat-beanie-56.png",
+        "sha256": "af5014494081cb304f613600ae8d927f5a77023d4f775c86737c4f830f1c9874"
+      },
+      {
+        "file": "v05-colors-v4/hat-beret-0.png",
+        "sha256": "5f92a1caf9d3c14bfa5c495c5cf5a84f4faee0d754c9325f8210067d333bbfd4"
+      },
+      {
+        "file": "v05-colors-v4/hat-beret-56.png",
+        "sha256": "1736818b406ad946e8f708d6b5b921e7463f947b8bcc8b32eb0b66d034ba9d26"
+      },
+      {
+        "file": "v05-colors-v4/hat-bow-0.png",
+        "sha256": "76dbda2d77648678e681fca419c1e9c0515a298e1a83475d1bbc5746d26506d9"
+      },
+      {
+        "file": "v05-colors-v4/hat-bow-56.png",
+        "sha256": "702838e6d7eb046ec94b2c03aaa5d94bbb6c144a3658610499a445cc153d7e8c"
+      },
+      {
+        "file": "v05-colors-v4/hat-bucket-0.png",
+        "sha256": "bfcd13df618d9d7e8c7fac17ea768a6a3ed97f900de4d1e915f83ddbbd1bd3f9"
+      },
+      {
+        "file": "v05-colors-v4/hat-bucket-56.png",
+        "sha256": "ffa5946c19c3864471875f6b16c2edb8f0bacdab873d9665e20e4d6b766106e0"
+      },
+      {
+        "file": "v05-colors-v4/hat-cap-0.png",
+        "sha256": "c23803232e3135a46bd6a44786bf1e5c9efa3743f3205c9baaaf4658a7d1b959"
+      },
+      {
+        "file": "v05-colors-v4/hat-cap-56.png",
+        "sha256": "bdf2d60f1b8bf0f14f538323cf6b3da3000c50e453416b2bd597398cb021557e"
+      },
+      {
+        "file": "v05-colors-v4/hat-cowboy-0.png",
+        "sha256": "bd120878e17d4eab130329a9c91d8e25f54b0e5b8fcaffea33560c3f609b7fc6"
+      },
+      {
+        "file": "v05-colors-v4/hat-cowboy-56.png",
+        "sha256": "01721cb0007fe002a197e21d959a78312a0cb07c8af6e0d319d1876ace965354"
+      },
+      {
+        "file": "v05-colors-v4/hat-fedora-0.png",
+        "sha256": "f64c7da4658cda271e6d1e24db26b7b5838f82e3b170cf737d5b7c0ab9d2b313"
+      },
+      {
+        "file": "v05-colors-v4/hat-fedora-56.png",
+        "sha256": "a8e3dc2a2c24fd560a3bca886f50ce7bcdfb38c0e03a4e25104227a5309a0174"
+      },
+      {
+        "file": "v05-colors-v4/hat-hardhat-0.png",
+        "sha256": "a1e0d0b68c7568fd588fb539e981eac1c09a4c3e390064d0ed430ac57d9e7a24"
+      },
+      {
+        "file": "v05-colors-v4/hat-hardhat-56.png",
+        "sha256": "ea6df1c28950464644956b7d7df5094bab32679f7d1f4e36a226423eee240ccf"
+      },
+      {
+        "file": "v05-colors-v4/hat-headband-0.png",
+        "sha256": "f2097cc1aaab85e987a54c603c2e5b17dbcb088760bfa09ada04716d1e5cd6a6"
+      },
+      {
+        "file": "v05-colors-v4/hat-headband-56.png",
+        "sha256": "ca8b0aab5d8b6fb662f75138a25e897415420f9195fc883f9543d563bf4042d2"
+      },
+      {
+        "file": "v05-colors-v4/hat-horns-0.png",
+        "sha256": "98f551f16654359c0850942ef80b2c2dd0a4b73be15500cca62acfaa34fb55d6"
+      },
+      {
+        "file": "v05-colors-v4/hat-horns-56.png",
+        "sha256": "b65e1c959f9118bae14a13079e54b154e5b32704ca24c433bf3385042fbb1f50"
+      },
+      {
+        "file": "v05-colors-v4/hat-party-0.png",
+        "sha256": "86e0c314d5e1a742fb51d0ae6b47746ddeef854c7e0806483f2de3fd573463fb"
+      },
+      {
+        "file": "v05-colors-v4/hat-party-56.png",
+        "sha256": "acf1676fbc08a5c467048c65cf7b971b09a3b7882f3a5e939c914d4323f887d6"
+      },
+      {
+        "file": "v05-colors-v4/hat-propeller-0.png",
+        "sha256": "52d6cd0e2048bc2d27538ff4fe9fe9dcfd0d1d6869f87e9f3176bf75b5b34392"
+      },
+      {
+        "file": "v05-colors-v4/hat-propeller-56.png",
+        "sha256": "4fbdbff0add7f956071819ebf590da31b8d80652696a1e5d5fb4fe3178963e86"
+      },
+      {
+        "file": "v05-colors-v4/hat-santa-0.png",
+        "sha256": "feb30b75a9b1a5a0e1ad5a28a89a23f50c154e00cb815a88286405b1f6484f0c"
+      },
+      {
+        "file": "v05-colors-v4/hat-santa-56.png",
+        "sha256": "7397826b4e1c6fff77ed246202c7e9081a4a4914367c0b4cd0adb5e3a763bfc2"
+      },
+      {
+        "file": "v05-colors-v4/hat-sunhat-0.png",
+        "sha256": "57d8db4a055718d22180d796dfe90a1959ef9fa7ee9ef193d025c830b4439e40"
+      },
+      {
+        "file": "v05-colors-v4/hat-sunhat-56.png",
+        "sha256": "146601dc6edf43c108cda11c523cd9fbe13f675abd71f65e5928ef467770f27c"
+      },
+      {
+        "file": "v05-colors-v4/hat-tophat-0.png",
+        "sha256": "25e5a8c0e4c0f2cf8fb2ba199b7d68f9b919a857282127ac909566a807e5d7c2"
+      },
+      {
+        "file": "v05-colors-v4/hat-tophat-56.png",
+        "sha256": "958dc4d36972f83ca8c97a2e08bcde0eef3223fc77cd0deddca0ce7eebdb7ad7"
+      },
+      {
+        "file": "v05-colors-v4/hat-wizard-0.png",
+        "sha256": "488f3fbc067ae7844e514adb50998c64a41a4d829cccee64a6c5178d7adc0763"
+      },
+      {
+        "file": "v05-colors-v4/hat-wizard-56.png",
+        "sha256": "ed3cfc92d70af7f301fe1ca8c3eaab88350ba98e7cd666525675b5b1daaac43f"
+      },
+      {
+        "file": "v05-colors-v4/item-coffee-0.png",
+        "sha256": "b4c7a7b62956d5f0c7d07b9e62c2ddaa0e8d53d9fc7a467bda2129696a8379af"
+      },
+      {
+        "file": "v05-colors-v4/item-coffee-56.png",
+        "sha256": "ccd578aaf6218249678906a047e65ec52088d654759c8bc97142a7ab3a425989"
+      },
+      {
+        "file": "v05-colors-v4/neckwear-bandana-0.png",
+        "sha256": "052e47f75393feee115c117d95eca799e554ee9ae892ba058b4938e212fa0648"
+      },
+      {
+        "file": "v05-colors-v4/neckwear-bandana-56.png",
+        "sha256": "4fe148bcf850e0b93f740fd495ad8d1045eb97c6ef40990d308a25be4890916e"
+      },
+      {
+        "file": "v05-colors-v4/neckwear-bowtie-0.png",
+        "sha256": "49c6eae5bf259db5d273c2eb0acb54703e94dd461fb3e3cdcdf6e437ec82c90f"
+      },
+      {
+        "file": "v05-colors-v4/neckwear-bowtie-56.png",
+        "sha256": "11d41945c3085b23f54f6e72b36656e002a709324da854b008ddd0925505053a"
+      },
+      {
+        "file": "v05-colors-v4/neckwear-lanyard-0.png",
+        "sha256": "2b858f53533cdbb0c19cf9676065b6e48cf6abd323149a69c1726569d2b1e7d6"
+      },
+      {
+        "file": "v05-colors-v4/neckwear-lanyard-56.png",
+        "sha256": "769e884f14c27eda231a52427a6374dd9156293ea59be0be4d5b7efaa086219c"
+      },
+      {
+        "file": "v05-colors-v4/neckwear-scarf-0.png",
+        "sha256": "e93bf7f31623a78bed8d3bff2bef6293358b7aef9b60af996155c5e8520c3ba6"
+      },
+      {
+        "file": "v05-colors-v4/neckwear-scarf-56.png",
+        "sha256": "2b1b5d45c5497b3398e415d5606940ed4e27b4293bddc4fa0f3d6821fc8373e2"
+      },
+      {
+        "file": "v05-colors-v4/neckwear-tie-0.png",
+        "sha256": "3c333ccad8e65dd00943ef65555764e67265172022ace06039fc9621c6ba493c"
+      },
+      {
+        "file": "v05-colors-v4/neckwear-tie-56.png",
+        "sha256": "84e945fce38c140cdd546cb1e95c8e05562074e671db0db5e4be3ff3b7598503"
+      },
+      {
+        "file": "v05-expressions/flat-0.png",
+        "sha256": "4126ed62303c449a4b10d6a5c1c801cb22b8a1d1902fdf3377c287f4bd107b47"
+      },
+      {
+        "file": "v05-expressions/flat-112.png",
+        "sha256": "bc92f1feedfb47271bd1943c8cbc0f12118856901476b582040a4240338c5b88"
+      },
+      {
+        "file": "v05-expressions/flat-56.png",
+        "sha256": "2016ad7e9532e2951c02c6d704ab8daf5a276b44a5b9bfb30e105024961018f0"
+      },
+      {
+        "file": "v05-expressions/frown-0.png",
+        "sha256": "94fb1d860e9516d0e81b274385d45dc9acef335c15f079d8df1bc9b428b867b1"
+      },
+      {
+        "file": "v05-expressions/frown-112.png",
+        "sha256": "1543cc635fa7f0e9d7bc2672612bc48cb1e046eadb6df418d0046d9123657185"
+      },
+      {
+        "file": "v05-expressions/frown-56.png",
+        "sha256": "7b8a88c1ec8acbf88de1ea6a18f6134922a4db511d7fc5db1bb60180b3236299"
+      },
+      {
+        "file": "v05-expressions/grin-0.png",
+        "sha256": "7d78c0bd8feb6d2a3c6725e2a27b9c85ba3ab369c0e6ab58e4aade76a6d4699f"
+      },
+      {
+        "file": "v05-expressions/grin-112.png",
+        "sha256": "4cab491f132cd988c1ce8ec30f5b8cc2cf0b877b87043b1a7749dcc12ac026e8"
+      },
+      {
+        "file": "v05-expressions/grin-56.png",
+        "sha256": "14b5134c9f7c04cbf2d813b1b5e861f014f8c4dc4f63220a9422658b14a0eff0"
+      },
+      {
+        "file": "v05-expressions/grit-0.png",
+        "sha256": "da78e39f843665e2627cf7a0e69a47fa52132398660a9aeb06b5ecb1526e3f8a"
+      },
+      {
+        "file": "v05-expressions/grit-112.png",
+        "sha256": "f3fc39b6f20733f7475fa8c227ed38063fdf84a5fe092a238f44a400f42ef71a"
+      },
+      {
+        "file": "v05-expressions/grit-56.png",
+        "sha256": "3c0a045ebc2c2f9cdebaf1c1a20f68475a6ebe47caff3fa6e980d586a01ac39f"
+      },
+      {
+        "file": "v05-expressions/kiss-0.png",
+        "sha256": "6d178c227377b7bacf9ac9a4e03b7b9a50abd86e07db27eacdc5d99f1e4f595f"
+      },
+      {
+        "file": "v05-expressions/kiss-112.png",
+        "sha256": "e61158c4e400004374cdd7834e15b91c1830a6700ff1a48b7ec96467c88c6aa7"
+      },
+      {
+        "file": "v05-expressions/kiss-56.png",
+        "sha256": "d6a583439c2efdf8a496ca1e3ad72ce7d431945e8578df2ba77e0935cc38e3ce"
+      },
+      {
+        "file": "v05-expressions/laugh-0.png",
+        "sha256": "80cc1422e2566d5a877fbfff473a53f5fc75517d57320860692cd2e9d156c9c8"
+      },
+      {
+        "file": "v05-expressions/laugh-112.png",
+        "sha256": "fb36b23df522868a9f308df9b11242877e8a6f01d37be8ab9f5c24c0b7f0a24c"
+      },
+      {
+        "file": "v05-expressions/laugh-56.png",
+        "sha256": "c145a76c30ed523041edf5e78a7cc8694e8c62ec325bcbcbf481e79083bc4cd4"
+      },
+      {
+        "file": "v05-expressions/oh-0.png",
+        "sha256": "e1d52fdce45c3671dc7e9aecfcaefdd93c65f5dd2c6bae501c61c95d9c586769"
+      },
+      {
+        "file": "v05-expressions/oh-112.png",
+        "sha256": "99ce59d6469df5743718362f5b29dad5b467a80a001d0b9941b315b8e52599d7"
+      },
+      {
+        "file": "v05-expressions/oh-56.png",
+        "sha256": "33f0a3e47ab731eaa88cc16cefe2ff465738204f8598359d94f3fc3856871a5d"
+      },
+      {
+        "file": "v05-expressions/smile-0.png",
+        "sha256": "4e855005a310fb0dddf0dc932dbeba9c45340306210d01feee2b5dc3bf110eec"
+      },
+      {
+        "file": "v05-expressions/smile-112.png",
+        "sha256": "3c492b971882d005c630b2e46d4a45f2dfd2ec14e1a7ab62dfc45934e6302b9e"
+      },
+      {
+        "file": "v05-expressions/smile-56.png",
+        "sha256": "917142787162b811490624bd6eb1b4bfe5e995047cef10fd332f61bbdbbe69ca"
+      },
+      {
+        "file": "v05-expressions/smirk-0.png",
+        "sha256": "bb6cc201d9d964569c3dae15dbef9c5c82619b4f2f5d89957288e7e24998dbc4"
+      },
+      {
+        "file": "v05-expressions/smirk-112.png",
+        "sha256": "b2ed6aab7b74e36fd3e15a100b2fd2110f6af0143db78c0fe504f0e6fe39458b"
+      },
+      {
+        "file": "v05-expressions/smirk-56.png",
+        "sha256": "7a18597b37ef2070f91700de64cfeaa03dd8331a704931c58c0623f0672c47bf"
+      },
+      {
+        "file": "v05-expressions/tongue-0.png",
+        "sha256": "749c8a4eb58b32e54ce813d5e678e3172d57970069471f3d4c5a031fd38029dd"
+      },
+      {
+        "file": "v05-expressions/tongue-112.png",
+        "sha256": "fe0b1d2f47d59fea9b243949189337f3189ee71ac3645242c40a30cb7c8d51f6"
+      },
+      {
+        "file": "v05-expressions/tongue-56.png",
+        "sha256": "e39d5525e66e74964d8435d43595afa96eddac2aa591bc5f986b7f6fc02bb208"
+      },
+      {
+        "file": "v05-expressions/wavy-0.png",
+        "sha256": "1baf070d0ce1b984fb306961b1c7070a1abbf8a99c3e92fd4693fe5cc657a4b1"
+      },
+      {
+        "file": "v05-expressions/wavy-112.png",
+        "sha256": "5dd8006cd157bff85dca67858b412e51db548ac7fb6b6e5955c7a3866deefc65"
+      },
+      {
+        "file": "v05-expressions/wavy-56.png",
+        "sha256": "77a4c04b4725598ca77d26f7d0cab5127bdac7d3d382b8be915b809cbd0018c2"
+      },
+      {
+        "file": "v05-expressions/whistle-0.png",
+        "sha256": "5fe34656a9c2f22032f2804e8a74dfdfeeaea555eef864356bdf0892ba9be43f"
+      },
+      {
+        "file": "v05-expressions/whistle-112.png",
+        "sha256": "2249ba66ea991038f2d81bb4219924d6fdcb3a7b8065f59a5f027e8009bcdf83"
+      },
+      {
+        "file": "v05-expressions/whistle-56.png",
+        "sha256": "e94fc1eb748985fab9702a31f2d8893da873b6b07c194e462e8dfd1e581dd253"
+      },
+      {
+        "file": "v05-facial-hair/beard-bandana-0.png",
+        "sha256": "b4955f6eb0a212d4425d20827dade552d7e400d8f2ba6c6598c887be9782de03"
+      },
+      {
+        "file": "v05-facial-hair/beard-bandana-56.png",
+        "sha256": "8a2452c76e6baff9238d9de9bd804f21ce32c820afb9563e4bafaacfd8c5d4b8"
+      },
+      {
+        "file": "v05-facial-hair/beard-bowtie-0.png",
+        "sha256": "a44123e7f66e24ef31434b0a2ef89fd14f06f1e7126c4c8fc308ab877068d94e"
+      },
+      {
+        "file": "v05-facial-hair/beard-bowtie-56.png",
+        "sha256": "c67bdc46afe66d7efef8d6c6996a44d237d8f1b6fb8ffca74e4537576497af48"
+      },
+      {
+        "file": "v05-facial-hair/beard-chain-0.png",
+        "sha256": "b7dd25a76e2174a5a6564a77e778b9834c750d8d57ded695dc3f96e263ae7904"
+      },
+      {
+        "file": "v05-facial-hair/beard-chain-56.png",
+        "sha256": "e4f924bb4bbfd9b9a9325367799ea812d2c7de36a12101fd1e863458e4e3f002"
+      },
+      {
+        "file": "v05-facial-hair/beard-lanyard-0.png",
+        "sha256": "73dd29a05e141e9438d77f9314277e28eb1b909dbf6baaa36854568ac7a92a94"
+      },
+      {
+        "file": "v05-facial-hair/beard-lanyard-56.png",
+        "sha256": "836f949425fbb40f84b15b41cde781606a7caf5884bd4c860310e22447b24995"
+      },
+      {
+        "file": "v05-facial-hair/beard-none-0.png",
+        "sha256": "d3bfad95269db04793120f80ff6c5ffa2f618765e6b021338f47353daea018ae"
+      },
+      {
+        "file": "v05-facial-hair/beard-none-56.png",
+        "sha256": "33314b0813429154ceb74c4f0c02a8cea0a6fc4fa94f58e17bd83334c0618d6d"
+      },
+      {
+        "file": "v05-facial-hair/beard-pearls-0.png",
+        "sha256": "48b6e0d0689b4af134375cac79216d5b3e984d9030260e5340af2a5645905be0"
+      },
+      {
+        "file": "v05-facial-hair/beard-pearls-56.png",
+        "sha256": "ae1759bda90f133b124ce15b8165ce19e3bafa32c6737914bf96486b7e3dcc92"
+      },
+      {
+        "file": "v05-facial-hair/beard-pendant-0.png",
+        "sha256": "6b3831011088abfde7e946fa7d0971eb3280f035b50d409a521b23cd032cb654"
+      },
+      {
+        "file": "v05-facial-hair/beard-pendant-56.png",
+        "sha256": "aaa5462272757791b4146db8a1cb58b689a5bb78b1daff692611b72a722baf7f"
+      },
+      {
+        "file": "v05-facial-hair/beard-scarf-0.png",
+        "sha256": "b5a252093938449632c86b5a098cdbdf30e30f7c473d4f80e2ed9d165f300156"
+      },
+      {
+        "file": "v05-facial-hair/beard-scarf-56.png",
+        "sha256": "8208dd0e082290c84704c1fc10c146dc2641831a60d58a251aef7804ccece9e7"
+      },
+      {
+        "file": "v05-facial-hair/beard-tie-0.png",
+        "sha256": "947485d08dd2259355cf8a39c60466c2891ba3ecc8d2346acb7b999191ab0cc0"
+      },
+      {
+        "file": "v05-facial-hair/beard-tie-56.png",
+        "sha256": "7a23e08deaac73a004c4cad6585d6a8ce7d7c5636ad4120d059c3fcf779ebe37"
+      },
+      {
+        "file": "v05-facial-hair/goatee-bandana-0.png",
+        "sha256": "c9e764e1741b6478b90636297126f7d0f0a40ef609d9b6f7950dfd2da0a5ec62"
+      },
+      {
+        "file": "v05-facial-hair/goatee-bandana-56.png",
+        "sha256": "7c86831dd3231242d54f86a9dd4a0fd24d452a4c6cb94feffc41d110f2364a56"
+      },
+      {
+        "file": "v05-facial-hair/goatee-bowtie-0.png",
+        "sha256": "a2f4beead76969a6bacbd475fcd91d6a1bfdc47e218fbbf0828b23ebf2dd53ed"
+      },
+      {
+        "file": "v05-facial-hair/goatee-bowtie-56.png",
+        "sha256": "2a711d37107b72b6c93b5f8b146e70ff56678647f22aa4607e53a4860f44ad6a"
+      },
+      {
+        "file": "v05-facial-hair/goatee-chain-0.png",
+        "sha256": "66afc474a41754c51e770aa9b9a8c8f9123f5b3cc4b257305ba09707ac125d22"
+      },
+      {
+        "file": "v05-facial-hair/goatee-chain-56.png",
+        "sha256": "c3c70f49ce6bf29366deb6af64e72fe995a2e1ca74fae5c52e6b851ceb4bcbf4"
+      },
+      {
+        "file": "v05-facial-hair/goatee-lanyard-0.png",
+        "sha256": "edf4541bc6bab355c0a92ab4d33f4a3734f44d9695d1a78d6c1ece7e63d707ad"
+      },
+      {
+        "file": "v05-facial-hair/goatee-lanyard-56.png",
+        "sha256": "8587f253f629247c92ca21a4d02a0d5a93196041d29d3f14ada9a6b98c2a6687"
+      },
+      {
+        "file": "v05-facial-hair/goatee-none-0.png",
+        "sha256": "8ec7b992b9cdadd2e3bddc88a30ca27c000cda0fb0b5caf4d9d72a2a49473dc6"
+      },
+      {
+        "file": "v05-facial-hair/goatee-none-56.png",
+        "sha256": "0c0dc50aea53d50345586abcac5a075416dabb9d170123b9181f6367f25e41b7"
+      },
+      {
+        "file": "v05-facial-hair/goatee-pearls-0.png",
+        "sha256": "9435ae8d4a156a742474eea952faed17c9702e3b6d4438f64ba335c6fa7ba085"
+      },
+      {
+        "file": "v05-facial-hair/goatee-pearls-56.png",
+        "sha256": "bb7ff772f80cf4c374d0833b5d3518984323db4b8390e2f3dcf68f0c3b824ba6"
+      },
+      {
+        "file": "v05-facial-hair/goatee-pendant-0.png",
+        "sha256": "e7e9727f6b03820317ad3c63c74bf7700701eec201f491f7af153734aadd655b"
+      },
+      {
+        "file": "v05-facial-hair/goatee-pendant-56.png",
+        "sha256": "337b2de0d5ac91a770761c66d4ea52d1c3ec05c1fa4a0b904a3da45b782336df"
+      },
+      {
+        "file": "v05-facial-hair/goatee-scarf-0.png",
+        "sha256": "fe896913dc03e160551997de6b795d0269440227e456c04c389c96b39b15ce8a"
+      },
+      {
+        "file": "v05-facial-hair/goatee-scarf-56.png",
+        "sha256": "996df830179f55a0475e58f70bc9fdb9053ac8b6c54da5210f6f6a204de69ad1"
+      },
+      {
+        "file": "v05-facial-hair/goatee-tie-0.png",
+        "sha256": "a40c950b49829b2e1b99ba0014be346b5797e0303f34686ab747d111d8467f41"
+      },
+      {
+        "file": "v05-facial-hair/goatee-tie-56.png",
+        "sha256": "f7add3610d199b695e73b895185148218a96f27e68b22247dd94b7eb9d466499"
+      },
+      {
+        "file": "v05-facial-hair/handlebar-bandana-0.png",
+        "sha256": "8482cc5cc22a962dba0c0681218b7466dfccb0ac23f15468dd46375da1e7d59a"
+      },
+      {
+        "file": "v05-facial-hair/handlebar-bandana-56.png",
+        "sha256": "92da45cc9036286088b707692f68f7be31c4c3e2b1f7bc99f4bd3ff9bb7dd0bc"
+      },
+      {
+        "file": "v05-facial-hair/handlebar-bowtie-0.png",
+        "sha256": "05cfd0cb7ba4922123552db01cbcc5cb5c39aa1367968307b7bc6b98b5492fdc"
+      },
+      {
+        "file": "v05-facial-hair/handlebar-bowtie-56.png",
+        "sha256": "62c99bc9b7af99339c40aa55826befc534d426a3eba3621eec166a2aafa0d9ec"
+      },
+      {
+        "file": "v05-facial-hair/handlebar-chain-0.png",
+        "sha256": "b20738275ac329042442911c4f1d82125faebe5effc9cd48967289ab7af54279"
+      },
+      {
+        "file": "v05-facial-hair/handlebar-chain-56.png",
+        "sha256": "09d1928722d1685eb0005d07501b4a293b56dfb2acdc28cc298a22fa95189791"
+      },
+      {
+        "file": "v05-facial-hair/handlebar-lanyard-0.png",
+        "sha256": "4bb9a7e3d9986cabb505f6647ac61b8383c79503b803463c14bc4e978e9ea2ae"
+      },
+      {
+        "file": "v05-facial-hair/handlebar-lanyard-56.png",
+        "sha256": "ec96d5a495417f6983f5bac76f3f18424b483778bc5e877a18c678de7d0e21a5"
+      },
+      {
+        "file": "v05-facial-hair/handlebar-none-0.png",
+        "sha256": "da8eb12be0401c60e89c2ab0151caf89c7811441bc74aae8131abaf5e6ce750f"
+      },
+      {
+        "file": "v05-facial-hair/handlebar-none-56.png",
+        "sha256": "bb5e17cc4ac413673deda37c9cf8ddb4884e4dedc7a7510ba81346fc76db49a3"
+      },
+      {
+        "file": "v05-facial-hair/handlebar-pearls-0.png",
+        "sha256": "6ad64b16c96f3cf89f2a006ec468ffcc300d7f88e0cf2adbc67cd39a4d8ef635"
+      },
+      {
+        "file": "v05-facial-hair/handlebar-pearls-56.png",
+        "sha256": "8dd1c9159abb4d9403a93d5e7ca6ee96200bbd2ea6c5787ecd2afb8a6dafa4dd"
+      },
+      {
+        "file": "v05-facial-hair/handlebar-pendant-0.png",
+        "sha256": "aa80af2664a5e9c2be2fe2a27edcf7c2e4d56242ac49babe9234dd1e3a78d0da"
+      },
+      {
+        "file": "v05-facial-hair/handlebar-pendant-56.png",
+        "sha256": "1572f3629a1902b9623eea6593728af9e03ebfc6ac231d492a51c87623498211"
+      },
+      {
+        "file": "v05-facial-hair/handlebar-scarf-0.png",
+        "sha256": "aa332bf4e63c5ef3cb30c1ca81e6f3ff6cffaaca5a06b843b6f56ae783ef8acc"
+      },
+      {
+        "file": "v05-facial-hair/handlebar-scarf-56.png",
+        "sha256": "2dd5602aed91c34b5fd19529a6afb144725a961c5822a35fbb56df92a0769e9b"
+      },
+      {
+        "file": "v05-facial-hair/handlebar-tie-0.png",
+        "sha256": "da98732e1d2bf7b3b4520f0c3bebabb7a54b6103816e9514ed3e6310b13f7dda"
+      },
+      {
+        "file": "v05-facial-hair/handlebar-tie-56.png",
+        "sha256": "fd964e8e27d0fbda54025fcf9a8b557b3fec5325f0a39017c235ebac12cd378f"
+      },
+      {
+        "file": "v05-facial-hair/mustache-bandana-0.png",
+        "sha256": "06c6aac0c3de6692a3540432cd474df6c2092f7dbe8efb8c725ef67174fa7d00"
+      },
+      {
+        "file": "v05-facial-hair/mustache-bandana-56.png",
+        "sha256": "678db442c4e833f77d656462c8e517c93efccf196922be6097762815fafed049"
+      },
+      {
+        "file": "v05-facial-hair/mustache-bowtie-0.png",
+        "sha256": "5ad9fb8eb5c4f7029bd2e057d4f5cfbd1ef9d1b1a3e19e1eebe3b6ede630590a"
+      },
+      {
+        "file": "v05-facial-hair/mustache-bowtie-56.png",
+        "sha256": "a2b5a84d397d72bff4556b816439905c4598124280d3af0f5d5a827a91b6d9c1"
+      },
+      {
+        "file": "v05-facial-hair/mustache-chain-0.png",
+        "sha256": "55f779ea1bf544d6d3b5672d009b0a0db87b41a948a030d2ec29e30906f82828"
+      },
+      {
+        "file": "v05-facial-hair/mustache-chain-56.png",
+        "sha256": "c1c8c6ae5e4e41a8b2cffa9f4ea4f0358d5290c20330bce631f398e07903eb1f"
+      },
+      {
+        "file": "v05-facial-hair/mustache-lanyard-0.png",
+        "sha256": "6425af661e8f8f2781eba637a1a4f6d84713a879c324623929db650be6876687"
+      },
+      {
+        "file": "v05-facial-hair/mustache-lanyard-56.png",
+        "sha256": "8e5eaf476e6e69da931293ca17d9c88a1c7931fbcc95b13b07fd672aaccf52bb"
+      },
+      {
+        "file": "v05-facial-hair/mustache-none-0.png",
+        "sha256": "82f46063aa83c013324b0a2f0c8d057b31da50517ba2389f3a53ae665636c173"
+      },
+      {
+        "file": "v05-facial-hair/mustache-none-56.png",
+        "sha256": "a4c4dc327e1392a6590c81d5ee274cb710f97bf62b1b3e25eccfa174b0aa41bc"
+      },
+      {
+        "file": "v05-facial-hair/mustache-pearls-0.png",
+        "sha256": "8107be79992195bc69d309128b1f3db4f99036697a2e908a9fedbb6d33098007"
+      },
+      {
+        "file": "v05-facial-hair/mustache-pearls-56.png",
+        "sha256": "5a33d573c599c6ac196b667e531600d52ef756167bc02e3dbb13aa13c5a033d7"
+      },
+      {
+        "file": "v05-facial-hair/mustache-pendant-0.png",
+        "sha256": "7a588e7c16c6b60349b4f852036fa1bccb01589c82f3900db3385fb5720897af"
+      },
+      {
+        "file": "v05-facial-hair/mustache-pendant-56.png",
+        "sha256": "a9d4298463d71f1d433c340db2489d08896691a0cd221fbc3f2c53fea515dba6"
+      },
+      {
+        "file": "v05-facial-hair/mustache-scarf-0.png",
+        "sha256": "15982c9d121940d13b579c70aaf8f0821d810d658b18b91feff3949f483e34e0"
+      },
+      {
+        "file": "v05-facial-hair/mustache-scarf-56.png",
+        "sha256": "40436f9c20ee9b7bd7b796a30a926ea3e26eef055e2d89e838a4a101f7e28eb0"
+      },
+      {
+        "file": "v05-facial-hair/mustache-tie-0.png",
+        "sha256": "354d0e1a5df3d08b439d6caadaa61e75865cd0cff602a102beee0ddae6325ddf"
+      },
+      {
+        "file": "v05-facial-hair/mustache-tie-56.png",
+        "sha256": "3f858ef64d8d49b36ac765e112f44b577f71e222f72d559fe3f2c58321e00490"
+      },
+      {
+        "file": "v05-facial-hair/none-bandana-0.png",
+        "sha256": "2e8c50d27ff1de34368ce94783e1d10f42cfa3b27fb3eef65b9e86b160bd5316"
+      },
+      {
+        "file": "v05-facial-hair/none-bandana-56.png",
+        "sha256": "d7ddf9072717152711419eba8f18c48c6250c70e9268739653628992c4244e58"
+      },
+      {
+        "file": "v05-facial-hair/none-bowtie-0.png",
+        "sha256": "d73b4243dec9744665f7e651941afd45b729d430680f6d75c63a4e1c8aea8b61"
+      },
+      {
+        "file": "v05-facial-hair/none-bowtie-56.png",
+        "sha256": "a13cf64be2c195f04452ed16e92420da04ec480f6e7780ce565020e1212e2629"
+      },
+      {
+        "file": "v05-facial-hair/none-chain-0.png",
+        "sha256": "b450f94dcaf782f38e85323a5f776bc512f5e78b3268b5bab2ed7454c2d7d504"
+      },
+      {
+        "file": "v05-facial-hair/none-chain-56.png",
+        "sha256": "d8f3313353061ea42a0c8b1caf1ea7afd427214fccfac87ca54008db0e00fde1"
+      },
+      {
+        "file": "v05-facial-hair/none-lanyard-0.png",
+        "sha256": "46bc78d74bc7e93d7fc613b7ef09614d0ac8500b517c52a308093aa2b2d01999"
+      },
+      {
+        "file": "v05-facial-hair/none-lanyard-56.png",
+        "sha256": "5d9d03612d69586f4065268a2986561aee3f8499a7ddad6757d62f5d700a5c0b"
+      },
+      {
+        "file": "v05-facial-hair/none-none-0.png",
+        "sha256": "c5acba2bdff479e67db647fd2352178dfbcc72340907ec321d2e3a55cbc3fabf"
+      },
+      {
+        "file": "v05-facial-hair/none-none-56.png",
+        "sha256": "6c30db3287e4f3fc41727aa400326a54f8a287bbd3ab268b6067bb47ab6a07ec"
+      },
+      {
+        "file": "v05-facial-hair/none-pearls-0.png",
+        "sha256": "e2f9914fffe817b3aae9dd150f799333596a2f6e702341d2ed92dd67b7e568a8"
+      },
+      {
+        "file": "v05-facial-hair/none-pearls-56.png",
+        "sha256": "7b126fff1e55257472c77fa6c4bdf729147f1095a89a4aae2211b4556c242442"
+      },
+      {
+        "file": "v05-facial-hair/none-pendant-0.png",
+        "sha256": "aa6aaa635d098e041a95a0b2b70783dcf51dbe06537bb23241ba2d4a453d6e40"
+      },
+      {
+        "file": "v05-facial-hair/none-pendant-56.png",
+        "sha256": "c99480087b41b18ff355d02bb9f5ef8f585bc30d3171a9144d7ff1c995655f5b"
+      },
+      {
+        "file": "v05-facial-hair/none-scarf-0.png",
+        "sha256": "28eb6369d0a695e35b7fae7a1e2edbfe0ceffa7f65e72535894dce9174bb3c13"
+      },
+      {
+        "file": "v05-facial-hair/none-scarf-56.png",
+        "sha256": "8c45bcf2960e08686ff0d2d915e7c0d5f25f06f46bee1a1c8e8a55608ad117d1"
+      },
+      {
+        "file": "v05-facial-hair/none-tie-0.png",
+        "sha256": "dc449e432b7f1906c31bb2c0d6aceb77bf78fceec37140a8d8e24f72598f43dc"
+      },
+      {
+        "file": "v05-facial-hair/none-tie-56.png",
+        "sha256": "7b7856447bce94775e98214442babe56bc39a652d4624222dd51d657bcb8c80b"
+      },
+      {
+        "file": "v05-facial-hair/stubble-bandana-0.png",
+        "sha256": "923703d1cbf19220f235b8e52b6a9db4305a11ccb9256151e973a66cde960249"
+      },
+      {
+        "file": "v05-facial-hair/stubble-bandana-56.png",
+        "sha256": "d6857e9d10501e7358bc0bab84de738d2d04b9950978b20f56c88d117f27f1e9"
+      },
+      {
+        "file": "v05-facial-hair/stubble-bowtie-0.png",
+        "sha256": "9966a8a5ab0bf9c342bd710104b3c688e6f80a4606b763d2825ac413f037a05c"
+      },
+      {
+        "file": "v05-facial-hair/stubble-bowtie-56.png",
+        "sha256": "eda806811a841869a8193aec469aca89ca7633fe6b0199b548e15f124d96a0b7"
+      },
+      {
+        "file": "v05-facial-hair/stubble-chain-0.png",
+        "sha256": "630b701defad744cb878a86c062337970761fcbe051aebe2a9f700884e787dfc"
+      },
+      {
+        "file": "v05-facial-hair/stubble-chain-56.png",
+        "sha256": "74bc45281913f0215f62d07772d9bccd87dc447e9da39e6b40b9e3d63348ac47"
+      },
+      {
+        "file": "v05-facial-hair/stubble-lanyard-0.png",
+        "sha256": "7ae3cf296bd1841c325c539a122261267f708dc86558cd205e17419450692473"
+      },
+      {
+        "file": "v05-facial-hair/stubble-lanyard-56.png",
+        "sha256": "6399fe9f6a890dab97e16673c3983edd7f697b6143108f312b9ed0e2eb714fe7"
+      },
+      {
+        "file": "v05-facial-hair/stubble-none-0.png",
+        "sha256": "cd8ca99ff3335f8091cf657465f8086e729825dbf8ae7647177f6e9aa62ae63b"
+      },
+      {
+        "file": "v05-facial-hair/stubble-none-56.png",
+        "sha256": "19d34e433fb4e05de7f028ba5d0ec43ac31dc3403ba09550606ba398ed43978b"
+      },
+      {
+        "file": "v05-facial-hair/stubble-pearls-0.png",
+        "sha256": "41c8c67d26685514fd3d1a35241435443d28999bd15267e8e74bf6e2ca85cdc3"
+      },
+      {
+        "file": "v05-facial-hair/stubble-pearls-56.png",
+        "sha256": "70d9e36e2d8856a4fa06720dc4530b3e89d89da5f427d5052354ecf1f1e519e1"
+      },
+      {
+        "file": "v05-facial-hair/stubble-pendant-0.png",
+        "sha256": "2bb4d8b7103e638790d16f113856ba2386c4d8fddeb1c2466dd204e28739e980"
+      },
+      {
+        "file": "v05-facial-hair/stubble-pendant-56.png",
+        "sha256": "8448c288929856c88eb1bdf2c6e0dfd630096223c52ecfde922b8ea170266dd6"
+      },
+      {
+        "file": "v05-facial-hair/stubble-scarf-0.png",
+        "sha256": "46c6d4f9f2db5e5e5e33c4a1e46dba1e1753ed4f5e799f17c7b456f7a5fc6f32"
+      },
+      {
+        "file": "v05-facial-hair/stubble-scarf-56.png",
+        "sha256": "a474cc9c92208e64daa27931fabe05a1e9db2d63f9bc0247f2eb52c7792141ea"
+      },
+      {
+        "file": "v05-facial-hair/stubble-tie-0.png",
+        "sha256": "2daac6904ca00064065cbfdc40f55fff083ec77466b92cdcd16b1e734d0fa67c"
+      },
+      {
+        "file": "v05-facial-hair/stubble-tie-56.png",
+        "sha256": "4ad17aa6f4b36bdb5dac4696dd60fb609e8cb44bd78c7a5d760536bef7698f88"
+      },
+      {
+        "file": "v05-final-poses/boba-0.png",
+        "sha256": "bba6fbdcd433448b6e264bda6101ec3621e391c891c09f180ff63c0695715f85"
+      },
+      {
+        "file": "v05-final-poses/boba-56.png",
+        "sha256": "ccb29e83132fee31f613476ee80545efa196409c5cbf878eab3affb6aab3bdb7"
+      },
+      {
+        "file": "v05-final-poses/book-0.png",
+        "sha256": "66c8c674fe5ef751ec0244aeac69a8ad787e3c1f78deff53cf21754372645cbb"
+      },
+      {
+        "file": "v05-final-poses/book-56.png",
+        "sha256": "7d0535e6e454cdcfe8cd061a8e4eed738fe8a805881e180d1691bae6e81856c1"
+      },
+      {
+        "file": "v05-final-poses/bouquet-0.png",
+        "sha256": "ed97e2bfea7487357acaad656683d49741b04cdd574bc515f8778e7a81663e15"
+      },
+      {
+        "file": "v05-final-poses/bouquet-56.png",
+        "sha256": "be2bd333f7ab56946f4303671045bc9ea2b2d98828bdfcacd2950b098a4be12f"
+      },
+      {
+        "file": "v05-final-poses/coffee-0.png",
+        "sha256": "bb4763f948f0ac4a5d14e2f441b808383c9f29f9756f8a3a0668e62940b0cd16"
+      },
+      {
+        "file": "v05-final-poses/coffee-56.png",
+        "sha256": "1fd52a1db4c17464d4bbc81b05d78b9fc66469cf3cb9fb47927fd4b7a3d5843b"
+      },
+      {
+        "file": "v05-final-poses/controller-0.png",
+        "sha256": "a1906f9cbd83866333cd96423009c18c348cc46caa976eb07d5c77ec0d112ba5"
+      },
+      {
+        "file": "v05-final-poses/controller-56.png",
+        "sha256": "cb50a3aec22a1dd90c06e346869378855800e135b0dab9e3bd1c1019e52131fa"
+      },
+      {
+        "file": "v05-final-poses/donut-0.png",
+        "sha256": "59df565f5cadcee495f8eca830a838a368ebf89adbdbc71b3351ddd92ba7be8b"
+      },
+      {
+        "file": "v05-final-poses/donut-56.png",
+        "sha256": "8d0336f54b9689932a48543eea90b1e24be26abfec041f52e67098f6a311a9e1"
+      },
+      {
+        "file": "v05-final-poses/duck-0.png",
+        "sha256": "5136d4aee636f0c4f31b5e56b4f5fca2fed268b907594c7bb86648042da79e8d"
+      },
+      {
+        "file": "v05-final-poses/duck-56.png",
+        "sha256": "630c2c754a7143b4f675d4d1d5998963a51ba52d980f2bcbc2295c9361980d17"
+      },
+      {
+        "file": "v05-final-poses/handbag-0.png",
+        "sha256": "3c99dda76c3310fe809e499b33d3a7f4ec883ccc8a13c1ad6d6be2604d91990f"
+      },
+      {
+        "file": "v05-final-poses/handbag-56.png",
+        "sha256": "55fea3980b8eb2b13babd03647a2fbc501448e48a91c3dd03aa1e4ddf401108b"
+      },
+      {
+        "file": "v05-final-poses/laptop-0.png",
+        "sha256": "012f916c89bde2b3ed2dbed079f904e74b5c9a8368e676600f0684d65f4119b0"
+      },
+      {
+        "file": "v05-final-poses/laptop-56.png",
+        "sha256": "400500e97a84a85122ce21cc063889ee39856cbe73998ca786639119d9c00ca0"
+      },
+      {
+        "file": "v05-final-poses/mic-0.png",
+        "sha256": "c2913993e31a5eaec5e6042649cdd834314cc6a37953d2d9ffa9a149eb013557"
+      },
+      {
+        "file": "v05-final-poses/mic-56.png",
+        "sha256": "ce74f6c87ea9b26f0184f0038175333e7976a8ebfbbe6ab56c8adff9a91b2580"
+      },
+      {
+        "file": "v05-final-poses/none-0.png",
+        "sha256": "3e6e789fbde106528ff06ac81f042ff5b70fb50f53c4b660d0226f97137223cf"
+      },
+      {
+        "file": "v05-final-poses/none-56.png",
+        "sha256": "4e8419c2b9245e9c66d3a5eb19f37debb164f31343acbad1cc2d7d7f9205b518"
+      },
+      {
+        "file": "v05-final-poses/palette-0.png",
+        "sha256": "e0f64cd71aa5a903d7418e3d4155ff07a0f6d5a7adcc2cbd1d7acc7b543b3dd5"
+      },
+      {
+        "file": "v05-final-poses/palette-56.png",
+        "sha256": "476d2a74a3dd405b1720fa2fd50cf220bece835cac7ce4563f968a7295e5de96"
+      },
+      {
+        "file": "v05-final-poses/phone-0.png",
+        "sha256": "63d526116c9dfdba3dc14e04cb9d46145c78266359fa1d62a0f0c4e9c40c0245"
+      },
+      {
+        "file": "v05-final-poses/phone-56.png",
+        "sha256": "bc6ac693e37a2627576347668d282f136c1565eebc5e668bf6d4395e9eaf68c3"
+      },
+      {
+        "file": "v05-final-poses/pizza-0.png",
+        "sha256": "d44fb60e2204f957dd9c40070dd955aef5bd6ae93cc73b782953db052e9860cd"
+      },
+      {
+        "file": "v05-final-poses/pizza-56.png",
+        "sha256": "97c1712528976cd90574dc8b5425873260ad7ce8a27d2aca2ea26e3ddd1e143d"
+      },
+      {
+        "file": "v05-final-poses/plant-0.png",
+        "sha256": "5591635c39a8cb56265f9ef0d941ddc6c1d39ecd9df2775c217479736d8d57f1"
+      },
+      {
+        "file": "v05-final-poses/plant-56.png",
+        "sha256": "561f562c3e2b8ecf9c98addcb58559645d14bae61491c0dc245a3baa39dc77fc"
+      },
+      {
+        "file": "v05-final-poses/sign-0.png",
+        "sha256": "cc18cbc90849fcbcd44486db9abfa4bc1c7293d421ea5af1fd0d95209a4c2234"
+      },
+      {
+        "file": "v05-final-poses/sign-56.png",
+        "sha256": "fcb464c5a47c9161c12fe10ddd884865cbabf217a498910d34276d7555b70c56"
+      },
+      {
+        "file": "v05-final-poses/teacup-0.png",
+        "sha256": "a8438aa4ad03d82db4e51cc19279a706b0339113bef9070265fbce2a12242de7"
+      },
+      {
+        "file": "v05-final-poses/teacup-56.png",
+        "sha256": "5e48f02e2b66347283cec4bf22d256d539f7efd9c42c8efcaf1af1d0ccef3145"
+      },
+      {
+        "file": "v05-final-poses/trophy-0.png",
+        "sha256": "febd0ed39f86b63964bb0d3b6e6eff3bc6cf8888a6f35a2c43a7510654efd883"
+      },
+      {
+        "file": "v05-final-poses/trophy-56.png",
+        "sha256": "dba12427341b3184a02edac59da6d3309ddd7bfeb11715697c5411f08cf7f8ec"
+      },
+      {
+        "file": "v05-final-poses/wrench-0.png",
+        "sha256": "e3010ee76932e5b949ce3ed7f27078a116e19665b15a8c2053e67004c8e637d1"
+      },
+      {
+        "file": "v05-final-poses/wrench-56.png",
+        "sha256": "ae0f62f40f6d14eb0f0f12e30319426348bc9c6f43bb97d50e8057cd1ff54e78"
+      },
+      {
+        "file": "v05-final-eyewear/aviators-0.png",
+        "sha256": "b3c094ab15385257cbd5ec38c4af0236f94efa75e8e500cd035d76b511fdb3b5"
+      },
+      {
+        "file": "v05-final-eyewear/aviators-56.png",
+        "sha256": "91426c2231dd83fcb9054d23438c041ebf6e3cb1c3c71a22b29cc525bae1ccfa"
+      },
+      {
+        "file": "v05-final-eyewear/catEye-0.png",
+        "sha256": "0cf849b5eb89bde31f1d7847ead17922d927f90d0152a1df2cc55404641b96b0"
+      },
+      {
+        "file": "v05-final-eyewear/catEye-56.png",
+        "sha256": "9b030be9bd82018c4292e7c6ba83578e2b3f24083466f9bb90920a287b125642"
+      },
+      {
+        "file": "v05-final-eyewear/eyepatch-0.png",
+        "sha256": "005cc38d2c8f5610d4f340b6ca50a6501876966abdcda3dd83e898f644458d89"
+      },
+      {
+        "file": "v05-final-eyewear/eyepatch-56.png",
+        "sha256": "4bec5cd3427ecabb3d6752b41d07d3287338197d7a9de6f699804614a3172200"
+      },
+      {
+        "file": "v05-final-eyewear/monocle-0.png",
+        "sha256": "be5f86f7905e2a9f59584fde4b85ae198bed1d57dda7ef945be6746a4efa9947"
+      },
+      {
+        "file": "v05-final-eyewear/monocle-56.png",
+        "sha256": "07b92cdb4c3662f5c7f1ef3e9997f0f59bbdb42f0aa3427f57478974de451189"
+      },
+      {
+        "file": "v05-final-eyewear/none-0.png",
+        "sha256": "2a78cdfecc3c78cb70c91328661631a073bfa9411d85551f22bf20cdea46431f"
+      },
+      {
+        "file": "v05-final-eyewear/none-56.png",
+        "sha256": "9c138613bf81a803246ba48def5561baddbbbb588e8fc2cfa87469a5a734a01d"
+      },
+      {
+        "file": "v05-final-eyewear/round-0.png",
+        "sha256": "5b011ac7cfea54e98289589a35ab8655b456f24706028b96aac7453103509eaa"
+      },
+      {
+        "file": "v05-final-eyewear/round-56.png",
+        "sha256": "e76ff88e0614984fa433fccf4b29a812f5e89c52f10976dae05c628f746fc175"
+      },
+      {
+        "file": "v05-final-eyewear/shades-0.png",
+        "sha256": "c1752c1ce150a68cf6c1e6601f39318d4fb4e484b2cb71b10a5e09d7b8295710"
+      },
+      {
+        "file": "v05-final-eyewear/shades-56.png",
+        "sha256": "9d68e1ea31b2c6641c9a630b9bfea092fd70ab8393fe0cd9fa7c60e9144db4d3"
+      },
+      {
+        "file": "v05-final-eyewear/square-0.png",
+        "sha256": "e4f6941a8cc7460828f77a29c50af00408c1b09716a0509b978218edda0f4417"
+      },
+      {
+        "file": "v05-final-eyewear/square-56.png",
+        "sha256": "d2e38bbe3c392e45909f37c392989d0e07e955537fa72e9f748158029a5b3514"
+      },
+      {
+        "file": "v05-final-pairwise/outfits-0-0.png",
+        "sha256": "7df1cd71b55d65f8031a0deb56292c9654da55e612589c00cafb99590fc50f1d"
+      },
+      {
+        "file": "v05-final-pairwise/outfits-112-0.png",
+        "sha256": "91bc4020334b39b79c8ffe06268ea0fad2a97ef551c87b72d05ca8d05812fc14"
+      },
+      {
+        "file": "v05-final-pairwise/outfits-168-0.png",
+        "sha256": "b40a03c102d46d7921156c4115a698a1b622bbc4a9bf97d439069c6543000f63"
+      },
+      {
+        "file": "v05-final-pairwise/outfits-224-0.png",
+        "sha256": "9f7d2d4610bb634643f1d50bb25f315117f2ed4ffc827f5d1ac8c126e5757083"
+      },
+      {
+        "file": "v05-final-pairwise/outfits-280-0.png",
+        "sha256": "28fc0427f93b94d2388c4cf8c85497c0e737c830a189fd04e49f4a9b4f78f8cf"
+      },
+      {
+        "file": "v05-final-pairwise/outfits-336-0.png",
+        "sha256": "5a1f6c743ccb42122692a20a6173877217b8f58b2b33adf1800b792093dc335b"
+      },
+      {
+        "file": "v05-final-pairwise/outfits-392-0.png",
+        "sha256": "3432764340b04dcf8589d473e5551f0b4aaa1eaeb5e61c49b7d0d71703647651"
+      },
+      {
+        "file": "v05-final-pairwise/outfits-448-0.png",
+        "sha256": "a486977ab6a633214ae155a1b093cedcf53a1ebdb3861cec4cb0fa12b792d73b"
+      },
+      {
+        "file": "v05-final-pairwise/outfits-56-0.png",
+        "sha256": "4b9307e0491fd637637fdf42c317a455d2843b9d29dff420431222158b3ec1b8"
+      },
+      {
+        "file": "v05-final-details/presets-0.png",
+        "sha256": "cb574536868a9a2f5a1a75f2ebc906c1a63481a6d053aeee79d717d2fa661ef7"
+      },
+      {
+        "file": "v05-final-details/presets-56.png",
+        "sha256": "6dfcbcada3fa330e2963cc0642573647f66ae7aa3aec7bc3ffabec337c271b30"
+      },
+      {
+        "file": "v05-final-details/random-outfits-0.png",
+        "sha256": "f6a12bbadbd5c262d64b3402bdd0f0994120372ac7f98c64f4002a2057e3c4b5"
+      },
+      {
+        "file": "v05-final-details/random-outfits-56.png",
+        "sha256": "72deef28d3ab0baa066b71ae7f70582c8438f0ee8e65eaaa18c0367443891387"
+      },
+      {
+        "file": "v05-final-details/salute-hats-0.png",
+        "sha256": "7d2414ec21dadb995e6d8e6296ee87663abeab31866167c873c1b9862d0f88b4"
+      },
+      {
+        "file": "v05-final-details/salute-hats-112.png",
+        "sha256": "12946795e00c7204c4e815178352e980d710083ee835fd8736285c266980914c"
+      },
+      {
+        "file": "v05-final-details/salute-hats-56.png",
+        "sha256": "68b689aee3bb0f8672dc251397a8b7976a8e501d9e420ed02279b7573446517d"
+      },
+      {
+        "file": "v05-final-details/sticker-layouts-0.png",
+        "sha256": "d9d1b55838297385c3fd8f7368505a55393084eb928cb9e9a7021ac2f5f13862"
+      },
+      {
+        "file": "v05-final-details/text-0.png",
+        "sha256": "94f3a48115380138f2a7203ae3b4c9048a4888ea69a5e1a9ad8fc115ae01d750"
+      },
+      {
+        "file": "v05-final-backgrounds/circuit-0.png",
+        "sha256": "9948ba7679fc016caf9087cde1d9f5f1d2ebdeb6a2b2bbad1cd366f45a51cdd8"
+      },
+      {
+        "file": "v05-final-backgrounds/code-0.png",
+        "sha256": "e8c257269fdc85dd18bb07f443dfc042efd74881fcfea36e9542ab80fdc2d2b9"
+      },
+      {
+        "file": "v05-final-backgrounds/confetti-0.png",
+        "sha256": "2e0506ff19e04df839e3eda6c42f096da78dca9771e8d107dc16e86e8d782eb3"
+      },
+      {
+        "file": "v05-final-backgrounds/dots-0.png",
+        "sha256": "25774596b410f27d9f7e49a462870960fc8cd9b4141ef95e8b85147c8a3a691f"
+      },
+      {
+        "file": "v05-final-backgrounds/grid-0.png",
+        "sha256": "f0a8535f3ebb4bd05a411fd0298d0982957eb2ee5d7d8742d3eddabc9ad6f94c"
+      },
+      {
+        "file": "v05-final-backgrounds/hearts-0.png",
+        "sha256": "42ba44130431b0a7b98468a001b4fe1e04c6173e6ea07d54be182c982aa00290"
+      },
+      {
+        "file": "v05-final-backgrounds/hex-0.png",
+        "sha256": "f35db96c9121d8a04181c0c1d9c9bd6e02cc31807913ce31d0d02565f4282ff3"
+      },
+      {
+        "file": "v05-final-backgrounds/rays-0.png",
+        "sha256": "620914b725eae2bddd2fc7da7c46e983b1c6fc0c07a3e843fee6560758d40777"
+      },
+      {
+        "file": "v05-final-backgrounds/solid-0.png",
+        "sha256": "6ebc2e888081ce1d7fedb31e28d1800472de48c155f18790c9dbb9fa405e77c2"
+      },
+      {
+        "file": "v05-final-backgrounds/spotlight-0.png",
+        "sha256": "33bd43716ab677e00435091ab470427574ce4898c0cdfdeab61bfd8dbf1eda1e"
+      },
+      {
+        "file": "v05-final-backgrounds/stars-0.png",
+        "sha256": "0c2e6f8e767d3caba03c57e70069c965fb68add9334f23095706bb51c657cbc4"
+      },
+      {
+        "file": "v05-final-backgrounds/stripes-0.png",
+        "sha256": "b67ae7801faed216c6f18bccd575c4e78e9f116ab9b81fa4800d4186d1611467"
+      }
+    ]
+  },
+  "sourceSha256": {
+    "assets/manifest.json": "d6ca4de139739417282419c4b9cf1fc27be95375f720521604c3bb15419f328b",
+    "fit.html": "d1784c8ec6e64b07c10cb929f2103f78718920a0237b7d4925fe63c32c83f2f4",
+    "index.html": "8cccac14cee5531a2d0fa22641cae131c6ddc4b2b099ac4be2fb51da6cdbc086",
+    "package.json": "12504f9ad2c1770ada9740ea4d6c28183cc4b4b9a05610918c7ced312fe350ca",
+    "scripts/audit-project.mjs": "913f24560d1bfc8cc6fef57152e729a19be39185d8d0148ad733d1be7becaae0",
+    "scripts/audit-ui.mjs": "c79a2efb5a4b4674642c215f4b1693f1e1c92920c3065570de252fb33124fc44",
+    "scripts/pairwise.mjs": "9475b2a40f4f85b86885917370a7288ca7dbd70879fae28f83812e23e1e5a992",
+    "src/assets.js": "4a6bcb069db3d1f91cfae09f7c48e518977a2670349e59f10cf8afdde792b470",
+    "src/cache.js": "5053de81876be68728dd6e9da056cd228f0c4bbca241ec7095230c2f719c06d8",
+    "src/compose.js": "c1621092b4002e8e09cbe730075d157f9b5056a3293fba0e92fa868c5f697300",
+    "src/draw.js": "2bbc10b77eab679eda7a9aa4036506fe702c51ab1d9aff9908e2fe699154209a",
+    "src/export.js": "9e56290d94665d5a9cd879636edde1b4d9d6d438f6de4ca8dc633adba47694a7",
+    "src/fit-data.js": "84833950e2fbbff558ebf10f21417677888c6800d536171d42cd43b0d61fd925",
+    "src/fit.js": "e02bb276a09a71c6e05314a35ca68478f863342f2a42551fc0e095a5b7be374e",
+    "src/main.js": "d6dcec146ff2d38a94b9bb0b299e3d944945edaa46e9585d925712430ea25643",
+    "src/options.js": "11a8dbd99657aa88332fd6f7ba8037b5d7d1bb4e9326fde34fd725f6018f90cc",
+    "src/parts/accessories.js": "2d7edc1faca9798539495bafd8d9292669b574e954163467c6446fea99ee170c",
+    "src/parts/background.js": "31c19226db0c2c4669d065742b3e1da2ada5f1bce0ddc93f5b76a1b329cbd4c1",
+    "src/parts/body.js": "1293e01e4eaf82c4f9b445894f2ad9bb1d88583345513509ce4bdfaefce9ece1",
+    "src/parts/face.js": "aa9ef25e5ba98cc145e9ea98de72cc444095a0d2ce9308a94703b052bea934ed",
+    "src/parts/hands.js": "8505af72956ddd8eda16441ac009d6ac182795247f9f65fd98b658f96d507c84",
+    "src/parts/hats.js": "70bc04d4d91209b42f0c68f58e8c942a76bc02bbe7143159c6b95b547215361c",
+    "src/parts/items.js": "dfec1cf24454c1c1d0274e0f24fa4411048945ff5b2eb28ceb759aa8aef53456",
+    "src/parts/stickers.js": "b64ea0592a981658e3b66844fdd6dabe5c204edea00eae7dab32641d4c7b014f",
+    "src/raster.js": "71e30b0a498222887366736d783412265930d2c5325b763aa10263ff3346c22a",
+    "src/state.js": "2f13d505340fe00fbc816aefe6c1caf5454ce975d894d2eec54c8af49cad1991",
+    "src/styles.css": "f6d072422093e388ebd36a5ef09cb20a6d17e6be4dcc0147919becf41bc4da46",
+    "src/surface.js": "f505b6451c51c8de551d53c1d75578423308ef6baf420d9346e1bf68a1f4d751",
+    "src/surprise.js": "7b4f7b17bafc3fe19b62292da80caacb353774b782a368b3c5f608773a561bfb"
+  },
+  "limits": [
+    "No full Cartesian outfit enumeration",
+    "Pairwise factors exclude arbitrary text and ordered sticker subsets",
+    "No general three-way-or-higher coverage guarantee",
+    "2D artwork permits intentional occlusion by hair, beards and brims",
+    "Physical Safari/iOS and Android, manual VoiceOver/NVDA and Lighthouse pending"
+  ],
+  "production": {
+    "status": "Not recorded in this local audit; see deployment follow-up."
+  }
+}

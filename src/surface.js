@@ -28,9 +28,9 @@ export function bodySurface(img, shape) {
   };
   let crownY = 154;
   for (let y = 12; y < 80; y++) if (original.data[(y * SIZE + 128) * 4 + 3] > 245) { crownY = y * 4; break; }
-  const shoulderY = { classic: 638, lumpy: 648, round: 620, long: 640 }[shape];
+  const shoulderY = { classic: 638, lumpy: 648, round: 620, long: 640, pear: 638, petite: 640 }[shape];
   const [left, right] = row(shoulderY);
-  const eyeY = { classic: 432, lumpy: 439, round: 438, long: 433 }[shape];
+  const eyeY = { classic: 432, lumpy: 439, round: 438, long: 433, pear: 430, petite: 475 }[shape];
   const [faceLeft, faceRight] = row(eyeY);
   const center = (faceLeft + faceRight) / 2;
   const materialSamples = [];
@@ -75,7 +75,7 @@ function skinAnalysis(img, group, key) {
       return ((nx - .5) / inset[0]) ** 2 + ((ny - inset[1]) / inset[2]) ** 2 < 1;
     }
     if (group === 'eyes') {
-      if (['happy', 'squint', 'dead'].includes(key) || (key === 'wink' && x >= 128)) return false;
+      if (['happy', 'squint', 'dead', 'joyLashes'].includes(key) || (['wink', 'lashWink'].includes(key) && x >= 128)) return false;
       const b = eyeBoxes[x < 128 ? 0 : 1];
       const nx = (x - b[0]) / (b[2] - b[0]), ny = (y - b[1]) / (b[3] - b[1]);
       const opening = { smug: [.68, .22], sleepy: [.76, .12], angry: [.62, .23], side: [.62, .30], wink: [.62, .27] }[key] || [.5, .39];
@@ -143,12 +143,15 @@ export function surfaceTransform(layer, img, surface, state) {
     if (specificRoot?.flip) t.flip = !t.flip;
     // The laptop sits partly in front of the torso, as an object held in a
     // bent arm would. Its supporting hand must not be shrunk into a thumbnail.
-    const inset = key === 'laptop' ? 135 : key === 'shaka' ? 58 : 30;
+    const inset = specificRoot?.inset ?? (key === 'laptop' ? 135 : key === 'shaka' ? 58 : 30);
     if (key === 'laptop') t.scale = 1.05;
     if (key === 'shaka') t.scale *= 1.16;
+    if (specificRoot?.scale) t.scale = specificRoot.scale;
+    if (specificRoot?.rot) t.rot = specificRoot.rot;
     const x = group === 'item' ? surface.left + inset : surface.right - inset;
-    move(root, [x, surface.shoulderY]);
-    t.root = [x, surface.shoulderY];
+    const y = surface.shoulderY + (specificRoot?.dy || 0);
+    move(root, [x, y]);
+    t.root = [x, y];
     // Keep the hand/prop inside an avatar crop without moving its shoulder.
     const alpha = skinAnalysis(img, group, key).data;
     for (let attempt = 0; attempt < 18; attempt++) {
@@ -161,8 +164,18 @@ export function surfaceTransform(layer, img, surface, state) {
       t.scale *= .95;
       move(root, t.root);
     }
+  } else if (group === 'hair') {
+    // Fit the face opening, not just the outside of a wig. The crown follows
+    // the body's actual top; length is bounded independently of body width.
+    const referenceY = box[1] + height * (['pixie', 'bun'].includes(key) ? .78 : .52);
+    t.scale = Math.min(1.6, Math.max(surface.faceWidth, surface.featureWidth) * 1.35 / width);
+    const targetTop = surface.crownY - 32;
+    t.aspectY = (surface.eyeY - targetTop) / ((referenceY - box[1]) * t.scale);
+    move([center[0], referenceY], [surface.center, surface.eyeY]);
+    // The hat's own alpha occludes hair. A horizontal clipping line would
+    // visibly cut side locks, and would incorrectly erase hair above a band.
   } else if (group === 'eyes') {
-    const ratio = { smug: .64, dots: .46, happy: .57, wide: .57, wink: .59, sleepy: .61, angry: .60, surprised: .57, side: .61, squint: .58, rolling: .58, heart: .55, stars: .55, dead: .54 }[key];
+    const ratio = { smug: .64, dots: .46, happy: .57, wide: .57, wink: .59, sleepy: .61, angry: .60, surprised: .57, side: .61, squint: .58, rolling: .58, heart: .55, stars: .55, dead: .54, almond: .64, lashWink: .64, joyLashes: .62 }[key];
     t.scale = surface.featureWidth * ratio / width;
     move(center, [surface.center, surface.eyeY]);
   } else if (group === 'brows') {
@@ -189,7 +202,7 @@ export function surfaceTransform(layer, img, surface, state) {
     } else if (key === 'beard') move([512, 590], [surface.center, surface.eyeY + 109]);
     else move([center[0], box[1]], [surface.center, surface.eyeY + (key === 'goatee' ? 122 : 66)]);
   } else if (group === 'eyewear') {
-    const ratios = { shades: .77, aviators: .81, round: .75, square: .76, monocle: .33, eyepatch: .78 };
+    const ratios = { shades: .77, aviators: .81, round: .75, square: .76, monocle: .33, eyepatch: .78, catEye: .81 };
     t.scale = surface.featureWidth * ratios[key] / width;
     move(key === 'monocle' ? [626, 439] : center, [surface.center + (key === 'monocle' ? surface.featureWidth * .18 : 0), surface.eyeY + 2]);
     if (key === 'eyepatch') {
@@ -201,37 +214,62 @@ export function surfaceTransform(layer, img, surface, state) {
       // shape and stays centered over the eye on both wide and narrow bodies.
       t.strapX = [sourceX(sides[0] - 3), sourceX(sides[1] + 3)];
     }
+  } else if (group === 'jewelry') {
+    const desiredHeight = { hoops: 76, pearlDrops: 63, starStuds: 32 }[key];
+    t.scale = desiredHeight / height;
+    const sides = surface.row(surface.eyeY + 50);
+    const alpha = pixels(img).data;
+    const centers = [0, 1].map(side => {
+      let lo = 256, hi = 0;
+      for (let y = 0; y < 256; y++) for (let x = side * 128; x < (side + 1) * 128; x++) if (alpha[(y * 256 + x) * 4 + 3] > 100) { lo = Math.min(lo, x); hi = Math.max(hi, x); }
+      return (lo + hi) * 2;
+    });
+    t.spread = ((sides[1] - sides[0] - 10) - (centers[1] - centers[0]) * t.scale) / 2;
+    move([(centers[0] + centers[1]) / 2, box[1] + height * .06], [surface.center, surface.eyeY + 50]);
+  } else if (group === 'hat' && key === 'bow') {
+    t.scale = surface.featureWidth * .48 / width;
+    move([center[0], box[3] - height * .18], [surface.center - surface.faceWidth * .22, surface.crownY + 35]);
+  } else if (group === 'hat' && key === 'flowerCrown') {
+    const seat = surface.crownY + 95, sides = surface.row(seat + 16);
+    t.scale = (sides[1] - sides[0] + 34) / width;
+    move(center, [surface.center, seat]);
   } else if (group === 'hat' && key === 'halo') {
     t.scale = surface.featureWidth * .42 / width;
-    move([center[0], box[3]], [surface.center, surface.crownY - 22]);
+    move([center[0], box[3]], [surface.center, surface.crownY - (state.hair !== 'none' ? 54 : 22)]);
   } else if (group === 'hat') {
     const fitting = {
-      backwardCap: [290, 1.12], cap: [270, 1.10], beanie: [300, 1.02], headband: [307, 1.08], bucket: [290, 1.18], cowboy: [265, 1.50], tophat: [272, 1.27], fedora: [270, 1.35], wizard: [268, 1.23], crown: [268, .95], hardhat: [285, 1.14], chef: [285, 1.55], viking: [285, 1.62], party: [260, .76], beret: [287, 1.18], propeller: [285, 1.02], halo: [192, .95], horns: [265, 1.18], santa: [285, 1.10],
+      backwardCap: [290, 1.12], cap: [270, 1.10], beanie: [300, 1.02], headband: [307, 1.08], bucket: [290, 1.18], cowboy: [265, 1.50], tophat: [272, 1.27], fedora: [270, 1.35], wizard: [268, 1.23], crown: [268, .95], hardhat: [285, 1.14], chef: [285, 1.55], viking: [285, 1.62], party: [260, .76], beret: [287, 1.18], propeller: [285, 1.02], halo: [192, .95], horns: [265, 1.18], santa: [285, 1.10], sunhat: [275, 1.65],
     }[key];
     let seat = fitting[0] + (key === 'halo' ? 0 : key === 'headband' ? 14 : 48);
-    const baseY = key === 'headband' ? center[1] : box[3] - height * (['cowboy', 'fedora', 'tophat', 'wizard'].includes(key) ? .10 : .05);
+    // Keep the brim above the eye opening on short, wide bodies too. The
+    // source's lower edge extends below this anchor, especially on tall hats.
+    seat = Math.min(surface.eyeY - 100, seat + Math.max(0, surface.crownY - 180));
+    if (key === 'headband') seat = surface.eyeY - 110;
+    const baseY = key === 'headband' ? center[1] : box[3] - height * (['cowboy', 'fedora', 'tophat', 'wizard', 'sunhat'].includes(key) ? .10 : .05);
     // A narrow, tall potato needs its hat higher than a round one. Fit the
     // crown over the actual top of the body, then match the brim to that row.
     // Uniform scaling preserves the material and shape of every hat.
     for (let attempt = 0; attempt < 100; attempt++) {
       const sides = surface.row(seat);
-      t.scale = (sides[1] - sides[0]) * fitting[1] / width;
+      const headWidth = Math.max(sides[1] - sides[0], state.hair !== 'none' ? surface.featureWidth * .8 : 0);
+      t.scale = headWidth * fitting[1] / width;
       move([center[0], baseY], [surface.center, seat]);
       const roof = FIT.hatCrownY[key];
       if (roof === undefined || projected([center[0], roof], t, pivot)[1] <= surface.crownY - 10) break;
       seat -= 2;
     }
+    if (state.hair !== 'none' && key !== 'headband') t.dy -= 12;
   } else if (group === 'neckwear') {
     // A potato has no neck: the cloth wraps the upper torso. The visible
     // front band reaches both silhouette edges; its tails hang below it.
-    const seat = surface.eyeY + (key === 'bandana' ? 124 : 110);
+    const seat = surface.eyeY + (key === 'bandana' ? 124 : ['pearls', 'pendant'].includes(key) ? 145 : 110);
     const sides = surface.row(seat + 28);
     // The bandana knot and scarf tails extend beyond the body-wrap anchors.
     const span = key === 'bandana' ? [.02, .88] : key === 'scarf' ? [.02, .95] : [0, 1];
     const bandWidth = width * (span[1] - span[0]);
     const bandCenter = box[0] + width * (span[0] + span[1]) / 2;
     t.scale = (sides[1] - sides[0] + 12) / bandWidth;
-    const maxHeight = { bowtie: 155, tie: 270, scarf: 280, chain: 220, lanyard: 280, bandana: 225 }[key];
+    const maxHeight = { bowtie: 155, tie: 270, scarf: 280, chain: 220, lanyard: 280, bandana: 225, pearls: 125, pendant: 140 }[key];
     if (key === 'lanyard') {
       const shorten = Math.max(0, height - maxHeight / t.scale);
       t.warp = { sourceTop: box[1], join: box[1] + height * .64, topOffset: shorten };
@@ -262,7 +300,7 @@ export function surfaceTransform(layer, img, surface, state) {
   } else if (group === 'extra' && key === 'bandaid') {
     t.scale = Math.min(1.25, surface.faceWidth * .15 / width);
     move(center, [surface.center + surface.faceWidth * .29, surface.eyeY + 66]);
-  } else if (group === 'extra' && key === 'flower') {
+  } else if (group === 'extra' && ['flower', 'barrette', 'scrunchie'].includes(key)) {
     t.scale = .82;
     const seat = surface.eyeY - 48;
     move(center, [surface.row(seat)[0] + 8, seat]);
@@ -291,18 +329,22 @@ export function frameForPoints(points) {
   return { scale: Math.min(1, 492 / radius), centerY };
 }
 const silhouettes = new WeakMap();
-export function hatFrame(img, key, transform) {
+function framingPoints(img, group, key, transform) {
   if (!silhouettes.has(img)) {
     const { data } = pixels(img, 128), points = [];
     for (let y = 0; y < 128; y++) for (let x = 0; x < 128; x++) if (data[(y * 128 + x) * 4 + 3] > 48) points.push([x * 8, y * 8]);
     silhouettes.set(img, points);
   }
-  return frameForPoints(silhouettes.get(img).map(p => projected(p, transform, FIT.pivots[`hat/${key}`] || FIT.pivots.hat)));
+  return silhouettes.get(img).map(p => projected(p, transform, FIT.pivots[`${group}/${key}`] || FIT.pivots[group]));
 }
+export function headFrame(parts) { return frameForPoints(parts.flatMap(({ img, group, key, transform }) => framingPoints(img, group, key, transform))); }
+export function hatFrame(img, key, transform) { return headFrame([{ img, group: 'hat', key, transform }]); }
 export function drawTransformed(ctx, img, group, key, t) {
   const pivot = FIT.pivots[`${group}/${key}`] || FIT.pivots[group] || [512, 512];
   const draw = (side = 0) => {
-    ctx.save(); ctx.translate(pivot[0] + t.dx + side * t.spread, pivot[1] + t.dy);
+    ctx.save();
+    if (t.clipAbove !== undefined) { ctx.beginPath(); ctx.rect(-1024, t.clipAbove, 3072, 3072); ctx.clip(); }
+    ctx.translate(pivot[0] + t.dx + side * t.spread, pivot[1] + t.dy);
     ctx.scale(t.scale * (t.flip ? -1 : 1), t.scale * (t.aspectY || 1)); ctx.rotate(t.rot * Math.PI / 180); ctx.translate(-pivot[0], -pivot[1]);
     if (side) { ctx.beginPath(); ctx.rect(side < 0 ? -CANVAS : pivot[0], -CANVAS, CANVAS + (side < 0 ? pivot[0] : CANVAS), CANVAS * 3); ctx.clip(); }
     if (t.strapX) {
@@ -383,7 +425,7 @@ function integrate(img, group, key, t, surface, size) {
 }
 const shadows = new WeakMap();
 export function contactShadow(layer, body, group, size) {
-  const settings = { eyes: [4, 0, .13], mouth: [3, 1, .10], hat: [9, 7, .25], eyewear: [4, 3, .17], neckwear: [8, 5, .20], extra: [6, 3, .18], facialHair: [3, 2, .12], brows: [2, 1, .10] }[group];
+  const settings = { handOnHip: [5, 3, .18], jewelry: [3, 2, .17], hair: [7, 4, .23], eyes: [4, 0, .13], mouth: [3, 1, .10], hat: [9, 7, .25], eyewear: [4, 3, .17], neckwear: [8, 5, .20], extra: [6, 3, .18], facialHair: [3, 2, .12], brows: [2, 1, .10] }[group];
   if (!settings) return null;
   if (shadows.has(layer)) return shadows.get(layer);
   const c = canvas(size), ctx = c.getContext('2d', { willReadFrequently: true });

@@ -2,8 +2,8 @@
 // Which part images exist, with the box each one occupies on the 1024 px canvas.
 
 export const CANVAS = 1024;
-export const LAYER_ORDER = ["body","cheeks","neckwear","facialHair","mouth","eyes","brows","eyewear","extra","hat","item","gesture"];
-export const NO_IMAGE = {"brows":["none"],"cheeks":["off"],"facialHair":["none"],"hat":["none"],"eyewear":["none"],"neckwear":["none"],"extra":["none"]};
+export const LAYER_ORDER = ["body","cheeks","neckwear","jewelry","facialHair","mouth","eyes","brows","hair","eyewear","extra","hat","item","gesture"];
+export const NO_IMAGE = {"brows":["none"],"cheeks":["off"],"facialHair":["none"],"hat":["none"],"eyewear":["none"],"neckwear":["none"],"extra":["none"],"hair":["none"],"jewelry":["none"]};
 export const PARTS = {
   "body": {
     "classic-russet": [
@@ -221,6 +221,114 @@ export const PARTS = {
       154,
       715,
       922
+    ],
+    "pear-russet": [
+      263,
+      154,
+      761,
+      922
+    ],
+    "petite-russet": [
+      190,
+      282,
+      834,
+      899
+    ],
+    "pear-gold": [
+      260,
+      154,
+      764,
+      922
+    ],
+    "pear-red": [
+      262,
+      154,
+      762,
+      922
+    ],
+    "pear-purple": [
+      260,
+      154,
+      764,
+      922
+    ],
+    "pear-sweet": [
+      264,
+      154,
+      760,
+      922
+    ],
+    "petite-gold": [
+      190,
+      282,
+      834,
+      900
+    ],
+    "petite-red": [
+      190,
+      278,
+      834,
+      903
+    ],
+    "petite-purple": [
+      190,
+      280,
+      834,
+      901
+    ],
+    "petite-sweet": [
+      190,
+      282,
+      834,
+      901
+    ],
+    "pear-blue": [
+      261,
+      154,
+      763,
+      922
+    ],
+    "pear-pink": [
+      262,
+      154,
+      762,
+      922
+    ],
+    "pear-ghost": [
+      262,
+      154,
+      762,
+      922
+    ],
+    "pear-zombie": [
+      262,
+      154,
+      763,
+      922
+    ],
+    "petite-blue": [
+      190,
+      282,
+      834,
+      901
+    ],
+    "petite-pink": [
+      190,
+      280,
+      834,
+      901
+    ],
+    "petite-ghost": [
+      190,
+      280,
+      834,
+      903
+    ],
+    "petite-zombie": [
+      190,
+      278,
+      834,
+      903
     ]
   },
   "eyes": {
@@ -307,6 +415,24 @@ export const PARTS = {
       393,
       587,
       473
+    ],
+    "almond": [
+      327,
+      380,
+      697,
+      478
+    ],
+    "lashWink": [
+      358,
+      380,
+      666,
+      478
+    ],
+    "joyLashes": [
+      371,
+      392,
+      653,
+      454
     ]
   },
   "brows": {
@@ -351,6 +477,12 @@ export const PARTS = {
       322,
       672,
       402
+    ],
+    "softArch": [
+      364,
+      340,
+      660,
+      390
     ]
   },
   "mouth": {
@@ -371,12 +503,6 @@ export const PARTS = {
       520,
       591,
       625
-    ],
-    "smile": [
-      444,
-      535,
-      580,
-      590
     ],
     "flat": [
       478,
@@ -425,6 +551,12 @@ export const PARTS = {
       559,
       536,
       579
+    ],
+    "smile": [
+      418,
+      535,
+      607,
+      580
     ]
   },
   "cheeks": {
@@ -587,6 +719,24 @@ export const PARTS = {
       38,
       673,
       278
+    ],
+    "bow": [
+      310,
+      142,
+      560,
+      337
+    ],
+    "flowerCrown": [
+      358,
+      190,
+      665,
+      340
+    ],
+    "sunhat": [
+      246,
+      80,
+      778,
+      350
     ]
   },
   "eyewear": {
@@ -625,6 +775,12 @@ export const PARTS = {
       367,
       640,
       480
+    ],
+    "catEye": [
+      350,
+      382,
+      674,
+      485
     ]
   },
   "neckwear": {
@@ -663,6 +819,18 @@ export const PARTS = {
       362,
       1013,
       855
+    ],
+    "pearls": [
+      230,
+      602,
+      794,
+      748
+    ],
+    "pendant": [
+      270,
+      600,
+      753,
+      760
     ]
   },
   "extra": {
@@ -695,6 +863,18 @@ export const PARTS = {
       262,
       373,
       357
+    ],
+    "barrette": [
+      280,
+      339,
+      410,
+      406
+    ],
+    "scrunchie": [
+      260,
+      313,
+      410,
+      427
     ]
   },
   "item": {
@@ -787,6 +967,30 @@ export const PARTS = {
       406,
       565,
       846
+    ],
+    "bouquet": [
+      70,
+      432,
+      390,
+      717
+    ],
+    "handbag": [
+      70,
+      520,
+      390,
+      830
+    ],
+    "teacup": [
+      70,
+      548,
+      390,
+      702
+    ],
+    "palette": [
+      70,
+      529,
+      390,
+      711
     ]
   },
   "gesture": {
@@ -855,6 +1059,24 @@ export const PARTS = {
       439,
       966,
       760
+    ],
+    "fingerHeart": [
+      650,
+      434,
+      960,
+      737
+    ],
+    "palmUp": [
+      650,
+      572,
+      960,
+      739
+    ],
+    "hip": [
+      656,
+      510,
+      909,
+      810
     ]
   },
   "stickers": {
@@ -1013,6 +1235,136 @@ export const PARTS = {
       202,
       957,
       911
+    ],
+    "sunflower": [
+      124,
+      112,
+      900,
+      912
+    ],
+    "butterfly": [
+      112,
+      150,
+      912,
+      873
+    ],
+    "rainbow": [
+      112,
+      254,
+      912,
+      769
+    ],
+    "moon": [
+      120,
+      112,
+      904,
+      912
+    ],
+    "books": [
+      112,
+      141,
+      912,
+      883
+    ],
+    "music": [
+      112,
+      140,
+      912,
+      885
+    ],
+    "paw": [
+      112,
+      160,
+      912,
+      863
+    ],
+    "strawberry": [
+      189,
+      112,
+      835,
+      912
+    ],
+    "bee": [
+      112,
+      140,
+      912,
+      885
+    ],
+    "teapot": [
+      112,
+      180,
+      912,
+      844
+    ],
+    "camera": [
+      112,
+      220,
+      912,
+      804
+    ],
+    "yarn": [
+      112,
+      160,
+      912,
+      863
+    ]
+  },
+  "hair": {
+    "bob": [
+      192,
+      120,
+      832,
+      700
+    ],
+    "braids": [
+      205,
+      100,
+      819,
+      780
+    ],
+    "bun": [
+      336,
+      55,
+      689,
+      480
+    ],
+    "curls": [
+      160,
+      126,
+      864,
+      675
+    ],
+    "pixie": [
+      280,
+      100,
+      743,
+      480
+    ],
+    "waves": [
+      193,
+      100,
+      831,
+      790
+    ]
+  },
+  "jewelry": {
+    "hoops": [
+      365,
+      455,
+      659,
+      575
+    ],
+    "pearlDrops": [
+      406,
+      455,
+      617,
+      565
+    ],
+    "starStuds": [
+      422,
+      455,
+      602,
+      515
     ]
   }
 };
