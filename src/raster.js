@@ -14,6 +14,7 @@ import { background } from './parts/background.js';
 import { stickerSVG } from './parts/stickers.js';
 import { bodySurface, withHairSurface, surfaceTransform, integratedLayer, contactShadow, drawTransformed, headFrame } from './surface.js';
 import { LruCache } from './cache.js';
+import { splitWearable } from './wrap.js';
 
 const RED = '#C8372D';
 
@@ -521,6 +522,7 @@ export async function renderPotato(rawState, opts = {}) {
   ctx.translate(512, 880); ctx.scale(bodySize, bodySize); ctx.translate(-512, -880);
   const body = imgs[layers.findIndex(l => l.group === 'body')];
   const { surface, transforms } = fittedLayers(layers, imgs, body, s);
+  const pieces = layers.map((l, i) => splitWearable(imgs[i], l.group, l.key, s));
   // Match temporary skin/shadow planes to the requested pixel density.
   // Full preview and both downloads still compose at native 1024 px.
   const workSize = thumbs ? 256 : Math.min(1024, Math.max(256, Math.ceil(size * CANVAS / crop[2])));
@@ -545,38 +547,102 @@ export async function renderPotato(rawState, opts = {}) {
   receiver.width = receiver.height = workSize;
   const receiverCtx = receiver.getContext('2d');
   receiverCtx.scale(workSize / CANVAS, workSize / CANVAS);
+  // Rear rims go behind the wearer, with the same fit as their front piece.
+  // Drawing source pieces directly preserves tall tips beyond the world canvas.
+  for (let i = 0; i < layers.length; i++) if (pieces[i].behind === 'body') {
+    const l = layers[i];
+    drawTransformed(ctx, pieces[i].rear, l.group, l.key, transforms[i]);
+    drawTransformed(receiverCtx, pieces[i].rear, l.group, l.key, transforms[i]);
+  }
   receiverCtx.drawImage(body, 0, 0, CANVAS, CANVAS);
   for (let i = 0; i < layers.length; i++) {
     const l = layers[i];
-    if (l.group === 'body') { drawLayer(ctx, imgs[i], l.group, l.key, l.transform); continue; }
-    const transform = transforms[i];
+    if (l.group === 'body') {
+      drawLayer(ctx, imgs[i], l.group, l.key, l.transform);
+      for (let j = 0; j < layers.length; j++) {
+        const back = layers[j];
+        if (pieces[j].behind === 'hair') {
+          drawTransformed(ctx, pieces[j].rear, back.group, back.key, transforms[j]);
+          drawTransformed(receiverCtx, pieces[j].rear, back.group, back.key, transforms[j]);
+        }
+        if (transforms[j].temples) {
+          // Temple arms turn around the bare head, then disappear under hair.
+          // Only the sampled hinge strips are behind hair; lenses stay in front.
+          const arms = document.createElement('canvas'); arms.width = arms.height = workSize;
+          const armsCtx = arms.getContext('2d'); armsCtx.scale(workSize / CANVAS, workSize / CANVAS);
+          drawTransformed(armsCtx, imgs[j], back.group, back.key, { ...transforms[j], templesOnly: true });
+          armsCtx.globalCompositeOperation = 'destination-in'; armsCtx.drawImage(body, 0, 0, CANVAS, CANVAS);
+          ctx.drawImage(arms, 0, 0, CANVAS, CANVAS); receiverCtx.drawImage(arms, 0, 0, CANVAS, CANVAS);
+        }
+      }
+      continue;
+    }
+    const transform = transforms[i].temples ? { ...transforms[i], temples: undefined } : transforms[i];
+    const front = pieces[i].front;
     if (l.group === 'hat' && l.key === 'backwardCap') ctx.drawImage(apertureBacking(imgs[i], receiver, transform, surface, workSize), 0, 0, CANVAS, CANVAS);
-    let plane = integratedLayer(imgs[i], l.group, l.key, transform, surface, workSize);
+    let plane = integratedLayer(front, l.group, l.key, transform, surface, workSize);
     const wrappedBand = l.group === 'hat' && l.key === 'headband';
     if (wrappedBand) {
       const clipped = document.createElement('canvas'); clipped.width = clipped.height = workSize;
       const bandCtx = clipped.getContext('2d'); bandCtx.drawImage(plane, 0, 0);
-      // Cloth wraps the main head contour; sprouts and loose flyaways are
-      // not fabric supports. A median contour excludes those small protrusions.
+      // Cloth follows a continuous head surface. Following individual curl
+      // rows made rectangular steps and pointed scraps at the lateral turns.
+      // Fit a smooth local contour after rejecting sprouts and loose flyaways.
       const contour = document.createElement('canvas'); contour.width = contour.height = workSize;
       const contourCtx = contour.getContext('2d'); contourCtx.scale(workSize / CANVAS, workSize / CANVAS);
       const left = [], right = [], row = surface.headRow || surface.row;
-      for (let y = surface.crownY - 80; y <= surface.eyeY + 140; y += 4) {
+      const low = Math.max((surface.headTop ?? surface.crownY) + 12, surface.eyeY - 235), high = surface.eyeY - 45;
+      const centerY = (low + high) / 2, span = (high - low) / 2;
+      const samples = Array.from({length:11}, (_, i) => {
+        const u = (i - 5) / 5, y = centerY + u * span;
         const rows = Array.from({length:17}, (_,j) => row(y+(j-8)*4));
-        const median = side => rows.map(r=>r[side]).sort((a,b)=>a-b)[8];
-        left.push([median(0)+3,y]); right.push([median(1)-3,y]);
+        return [u, ...[0,1].map(side => rows.map(r=>r[side]).sort((a,b)=>a-b)[8])];
+      });
+      const s2 = samples.reduce((n,[u])=>n+u*u,0), s4 = samples.reduce((n,[u])=>n+u**4,0);
+      const curves = [1,2].map(side => {
+        const sum = samples.reduce((n,p)=>n+p[side],0), linear = samples.reduce((n,p)=>n+p[0]*p[side],0);
+        const square = samples.reduce((n,p)=>n+p[0]*p[0]*p[side],0);
+        const c = (square - s2 * sum / samples.length) / (s4 - s2*s2/samples.length);
+        return [(sum-c*s2)/samples.length, linear/s2, c];
+      });
+      const edgeAt = (side, y) => {
+        const u = (y-centerY)/span;
+        return curves[side][0] + curves[side][1]*u + curves[side][2]*u*u;
+      };
+      for (let y = surface.crownY - 80; y <= surface.eyeY + 140; y += 4) {
+        left.push([edgeAt(0,y)+4,y]); right.push([edgeAt(1,y)-4,y]);
       }
       contourCtx.beginPath(); for (const [i,[x,y]] of [...left,...right.reverse()].entries()) i ? contourCtx.lineTo(x,y) : contourCtx.moveTo(x,y);
       contourCtx.closePath(); contourCtx.fill();
-      bandCtx.globalCompositeOperation = 'destination-in'; bandCtx.drawImage(contour, 0, 0); plane = clipped;
+      bandCtx.globalCompositeOperation = 'destination-in'; bandCtx.drawImage(contour, 0, 0);
+      const hairIndex = layers.findIndex(part => part.group === 'hair');
+      if (hairIndex >= 0) {
+        // A few existing strands overlap the band where it turns behind the
+        // hairstyle. Preserve those strands rather than ending fabric in a
+        // conspicuous straight cut across the curls.
+        const hair = integratedLayer(imgs[hairIndex], 'hair', layers[hairIndex].key, transforms[hairIndex], surface, workSize);
+        const overlap = document.createElement('canvas'); overlap.width = overlap.height = workSize;
+        const overlapCtx = overlap.getContext('2d', {willReadFrequently:true}); overlapCtx.drawImage(hair, 0, 0);
+        const image = overlapCtx.getImageData(0,0,workSize,workSize), unit = CANVAS/workSize;
+        const turn = Math.max(18,Math.min(30,surface.faceWidth*.055));
+        for (let y = 0; y < workSize; y++) {
+          const yy = (y+.5)*unit, lo = edgeAt(0,yy)+4, hi = edgeAt(1,yy)-4;
+          for (let x = 0; x < workSize; x++) {
+            const distance = Math.min((x+.5)*unit-lo, hi-(x+.5)*unit);
+            image.data[(y*workSize+x)*4+3] *= smooth(1-Math.max(0,distance)/turn);
+          }
+        }
+        overlapCtx.putImageData(image,0,0); bandCtx.globalCompositeOperation='destination-out'; bandCtx.drawImage(overlap,0,0);
+      }
+      plane = clipped;
     }
     const shadow = l.group === 'hat' && l.key === 'halo' ? null : contactShadow(plane, receiver, l.group === 'gesture' && l.key === 'hip' ? 'handOnHip' : l.group, workSize);
     if (shadow) ctx.drawImage(shadow, ...(shadow.worldBox || [0, 0, CANVAS, CANVAS]));
     // Wearables can extend beyond the original 1024 world canvas. Draw their
     // original image into the fitted scene so tall tips are never pre-clipped.
-    if (!wrappedBand && ['hair', 'hat', 'extra', 'neckwear', 'eyewear', 'brows', 'jewelry'].includes(l.group)) drawTransformed(ctx, imgs[i], l.group, l.key, transform);
+    if (!wrappedBand && ['hair', 'hat', 'extra', 'neckwear', 'eyewear', 'brows', 'jewelry'].includes(l.group)) drawTransformed(ctx, front, l.group, l.key, transform);
     else ctx.drawImage(plane, ...(plane.worldBox || [0, 0, CANVAS, CANVAS]));
-    if (!wrappedBand && ['hair', 'hat', 'extra', 'neckwear', 'eyewear', 'brows', 'jewelry'].includes(l.group)) drawTransformed(receiverCtx, imgs[i], l.group, l.key, transform);
+    if (!wrappedBand && ['hair', 'hat', 'extra', 'neckwear', 'eyewear', 'brows', 'jewelry'].includes(l.group)) drawTransformed(receiverCtx, front, l.group, l.key, transform);
     else receiverCtx.drawImage(plane, ...(plane.worldBox || [0, 0, CANVAS, CANVAS]));
     if (l.group === 'item' && l.key === 'laptop') await drawStickers(ctx, s, thumbs, transform);
     if (l.group === 'item' && l.key === 'sign') drawSignText(ctx, s, transform);

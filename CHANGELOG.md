@@ -2,6 +2,14 @@
 
 Notable changes to the source. Version numbers match `package.json`; tags and downloadable release archives are listed separately on [GitHub Releases](https://github.com/WaylandP/potato-me/releases).
 
+## 0.7.1 — Unreleased
+
+- Split measured rear hat interiors and returning branches behind the head/hair, keeping front brims, trim and decorations intact. Reuse all existing PNG artwork.
+- Fit headphone pads to the worn head while preserving cup dimensions; let raised buns overlap the band. Float halos above the actual hair and headphone envelope.
+- Extend glasses temples from the original hinge material without stretching lenses; tuck arms beneath hair. Seat earbud tips inside the actual side contours.
+- Correct the headband's front curve and lateral wrapping; preserve its knit texture and editable initials.
+- Add regression coverage and a current visual review that distinguishes inspected native images from automated render/crop/share checks. See [WRAP_REVIEW.md](docs/WRAP_REVIEW.md).
+
 ## 0.7.0 — 2026-11-02
 
 - Split customization into nine sections: Body, Face, Hair, Headwear, Accessories, Props, Gestures, Stickers and Background. Add a laptop action in Stickers and vertical keyboard navigation in the section grid.

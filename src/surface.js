@@ -58,13 +58,19 @@ export function withHairSurface(surface, img, key, transform) {
   const layer = integratedLayer(img, 'hair', key, transform, surface, 256);
   if (wornSurfaces.has(layer)) return wornSurfaces.get(layer);
   const data = layer.getContext('2d').getImageData(0, 0, 256, 256).data;
+  let hairTop = CANVAS;
+  for (let y = 0; y < 256; y++) {
+    let solid = 0;
+    for (let x = 0; x < 256; x++) if (data[(y * 256 + x) * 4 + 3] > 160) solid++;
+    if (solid >= 3) { hairTop = y * 4; break; }
+  }
   const hairRow = y => {
     const yy = clamp(Math.round(y / 4), 0, 255); let left = 256, right = -1;
     for (let x = 0; x < 256; x++) if (data[(yy * 256 + x) * 4 + 3] > 160) { left = Math.min(left, x); right = x; }
     return right < left ? surface.row(y) : [left * 4, right * 4];
   };
   const headRow = y => { const b = surface.row(y), h = hairRow(y); return [Math.min(b[0], h[0]), Math.max(b[1], h[1])]; };
-  const worn = { ...surface, hairRow, headRow };
+  const worn = { ...surface, hairRow, headRow, hairTop, headTop: Math.min(surface.crownY, hairTop) };
   wornSurfaces.set(layer, worn); return worn;
 }
 function polygonContains(x, y, polygon) {
@@ -188,6 +194,15 @@ function projected(point, t, pivot) {
   const a = t.rot * Math.PI / 180, x = point[0] - pivot[0], y = point[1] - pivot[1];
   return [pivot[0] + t.dx + (x * Math.cos(a) - y * Math.sin(a)) * t.scale * (t.flip ? -1 : 1), pivot[1] + t.dy + (x * Math.sin(a) + y * Math.cos(a)) * t.scale * (t.aspectY || 1)];
 }
+// Sample the existing hinge material for the arms. The lenses and the front
+// frame remain an unwarped image; only these short strips reach the temples.
+const eyewearHinges = {
+  shades: [[359, 400, 6, 9], [659, 400, 6, 9]],
+  aviators: [[380, 421, 8, 10], [636, 421, 8, 10]],
+  round: [[389, 422, 9, 10], [626, 422, 9, 10]],
+  square: [[350, 395, 7, 10], [669, 395, 7, 10]],
+  catEye: [[353, 391, 7, 10], [665, 391, 7, 10]],
+};
 export function surfaceTransform(layer, img, surface, state) {
   const { group, key } = layer, t = { ...layer.transform };
   const pivot = FIT.pivots[`${group}/${key}`] || FIT.pivots[group] || [512, 512];
@@ -262,6 +277,15 @@ export function surfaceTransform(layer, img, surface, state) {
     const ratios = { shades: .77, aviators: .81, round: .75, square: .76, monocle: .33, eyepatch: .78, catEye: .81 };
     t.scale = surface.featureWidth * ratios[key] / width;
     move(key === 'monocle' ? [626, 439] : center, [surface.center + (key === 'monocle' ? surface.featureWidth * .18 : 0), surface.eyeY + 2]);
+    if (eyewearHinges[key]) {
+      const seat = surface.eyeY - 32, sides = surface.row(seat);
+      t.temples = eyewearHinges[key].map((source, i) => {
+        const hinge = [source[0] + source[2] / 2, source[1] + source[3] / 2];
+        const x = sides[i] + (i ? 4 : -4);
+        const end = [pivot[0] + (x - pivot[0] - t.dx) / t.scale, pivot[1] + (seat - pivot[1] - t.dy) / t.scale];
+        return { side: i ? 1 : -1, source, hinge, end };
+      });
+    }
     if (key === 'eyepatch') {
       t.scale = surface.featureWidth * .31 / 128;
       move([470, 425], [surface.center - surface.featureWidth * .18, surface.eyeY + 2]);
@@ -296,7 +320,13 @@ export function surfaceTransform(layer, img, surface, state) {
     move(center, [surface.center, seat]);
   } else if (group === 'hat' && key === 'halo') {
     t.scale = surface.featureWidth * .42 / width;
-    move([center[0], box[3]], [surface.center, surface.crownY - (state.hair !== 'none' ? 54 : 22)]);
+    let top = surface.headTop ?? surface.crownY;
+    if (state.extra === 'headphones') {
+      const headphones = { group: 'extra', key: 'headphones', transform: { dx: 0, dy: 0, scale: 1, rot: 0, spread: 0, flip: false } };
+      const ht = surfaceTransform(headphones, null, surface, state), hb = PARTS.extra.headphones;
+      top = Math.min(top, fittedPoint('extra', 'headphones', ht, [(hb[0] + hb[2]) / 2, hb[1]])[1]);
+    }
+    move([center[0], box[3]], [surface.center, top - 22]);
   } else if (group === 'hat') {
     const fit = FIT.hatOpenings[key];
     const forehead = surface.eyeY - surface.crownY;
@@ -354,18 +384,37 @@ export function surfaceTransform(layer, img, surface, state) {
   } else if (group === 'extra' && key === 'headphones') {
     t.scale = (surface.faceWidth + 65) / width;
     move([center[0], box[3] - height * .20], [surface.center, surface.eyeY + 4]);
-    let top = surface.crownY - 24;
+    // Place the inner pads against the worn head, not inside a bare-body
+    // bounding box. Move the rigid cups sideways and flex only the band.
+    const earY = surface.eyeY + 4, bare = surface.row(earY);
+    const worn = (surface.headRow || surface.row)(earY);
+    const bulge = clamp(surface.faceWidth * .16, 40, 78);
+    const sides = [Math.max(worn[0], bare[0] - bulge), Math.min(worn[1], bare[1] + bulge)];
+    const overlap = clamp(surface.faceWidth * .08, 18, 36);
+    const sourceX = x => pivot[0] + (x - pivot[0] - t.dx) / t.scale;
+    const left = sourceX(sides[0] + overlap) - 300, right = sourceX(sides[1] - overlap) - 724;
+    t.fitX = [[0, left], [300, 300 + left], [724, 724 + right], [CANVAS, CANVAS + right]];
+    const hairTop = surface.headTop ?? surface.crownY;
+    // A bun rises in front of the band. Lifting the whole arc over its tip
+    // makes the headphones hover above the scalp instead of wearing them.
+    const bandCrown = state.hair === 'bun' ? Math.max(hairTop, surface.crownY - clamp(surface.faceWidth * .13, 40, 75)) : hairTop;
+    let top = bandCrown - 24;
     if (FIT.headphonesOver.includes(state.hat) && PARTS.hat[state.hat] && state.hat !== 'halo') {
       const hat = { group: 'hat', key: state.hat, transform: { dx: 0, dy: 0, scale: 1, rot: 0, spread: 0, flip: false } };
       const ht = surfaceTransform(hat, null, surface, state), hb = PARTS.hat[state.hat];
-      top = Math.min(top, projected([(hb[0] + hb[2]) / 2, hb[1]], ht, FIT.pivots.hat)[1] - 12);
+      top = Math.min(top, fittedPoint('hat', state.hat, ht, [(hb[0] + hb[2]) / 2, hb[1]])[1] - 12);
     }
     const sourceTop = projected([center[0], box[1]], t, pivot)[1];
     t.warp = { sourceTop: box[1], join: box[1] + height * .54, topOffset: (top - sourceTop) / t.scale };
   } else if (group === 'extra' && key === 'earbuds') {
     t.scale = .92 * clamp(surface.faceWidth / 450, .66, 1.28);
-    t.spread = (surface.faceWidth / 2 + 1) - width * .33 * t.scale;
-    move(center, [surface.center, surface.eyeY + 5]);
+    // The silicone tips face inward at x=486/538. Seat them slightly into
+    // the actual side contour; centering the whole buds on the contour made
+    // them float beside the potato and left the tips visibly unattached.
+    const seat = surface.eyeY + 5, sides = surface.row(seat);
+    const inset = 9 * t.scale;
+    t.spread = (sides[1] - sides[0] - 2 * inset - 52 * t.scale) / 2;
+    move([512, 432], [(sides[0] + sides[1]) / 2, seat]);
   } else if (group === 'extra' && key === 'earring') {
     t.scale = .92 * clamp(surface.faceWidth / 450, .66, 1.28);
     const sides = surface.row(surface.eyeY + 70);
@@ -482,9 +531,22 @@ export function drawTransformed(ctx, img, group, key, t) {
     if (t.clipAbove !== undefined) { ctx.beginPath(); ctx.rect(-1024, t.clipAbove, 3072, 3072); ctx.clip(); }
     ctx.translate(pivot[0] + t.dx + side * t.spread, pivot[1] + t.dy);
     ctx.scale(t.scale * (t.flip ? -1 : 1), t.scale * (t.aspectY || 1)); ctx.rotate(t.rot * Math.PI / 180); ctx.translate(-pivot[0], -pivot[1]);
+    if (t.temples) {
+      const unit = (img.naturalWidth || img.width) / CANVAS;
+      for (const { source, hinge, end, side: templeSide } of t.temples) {
+        const dx = hinge[0] - end[0], dy = hinge[1] - end[1];
+        // On narrow heads a hinge can already meet the side. Do not fold an
+        // unnecessary arm back through the lens.
+        if ((end[0] - hinge[0]) * templeSide <= 0) continue;
+        ctx.save(); ctx.translate(end[0], end[1]); ctx.rotate(Math.atan2(dy, dx));
+        ctx.drawImage(img, ...source.map(v => v * unit), 0, -source[3] / 2, Math.hypot(dx, dy) + 2, source[3]);
+        ctx.restore();
+      }
+    }
+    if (t.templesOnly) { ctx.restore(); return; }
     if (t.frontBandCurve) {
-      ctx.beginPath(); ctx.moveTo(-1024,-1024); ctx.lineTo(2048,-1024); ctx.lineTo(1024,460);
-      ctx.quadraticCurveTo(512,610,0,460); ctx.closePath(); ctx.clip();
+      ctx.beginPath(); ctx.moveTo(-1024,-1024); ctx.lineTo(2048,-1024); ctx.lineTo(1024,640);
+      ctx.quadraticCurveTo(512,432,0,640); ctx.closePath(); ctx.clip();
     }
     if (side) { ctx.beginPath(); ctx.rect(side < 0 ? -CANVAS : pivot[0], -CANVAS, CANVAS + (side < 0 ? pivot[0] : CANVAS), CANVAS * 3); ctx.clip(); }
     if (t.fitCrown) {
@@ -492,8 +554,8 @@ export function drawTransformed(ctx, img, group, key, t) {
     } else if (t.fitX || t.fitY) {
       const unit = (img.naturalWidth || img.width) / CANVAS;
       const xs = [...new Set([0, ...(t.fitX || []).map(k => k[0]), CANVAS])].sort((a,b) => a-b);
-      const ys = [...new Set([0, ...(t.fitY || []).map(k => k[0]), CANVAS])].sort((a,b) => a-b);
-      const mx = (x,y) => t.fitX ? mappedX(x, y, t) : x, my = y => t.fitY ? mapAxis(y, t.fitY) : y;
+      const ys = [...new Set([0, ...(t.fitY || []).map(k => k[0]), ...(t.warp ? [t.warp.sourceTop, t.warp.join] : []), CANVAS])].sort((a,b) => a-b);
+      const mx = (x,y) => t.fitX ? mappedX(x, y, t) : x, my = y => t.fitY ? mapAxis(y, t.fitY) : t.warp ? mappedWarpY(y, t) : y;
       for (let x = 0; x < xs.length - 1; x++) for (let y = 0; y < ys.length - 1; y++) {
         ctx.drawImage(img, xs[x]*unit, ys[y]*unit, (xs[x+1]-xs[x])*unit, (ys[y+1]-ys[y])*unit, mx(xs[x], (ys[y]+ys[y+1])/2), my(ys[y]), mx(xs[x+1], (ys[y]+ys[y+1])/2)-mx(xs[x], (ys[y]+ys[y+1])/2), my(ys[y+1])-my(ys[y]));
       }
