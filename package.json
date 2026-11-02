@@ -1,6 +1,6 @@
 {
   "name": "potato-me",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "description": "Create a potato avatar with six body shapes, expressive faces, hairstyles, jewelry, props and stickers. Browser-based PNG export and share links, with zero runtime dependencies.",
   "type": "module",
   "private": true,
@@ -31,7 +31,8 @@
     "shot": "node scripts/shot.mjs",
     "audit": "node scripts/audit-project.mjs",
     "audit:ui": "node scripts/audit-ui.mjs",
-    "audit:cohesion": "node scripts/audit-cohesion.mjs"
+    "audit:cohesion": "node scripts/audit-cohesion.mjs",
+    "audit:shapes": "node scripts/audit-shapes.mjs"
   },
   "engines": {
     "node": ">=20"

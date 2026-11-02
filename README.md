@@ -30,7 +30,11 @@ The app combines **224 transparent PNG assets** on a Canvas in your browser. The
 | **Laptop stickers** | 38 designs · select up to 6 at once |
 | **Background** | 14 colors · 12 patterns, including solid and spotlight |
 
-The **Male/Female switch** applies a starting look and remembers styling edits when you switch back during the session. Body, skin, held object, stickers, custom text and background stay selected. Reset returns to the selected starter; Surprise me keeps that selection. All parts remain available in either mode. Feminine options include lash expressions, a rose-tinted smile, soft brows, seven hairstyles, floral headwear, bows, earrings and necklaces. Pear and Petite join Classic, Lumpy, Round and Long. Stickers now include books, music, pets, photography, gardening and crafts. The sign starts with **HI THERE!**. Older links can still use LGTM (“Looks good to me”).
+The **Male/Female switch** applies a starting look and remembers styling edits when you switch back during the session. Body, skin, held object, stickers, custom text and background stay selected. Reset returns to the selected starter; Surprise me keeps that selection. All parts remain available in either mode. Feminine options include lash expressions, a rose-tinted smile, soft brows, seven hairstyles, floral headwear, bows, earrings and necklaces. The six shapes are **Classic, Lumpy, Round, Petite, Pear and Wide**. Petite is the smaller, slender shape; Wide is the short, broad shape. Stickers now include books, music, pets, photography, gardening and crafts. The sign starts with **HI THERE!**. Older links can still use LGTM (“Looks good to me”).
+
+![The six body shapes shown at the same output size, with male and female starting looks](docs/body-shapes.png)
+
+Hair clips add a bob when no hair is selected; choosing no hair removes the clip.
 
 Optional parts can be removed, and the holding hand can be left empty. Start with a vibe or **Surprise me**, then adjust the five editor tabs. Check the circular crop guide before downloading; the exported PNG itself is square. Custom text is uppercased and restricted to supported characters.
 
@@ -43,9 +47,9 @@ Optional parts can be removed, and the holding hand can be left empty. Start wit
 
 ## Project status
 
-Version **0.6.0** adds the Male/Female switch, a side ponytail and a rose-tinted smile, and replaces the hand-on-hip artwork. Arm fitting uses body-relative palm spans; both arms use the selected body's shadow, midtone and highlight palette. The whole avatar is framed together, so a wide object no longer causes its hand to shrink independently.
+Version **0.6.1** corrects Petite’s proportions and the misleading shape names. The complete Petite character is scaled to 82%, with camera framing capped against Classic wearing the same outfit. Hair fitting preserves the length of lower locks and the volume of a bun. This update also corrects short-forehead headwear, skin masks on faces and held objects, the eye-patch strap and Wide’s lanyard.
 
-The [current review record](docs/COHESION_REVIEW.md) describes the fixes, measured checks and limitations. Earlier audit counts did not establish visual quality: follow-up review found mismatched limbs and poor attachments. The [v0.5 record](docs/EVERYDAY_AUDIT.md) is historical, not approval of the current artwork. This is a modular 2D compositor, and no exhaustive full-outfit or pixel-perfect claim is made.
+The [current review record](docs/SHAPE_REVIEW.md) describes the fixes, measured checks and limitations. Earlier audit counts did not establish visual quality: follow-up review found mismatched limbs and poor attachments. The [v0.5 record](docs/EVERYDAY_AUDIT.md) is historical, not approval of the current artwork. This is a modular 2D compositor, and no exhaustive full-outfit or pixel-perfect claim is made.
 
 ## Run locally
 
@@ -82,7 +86,7 @@ The editor exports PNGs. The legacy SVG compositor remains in the codebase; it d
 
 ### Artwork and development tools
 
-Read [CONTRIBUTING.md](CONTRIBUTING.md) before adding or fitting a part. Option keys are part of the share-link format and must remain compatible. The [prompt guide](docs/IMAGE_PROMPTS.md), [asset-completion record](docs/ASSET_COMPLETION.md) and [fitting record](docs/CHARACTER_FITTING.md) document the artwork and its revisions.
+Read [CONTRIBUTING.md](CONTRIBUTING.md) before adding or fitting a part. Option keys are part of the share-link format and must remain compatible. The historical key `long` now displays Petite; `petite` displays Wide. Existing links keep their silhouette selection. `BODY_PROFILES` defines names and complete-character scale. The [prompt guide](docs/IMAGE_PROMPTS.md), [asset-completion record](docs/ASSET_COMPLETION.md) and [fitting record](docs/CHARACTER_FITTING.md) document the artwork and its revisions.
 
 Image maintenance tools use **Playwright with Chromium**; the compact inventory audit also uses **Sharp**, installed locally without changing the dependency files:
 
@@ -95,6 +99,7 @@ npm run hero      # Rebuild the banner, gallery, social preview and favicon
 npm run shot -- preview.png '#item=sign&sign=SHIP%20IT&gesture=thumbsUp'
 npm run audit -- /tmp/potato-audit inventory
 npm run audit:cohesion -- /tmp/potato-cohesion
+npm run audit:shapes -- /tmp/potato-shapes
 npm run audit -- /tmp/potato-hair hair
 npm run audit -- /tmp/potato-pairs pairwise
 npm run audit:ui -- /tmp/potato-ui

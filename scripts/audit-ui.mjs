@@ -31,6 +31,15 @@ try {
   await shot('desktop-light');
   for (const key of ['body', 'face', 'hat', 'gear', 'bg']) { await tab(key); await shot(`desktop-${key}`); }
   report.checks.push('All five tabs render their option thumbnails without failed images.');
+  await tab('body');
+  assert.equal(await page.locator('[data-key="body"][data-value="long"]').innerText(), 'Petite');
+  assert.equal(await page.locator('[data-key="body"][data-value="petite"]').innerText(), 'Wide');
+  await pick('body', 'long');
+  assert.ok(await page.getByText('Petite: A smaller, slender potato with matching smaller parts.').isVisible());
+  await page.reload(); await ready(); assert.equal(await page.locator('[data-key="body"][data-value="long"]').getAttribute('aria-pressed'), 'true');
+  await pick('body', 'petite');
+  assert.ok(await page.getByText('Wide: A short, broad potato with a wide silhouette.').isVisible());
+  report.checks.push('Petite and Wide labels, descriptions and historical share keys select the correct shapes.');
   await tab('body'); await pick('body', 'round'); await pick('skin', 'purple');
   const beforeSkip = page.url(); await page.locator('.skip').focus(); await page.keyboard.press('Enter');
   assert.equal(page.url(), beforeSkip); assert.equal(await page.locator('#controls').evaluate(e => e === document.activeElement), true);
@@ -86,6 +95,10 @@ try {
   await tab('body'); await pick('body', 'petite'); await tab('hat'); await pick('hair', 'braids'); await pick('hairColor', 'copper'); await pick('hat', 'flowerCrown');
   await tab('gear'); await pick('jewelry', 'hoops'); await pick('item', 'bouquet'); await pick('gesture', 'hip'); await shot('everyday-style');
   report.checks.push('New body shapes, hair colors, jewelry, props, gestures and six new stickers are reachable through the actual controls.');
+  await tab('hat'); await pick('hair', 'none'); await tab('gear'); await pick('extra', 'barrette');
+  await tab('hat'); assert.equal(await page.locator('[data-key="hair"][data-value="bob"]').getAttribute('aria-pressed'), 'true');
+  await pick('hair', 'none'); await tab('gear'); assert.equal(await page.locator('[data-key="extra"][data-value="none"]').getAttribute('aria-pressed'), 'true');
+  report.checks.push('Hair clips add a hairstyle; explicitly choosing no hair removes the clip.');
   for (const colorScheme of ['light', 'dark']) {
     await page.setViewportSize({ width: 390, height: 844 }); await page.emulateMedia({ colorScheme, reducedMotion: 'reduce' });
     await page.goto(base); await ready(); await thumbs();

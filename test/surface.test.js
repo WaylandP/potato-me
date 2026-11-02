@@ -4,7 +4,7 @@ import { surfaceTransform, frameForPoints } from '../src/surface.js';
 import { layerTransform } from '../src/raster.js';
 import { PARTS } from '../src/assets.js';
 import { FIT } from '../src/fit-data.js';
-import { DEFAULT_STATE } from '../src/options.js';
+import { DEFAULT_STATE, BODY_PROFILES, OPTIONS } from '../src/options.js';
 
 const surface = { center: 510, eyeY: 438, shoulderY: 620, left: 210, right: 810, faceWidth: 600, featureWidth: 480, crownY: 160, row: () => [250, 770] };
 const fit = (group, key, s = surface, state = DEFAULT_STATE) => surfaceTransform({ group, key, transform: layerTransform(group, key, state.body) }, null, s, state);
@@ -104,4 +104,47 @@ test('wide hats leave the eye line clear on a short body, with or without hair',
     const bottom = point('hat', key, t, [(b[0] + b[2]) / 2, b[3]])[1];
     assert.ok(bottom < petite.eyeY - 25, `${key}/${hair} obscures the eye opening`);
   }
+});
+
+test('Petite is the narrow profile at a smaller uniform size; the broad profile is Wide', () => {
+  assert.equal(OPTIONS.body.long, 'Petite');
+  assert.equal(OPTIONS.body.petite, 'Wide');
+  assert.ok(BODY_PROFILES.long.size < BODY_PROFILES.classic.size);
+  assert.equal(BODY_PROFILES.petite.size, BODY_PROFILES.classic.size);
+});
+
+test('short foreheads do not flatten long hair and the fitted crown remains seated', () => {
+  const wide = { ...surface, crownY: 284, eyeY: 475, faceWidth: 600 };
+  for (const key of ['waves', 'ponytail', 'braids', 'bob']) {
+    const t = fit('hair', key, wide, { ...DEFAULT_STATE, body: 'petite', hair: key });
+    assert.ok(t.aspectY >= .85, `${key} is vertically flattened`);
+    assert.ok(t.warp, `${key} should fit the forehead separately`);
+    const b = PARTS.hair[key];
+    const top = point('hair', key, t, [(b[0] + b[2]) / 2, b[1] + t.warp.topOffset])[1];
+    assert.ok(Math.abs(top - (wide.crownY - 32)) < .01, `${key} crown floats above the body`);
+  }
+});
+
+test('a bun keeps its raised crown with open headwear and tucks under closed hats', () => {
+  const box = PARTS.hair.bun;
+  const top = hat => {
+    const t = fit('hair', 'bun', surface, { ...DEFAULT_STATE, hair: 'bun', hat });
+    return point('hair', 'bun', t, [(box[0] + box[2]) / 2, box[1] + (t.warp?.topOffset || 0)])[1];
+  };
+  for (const hat of ['headband', 'bow', 'flowerCrown', 'halo', 'horns', 'crown']) assert.equal(top(hat), top('none'));
+  for (const hat of ['backwardCap', 'cap', 'beanie', 'bucket', 'cowboy', 'hardhat', 'sunhat']) assert.ok(top(hat) > top('none') + 100, `${hat} leaves the bun raised around its dome`);
+});
+
+
+test('Wide headwear leaves a visible crown or backs openings with potato skin', () => {
+  const wide = { ...surface, crownY: 300, eyeY: 475, row: () => [220, 804] };
+  for (const key of ['backwardCap', 'viking']) {
+    const t = fit('hat', key, wide, { ...DEFAULT_STATE, body: 'petite' });
+    const opening = { backwardCap: 160, viking: 220 }[key];
+    const actual = point('hat', key, t, [512, opening + (t.crownWarp?.offset || 0)])[1];
+    assert.ok(actual > wide.crownY, `${key} reveals background through its opening`);
+  }
+  const t = fit('hat', 'headband', wide, { ...DEFAULT_STATE, body: 'petite' });
+  const b = PARTS.hat.headband;
+  assert.ok(point('hat', 'headband', t, [512, b[1]])[1] > wide.crownY);
 });

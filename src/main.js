@@ -1,4 +1,4 @@
-import { OPTIONS, MULTI, TEXT, PRESETS, BG_COLORS, HAT_COLORS, HAIR_COLORS, STICKERS, DEFAULT_STATE, CHARACTER_LOOK_KEYS, characterLook } from './options.js';
+import { OPTIONS, BODY_PROFILES, MULTI, TEXT, PRESETS, BG_COLORS, HAT_COLORS, HAIR_COLORS, STICKERS, DEFAULT_STATE, CHARACTER_LOOK_KEYS, characterLook } from './options.js';
 import { encodeState, decodeState, cleanText } from './state.js';
 import { surprise } from './surprise.js';
 import { renderPotato, exportPng, availableOptions, missingParts, drawableState, cropBox, hasSticker, partSrc } from './raster.js';
@@ -49,7 +49,7 @@ const TABS = {
     { key: 'eyewear', title: 'Eyewear', kind: 'thumb' },
     { key: 'neckwear', title: 'Neckwear', kind: 'thumb' },
     { key: 'jewelry', title: 'Earrings', kind: 'thumb', help: 'Long hair may cover earrings, just as it does when worn.' },
-    { key: 'extra', title: 'Extras', kind: 'thumb' },
+    { key: 'extra', title: 'Extras', kind: 'thumb', help: 'Hair clips add a bob if no hairstyle is selected. Choosing no hair removes the clip.' },
   ],
   bg: [
     { key: 'bg', title: 'Color', kind: 'swatch', colors: BG_COLORS },
@@ -80,7 +80,7 @@ function commit(next, { redraw = true } = {}) {
   else renderPreview();
 }
 
-const setState = (patch) => commit({ ...state, ...patch });
+const setState = (patch) => commit({ ...state, ...patch, ...(patch.hair === 'none' && ['barrette', 'scrunchie'].includes(state.extra) ? { extra: 'none' } : {}) });
 
 // --- preview ----------------------------------------------------------------
 
@@ -275,6 +275,7 @@ function renderPanel() {
           : Object.entries(AVAILABLE[group.key] || OPTIONS[group.key]);
     for (const [value, label] of entries) grid.append(optionButton(group, value, label));
     fieldset.append(grid);
+    if (group.key === 'body') fieldset.append(note(`${OPTIONS.body[state.body]}: ${BODY_PROFILES[state.body].description}`));
 
     if (group.help) {
       const help = group.kind === 'multi' ? `${group.help} ${state[group.key].length} of ${MULTI[group.key].max} picked.` : group.help;

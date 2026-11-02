@@ -2,7 +2,7 @@
 // and in Node tests alike. The parts live in src/parts/*, the shared kit in
 // src/draw.js; this file only decides the layer order.
 
-import { SKINS, BG_COLORS, HAT_COLORS } from './options.js';
+import { SKINS, BG_COLORS, HAT_COLORS, BODY_PROFILES } from './options.js';
 import { normalizeState } from './state.js';
 import { CX, BODIES, Defs } from './draw.js';
 import { background } from './parts/background.js';
@@ -50,7 +50,8 @@ export function composeSVG(rawState, opts = {}) {
 
   return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="${viewBox}" width="${size}" height="${size}" role="img" aria-label="Potato avatar">
 <defs>${defs.items.join('')}</defs>
-${layers.filter(Boolean).join('\n')}
+${layers[0]}
+<g transform="translate(256 440) scale(${BODY_PROFILES[state.body].size}) translate(-256 -440)">${layers.slice(1).filter(Boolean).join('\n')}</g>
 </svg>`;
 }
 
