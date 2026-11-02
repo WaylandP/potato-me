@@ -74,6 +74,69 @@ test('a low forehead band never pulls headphones down below the crown', () => {
   assert.ok(band.warp.topOffset <= bare.warp.topOffset);
 });
 
+test('headphones open around fitted hair without widening their ear cups', () => {
+  const state = { ...DEFAULT_STATE, hair: 'curls', hat: 'none', extra: 'headphones' };
+  const bare = fit('extra', 'headphones', surface, state);
+  const hair = { ...surface, headTop: 90, headRow: () => [192, 828] };
+  const worn = fit('extra', 'headphones', hair, state);
+  const p = (t, x, y = 620) => point('extra', 'headphones', t, [x, y]);
+  for (const [left, right] of [[145, 298], [726, 877]]) {
+    assert.ok(Math.abs((p(bare, right)[0] - p(bare, left)[0]) - (p(worn, right)[0] - p(worn, left)[0])) < 1e-6, 'cup material must not stretch with hair volume');
+  }
+  assert.ok(p(worn, 300)[0] < p(bare, 300)[0], 'left pad must reach the outside of the hairstyle');
+  assert.ok(p(worn, 724)[0] > p(bare, 724)[0], 'right pad must reach the outside of the hairstyle');
+  assert.ok(p(worn, 512, PARTS.extra.headphones[1])[1] < hair.headTop, 'band must clear the fitted curls');
+});
+
+test('a raised bun passes in front of a scalp-seated headphone band', () => {
+  const state = { ...DEFAULT_STATE, hair: 'bun', hat: 'none', extra: 'headphones' };
+  const bun = { ...surface, headTop: 5, headRow: () => [220, 800] };
+  const t = fit('extra', 'headphones', bun, state);
+  const top = point('extra', 'headphones', t, [512, PARTS.extra.headphones[1]])[1];
+  assert.ok(top > bun.headTop + 20, 'band should sit behind the bun instead of arching over its tip');
+  assert.ok(top < bun.crownY, 'band should still clear the scalp');
+});
+
+test('halo clears the selected hairstyle and the fitted headphone band', () => {
+  for (const [hair, headTop] of [['none', 160], ['curls', 85], ['bun', 5]]) {
+    const s = { ...surface, headTop, headRow: () => [220, 800] };
+    const state = { ...DEFAULT_STATE, hair, hat: 'halo', extra: 'headphones' };
+    const h = fit('hat', 'halo', s, state), b = PARTS.hat.halo;
+    const bottom = point('hat', 'halo', h, [(b[0] + b[2]) / 2, b[3]])[1];
+    const hp = fit('extra', 'headphones', s, state);
+    const bandTop = point('extra', 'headphones', hp, [512, PARTS.extra.headphones[1]])[1];
+    assert.ok(bottom <= Math.min(headTop, bandTop) - 21, `${hair}: halo overlaps hair or headphones`);
+  }
+});
+
+test('earbud nozzle tips enter the actual left and right side contours', () => {
+  for (const sides of [[260, 800], [385, 642]]) {
+    const s = { ...surface, faceWidth: sides[1] - sides[0], row: () => sides };
+    const t = fit('extra', 'earbuds', s);
+    const left = point('extra', 'earbuds', t, [486, 432]);
+    const right = point('extra', 'earbuds', t, [538, 432]);
+    left[0] -= t.spread; right[0] += t.spread;
+    assert.ok(left[0] > sides[0] && left[0] < sides[0] + 15, 'left nozzle must be inserted, not floating');
+    assert.ok(right[0] < sides[1] && right[0] > sides[1] - 15, 'right nozzle must be inserted, not floating');
+    assert.equal(Math.round(left[1]), s.eyeY + 5);
+    assert.equal(Math.round(right[1]), s.eyeY + 5);
+  }
+});
+
+test('glasses reach the temples while retaining their front lens geometry', () => {
+  for (const key of ['shades', 'aviators', 'round', 'square', 'catEye']) {
+    const narrow = fit('eyewear', key, { ...surface, row: () => [330, 690] });
+    const wide = fit('eyewear', key, { ...surface, row: () => [200, 820] });
+    assert.equal(wide.scale, narrow.scale, `${key}: head width must not enlarge the lenses`);
+    assert.equal(wide.dx, narrow.dx);
+    assert.equal(wide.dy, narrow.dy);
+    assert.equal(wide.temples.length, 2);
+    const ends = wide.temples.map(arm => point('eyewear', key, wide, arm.end));
+    assert.deepEqual(ends.map(([x]) => Math.round(x)), [196, 824]);
+    assert.ok(ends.every(([, y]) => Math.abs(y - (surface.eyeY - 32)) < 1e-6));
+  }
+});
+
 test('closed hats cover the top of a narrow body instead of exposing its tip', () => {
   const narrow = { ...surface, crownY: 156, row: y => [512 - (y - 120) * .6, 512 + (y - 120) * .6] };
   for (const [key, roof] of Object.entries(FIT.hatCrownY)) {

@@ -28,6 +28,8 @@ The earlier asset-completion and character-fitting work was verified on November
 
 ## Next priorities
 
+- [ ] **Headgear overlap follow-up:** front/rear hat composition, fitted headphone bands, halo clearance, glasses temples, earbud insertion and headband side contact. Implemented and locally verified; publication and deployed-site verification are pending. See [WRAP_REVIEW.md](docs/WRAP_REVIEW.md).
+
 - [ ] **Broader device coverage:** verify the current rendering on physical iOS/Safari and Android devices, beyond the recorded Chromium checks.
 
 - [ ] **Undo / redo:** make it easy to compare edits and recover earlier choices.

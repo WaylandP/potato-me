@@ -16,6 +16,23 @@
 // laptop:  the lid's four corners (TL, TR, BR, BL) for sticker projection.
 
 export const FIT = {
+  // Rear surfaces measured on the original artwork. Only these regions pass
+  // behind the wearer; front brims, fur cuffs and decorative leaves stay whole.
+  // Paths are in the shared 1024 px source canvas, before silhouette fitting.
+  wrap: {
+    'hat/bucket': { behind: 'body', path: 'M322 240 C430 241 595 231 702 240 L710 300 L312 300 Z' },
+    'hat/propeller': { behind: 'body', path: 'M389 264 C450 233 581 228 641 264 L656 300 L375 300 Z' },
+    'hat/beret': { behind: 'body', path: 'M423 271 C452 228 612 210 673 224 L707 300 L413 300 Z' },
+    'hat/tophat': { behind: 'body', path: 'M358 225 C438 252 588 252 669 225 L682 295 L345 295 Z' },
+    'hat/sunhat': { behind: 'body', path: 'M251 271 C363 282 426 319 512 318 C601 318 674 288 770 270 L790 374 L235 374 Z' },
+    'hat/wizard': { behind: 'body', path: 'M373 234 C430 224 469 253 518 250 C570 251 610 223 650 235 L665 290 L357 290 Z' },
+    'hat/cowboy': { behind: 'body', path: 'M323 214 L405 241 L375 242 L345 233 Z M610 241 L690 212 L663 232 L633 240 Z' },
+    'hat/flowerCrown': { behind: 'body', path: 'M358 282 Q410 289 478 322 L478 350 L345 350 Z M665 281 Q613 290 546 322 L546 350 L680 350 Z' },
+    'hat/horns': { behind: 'body', path: 'M338 203 Q383 219 425 195 L432 245 L330 245 Z M596 196 Q642 219 683 203 L690 245 L590 245 Z' },
+    // Cups begin at source y455: the rear band must stop above their outline.
+    'extra/headphones': { behind: 'hair', path: 'M0 0 H1024 V440 H0 Z' },
+    'extra/earbuds': { behind: 'body', path: 'M480 413 Q497 410 497 432 Q497 448 480 445 Z M544 413 Q527 410 527 432 Q527 448 544 445 Z' },
+  },
   // Measured source-space openings, separate from the decorative silhouette.
   hairOpenings: {
     bob: { left: 377, right: 698, y: 422, length: 235 },

@@ -49,9 +49,9 @@ Optional parts can be removed, and the holding hand can be left empty. Start wit
 
 ## Project status
 
-Version **0.7.0** fits headwear to measured wearing openings and the selected hairstyle. Hair fitting separates the face opening, crown and free lengths; continuous sampling preserves strands at the joins. Small accessories scale with body width, and contact shadows fall on the hair or clothing underneath. The chef hat, crown and Viking helmet have new front-view artwork. The editor now has nine sections, six new illustrated scenes and twelve new colors.
+Source version **0.7.1** separates rear hat interiors from their front brims so the selected head and hair overlap them naturally. Headphone bands fit the hair while their ear cups keep their proportions; buns can sit in front of the band, and halos clear both. Glasses have fitted temple arms and earbuds sit into the body contour. Front details—including the Santa hat's fur cuff and the gold leaf barrette—remain intact. The existing 224-image catalog, nine editor sections, scenes and colors are preserved.
 
-The [current review record](docs/WEARABLE_REVIEW.md) documents the inspected cases, automated coverage and remaining limits. The [v0.6.1 shape review](docs/SHAPE_REVIEW.md) and earlier audits are historical. This is a modular 2D compositor, and no exhaustive full-outfit or pixel-perfect claim is made.
+The [current review record](docs/WRAP_REVIEW.md) documents the inspected cases, automated coverage and remaining limits. The [v0.7 wearable review](docs/WEARABLE_REVIEW.md), [v0.6.1 shape review](docs/SHAPE_REVIEW.md) and earlier audits are historical. This is a modular 2D compositor, and no exhaustive full-outfit or pixel-perfect claim is made.
 
 ## Run locally
 
@@ -78,6 +78,7 @@ The editor validates choices, loads the selected PNG layers, fits them to the bo
 | [src/main.js](src/main.js) | Editor controls, preview and downloads |
 | [src/options.js](src/options.js) / [src/state.js](src/state.js) | Choices, presets, validation and share-link encoding |
 | [src/raster.js](src/raster.js) / [src/surface.js](src/surface.js) | Canvas composition, body fitting and skin blending |
+| [src/wrap.js](src/wrap.js) | Separate source artwork into front and rear surfaces for natural overlap |
 | [src/fit-data.js](src/fit-data.js) / [fit.html](fit.html) | Placement corrections, material masks and fitting tool |
 | [assets/manifest.json](assets/manifest.json) | Inventory and checksums for all 224 source images |
 | [assets/parts/](assets/parts/) / [assets/thumbs/](assets/thumbs/) | 1024 px source PNGs and generated 256 px thumbnails |
