@@ -146,3 +146,11 @@ test('every material and fitting entry names an existing part', () => {
   assert.deepEqual(cropBox('body'), [0, 0, 1024, 1024]);
   assert.equal(cropBox('eyes').length, 4);
 });
+
+
+test('hair clips have a hairstyle to attach to, including old shared states', () => {
+  for (const extra of ['barrette', 'scrunchie']) {
+    assert.equal(drawableState({ ...DEFAULT_STATE, hair: 'none', extra }).hair, 'bob');
+    assert.equal(drawableState({ ...DEFAULT_STATE, hair: 'waves', extra }).hair, 'waves');
+  }
+});

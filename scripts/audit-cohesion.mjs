@@ -3,7 +3,7 @@
 // it deliberately does not infer aesthetic approval from successful renders.
 import { createRequire } from 'node:module';
 import { spawn } from 'node:child_process';
-import { mkdir, writeFile, readFile } from 'node:fs/promises';
+import { mkdir, writeFile, readFile, rename } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
 import { fileURLToPath } from 'node:url';
 import { resolve } from 'node:path';
@@ -14,9 +14,11 @@ const sharp = require('sharp');
 const root = fileURLToPath(new URL('..', import.meta.url));
 const out = resolve(process.argv[2] || '/tmp/potato-cohesion-audit');
 const groups = process.argv.slice(3);
+const bodies = process.env.AUDIT_BODIES ? process.env.AUDIT_BODIES.split(',') : Object.keys(OPTIONS.body);
+if (bodies.some(b => !OPTIONS.body[b])) throw Error('Unknown AUDIT_BODIES value');
 const baseline = { ...DEFAULT_STATE, hat: 'none', item: 'none', gesture: 'rest', bg: 'cream', pattern: 'solid', capText: '' };
 await mkdir(out, { recursive: true });
-const report = { date: new Date().toISOString(), sourceDigest: '', cases: 0, parts: 0, renderSize: 256, errors: [], circleFindings: [], visualReview: 'Not implied. Review representative PNGs separately at full size.' };
+const report = { date: new Date().toISOString(), sourceDigest: '', bodies, cases: 0, parts: 0, renderSize: 256, errors: [], circleFindings: [], visualReview: 'Not implied. Review representative PNGs separately at full size.' };
 const source = await Promise.all(['surface.js','raster.js','fit-data.js','options.js','assets.js'].map(n => readFile(root + 'src/' + n)));
 report.sourceDigest = createHash('sha256').update(Buffer.concat(source)).digest('hex');
 const port = 6300 + Math.floor(Math.random() * 300);
@@ -33,7 +35,7 @@ try {
     const keys = group === 'body' ? ['all'] : Object.keys(parts);
     for (const key of keys) {
       if (groups.length && !groups.includes(group) && !groups.includes(`${group}/${key}`)) continue;
-      const cases = Object.keys(OPTIONS.body).flatMap(body => Object.keys(OPTIONS.skin).map(skin => ({ ...baseline, body, skin, ...(group === 'body' ? {} : group === 'stickers' ? { item: 'laptop', stickers: [key] } : { [group]: key }) })));
+      const cases = bodies.flatMap(body => Object.keys(OPTIONS.skin).map(skin => ({ ...baseline, body, skin, ...(group === 'body' ? {} : group === 'stickers' ? { item: 'laptop', stickers: [key] } : { [group]: key }) })));
       const result = await page.evaluate(async cases => {
         const { renderPotato } = await import('./src/raster.js');
         const { encodeState, decodeState } = await import('./src/state.js');
@@ -46,14 +48,16 @@ try {
           let cropped = 0;
           for (let y = 0; y < 256; y++) for (let x = 0; x < 256; x++) if (pixels[(y * 256 + x) * 4 + 3] > 180 && Math.hypot(x - 128, y - 128) > 127) cropped++;
           if (cropped > 8) findings.push({ body: state.body, skin: state.skin, cropped });
-          ctx.globalCompositeOperation = 'destination-over'; ctx.fillStyle = '#edf6f3'; ctx.fillRect(0, 0, 256, 256);
+          ctx.resetTransform(); ctx.globalCompositeOperation = 'destination-over'; ctx.fillStyle = '#edf6f3'; ctx.fillRect(0, 0, 256, 256);
           frames.push(c.toDataURL());
         }
         return { frames, findings };
       }, cases);
       const layers = [];
       for (let i = 0; i < result.frames.length; i++) layers.push({ input: Buffer.from(result.frames[i].split(',')[1], 'base64'), left: i % 9 * 256, top: Math.floor(i / 9) * 256 });
-      await sharp({ create: { width: 2304, height: 1536, channels: 4, background: '#edf6f3' } }).composite(layers).png().toFile(`${out}/${group}-${key}.png`);
+      const png = await sharp({ create: { width: 2304, height: 256 * bodies.length, channels: 4, background: '#edf6f3' } }).composite(layers).png().toBuffer();
+      await writeFile(`${out}/.${group}-${key}.png.tmp`, png);
+      await rename(`${out}/.${group}-${key}.png.tmp`, `${out}/${group}-${key}.png`);
       report.cases += cases.length; report.parts++;
       report.circleFindings.push(...result.findings.map(f => ({ group, key, ...f })));
       await writeFile(`${out}/report.json`, JSON.stringify(report, null, 2) + '\n');

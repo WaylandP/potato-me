@@ -2,6 +2,17 @@
 
 Notable changes to the source. Version numbers match `package.json`; tags and downloadable release archives are listed separately on [GitHub Releases](https://github.com/WaylandP/potato-me/releases).
 
+## 0.6.1 — 2026-11-02
+
+- Rename Long to Petite and the former broad Petite to Wide, retaining historical share keys.
+- Make Petite smaller as a complete character, including hands and accessories; cap its camera framing against the same Classic outfit.
+- Fit hair crowns separately from lower lengths, preserve bun volume, and remove horizontal resampling seams.
+- Seat open headwear on Wide, narrow its forehead band, raise its flower crown and shorten its lanyard with a proportionate badge.
+- Refine face and prop skin masks; keep eye interiors, teeth, tongues, drinks and controller materials separate from potato skin.
+- Route the eye-patch strap above the uncovered eye. Add hair automatically for hair clips.
+- Add measured body/prop proportion checks and update the review record and renderer-generated documentation.
+- Tuck the raised bun under closed hats; retain its volume with open headwear.
+
 ## 0.6.0 — 2026-11-02
 
 - Add a Male/Female starting-look switch with keyboard support, remembered session styling and share-link state. Keep all controls available in both modes; preserve body, skin, props, text, stickers and background when switching.

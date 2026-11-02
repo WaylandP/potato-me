@@ -1,5 +1,7 @@
 # Character cohesion review — v0.6.0
 
+**Historical record:** the [v0.6.1 follow-up](SHAPE_REVIEW.md) found additional proportion, face-mask, prop-mask and hair-fitting defects. This record does not approve the current artwork.
+
 Review date: 2026-11-02. This record replaces the visual-quality conclusions in earlier audits. Successful rendering and large test counts did not detect mismatched arm materials, inconsistent hand scale or defects baked into individual images. Those are separate review tasks.
 
 ## What changed

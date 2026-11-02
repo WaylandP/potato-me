@@ -90,7 +90,7 @@ export function surprise(rng = Math.random, available = OPTIONS, keep = {}) {
   } else s.eyewear = 'none';
   s.neckwear = worn < 2 && chance(rng, 0.35) ? pickFrom(rng, keys('neckwear').filter((k) => k !== 'none')) : 'none';
   if (s.neckwear !== 'none') worn++;
-  const extras = keys('extra').filter((k) => k !== 'none' && (k !== 'headphones' || HEADPHONE_HATS.includes(s.hat)));
+  const extras = keys('extra').filter((k) => k !== 'none' && (k !== 'headphones' || HEADPHONE_HATS.includes(s.hat)) && (s.hair !== 'none' || !['barrette', 'scrunchie'].includes(k)));
   s.extra = worn < 2 && chance(rng, 0.25) && extras.length ? pickFrom(rng, extras) : 'none';
 
   // Background: never the skin's own color family, mostly quiet patterns.

@@ -7,7 +7,7 @@
 
 import { PARTS, NO_IMAGE, LAYER_ORDER, CANVAS } from './assets.js';
 import { FIT } from './fit-data.js';
-import { SKINS, HAT_COLORS, HAIR_COLORS, BG_COLORS, OPTIONS, MULTI } from './options.js';
+import { SKINS, HAT_COLORS, HAIR_COLORS, BG_COLORS, OPTIONS, BODY_PROFILES, MULTI } from './options.js';
 import { normalizeState } from './state.js';
 import { Defs } from './draw.js';
 import { background } from './parts/background.js';
@@ -58,6 +58,8 @@ export function missingParts() {
 /** Swap any choice that has no image for the first one that does, so every state draws something. */
 export function drawableState(rawState) {
   const s = normalizeState(rawState);
+  // Hair clips need hair to attach to. This also repairs older shared links.
+  if (s.hair === 'none' && ['barrette', 'scrunchie'].includes(s.extra)) s.hair = 'bob';
   const avail = availableOptions();
   for (const group of Object.keys(avail)) {
     if (group === 'body' || group === 'skin') continue;
@@ -377,11 +379,12 @@ async function drawStickers(ctx, s, thumbs, transform) {
   ctx.restore();
 }
 
-function drawCapText(ctx, s, transform) {
+function drawCapText(output, s, transform) {
   const spec = FIT.capText[s.hat];
   if (!spec || !s.capText) return;
+  const lettering = document.createElement('canvas'); lettering.width = lettering.height = CANVAS;
+  const ctx = lettering.getContext('2d');
   ctx.save();
-  applyTransform(ctx, 'hat', transform || layerTransform('hat', s.hat, s.body), s.hat);
   ctx.translate(spec.x, spec.y);
   ctx.rotate((spec.rot * Math.PI) / 180);
   ctx.textAlign = 'center';
@@ -404,6 +407,7 @@ function drawCapText(ctx, s, transform) {
   ctx.fillStyle = 'rgba(255,255,255,0.22)';
   ctx.fillText(s.capText, 0, -size * 0.04);
   ctx.restore();
+  drawTransformed(output, lettering, 'hat', s.hat, transform || layerTransform('hat', s.hat, s.body));
 }
 
 function drawSignText(ctx, s, transform) {
@@ -470,6 +474,10 @@ export async function renderPotato(rawState, opts = {}) {
   const k = size / crop[2];
   ctx.setTransform(k, 0, 0, k, -crop[0] * k, -crop[1] * k);
   if (bgImg) ctx.drawImage(bgImg, 0, 0, CANVAS, CANVAS);
+  // A small body type must be smaller as a complete character. Scaling only
+  // its torso would leave oversized hands, faces and clothes attached to it.
+  const bodySize = BODY_PROFILES[s.body].size;
+  ctx.translate(512, 880); ctx.scale(bodySize, bodySize); ctx.translate(-512, -880);
   const body = imgs[layers.findIndex(l => l.group === 'body')];
   const surface = bodySurface(body, s.body);
   const workSize = thumbs ? 256 : 1024;
@@ -477,6 +485,15 @@ export async function renderPotato(rawState, opts = {}) {
   const head = layers.flatMap((l, i) => ['hat', 'hair', 'item', 'gesture', 'extra', 'neckwear'].includes(l.group) ? [{ ...l, img: imgs[i], transform: transforms[i] }] : []);
   if (head.length) {
     const frame = headFrame(head);
+    if (bodySize < 1) {
+      // Wide props can force a large body farther from the camera. Petite
+      // must not look larger simply because its narrow body needs less zoom.
+      const referenceState = { ...s, body: 'classic' };
+      const referenceBody = await loadImage(partSrc('body', `classic-${s.skin}`, thumbs));
+      const referenceSurface = bodySurface(referenceBody, 'classic');
+      const referenceHead = head.map(l => ({ ...l, transform: surfaceTransform({ ...l, transform: layerTransform(l.group, l.key, 'classic') }, l.img, referenceSurface, referenceState) }));
+      frame.scale = Math.min(frame.scale, headFrame(referenceHead).scale);
+    }
     ctx.translate(512, 512); ctx.scale(frame.scale, frame.scale); ctx.translate(-512, -frame.centerY);
   }
   for (let i = 0; i < layers.length; i++) {

@@ -59,9 +59,20 @@ export const HAIR_COLORS = {
   rose: { label: 'Rose', value: '#A95D7B' },
 };
 
+// Keep historical URL/asset keys stable. Display names describe the silhouette;
+// size scales the completed character uniformly, never its body independently.
+export const BODY_PROFILES = {
+  classic: { label: 'Classic', description: 'An upright oval with balanced proportions.', size: 1 },
+  lumpy: { label: 'Lumpy', description: 'An uneven outline with extra bumps.', size: 1 },
+  round: { label: 'Round', description: 'A full, rounded body.', size: 1 },
+  long: { label: 'Petite', description: 'A smaller, slender potato with matching smaller parts.', size: .82 },
+  pear: { label: 'Pear', description: 'A narrow top and a fuller lower body.', size: 1 },
+  petite: { label: 'Wide', description: 'A short, broad potato with a wide silhouette.', size: 1 },
+};
+
 export const OPTIONS = {
   character: { male: 'Male', female: 'Female' },
-  body: { classic: 'Classic', lumpy: 'Lumpy', round: 'Round', long: 'Long', pear: 'Pear', petite: 'Petite' },
+  body: Object.fromEntries(Object.entries(BODY_PROFILES).map(([key, profile]) => [key, profile.label])),
   skin: Object.fromEntries(Object.entries(SKINS).map(([k, v]) => [k, v.label])),
   eyes: {
     smug: 'Smug',
