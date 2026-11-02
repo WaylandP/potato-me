@@ -42,7 +42,7 @@ Optional parts can be removed, and the holding hand can be left empty. Start wit
 
 ## Project status
 
-The current source version is **0.5.0**. The everyday-expression update adds 58 source images, two body shapes, hairstyles and jewelry, with broader expressions and interests. Hair follows the crown and face opening, earrings sit at the sides beneath hair, and hands retain their prop-specific grips. Existing share links remain supported.
+The live editor and current source version are **0.5.0**. [Production checks](docs/EVERYDAY_AUDIT.md#deployment) passed against the public URL, including 495 file hashes and 13 browser check groups. The everyday-expression update adds 58 source images, two body shapes, hairstyles and jewelry, with broader expressions and interests. Hair follows the crown and face opening, earrings sit at the sides beneath hair, and hands retain their prop-specific grips. Existing share links remain supported.
 
 The [v0.5 audit](docs/EVERYDAY_AUDIT.md) records the exact review coverage and remaining limits. It combines every asset on all 54 body/skin combinations, interaction matrices and a deterministic pairwise outfit suite with an independent coverage check. Automated rendering and visual review are separate. This is a modular 2D compositor; the review does not enumerate the Cartesian product of every setting. The [v0.4 audit](docs/PUBLIC_AUDIT.md) remains a historical record.
 
