@@ -1,8 +1,10 @@
-# Character fitting repair — November 2026
+# Character fitting repair — v0.3.1
+
+> Historical delivery record. The [v0.4.0 public audit](PUBLIC_AUDIT.md) supersedes this visual review, asset-replacement count and font status.
 
 The completed inventory still looked assembled from unrelated stickers: rounded arm ends sat on top of bodies, faces kept tan rims on other skins, and several accessories floated or were out of proportion. Asset counts and successful exports did not catch these visual defects.
 
-![Current characters from the real renderer](completion-preview.png)
+The [README](../README.md) and [current gallery](completion-preview.png) show the latest renderer.
 
 ## Rendering changes
 

@@ -4,6 +4,8 @@ These prompts produce the art for a layered PNG version of potato-me: ChatGPT
 renders every part as its own 1024 × 1024 transparent PNG, drawn as if it were
 sitting on one shared base potato, and the app stacks the layers.
 
+This is the original generation guide. All 164 assets exist. For replacement neckwear, cap, brows, resting hands and stubble, use the later [audit prompts](PUBLIC_AUDIT_PROMPTS.json) and [fitting requirements](PUBLIC_AUDIT.md); those supersede the short original prompts below.
+
 How to use this file:
 
 1. Open a new ChatGPT chat with image generation. **Attach the reference potato
@@ -64,8 +66,7 @@ Format used below: **file name** then the prompt line.
 ### Bodies, group `body` (blank face, legs and feet, floor shadow included)
 
 Start here: `classic-russet` (the base). Then the other shapes in russet, then
-skins. The skins are optional: the app can tint the russet base at runtime,
-but generated skins look better.
+skins. The app uses a separate source image for every shape/skin pair; it does not recolor the body image at runtime.
 
 - `body/classic-russet.png` (the base, from the master prompt)
 - `body/lumpy-russet.png` — Full body like the base potato but a LUMPY shape: knobbly, with two or three soft bumps on the sides and top. Same skin, same legs and feet, same framing, no face, no arms, transparent background.
@@ -136,7 +137,7 @@ Start here: smirk, grin, laugh, smile, flat, oh.
 - `cheeks/on.png` — Only the cheeks: two soft rosy blush ovals, one on each cheek, slightly below the eye line.
 - `cheeks/freckles.png` — Only the cheeks: a light scatter of small darker freckles across both cheeks and the bridge between the eyes.
 
-### Facial hair, group `facialHair` (render only the hair, below the mouth position)
+### Facial hair, group `facialHair` (mustaches above the mouth; chin hair below)
 
 - `facialHair/mustache.png` — Only the facial hair: a classic thick dark-brown mustache above the mouth position.
 - `facialHair/handlebar.png` — Only the facial hair: a dark-brown handlebar mustache with curled waxed tips.
@@ -179,7 +180,7 @@ Start here: shades, round.
 - `eyewear/monocle.png` — Only the eyewear: a gold-rimmed monocle over the viewer's-right eye with a thin chain hanging down.
 - `eyewear/eyepatch.png` — Only the eyewear: a black eye patch over the viewer's-left eye with a thin strap around the head.
 
-### Neckwear, group `neckwear` (render only the item, at the base of the body, below the mouth)
+### Neckwear, group `neckwear` (front half wrapping the broad torso below the mouth)
 
 Start here: bowtie, tie.
 
@@ -267,7 +268,9 @@ LGTM stickers. See `ASSET_COMPLETION.md` for integration and verification status
 
 ## What the app does with them
 
-- Stacks the layers in this order: background, body, cheeks, facial hair, mouth, eyes, eyebrows, eyewear, neckwear, extras, hat, held item, free hand.
-- Reads per-part offsets from `assets/manifest.json`; a small fitting page lets you nudge any part with the arrow keys and save the offsets.
-- Recolors the red colorway parts to the chosen hat color, stamps the chosen stickers on the laptop lid, and writes the sign text.
-- Exports the stack as a 512 × 512 PNG, exactly as today.
+- Reads source bounds and checksums from `assets/manifest.json`; generates `src/assets.js` and thumbnails with `npm run assets`.
+- Fits parts to the selected body's silhouette and landmarks in `src/surface.js`. `fit.html` edits final `FIT.surfaceNudges` in `src/fit-data.js`.
+- Draws body, cheeks, neckwear, facial hair, mouth, eyes, brows, eyewear, extras, hat, held item and free hand. Mustaches move after the mouth; headphones move above compatible hats.
+- Preserves skin texture and source shading, protects prop colors, adds contact shadows, and reframes tall hats with the complete character.
+- Recolors supported red materials, projects laptop stickers, and draws editable cap/sign text.
+- Exports a square 512 × 512 or 1024 × 1024 PNG. The circle is a preview guide.

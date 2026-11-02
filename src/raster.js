@@ -12,7 +12,7 @@ import { normalizeState } from './state.js';
 import { Defs } from './draw.js';
 import { background } from './parts/background.js';
 import { stickerSVG } from './parts/stickers.js';
-import { bodySurface, surfaceTransform, integratedLayer, contactShadow } from './surface.js';
+import { bodySurface, surfaceTransform, integratedLayer, contactShadow, drawTransformed, hatFrame } from './surface.js';
 import { LruCache } from './cache.js';
 
 const RED = '#C8372D';
@@ -251,8 +251,12 @@ export function layersFor(rawState) {
   const s = drawableState(rawState);
   // Extras draw under the hat by default; headphones go over caps and beanies, band across the hat.
   let order = LAYER_ORDER;
+  if (['mustache', 'handlebar'].includes(s.facialHair)) {
+    order = order.filter(g => g !== 'facialHair');
+    order.splice(order.indexOf('mouth') + 1, 0, 'facialHair');
+  }
   if (s.extra === 'headphones' && FIT.headphonesOver.includes(s.hat)) {
-    order = LAYER_ORDER.filter((g) => g !== 'extra');
+    order = order.filter((g) => g !== 'extra');
     order.splice(order.indexOf('hat') + 1, 0, 'extra');
   }
   const layers = [];
@@ -410,6 +414,13 @@ function drawSignText(ctx, s, transform) {
 
 // ---------------------------------------------------------------- render
 
+let letteringFont;
+function readyLettering() {
+  // Direct share links can render before CSS font loading finishes. Keep the
+  // preview and downloaded lettering identical; fall back if the font fails.
+  return letteringFont ||= document.fonts?.load('700 32px Fredoka').catch(() => []) || Promise.resolve();
+}
+
 /**
  * Draw a potato onto a canvas.
  * @param {object} rawState
@@ -425,6 +436,7 @@ export async function renderPotato(rawState, opts = {}) {
   const thumbs = Boolean(opts.thumbs);
   const canvas = opts.canvas || document.createElement('canvas');
   const hatColor = HAT_COLORS[s.hatColor].value;
+  if ((s.capText && FIT.capText[s.hat]) || (s.item === 'sign' && s.sign)) await readyLettering();
 
   // Load everything first so the frame is drawn in one go (no flashing).
   const layers = layersFor(s);
@@ -443,14 +455,23 @@ export async function renderPotato(rawState, opts = {}) {
   const body = imgs[layers.findIndex(l => l.group === 'body')];
   const surface = bodySurface(body, s.body);
   const workSize = thumbs ? 256 : 1024;
+  const transforms = layers.map((l, i) => l.group === 'body' ? l.transform : surfaceTransform(l, imgs[i], surface, s));
+  const hi = layers.findIndex(l => l.group === 'hat');
+  if (hi !== -1) {
+    const frame = hatFrame(imgs[hi], layers[hi].key, transforms[hi]);
+    ctx.translate(512, 512); ctx.scale(frame.scale, frame.scale); ctx.translate(-512, -frame.centerY);
+  }
   for (let i = 0; i < layers.length; i++) {
     const l = layers[i];
     if (l.group === 'body') { drawLayer(ctx, imgs[i], l.group, l.key, l.transform); continue; }
-    const transform = surfaceTransform(l, imgs[i], surface, s);
+    const transform = transforms[i];
     const plane = integratedLayer(imgs[i], l.group, l.key, transform, surface, workSize);
     const shadow = l.group === 'hat' && l.key === 'halo' ? null : contactShadow(plane, body, l.group, workSize);
     if (shadow) ctx.drawImage(shadow, 0, 0, CANVAS, CANVAS);
-    ctx.drawImage(plane, 0, 0, CANVAS, CANVAS);
+    // Wearables can extend beyond the original 1024 world canvas. Draw their
+    // original image into the fitted scene so tall tips are never pre-clipped.
+    if (['hat', 'extra', 'neckwear', 'eyewear', 'brows'].includes(l.group)) drawTransformed(ctx, imgs[i], l.group, l.key, transform);
+    else ctx.drawImage(plane, 0, 0, CANVAS, CANVAS);
     if (l.group === 'item' && l.key === 'laptop') await drawStickers(ctx, s, thumbs, transform);
     if (l.group === 'item' && l.key === 'sign') drawSignText(ctx, s, transform);
     if (l.group === 'hat') drawCapText(ctx, s, transform);

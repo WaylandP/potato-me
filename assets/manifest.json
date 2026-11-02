@@ -2561,19 +2561,19 @@
         1254
       ],
       "sourceCrop": [
-        24,
-        328,
-        1234,
-        1033
+        78,
+        388,
+        1172,
+        890
       ],
       "placedBox": [
-        372,
-        555,
-        652,
-        718
+        352,
+        550,
+        672,
+        697
       ],
       "flippedForConvention": false,
-      "sha256": "e8bd357adcef5c11ce091a61dc448017c4c2f13e94fc6f26503ff4b988315aa4"
+      "sha256": "58713104034c9ace703a2af7ccf10bc957c055d68434449752053d88b82620cc"
     },
     {
       "path": "assets/parts/hat/backwardCap.png",
@@ -3578,23 +3578,23 @@
       "height": 1024,
       "alpha": true,
       "sourceSize": [
-        1312,
-        1199
+        1254,
+        1254
       ],
       "sourceCrop": [
-        0,
-        0,
-        1312,
-        1199
+        10,
+        376,
+        1244,
+        1118
       ],
       "placedBox": [
-        80,
-        69,
-        944,
-        940
+        62,
+        300,
+        962,
+        841
       ],
       "flippedForConvention": false,
-      "sha256": "52a9f489a0819d81f7a43c061cd19c016d33ca03d650954ae922b6371ac9ac74"
+      "sha256": "94eb7a7b7ea3b8b247ff714da8200bb71e39388cec4dfb586535d090bdbf3a32"
     },
     {
       "path": "assets/parts/neckwear/bandana.png",

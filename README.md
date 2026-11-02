@@ -39,9 +39,9 @@ Optional parts can be removed, and the holding hand can be left empty. Start wit
 
 ## Project status
 
-The current source version is **0.3.1**. The rendered asset inventory is complete, and the character-fitting update is merged into `main`. Arms attach inside the body outline, facial skin follows the selected body, and hats and accessories use measured body landmarks. The headband and headphones have replacement artwork.
+The current source version is **0.4.0**. The public-quality update rebuilds all six neckwear pieces, the backward cap, four brows, resting hands and stubble. Accessories follow the body silhouette; tall hats reframe the whole character; mustaches, monocles and eyepatches follow their facial landmarks.
 
-The [fitting record](docs/CHARACTER_FITTING.md) includes the visual review and a 548-case inventory audit. These checks cover every individual asset and representative outfits; large accessories can still overlap in some combinations. See the [changelog](CHANGELOG.md) for changes and the [roadmap](ROADMAP.md) for unfinished work.
+The [public audit](docs/PUBLIC_AUDIT.md) records the repairs, review method and exact coverage: every source part across all four shapes and nine skins, plus expression, outfit, color and gesture matrices. Automated checks and visual inspection are recorded separately. This is a modular 2D compositor: the audit covers the documented matrices, not every possible combination of all settings. See the [roadmap](ROADMAP.md) for remaining work.
 
 ## Run locally
 
@@ -87,9 +87,10 @@ npm install --no-save --package-lock=false playwright
 npx playwright install chromium
 
 npm run assets    # Rebuild thumbnails and src/assets.js from the manifest
-npm run hero      # Rebuild the README banner and social preview from the app
+npm run hero      # Rebuild the banner, gallery, social preview and favicon
 npm run shot -- preview.png '#item=sign&sign=SHIP%20IT&gesture=thumbsUp'
-node scripts/audit-art.mjs /tmp/potato-art-audit
+npm run audit -- /tmp/potato-audit inventory
+npm run audit:ui -- /tmp/potato-ui
 ```
 
 Playwright is optional development tooling. Visual changes need inspection on all four body shapes; a passing automated audit does not establish visual quality.
@@ -100,10 +101,10 @@ Deploy the repository root to a static host. Use **no build command** and **`.` 
 
 Avatar composition and PNG export happen in the browser. The app has no accounts, upload endpoint, database or bundled analytics. **A share link is the save file:** its URL fragment contains the choices and custom text, and anyone with it can recreate the avatar. Use a hosted instance when sharing with others; a localhost link points to the recipient's own machine.
 
-The interface currently loads Fredoka from **Google Fonts**. The app is not a fully offline distribution; self-hosting the font is tracked in the roadmap.
+Fredoka is served locally from `assets/fonts/`; the editor makes no third-party requests. It still needs the static files to load, and does not install an offline service worker.
 
 ## Contributing and license
 
 [Report a bug](https://github.com/WaylandP/potato-me/issues/new/choose) with the avatar share link, browser/device details and a screenshot when possible. Code, artwork and fitting contributions are welcome; follow the [contributor guide](CONTRIBUTING.md). Additional guidance for coding assistants is in [CLAUDE.md](CLAUDE.md).
 
-[MIT](LICENSE), including the project's AI-generated artwork. See [GitHub contributors](https://github.com/WaylandP/potato-me/graphs/contributors) for contribution history.
+[MIT](LICENSE), including the project's AI-generated artwork. The bundled Fredoka font retains its [SIL Open Font License](assets/fonts/OFL.txt). See [GitHub contributors](https://github.com/WaylandP/potato-me/graphs/contributors) for contribution history.

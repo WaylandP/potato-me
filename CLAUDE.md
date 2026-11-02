@@ -10,16 +10,16 @@ A static, zero-dependency potato avatar builder that composites rendered PNG par
 - **Recolor by mask only.** Parts listed in `FIT.recolor` were rendered in the red master (`#C8372D`); `src/raster.js` recolors just the red pixels so trim, bands, metal and jewels keep their colors. Never hue-shift a whole image. Skin is harmonized against pixels from the selected body in `src/surface.js`; protect held objects with `FIT.skinProtect` polygons so their hands remain tintable. Preserve eye interiors, teeth, tongues and hair when changing masks.
 - **Missing parts are hidden, never broken.** The renderer and the editor only offer choices whose image exists (`availableOptions()`), list the rest as "not drawn yet", and `drawableState()` swaps a missing choice for a drawable one. `noImageRequired` in the manifest names the "none" choices.
 - **Option keys are a public API.** They live in share links. Add keys freely; never rename or remove one without a `LEGACY` entry in `src/options.js`.
-- **`composeSVG` stays pure** (no DOM, no randomness). It still draws the backgrounds and the fallback stickers, and the tests render it in Node.
+- **`composeSVG` stays pure** (no DOM, no randomness). The Canvas renderer reuses the pure background and sticker modules; `composeSVG` itself is a legacy vector compositor, tested in Node.
 - **Original art only.** No logos, mascots or characters from other brands, in prompts or in stickers.
 
 ## Checks before you say it's done
 
 1. `npm test` passes (it also checks the asset index against the manifest and that every fit entry names a real part).
 2. `npm run dev`, then look at the change in the browser at desktop and phone widths, light and dark; or `npm run shot out.png '#hash'` / `--page` for screenshots.
-3. For broad art changes, run `node scripts/audit-art.mjs /tmp/potato-art-audit` and visually inspect every resulting sheet. Inventory and export checks alone are not proof of visual quality. For anything visual, check all four body shapes and at least three skins, inside the avatar crop circle and in the thumbnail grid. `npm run shot grid.png spec.json --cell 256 --cols 4` renders a review sheet.
+3. For broad art changes, run `npm run audit -- /tmp/potato-art-audit inventory` and visually inspect every resulting sheet. Run affected interaction modes from `docs/PUBLIC_AUDIT.md` plus `npm run audit:ui -- /tmp/potato-ui`. Inventory and export checks alone are not proof of visual quality. For anything visual, check all four body shapes and all nine skins, inside the avatar crop circle and in the thumbnail grid. `npm run shot grid.png spec.json --cell 256 --cols 4` renders a review sheet.
 4. Download a 512 px PNG and confirm it stays under 1 MB.
-5. If a hero potato changed, `npm run hero` and commit `docs/hero.png` and `docs/og.png`.
+5. If the artwork changed, `npm run hero` and commit `docs/hero.png`, `docs/og.png`, `docs/completion-preview.png` and `favicon.png`. Update `docs/screenshot.png` when the visible editor changes.
 6. Update ROADMAP.md: check items off only when they're built and tested. Keep README.md accurate: option counts, file map, commands, the "not drawn yet" list.
 
 ## UI standards

@@ -2,14 +2,16 @@
 // Render real PNG compositions, not the legacy SVG renderer.
 // Optional Playwright: node scripts/audit-project.mjs /tmp/audit inventory
 // Modes: inventory, headwear, expressions, facial-hair, eyewear, poses,
-// colors, backgrounds. Optional trailing category filters for inventory/colors.
+// colors, backgrounds, details. Trailing filters: category or category/key
+// for inventory, category for colors, category/key for the other modes.
 import { createRequire } from 'node:module';
 import { spawn } from 'node:child_process';
 import { mkdir, writeFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import { resolve } from 'node:path';
 import { PARTS } from '../src/assets.js';
-import { OPTIONS, DEFAULT_STATE } from '../src/options.js';
+import { OPTIONS, DEFAULT_STATE, PRESETS, STICKERS } from '../src/options.js';
+import { surprise } from '../src/surprise.js';
 import { FIT } from '../src/fit-data.js';
 
 const { chromium } = createRequire(import.meta.url)('playwright');
@@ -48,6 +50,14 @@ if (mode === 'inventory') {
   }
 } else if (mode === 'backgrounds') {
   for (const pattern of Object.keys(OPTIONS.pattern)) add(pattern, Object.keys(OPTIONS.bg).map(bg => frame(`${pattern}/${bg}`, { ...DEFAULT_STATE, pattern, bg })));
+} else if (mode === 'details') {
+  add('salute-hats', Object.keys(OPTIONS.hat).flatMap(hat => shapes.map(body => frame(`${hat} · ${body}`, { body, hat, gesture: 'salute', item: 'laptop' }))));
+  add('text', shapes.flatMap(body => ['', 'A', 'A+W', 'WWW'].map(capText => frame(`cap ${capText || 'empty'} · ${body}`, { body, hat: 'backwardCap', capText })).concat(['', 'I', 'POTATO!', 'WWWWWWWWWW'].map(sign => frame(`sign ${sign || 'empty'} · ${body}`, { body, item: 'sign', sign })))));
+  add('sticker-layouts', shapes.flatMap(body => Array.from({ length: 7 }, (_, count) => frame(`${count} stickers · ${body}`, { body, item: 'laptop', stickers: Object.keys(STICKERS).slice(0, count) }))));
+  add('presets', Object.entries(PRESETS).flatMap(([key, preset]) => shapes.map(body => frame(`${key} · ${body}`, { ...DEFAULT_STATE, body, ...preset.patch }))));
+  let seed = 20261101;
+  const rng = () => ((seed = (Math.imul(seed, 1664525) + 1013904223) >>> 0) / 4294967296);
+  add('random-outfits', Array.from({ length: 112 }, (_, i) => ({ label: `outfit ${i + 1}`, state: surprise(rng) })));
 } else throw Error(`Unknown audit mode: ${mode}`);
 
 await mkdir(out, { recursive: true });
@@ -62,6 +72,10 @@ try {
   await page.goto(`http://localhost:${port}/`);
   await page.waitForFunction(() => document.body.dataset.rendered === 'true');
   for (const batch of batches) {
+    if (filters.length && !['inventory', 'colors'].includes(mode)) {
+      batch.cases = batch.cases.filter(({ state }) => filters.some(f => { const [group, key] = f.split('/'); return state[group] === key; }));
+      if (!batch.cases.length) continue;
+    }
     const result = await page.evaluate(async ({ cases, inventory }) => {
       const { renderPotato, exportPng } = await import('./src/raster.js');
       const { encodeState, decodeState } = await import('./src/state.js');

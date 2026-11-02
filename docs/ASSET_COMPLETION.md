@@ -1,6 +1,6 @@
 # Rendered asset completion — November 1, 2026
 
-> Historical delivery record. The later [character-fitting repair](CHARACTER_FITTING.md) supersedes the fitting and visual-quality claims below.
+> Historical delivery record. The later [character-fitting repair](CHARACTER_FITTING.md) and [v0.4.0 public audit](PUBLIC_AUDIT.md) supersede the fitting and visual-quality claims below.
 
 The final 26 missing assets were generated and integrated with the renderer. The
 inventory now contains all 164 planned assets. The previous 138 full-resolution

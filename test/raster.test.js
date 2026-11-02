@@ -32,6 +32,14 @@ test('a full beard falls in front of a worn scarf instead of being cut across by
   assert.ok(layers.indexOf('neckwear') < layers.indexOf('facialHair'));
 });
 
+test('mustaches stay above the mouth even when headphones reorder the extras', () => {
+  for (const facialHair of ['mustache', 'handlebar']) for (const extra of ['none', 'headphones']) {
+    const order = layersFor({ ...DEFAULT_STATE, facialHair, extra }).map(l => l.group);
+    assert.ok(order.indexOf('facialHair') > order.indexOf('mouth'));
+    assert.ok(order.indexOf('facialHair') < order.indexOf('eyes'));
+  }
+});
+
 test('every indexed part is a real option key, and every option is either drawn, a none choice, or listed as missing', () => {
   for (const [group, keys] of Object.entries(PARTS)) {
     if (group === 'body') {

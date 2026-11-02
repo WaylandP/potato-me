@@ -108,6 +108,13 @@ export const FIT = {
     extra: ['headphones'],
     item: ['coffee'],
   },
+  // First substantial crown row in each source image, excluding pompoms,
+  // propellers, buttons and narrow tips. Open headwear intentionally has none.
+  hatCrownY: {
+    backwardCap: 56, cap: 58, beanie: 121, bucket: 51, cowboy: 97,
+    tophat: 18, fedora: 49, wizard: 125, hardhat: 74, chef: 30,
+    viking: 107, party: 122, beret: 84, propeller: 106, santa: 66,
+  },
   // Corrections applied after silhouette fitting; edited by fit.html.
   surfaceNudges: { shapes: {}, parts: {} },
   // These original arms were painted facing inward. Mirror about their real
@@ -121,6 +128,11 @@ export const FIT = {
   // Prop silhouettes in the original 1024 px part canvas. Restore these after
   // skin tint so food, gold, wood and clay keep their rendered material colors.
   skinProtect: {
+    'mouth/whistle': [[[597, 514], [639, 514], [639, 591], [597, 591]]],
+    'item/wrench': [
+      [[24,426],[136,426],[155,558],[144,571],[108,571],[100,552],[24,526]],
+      [[163,591],[224,691],[224,725],[181,727],[152,672],[168,652],[173,633],[169,611]],
+    ],
     'item/coffee': [[[218, 495], [330, 495], [330, 735], [218, 735]]],
     'item/book': [[[128, 530], [325, 530], [325, 698], [180, 698], [180, 642], [147, 610], [125, 610]]],
     'item/boba': [

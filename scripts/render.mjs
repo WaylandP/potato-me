@@ -1,5 +1,6 @@
 #!/usr/bin/env node
-// Render potatoes to PNG with headless Chromium, for checking art without
+// Legacy SVG renderer only; use shot.mjs for the live rendered PNG artwork.
+// Render vector potatoes to PNG with headless Chromium, for checking art without
 // opening the app. Needs Playwright (npm i -D playwright && npx playwright
 // install chromium); it is not a project dependency.
 //
@@ -59,7 +60,7 @@ const svgFor = (state, opts, i) => {
 const browser = await chromium.launch();
 try {
   if (exportCheck) {
-    // Same path the app uses: SVG string -> <img> -> canvas -> PNG. Fails if filters or fonts break export.
+    // Legacy SVG export path. The live editor uses raster.js instead.
     const page = await browser.newPage({ viewport: { width: 512, height: 512 } });
     const svg = composeSVG(spec, { idPrefix: 'x', size: 512 });
     const result = await page.evaluate(

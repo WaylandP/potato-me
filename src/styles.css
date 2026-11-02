@@ -173,11 +173,11 @@ body {
   color: var(--muted);
   background: var(--surface-2);
   opacity: 0;
-  transition: opacity 0.3s ease 0.3s;
+  transition: none;
   pointer-events: none;
   z-index: 1;
 }
-.preview.is-loading .preview-status { opacity: 1; }
+.preview.is-loading .preview-status { opacity: 1; transition: opacity 0.15s ease 0.2s; }
 .preview.is-failed .preview-status { opacity: 1; }
 .preview::after {
   content: '';

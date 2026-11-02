@@ -29,9 +29,8 @@ const TYPES = {
 };
 
 const server = createServer((req, res) => {
-  const url = new URL(req.url, `http://${req.headers.host}`);
   let pathname;
-  try { pathname = decodeURIComponent(url.pathname); }
+  try { pathname = decodeURIComponent(new URL(req.url, 'http://localhost').pathname); }
   catch { res.writeHead(400).end('Malformed URL'); return; }
   if (pathname.endsWith('/')) pathname += 'index.html';
 

@@ -1,0 +1,1693 @@
+{
+  "version": "0.4.0",
+  "verifiedDate": "2026-11-02",
+  "scope": "Documented matrices, not the full Cartesian product. Case totals include overlap between matrices. Repairs reran affected subsets; superseded failures are not counted as final passes.",
+  "sourceAssets": 164,
+  "replacementSourceFiles": 14,
+  "acceptedUniqueReplacementImages": 13,
+  "automated": {
+    "matrixCases": 11052,
+    "nodeTests": 46,
+    "nodeFailures": 0,
+    "renderErrors": 0,
+    "finalCropFindings": 0,
+    "inventory512Exports": 4644,
+    "inventory96pxThumbnailRenders": 4644,
+    "cropRule": "256 px transparent foreground; flag >8 pixels with alpha >180 outside radius 127 around (128,128)."
+  },
+  "matrices": [
+    {
+      "mode": "inventory",
+      "cases": 4644,
+      "definition": "36 bodies + 128 other source assets \u00d7 4 shapes \u00d7 9 skins",
+      "runs": [
+        {
+          "run": "final-inventory-face",
+          "cases": 1476,
+          "exports": 1476,
+          "maxExportBytes": 396321,
+          "errors": 0,
+          "cropFindings": 0
+        },
+        {
+          "run": "final-inventory-wear",
+          "cases": 1296,
+          "exports": 1296,
+          "maxExportBytes": 413183,
+          "errors": 0,
+          "cropFindings": 0
+        },
+        {
+          "run": "final-inventory-pose",
+          "cases": 1872,
+          "exports": 1872,
+          "maxExportBytes": 403908,
+          "errors": 0,
+          "cropFindings": 0
+        },
+        {
+          "run": "final-hats-3",
+          "cases": 684,
+          "exports": 684,
+          "maxExportBytes": 405376,
+          "errors": 0,
+          "cropFindings": 0
+        },
+        {
+          "run": "final-mouth-fix",
+          "cases": 72,
+          "exports": 72,
+          "maxExportBytes": 395696,
+          "errors": 0,
+          "cropFindings": 0
+        },
+        {
+          "run": "final-lanyard",
+          "cases": 36,
+          "exports": 36,
+          "maxExportBytes": 396867,
+          "errors": 0,
+          "cropFindings": 0
+        },
+        {
+          "run": "final-cheeks-stubble",
+          "cases": 108,
+          "exports": 108,
+          "maxExportBytes": 395714,
+          "errors": 0,
+          "cropFindings": 0
+        },
+        {
+          "run": "final-wrench",
+          "cases": 36,
+          "exports": 36,
+          "maxExportBytes": 400953,
+          "errors": 0,
+          "cropFindings": 0
+        },
+        {
+          "run": "final-eyewear-fix",
+          "cases": 72,
+          "exports": 72,
+          "maxExportBytes": 396240,
+          "errors": 0,
+          "cropFindings": 0
+        },
+        {
+          "run": "final-extra-fix",
+          "cases": 72,
+          "exports": 72,
+          "maxExportBytes": 404589,
+          "errors": 0,
+          "cropFindings": 0
+        },
+        {
+          "run": "final-mustache-inventory",
+          "cases": 72,
+          "exports": 72,
+          "maxExportBytes": 395389,
+          "errors": 0,
+          "cropFindings": 0
+        }
+      ],
+      "reviewedSheets": [
+        {
+          "name": "final-inventory-face/body-0.png",
+          "sha256": "c181a58d545986f340366d23ac632d88169efcdaa5ab934638f3946e1e0f7629"
+        },
+        {
+          "name": "final-inventory-face/eyes-smug-0.png",
+          "sha256": "37babed5dbec92ae5f1225408f6bc5e039b9b67d01f80c6fe9182bfbd3b5b995"
+        },
+        {
+          "name": "final-inventory-face/eyes-dots-0.png",
+          "sha256": "51215a60874fadcb6dc50112acdccc7e2ddab47ec6c8eaf6ac89e49477a541c3"
+        },
+        {
+          "name": "final-inventory-face/eyes-happy-0.png",
+          "sha256": "5c42eff71aed8a9ee11ee0fb7672aba398bc5b546081108f0ca63ccbb6e66c3a"
+        },
+        {
+          "name": "final-inventory-face/eyes-wide-0.png",
+          "sha256": "344a52042e2b0b3bc3dd4d8f66e9fbbf44db0de0e06e07bac015b4c2c183a808"
+        },
+        {
+          "name": "final-inventory-face/eyes-wink-0.png",
+          "sha256": "40d280db76ae1110d1ff0dfa077a0c4d2459ecb8028e491af0f0fc327b9220f0"
+        },
+        {
+          "name": "final-inventory-face/eyes-sleepy-0.png",
+          "sha256": "baa4d5fa677fe3e245e7a0b2b55de61ddca4a450f168a2931ee22af7a625bc04"
+        },
+        {
+          "name": "final-inventory-face/eyes-angry-0.png",
+          "sha256": "95a77d984e172e2fe809868dcfd098d8af0c04a3aa33c1227f177d7774a26990"
+        },
+        {
+          "name": "final-inventory-face/eyes-surprised-0.png",
+          "sha256": "03ee31604bca73f0e969f0f1bc1f439cd7eb7f53212c1122fd36cebb95d8b52b"
+        },
+        {
+          "name": "final-inventory-face/eyes-side-0.png",
+          "sha256": "78439f7d9c72dba1f6f69a6a69fa7abef0ca076ede22c349a89d236b8edfc2aa"
+        },
+        {
+          "name": "final-inventory-face/eyes-squint-0.png",
+          "sha256": "74ef77a6c5622a4702bee9cd6b4b9e25d8bd066562c4d82e7df6705a0b9d2479"
+        },
+        {
+          "name": "final-inventory-face/eyes-rolling-0.png",
+          "sha256": "baa34b318969840b1264c860e37f51802c42b72bf6ef7b586ece1d55f20b8119"
+        },
+        {
+          "name": "final-inventory-face/eyes-heart-0.png",
+          "sha256": "fc1e472ff4d77d9530c5104abdc7ce4c5c084ef11662929827ba5fcc240c4215"
+        },
+        {
+          "name": "final-inventory-face/eyes-stars-0.png",
+          "sha256": "49c7b6f9911116e47b1f7ad5761a69cabc98bf71b9f61696bf6d3bed5be41368"
+        },
+        {
+          "name": "final-inventory-face/eyes-dead-0.png",
+          "sha256": "b8d03171b769f2bb72872c4f660f7cbf69a22109857a3ab7641261f584ad0730"
+        },
+        {
+          "name": "final-inventory-face/brows-smug-0.png",
+          "sha256": "14f6a4116916a4951970cd651aae54d4ceb896ee7614701046eec50be2a6aae4"
+        },
+        {
+          "name": "final-inventory-face/brows-thick-0.png",
+          "sha256": "8c0cfd17a0d25ed59af853e4a7e6c541cbc09a8bfa3170997c53260d3c1b9f7d"
+        },
+        {
+          "name": "final-inventory-face/brows-angry-0.png",
+          "sha256": "ebda291d21e7692bdfbdc2d823f7a78e381f663d9ef0eba9024276ffc86fe8a9"
+        },
+        {
+          "name": "final-inventory-face/brows-worried-0.png",
+          "sha256": "18ac76c937f6a2e8880041d17173cf73071f17c508e61744c066f3f3e53ed0df"
+        },
+        {
+          "name": "final-inventory-face/brows-flat-0.png",
+          "sha256": "a089254def639466be253059e4cd1d1d58644f2a212c1de4edfd3424efda08a5"
+        },
+        {
+          "name": "final-inventory-face/brows-uni-0.png",
+          "sha256": "8c8ca1b07c432ad1056e258068d86a54e99ddb65877c2e3e6d9851e8042f4f81"
+        },
+        {
+          "name": "final-inventory-face/brows-raised-0.png",
+          "sha256": "f56805d38852bc536ef27fd0f3824575655a5a2dc5394bbec0b7e356576b0555"
+        },
+        {
+          "name": "final-inventory-face/mouth-smirk-0.png",
+          "sha256": "5838d575247e50681d62198853a3a5f8bcb7d257395f83b09ebbc23904af4d76"
+        },
+        {
+          "name": "final-inventory-face/mouth-grin-0.png",
+          "sha256": "d42b6be4e683c66cf64062f1fde9078d245d1a9b983c73888fb264e47dd78210"
+        },
+        {
+          "name": "final-inventory-face/mouth-laugh-0.png",
+          "sha256": "42029d5da1daf15a9398e0f3f3ade5f7134505b27feab19e0c36dd740721a4ce"
+        },
+        {
+          "name": "final-inventory-face/mouth-smile-0.png",
+          "sha256": "c1b1e459edb5d66430a844fc10f9e1512882475aaec3d11f9458311f0ea81912"
+        },
+        {
+          "name": "final-inventory-face/mouth-flat-0.png",
+          "sha256": "9adb89efbab329c8a24223573de8dee1d4da73b8cca74bf88ccae666ec1f60a7"
+        },
+        {
+          "name": "final-inventory-face/mouth-frown-0.png",
+          "sha256": "dfb27003ff3f0fbae9f3cc343a48129c7abbf06ed05575b08582d5ca1c1a48ea"
+        },
+        {
+          "name": "final-mouth-fix/mouth-oh-0.png",
+          "sha256": "47f257a675090cb5ff15a11a1fb4f66a161d611a6d5268761dd05341291a0651"
+        },
+        {
+          "name": "final-inventory-face/mouth-tongue-0.png",
+          "sha256": "d449abe84e1a859282b6bcce7ba4747b3e0531a841f27cd17621fbdfc512c32d"
+        },
+        {
+          "name": "final-inventory-face/mouth-grit-0.png",
+          "sha256": "9546182c35ec7e08f78b59e562dfefbbb5070ed48aef2c5dd5ac65cd9d4c521d"
+        },
+        {
+          "name": "final-mouth-fix/mouth-whistle-0.png",
+          "sha256": "a33cd83e8ed490e10a7eb443ec6199b918ac1a1ae82e36573d8a261250d39e88"
+        },
+        {
+          "name": "final-inventory-face/mouth-kiss-0.png",
+          "sha256": "8b859139afa73e3b70ed1bcd129bf9dd45245ff0dafde5d1788a2ab352d8277e"
+        },
+        {
+          "name": "final-inventory-face/mouth-wavy-0.png",
+          "sha256": "32c5cf65f307bb7df6dec076e4689958cc09c9560fdd6d28e5398906cfe03d5f"
+        },
+        {
+          "name": "final-cheeks-stubble/cheeks-on-0.png",
+          "sha256": "c72284a37c7a484a929f8d9c799a20fec9fbd4b8c70e1a41dcdfd2a9a1295de8"
+        },
+        {
+          "name": "final-cheeks-stubble/cheeks-freckles-0.png",
+          "sha256": "7db407a7f2f8343250f06893e9679d9aa84e13fffc94cd3dcc2aa8ac52ec6007"
+        },
+        {
+          "name": "final-mustache-inventory/facialHair-mustache-0.png",
+          "sha256": "74dbb940bc93c1d83224f91431f95f0773aa7d4bf1d42fbe0bef6382a748362c"
+        },
+        {
+          "name": "final-mustache-inventory/facialHair-handlebar-0.png",
+          "sha256": "1d93ec36868df49efbc3882a46e54c7e63a12e8203f7fe6575193efc6b83b3d4"
+        },
+        {
+          "name": "final-inventory-face/facialHair-goatee-0.png",
+          "sha256": "b1807fb6fab90943b335a6bd7c2484d64e0ef946d3dcfd0a79db58c8b6808eed"
+        },
+        {
+          "name": "final-inventory-face/facialHair-beard-0.png",
+          "sha256": "c6048da3079cf19f685ab6d4a2d5404eb165a02305da9a4c5fd6f2a3c5f38058"
+        },
+        {
+          "name": "final-cheeks-stubble/facialHair-stubble-0.png",
+          "sha256": "75407156f0c7f4c311c27ec58fbe6ec0a26d7b7649cf1642abfa9b532b106c27"
+        },
+        {
+          "name": "final-hats-3/hat-backwardCap-0.png",
+          "sha256": "a68d7cec677612bb0bf62c13ddb26ee4a8d3ef3cbb2e2b26de4220f7fd70e9ec"
+        },
+        {
+          "name": "final-hats-3/hat-cap-0.png",
+          "sha256": "bb25c3485e91eae9f4bddc1670139b24eb722b2b127994ff736ee3560cda86d1"
+        },
+        {
+          "name": "final-hats-3/hat-beanie-0.png",
+          "sha256": "6a524bfce687f908b06714a0ea042dcd86d5b5a8c579b93f28409fe08f7cb004"
+        },
+        {
+          "name": "final-hats-3/hat-headband-0.png",
+          "sha256": "e56558968d954dc27ab39ab29c0fc103a924d062695a9dcdacc379afb083940f"
+        },
+        {
+          "name": "final-hats-3/hat-bucket-0.png",
+          "sha256": "3e6c530dccde6b27ae1eee04b7bd4f689a447258e45a419d6e4c9925d30b22be"
+        },
+        {
+          "name": "final-hats-3/hat-cowboy-0.png",
+          "sha256": "8df5924ee3679c8c8af72555c27dae91bebabe37b37e61d8a76ebaec127e3f5e"
+        },
+        {
+          "name": "final-hats-3/hat-tophat-0.png",
+          "sha256": "682fdb9f4d986fd25a55d652bc81cad66d620f8507db63563b140d828db2bfc9"
+        },
+        {
+          "name": "final-hats-3/hat-fedora-0.png",
+          "sha256": "4faf63a081863cd06f611ae441b2fb7953edcd132c9f609f7acb6bcd27c99ffa"
+        },
+        {
+          "name": "final-hats-3/hat-wizard-0.png",
+          "sha256": "db61695ff2cc07568a91ad77daf6b750d34fe420a3b685470c828d8fba6b33dd"
+        },
+        {
+          "name": "final-hats-3/hat-crown-0.png",
+          "sha256": "17223f8607d0dcf91f15cd0b0d34d9acc422ebf40aa111093c827025b9d1fcc3"
+        },
+        {
+          "name": "final-hats-3/hat-hardhat-0.png",
+          "sha256": "ff6dc7ffb7078887a0d2b475c621ed90cde201a6676ab6b43796dab4fa6269d2"
+        },
+        {
+          "name": "final-hats-3/hat-chef-0.png",
+          "sha256": "b014ce3cbfba1e5e1d21ab5fec5c90c0f2ca1114db8d29af86389e879577abf7"
+        },
+        {
+          "name": "final-hats-3/hat-viking-0.png",
+          "sha256": "ee8f273d33a785077120b378bdcde9032bc7d33c849ba8121318bfbf5d4922cb"
+        },
+        {
+          "name": "final-hats-3/hat-party-0.png",
+          "sha256": "b3023eb5fa6e484856b95c7b3367f74d8e7d44a76efdd60929ca46bcb12a9cb5"
+        },
+        {
+          "name": "final-hats-3/hat-beret-0.png",
+          "sha256": "0132e5563a9795fa8365918ea961971200cfe452ba0665a0f77f0025af201c04"
+        },
+        {
+          "name": "final-hats-3/hat-propeller-0.png",
+          "sha256": "6f3244473b79fe67d29c7571854fd783ffbb17fb4d38abe46e211bef9ea57b8d"
+        },
+        {
+          "name": "final-extra-fix/hat-halo-0.png",
+          "sha256": "83bc2f19367df0ff9c85e4f67ac802f7c8bb50955fbba40ee5b5e541df68ee69"
+        },
+        {
+          "name": "final-hats-3/hat-horns-0.png",
+          "sha256": "92857a015fdc635c6cfac47b05472056386067ce6789c91dac88b10cdbe07149"
+        },
+        {
+          "name": "final-hats-3/hat-santa-0.png",
+          "sha256": "9dc90421512dc41df8ae00c067a02f37c1b755c0010a4e91844716b16f4935ac"
+        },
+        {
+          "name": "final-inventory-wear/eyewear-shades-0.png",
+          "sha256": "ca08dff586b57cf747691a2387544f2a2337b22312117299939cf982f4c5f2ff"
+        },
+        {
+          "name": "final-inventory-wear/eyewear-aviators-0.png",
+          "sha256": "86a32f9d745a8ba1019f9ccf317eb8e5fbea5bfa4425dba8324bfc2b60810a58"
+        },
+        {
+          "name": "final-inventory-wear/eyewear-round-0.png",
+          "sha256": "49288b59b9eb6b05a93a4fb266e24800246b5b66a184aa3dc35dbec58b39e9fc"
+        },
+        {
+          "name": "final-inventory-wear/eyewear-square-0.png",
+          "sha256": "3ab1238cce46e74dc29e4977e1203aa84867e2e42ab36dfb7302c4ef3545b0f1"
+        },
+        {
+          "name": "final-eyewear-fix/eyewear-monocle-0.png",
+          "sha256": "1510ee70582fdf3db281a4ded156ea0f34131f9fbbd708fb2d5a668453d316d9"
+        },
+        {
+          "name": "final-eyewear-fix/eyewear-eyepatch-0.png",
+          "sha256": "f911575d7244d6262eab01edf7bb6edcb6faa637841e12c0487b7d14564131e6"
+        },
+        {
+          "name": "final-inventory-wear/neckwear-bowtie-0.png",
+          "sha256": "07d295423c987c6a921eb7795c3a124258f9da9d2f085d115af437ee2c92a092"
+        },
+        {
+          "name": "final-inventory-wear/neckwear-tie-0.png",
+          "sha256": "30234e2b8f72348e85d4fc8392cdf6e2aa12fb65a757ad64dc0ba545c02d6a56"
+        },
+        {
+          "name": "final-inventory-wear/neckwear-scarf-0.png",
+          "sha256": "87f8e734718cccfe2ad0138ea5ce9db6be70a56aed1793be36ef005b2b09d42f"
+        },
+        {
+          "name": "final-inventory-wear/neckwear-chain-0.png",
+          "sha256": "ea0748362ebcdf9ecb6f427555b52b2ecf4ffe7137da367e2147479b97ed7e92"
+        },
+        {
+          "name": "final-lanyard/neckwear-lanyard-0.png",
+          "sha256": "0f033cf2193fac2cef62930a5020eb4671b7ea6ac894b61e1a12c89002e56168"
+        },
+        {
+          "name": "final-inventory-wear/neckwear-bandana-0.png",
+          "sha256": "8f27fd674d81e5bebe2144dd127e1a491abf92b06d889ff9226763b4ba47e27e"
+        },
+        {
+          "name": "final-inventory-wear/extra-headphones-0.png",
+          "sha256": "3f4966ffe88a0c3a3885d70e18096578d9f6b24ea2f4efa0081b22710c00ae46"
+        },
+        {
+          "name": "final-inventory-wear/extra-earbuds-0.png",
+          "sha256": "9495b0f451fd9455f6245a6d9d7d9cbcfc4e360873bee16439ddceffcee70a81"
+        },
+        {
+          "name": "final-inventory-wear/extra-bandaid-0.png",
+          "sha256": "07cf8301dc3fa25aa13b242822a8ca7cc82de0c7eabc2e2fe19160950f92b95c"
+        },
+        {
+          "name": "final-inventory-wear/extra-earring-0.png",
+          "sha256": "afb8838577f355bab21f47137b60d2220ab7c5846e383c9520fc82a03606afd0"
+        },
+        {
+          "name": "final-extra-fix/extra-flower-0.png",
+          "sha256": "356d4120e947b189c8c2914dfad737b5a5fcbdc4b58dc3d93bf43fdbf5d6ee3e"
+        },
+        {
+          "name": "final-inventory-pose/item-laptop-0.png",
+          "sha256": "ccb7cc430d14933abeca0a44a33e15bb3110c91b467afc94955c2e9a73fcb6fb"
+        },
+        {
+          "name": "final-inventory-pose/item-coffee-0.png",
+          "sha256": "ffbc11b40bfe8333cdea296010ebc224d1d399f679bfb3165fe86228a8be4a19"
+        },
+        {
+          "name": "final-wrench/item-wrench-0.png",
+          "sha256": "136142ff5e9f53aa8ef0abc036b9ddedfca301a03b80389902440ed4b09b4200"
+        },
+        {
+          "name": "final-inventory-pose/item-book-0.png",
+          "sha256": "48c7454bbcb3e739b218e6fc1a38fad18958c732bfeb7b23602c69e0a53918fc"
+        },
+        {
+          "name": "final-inventory-pose/item-none-0.png",
+          "sha256": "4d0552c4b9caae5e2c237a4eca78fdf1023043f9df7664a929335a6a121ed674"
+        },
+        {
+          "name": "final-inventory-pose/item-phone-0.png",
+          "sha256": "6b7a3ce3ec7710345335dc4b77cb40d8e33767302da5f5ce1ba7b4bbe611967a"
+        },
+        {
+          "name": "final-inventory-pose/item-boba-0.png",
+          "sha256": "e680f71348c5b5a6255249ddcae5da83f71340c880907a957325c5b1734ab611"
+        },
+        {
+          "name": "final-inventory-pose/item-controller-0.png",
+          "sha256": "5fbf90ac291869540ae5c713d504a83740e78264444cb458650b171707fd3029"
+        },
+        {
+          "name": "final-inventory-pose/item-sign-0.png",
+          "sha256": "b8096f3d1ec4ef0fcfbfc2befa5357562bdfc5be7509b4ff3cf1c93cd1341cc1"
+        },
+        {
+          "name": "final-inventory-pose/item-pizza-0.png",
+          "sha256": "a4a78f1683a21ffd8e13f9f9da44737b30cac4c420958c178207954c483a6169"
+        },
+        {
+          "name": "final-inventory-pose/item-donut-0.png",
+          "sha256": "eff428038511f18387bacdb11cf0fab9245f160984452b6dd1931effb99bfe13"
+        },
+        {
+          "name": "final-inventory-pose/item-duck-0.png",
+          "sha256": "96419ea20b39f4d9eb88d2e2d4a0a3d5cd5dfe4756bbf62f7e79ca2b9b7e31f7"
+        },
+        {
+          "name": "final-inventory-pose/item-mic-0.png",
+          "sha256": "f09751179d04d9600f7da96b4fb82a2e7fb53144c3c648720827043f66948e44"
+        },
+        {
+          "name": "final-inventory-pose/item-trophy-0.png",
+          "sha256": "92e060472798e423fa1c472941c83fed6cf4cfcd0c23ca7d8a46a331168fb4f8"
+        },
+        {
+          "name": "final-inventory-pose/item-plant-0.png",
+          "sha256": "e4e3fa474c8a52bb1037e61fca732ef7e3377785883e8097abc9b1c59004fde7"
+        },
+        {
+          "name": "final-inventory-pose/gesture-shaka-0.png",
+          "sha256": "ef011371f62fa4dc25c16c0263923427c6d69c5c968fa095e88287335412a6ba"
+        },
+        {
+          "name": "final-inventory-pose/gesture-thumbsUp-0.png",
+          "sha256": "72c4140494e02e05f6d71df993d6d6e2135d5a6b50c2b13c2948ef6c0d851253"
+        },
+        {
+          "name": "final-inventory-pose/gesture-wave-0.png",
+          "sha256": "bf5273086d4dfd27da1d86e81695a4cd3efc1725167a5744a22f448782e7994b"
+        },
+        {
+          "name": "final-inventory-pose/gesture-peace-0.png",
+          "sha256": "dec932927486de195ce1fbf7a2fc78293e6bffff9c6d0f524ab2f5a7506343e3"
+        },
+        {
+          "name": "final-inventory-pose/gesture-point-0.png",
+          "sha256": "647f3e37c2828b4aafa31b9bee0ef52f09b3952e262aa522aa0fc0a4a3d6fafa"
+        },
+        {
+          "name": "final-inventory-pose/gesture-rock-0.png",
+          "sha256": "12783795c21925ac16a16f76d73ecb935e03beafe1dbc0f1c6402a6610b4f05d"
+        },
+        {
+          "name": "final-inventory-pose/gesture-ok-0.png",
+          "sha256": "7d12cd9f80e3e2c76edbdbcb98c5aee34963109e184e3cec25c0c47fa37f22a5"
+        },
+        {
+          "name": "final-inventory-pose/gesture-fist-0.png",
+          "sha256": "82017592d4db184b676719eb96bae4943e2870cb5301b09a2f7031d2bb0cfa1e"
+        },
+        {
+          "name": "final-inventory-pose/gesture-rest-0.png",
+          "sha256": "d3efe7715c1251f9128c7bc44df16b8103bd230dfbbc7906f85b2d2f3412ad26"
+        },
+        {
+          "name": "final-inventory-pose/gesture-salute-0.png",
+          "sha256": "a158bea62e92ec6ae42771f7dbb1669dc12b175fb7856f9e16bfefecf8d905e3"
+        },
+        {
+          "name": "final-inventory-pose/gesture-flex-0.png",
+          "sha256": "0f18d05104f0866780018b3c055526aadbf6e01f00c8488d09bea289061a0bc2"
+        },
+        {
+          "name": "final-inventory-pose/stickers-panda-0.png",
+          "sha256": "cab0289438fa1c080119d4b93b538dce29ea358e821204ec96f419cf43eae874"
+        },
+        {
+          "name": "final-inventory-pose/stickers-code-0.png",
+          "sha256": "3613c01bc487de7068d8244d3e27b35f4a24480eb378c47cf11dfdb28180ea35"
+        },
+        {
+          "name": "final-inventory-pose/stickers-terminal-0.png",
+          "sha256": "8c463fd206067e5e8f435794a6b816a182f74fbe91264f44183dcbd83258068b"
+        },
+        {
+          "name": "final-inventory-pose/stickers-cloud-0.png",
+          "sha256": "4739807d133279be7a96c6d379038b44d0fc5225dc2062fd1d4bf5590156550c"
+        },
+        {
+          "name": "final-inventory-pose/stickers-rocket-0.png",
+          "sha256": "8b58c31ae095b5d3cbd2498493503d0b7ba871bea234ac44999d77b75710c3ee"
+        },
+        {
+          "name": "final-inventory-pose/stickers-bug-0.png",
+          "sha256": "4b9125898c5fd3f3887db0843dc7d33f0fbb7454fbf97e0bb1182081fdcaa691"
+        },
+        {
+          "name": "final-inventory-pose/stickers-database-0.png",
+          "sha256": "97ac85fc3b6f14a6887934c6186169f3e366e5d1ec1330f61f3e25bc39858248"
+        },
+        {
+          "name": "final-inventory-pose/stickers-lock-0.png",
+          "sha256": "b2eb06725aebd8466bcd321943de634247ec9fbc4f9ed0e9633954e76d87489b"
+        },
+        {
+          "name": "final-inventory-pose/stickers-flame-0.png",
+          "sha256": "3428a72f27310429d6dbc97709f38767d75f3a32fe06f48612010d60624a24c0"
+        },
+        {
+          "name": "final-inventory-pose/stickers-bolt-0.png",
+          "sha256": "5c2912f1887171be0a2cd4305a7e07678321c117900b1702b7c41b442f3b5fec"
+        },
+        {
+          "name": "final-inventory-pose/stickers-heart-0.png",
+          "sha256": "4c7e3ff4825e82b66e21227b62942f12fa3e5e72dc2b1711a12d6f4bd22a0b26"
+        },
+        {
+          "name": "final-inventory-pose/stickers-star-0.png",
+          "sha256": "7cbff80145fac5d8868823e7dbb7a807478b9bb8d5dceee0516069bd871a8115"
+        },
+        {
+          "name": "final-inventory-pose/stickers-ghost-0.png",
+          "sha256": "0826692de52263edcc2e5679a44814ff0bba0dfcc2dc42b633b64e70b5943bfd"
+        },
+        {
+          "name": "final-inventory-pose/stickers-dino-0.png",
+          "sha256": "7fc3b69a8a786a6a0dbac33282db1cd74905cafb62f19a7bbc01058f70eb039a"
+        },
+        {
+          "name": "final-inventory-pose/stickers-duck-0.png",
+          "sha256": "b1079823955f691d56cc4f65f5479eb97e371f180cf48b23a23e80d49b12c27f"
+        },
+        {
+          "name": "final-inventory-pose/stickers-cat-0.png",
+          "sha256": "b794c4c4631084ecbbc30de414d88c99e14412734cefbcf0237fd2a25ae2dfbc"
+        },
+        {
+          "name": "final-inventory-pose/stickers-gear-0.png",
+          "sha256": "a58b33cdf086506461562fde4dd5efe0f42fe2e63370fa88b2254b88c7ccb4d0"
+        },
+        {
+          "name": "final-inventory-pose/stickers-branch-0.png",
+          "sha256": "86add08425f1dfa0db51ddc23c6ee73bcaf72715a007b255716a093c64083033"
+        },
+        {
+          "name": "final-inventory-pose/stickers-lambda-0.png",
+          "sha256": "d44e506249cdde3e66407d7093055242592aae16808f2777433fde90a33beda4"
+        },
+        {
+          "name": "final-inventory-pose/stickers-pizza-0.png",
+          "sha256": "1ff8f1526ab62cdf07204342f4f5967dddfafea9084710d50428012955cd39b7"
+        },
+        {
+          "name": "final-inventory-pose/stickers-coffee-0.png",
+          "sha256": "ce1a0a5baa203c61d12d6f95aa435849d062536b08472b5f3971d9066a0a4627"
+        },
+        {
+          "name": "final-inventory-pose/stickers-planet-0.png",
+          "sha256": "52e47373d024765bce28dc30dffc07ac51e560cc473b2f7ca673f8071bc947b0"
+        },
+        {
+          "name": "final-inventory-pose/stickers-notFound-0.png",
+          "sha256": "3b4cd23c5c60774f8f6832f1a40b889403e0e978130dcde962da157863475e66"
+        },
+        {
+          "name": "final-inventory-pose/stickers-skull-0.png",
+          "sha256": "df6365eb422935a09f5d4579e8a99c18bf0145ec5a14b2a72a37df682af0b3b1"
+        },
+        {
+          "name": "final-inventory-pose/stickers-lgtm-0.png",
+          "sha256": "dd55e5cc791a4d23e79ce3d2d5a62f102afb3238da8be529a3ed052e5028e1f2"
+        },
+        {
+          "name": "final-inventory-pose/stickers-mountain-0.png",
+          "sha256": "e87498cbfa43b1fe714ad428ecc30eab00b918b67e86cf01a9b142b5aada1cf9"
+        }
+      ]
+    },
+    {
+      "mode": "expressions",
+      "cases": 1344,
+      "definition": "14 eyes \u00d7 8 brows (including none) \u00d7 12 mouths; shapes/skins distributed",
+      "runs": [
+        {
+          "run": "final-expressions",
+          "cases": 1344,
+          "exports": 0,
+          "maxExportBytes": 0,
+          "errors": 0,
+          "cropFindings": 0
+        },
+        {
+          "run": "final-expressions-fix",
+          "cases": 224,
+          "exports": 0,
+          "maxExportBytes": 0,
+          "errors": 0,
+          "cropFindings": 0
+        }
+      ],
+      "reviewedSheets": [
+        {
+          "name": "final-expressions/smirk-0.png",
+          "sha256": "84b9ca6a9fd09577248bffa295292a7a3b3e63262ce31f9630339f2f75ec111c"
+        },
+        {
+          "name": "final-expressions/smirk-56.png",
+          "sha256": "b874d294950d24f8bba8632f360af337fa596d300b0d9c817f921002f2f9bfea"
+        },
+        {
+          "name": "final-expressions/grin-0.png",
+          "sha256": "051427bb53da95e33a0c2bfb120ed14d19e2fca760f1a8a67779a00703af2b3c"
+        },
+        {
+          "name": "final-expressions/grin-56.png",
+          "sha256": "0aa1b6d5759ba7a85c086cfa7911aaafa6b212c1b32811448f118df0394f78e2"
+        },
+        {
+          "name": "final-expressions/laugh-0.png",
+          "sha256": "6cda027bfe6eb2d0ff2985ef7c4592ed4faf02e561518c8a8fe6f95f05dd577e"
+        },
+        {
+          "name": "final-expressions/laugh-56.png",
+          "sha256": "9fc270a269f1c060db32bd24894e5c33c798243df57521b982767cda98a7efc1"
+        },
+        {
+          "name": "final-expressions/smile-0.png",
+          "sha256": "4a98d0aa268aa50e438b240ea7ae6b5b1523ab458959692cb1ba6765f01bff77"
+        },
+        {
+          "name": "final-expressions/smile-56.png",
+          "sha256": "4b23527378af6074db3e050014234b14fe8cc4e9f698e4bbe34b687a5327b4b7"
+        },
+        {
+          "name": "final-expressions/flat-0.png",
+          "sha256": "4ba26252d209ffbeffdf7bf84e3f38d814d93c101a6928ee2de76a4f56647aa3"
+        },
+        {
+          "name": "final-expressions/flat-56.png",
+          "sha256": "2192761e6479cb6a6718cec4e4268e4089452568ef82c21509dce70c8dc6ee1e"
+        },
+        {
+          "name": "final-expressions/frown-0.png",
+          "sha256": "10ba4c62343f186d6013bd7965acd1623570babce471cb70ad8114334a931dcb"
+        },
+        {
+          "name": "final-expressions/frown-56.png",
+          "sha256": "44190a96092db02b7409810068172812151261fbb62b9f7d9ddef65d16d09039"
+        },
+        {
+          "name": "final-expressions-fix/oh-0.png",
+          "sha256": "6a3fdef882be0f2880ba173a1228f5a58af9e711c8681bf7a663557cc9d8c89d"
+        },
+        {
+          "name": "final-expressions-fix/oh-56.png",
+          "sha256": "5f4d39cb85891e32ce5b9a7794e203b0add6da4ca19f613791a4931532573127"
+        },
+        {
+          "name": "final-expressions/tongue-0.png",
+          "sha256": "c61091478a2ccc119ad2eec70b86df7c04cd6e3897c8081fd6d2952fcb1c8021"
+        },
+        {
+          "name": "final-expressions/tongue-56.png",
+          "sha256": "cd53972fda18e6ca1e3799a6829a817a4ae8cad8a998cd6e89a8bb699d55cffc"
+        },
+        {
+          "name": "final-expressions/grit-0.png",
+          "sha256": "a5ccc315c854f33ea211b3a1e66b13f30f66f74e52fac9379227e7cbde249a19"
+        },
+        {
+          "name": "final-expressions/grit-56.png",
+          "sha256": "d30e0643217a68b8b36304820224cec479e7a6d4c1e12b88e4e5983ed736b148"
+        },
+        {
+          "name": "final-expressions-fix/whistle-0.png",
+          "sha256": "46d2367cfc022b295c634beebe662a1aa1538e610839eb4a919e3f14a75861d5"
+        },
+        {
+          "name": "final-expressions-fix/whistle-56.png",
+          "sha256": "7aff5b8a87e61eb3b9a778bc1ae9fddae5e8dba108cef96d847f077f11114767"
+        },
+        {
+          "name": "final-expressions/kiss-0.png",
+          "sha256": "314eb010a7f52be30e7571d1b9dedffb3eeaa0a8cc07093d1a6cfb1f3444ce19"
+        },
+        {
+          "name": "final-expressions/kiss-56.png",
+          "sha256": "364a3ce042836d24b0746e4e1282ce243dbb0bfbd7c2dc0dce6ac90af57964d6"
+        },
+        {
+          "name": "final-expressions/wavy-0.png",
+          "sha256": "6a5620f07a6ec22ddfbce57f5d17563d9ca25d20afb9c4b2187778bb3252d8db"
+        },
+        {
+          "name": "final-expressions/wavy-56.png",
+          "sha256": "e3d199b45c0380e7507e270cb8c27489de74c28f80c870629a4cbab7726765a4"
+        }
+      ]
+    },
+    {
+      "mode": "facial-hair",
+      "cases": 2016,
+      "definition": "6 hair choices \u00d7 7 neckwear choices \u00d7 4 shapes \u00d7 12 mouths",
+      "runs": [
+        {
+          "run": "final-facial-hair-2",
+          "cases": 2016,
+          "exports": 0,
+          "maxExportBytes": 0,
+          "errors": 0,
+          "cropFindings": 0
+        },
+        {
+          "run": "final-mustache",
+          "cases": 672,
+          "exports": 0,
+          "maxExportBytes": 0,
+          "errors": 0,
+          "cropFindings": 0
+        }
+      ],
+      "reviewedSheets": [
+        {
+          "name": "final-facial-hair-2/none-none-0.png",
+          "sha256": "13735834287ef3ba1978d0bb2310cdc44d4ecdb6e6352a74b29a80fbdc6d2570"
+        },
+        {
+          "name": "final-facial-hair-2/none-bowtie-0.png",
+          "sha256": "0a672d60bc419da7e51bf836bbed291ed35b695e46101842127cf3e4a2cec0bc"
+        },
+        {
+          "name": "final-facial-hair-2/none-tie-0.png",
+          "sha256": "06e64ada6fe7a1665125c7632a3481837661ec0a7210f010e145d6ffcdd48f1f"
+        },
+        {
+          "name": "final-facial-hair-2/none-scarf-0.png",
+          "sha256": "d949a61770af41f1db2cd4087672ff8c2f51f15349918fbd4d0677899f1a9b60"
+        },
+        {
+          "name": "final-facial-hair-2/none-chain-0.png",
+          "sha256": "58d19ed419ea55dcb559b684ece371b484e3ef0fc5afba3a5760ef99719b976c"
+        },
+        {
+          "name": "final-facial-hair-2/none-lanyard-0.png",
+          "sha256": "48c591f3d27fca11c97304da89e4167b0fe63da73d648edca80221ad500ef816"
+        },
+        {
+          "name": "final-facial-hair-2/none-bandana-0.png",
+          "sha256": "53061836d2c3d4131ea6794cd43abe7504bd529da1508506a0bc57f969232a85"
+        },
+        {
+          "name": "final-mustache/mustache-none-0.png",
+          "sha256": "fac0f594ea6959ea044f6b1ad73815d5a11519461481e7069465584f4818943b"
+        },
+        {
+          "name": "final-mustache/mustache-bowtie-0.png",
+          "sha256": "e07cdb44c604d25a341e29a34f1d2d11edc5d1f7995e5c168df6d3b8b93d7d28"
+        },
+        {
+          "name": "final-mustache/mustache-tie-0.png",
+          "sha256": "4ee19c38b4fd9d4ee8cf4d81f7bdfda364d60f0b53aa7849cbf3ff2655bfa8fc"
+        },
+        {
+          "name": "final-mustache/mustache-scarf-0.png",
+          "sha256": "2becdd3dcd6a35f17840825842f7801ac48f524ba2b08def2885c64f56c3a8b7"
+        },
+        {
+          "name": "final-mustache/mustache-chain-0.png",
+          "sha256": "ddb5e4f733aec08b314b8d6858df51948108ec657f9e696462abbc08b8955f7b"
+        },
+        {
+          "name": "final-mustache/mustache-lanyard-0.png",
+          "sha256": "be1d1619f1ff01ceb493800f29b67479d84e9f9329a388a5fe06e7224c5a7156"
+        },
+        {
+          "name": "final-mustache/mustache-bandana-0.png",
+          "sha256": "43b1418d0a655916f3cad024931b17955111a655b08fe353d1ee890c91fdcf3d"
+        },
+        {
+          "name": "final-mustache/handlebar-none-0.png",
+          "sha256": "04be25e71117988245cfb35b09906e6d927684f874808466126010519aeeffe9"
+        },
+        {
+          "name": "final-mustache/handlebar-bowtie-0.png",
+          "sha256": "071b8017820c235d93fb34f707708f9156d20d532477fdc4f13bafaa7b3ea88c"
+        },
+        {
+          "name": "final-mustache/handlebar-tie-0.png",
+          "sha256": "efacaabd329fdf3dddf9a0217637b2dc5f9e6f9a1afeb07a0b79063db95e75f2"
+        },
+        {
+          "name": "final-mustache/handlebar-scarf-0.png",
+          "sha256": "fd6c88af2c6fa505b8acf929b5828c53fdc590fbce9e983ae1a8f762b3913d97"
+        },
+        {
+          "name": "final-mustache/handlebar-chain-0.png",
+          "sha256": "8b4c33805223607abbc2b4f91a29e202d3c75b47e1bfd2ee981417076e00d1ed"
+        },
+        {
+          "name": "final-mustache/handlebar-lanyard-0.png",
+          "sha256": "93d20fbaa71ee305178c42da8970b1e06421f46286019eb019f22ddc7ab8d697"
+        },
+        {
+          "name": "final-mustache/handlebar-bandana-0.png",
+          "sha256": "22ff45da0b487bad242b4e5c482951bba85ee785505930dc9835fce45a6f2ee9"
+        },
+        {
+          "name": "final-facial-hair-2/goatee-none-0.png",
+          "sha256": "fc4caa903c772a1e563ee834b5ca24b82705dcf53bae12de9f9da670a68595c1"
+        },
+        {
+          "name": "final-facial-hair-2/goatee-bowtie-0.png",
+          "sha256": "28b32d8cb7234b9551e2d480867b1c90b9974b6c3cb7d794c9beab4dc5778f60"
+        },
+        {
+          "name": "final-facial-hair-2/goatee-tie-0.png",
+          "sha256": "78793867c7dc9e082372a99c00703524c9ae216f7c0afee318bba7b55724ac53"
+        },
+        {
+          "name": "final-facial-hair-2/goatee-scarf-0.png",
+          "sha256": "1b4ab7eb79b369825acb70126a267634a240a17dbdbe44ff2377dad7fe53a5da"
+        },
+        {
+          "name": "final-facial-hair-2/goatee-chain-0.png",
+          "sha256": "29ce936d3dfdbbec931382800b1e0df667d3a4967f20a57e9047ff75c1a29bdd"
+        },
+        {
+          "name": "final-facial-hair-2/goatee-lanyard-0.png",
+          "sha256": "d0df745d2b6a0c4bf02056a6e8d61526765ae67682df0e8efe35d945b721253d"
+        },
+        {
+          "name": "final-facial-hair-2/goatee-bandana-0.png",
+          "sha256": "b2809cf2f27c7d20354f1260327e1784452f92ec12f7deddfa1fc3b9627c36c7"
+        },
+        {
+          "name": "final-facial-hair-2/beard-none-0.png",
+          "sha256": "bcdca2da40f1421cdf9706708c625fe20183f315fcd890806c1d09e67cb5d825"
+        },
+        {
+          "name": "final-facial-hair-2/beard-bowtie-0.png",
+          "sha256": "9f672305064bae4774bd56c374229f8fd685619680db44bdc8488c430e71f51f"
+        },
+        {
+          "name": "final-facial-hair-2/beard-tie-0.png",
+          "sha256": "42e2bd53b3d3aa8fb10697e35bd3da9d095254441fef86dff79f6b1fa9ffbc6b"
+        },
+        {
+          "name": "final-facial-hair-2/beard-scarf-0.png",
+          "sha256": "9db0a6349e34da12e2ff0fe10f27f774b9f04a4c708959910fa1e2a61bcd9cd3"
+        },
+        {
+          "name": "final-facial-hair-2/beard-chain-0.png",
+          "sha256": "e1a552818f3be77aa7bd56e4661ec612457f3ca16914e54b911a21f936c12d3e"
+        },
+        {
+          "name": "final-facial-hair-2/beard-lanyard-0.png",
+          "sha256": "f0c7d0b84c8045a9ea8d24b48a3d13277f6ffdafce7b451ed12fffcb037daf4b"
+        },
+        {
+          "name": "final-facial-hair-2/beard-bandana-0.png",
+          "sha256": "106906ade21b7f50b6a14e10add9bac24f8544fd4814e8c471958a37873a8c21"
+        },
+        {
+          "name": "final-facial-hair-2/stubble-none-0.png",
+          "sha256": "1d51ce83b574fe6d6f4a3a95172fceb2179a451c9e5028b166db2b860fb4512a"
+        },
+        {
+          "name": "final-facial-hair-2/stubble-bowtie-0.png",
+          "sha256": "cb95f780cad73c3efa810b7c49ac35fb46f8a1dc735e9fdbc3a48dfaf20ad156"
+        },
+        {
+          "name": "final-facial-hair-2/stubble-tie-0.png",
+          "sha256": "81d75900fc5c1eb73cb30af7e9fde5635257cfd33d27580c860fc1d910b26e1f"
+        },
+        {
+          "name": "final-facial-hair-2/stubble-scarf-0.png",
+          "sha256": "f95295be7ca93ce26b14d85973cda21626d90802148c9afedd4d9fafa5588b58"
+        },
+        {
+          "name": "final-facial-hair-2/stubble-chain-0.png",
+          "sha256": "14a175d5fc1f8423eb7dd40cd3353c0ea8618b4eac979c450d90136dc06237b0"
+        },
+        {
+          "name": "final-facial-hair-2/stubble-lanyard-0.png",
+          "sha256": "ad1301f31f2a914952b057a657af9b23dda65febe5efe352bc61b2ee934f900e"
+        },
+        {
+          "name": "final-facial-hair-2/stubble-bandana-0.png",
+          "sha256": "d5a04f105339b28a84a3705ed0d52e93e1efd69da408663306ba4512f1b89e32"
+        }
+      ]
+    },
+    {
+      "mode": "eyewear",
+      "cases": 392,
+      "definition": "7 eyewear choices \u00d7 4 shapes \u00d7 14 eyes",
+      "runs": [
+        {
+          "run": "final-eyewear",
+          "cases": 392,
+          "exports": 0,
+          "maxExportBytes": 0,
+          "errors": 0,
+          "cropFindings": 0
+        },
+        {
+          "run": "final-eyewear-2",
+          "cases": 112,
+          "exports": 0,
+          "maxExportBytes": 0,
+          "errors": 0,
+          "cropFindings": 0
+        }
+      ],
+      "reviewedSheets": [
+        {
+          "name": "final-eyewear/none-0.png",
+          "sha256": "f87274ccc10639ebbb5b8d025fd27c022afca3b57e6bcf85fdb67902bd208cd3"
+        },
+        {
+          "name": "final-eyewear/shades-0.png",
+          "sha256": "f92821efeb0ac2ea0f5d49f303ad9b5ec0dc7802d3f39c994a7bc97ff2bf05d0"
+        },
+        {
+          "name": "final-eyewear/aviators-0.png",
+          "sha256": "c2746e520ff0ec4dcc85f7e2ab7b8e21af452e2c30c83bcd64a3540317748bac"
+        },
+        {
+          "name": "final-eyewear/round-0.png",
+          "sha256": "ce56c1a116a1c2d0d97a83e4cb98776f6fb70fc750bd916269edcac743893a35"
+        },
+        {
+          "name": "final-eyewear/square-0.png",
+          "sha256": "3f2633d417ddd57b370d1f7f7e7f988babf6f5da87a0f2fc3db32f44f22eea6d"
+        },
+        {
+          "name": "final-eyewear-2/monocle-0.png",
+          "sha256": "13e640aaa120b947c9f457767032509aade999267ecfda5f5bfb37cf8eedead9"
+        },
+        {
+          "name": "final-eyewear-2/eyepatch-0.png",
+          "sha256": "3ad8d76861597083b4ce258ee80fa55b01784b0d015c07939eb78be7db0f5d7e"
+        }
+      ]
+    },
+    {
+      "mode": "headwear",
+      "cases": 480,
+      "definition": "20 hats \u00d7 6 extras \u00d7 4 shapes; halo and flower subsets supersede earlier cells",
+      "runs": [
+        {
+          "run": "final-headwear-3",
+          "cases": 480,
+          "exports": 0,
+          "maxExportBytes": 0,
+          "errors": 0,
+          "cropFindings": 0
+        },
+        {
+          "run": "final-headwear-fix",
+          "cases": 100,
+          "exports": 0,
+          "maxExportBytes": 0,
+          "errors": 0,
+          "cropFindings": 0
+        }
+      ],
+      "reviewedSheets": [
+        {
+          "name": "final-headwear-3/backwardCap-0.png",
+          "sha256": "b6dde4f398010900a5ce9ce5c7a09e94052a5892ebe2f3cadc00a7d25121dfc4"
+        },
+        {
+          "name": "final-headwear-3/cap-0.png",
+          "sha256": "ec2fc7478674f0ef0732c3eaff6aae02761c119b8fe88f82c23cd4bf9738d852"
+        },
+        {
+          "name": "final-headwear-3/beanie-0.png",
+          "sha256": "fc4fadd14d82b694dd227658955a285d7fa6c03c5be5afae461d774e3e2b456e"
+        },
+        {
+          "name": "final-headwear-3/headband-0.png",
+          "sha256": "4832a17a94c23a7135766b45f09d474849a4b161d185d9467a4b7d60c1e933e9"
+        },
+        {
+          "name": "final-headwear-3/bucket-0.png",
+          "sha256": "de09116f22ddf18fe0d86d3aab47c8202de1bb01cfbea145bd3cb52079b8785f"
+        },
+        {
+          "name": "final-headwear-3/cowboy-0.png",
+          "sha256": "e352e1afee8cc1294d5f902f9771152e5d95d7490ca20512c2a24e5abbed8353"
+        },
+        {
+          "name": "final-headwear-3/tophat-0.png",
+          "sha256": "af6e511425af27e2078f8f3c6952839f2df3cf1c9dea4b2b50c7396c362e6369"
+        },
+        {
+          "name": "final-headwear-3/fedora-0.png",
+          "sha256": "758e308310c28d1c75a62eb09cdb7185ac90c2bda45e4771df8e6cb80d151148"
+        },
+        {
+          "name": "final-headwear-3/wizard-0.png",
+          "sha256": "896d2ef4cc718f492a7b0b519fcefd30c9635df46a9e8171cf299f0876d810b8"
+        },
+        {
+          "name": "final-headwear-3/crown-0.png",
+          "sha256": "a52777ec4668b5a074d925f7a929aa5b276ea8226d7f5009419ce402ed86417e"
+        },
+        {
+          "name": "final-headwear-3/hardhat-0.png",
+          "sha256": "a92be6cf7a5308bdc41bbe2d621b1caee4c1aa9da4859101319bf7c23bc5684e"
+        },
+        {
+          "name": "final-headwear-3/chef-0.png",
+          "sha256": "10cb921d196b2f37dfc1e60dc5fc6bb00e24d674ceacc76eaf60a2729012c700"
+        },
+        {
+          "name": "final-headwear-3/viking-0.png",
+          "sha256": "06a93cec8ed4a359b7000845dc4724366990896ea58fab260dbce8a9aa88a274"
+        },
+        {
+          "name": "final-headwear-3/party-0.png",
+          "sha256": "948fdef3adda35e46f8eacfb20d561608e94f08bad509b86217febaadbac62d3"
+        },
+        {
+          "name": "final-headwear-3/beret-0.png",
+          "sha256": "b1e0bcf3175790623b46c65d53de604a14199eda1092c6ce055138aa5d81c536"
+        },
+        {
+          "name": "final-headwear-3/propeller-0.png",
+          "sha256": "c83ecc91fcce07aa94cff49ac1a5ce5158d7a7797590bde7b6717a9f62dca837"
+        },
+        {
+          "name": "final-headwear-3/horns-0.png",
+          "sha256": "65c050fadb2d90377205a78223fdb7576f747df111e1163aed2929efd55eabe9"
+        },
+        {
+          "name": "final-headwear-3/santa-0.png",
+          "sha256": "1f0d390dc61807bc079e8efee8359937d4335ff04079fdb0292a5ff379fd5eab"
+        },
+        {
+          "name": "final-headwear-3/none-0.png",
+          "sha256": "0b249345a531ff081e2a719151bb7b2ecb6c9769b09ef3abd1dc5f0a2fbbb48b"
+        },
+        {
+          "name": "final-headwear-fix/backwardCap-0.png",
+          "sha256": "5bcb22dbf40f09f688da2bfa16aa0a66e3b24f5da9cd4050402c941e7ffd97d9"
+        },
+        {
+          "name": "final-headwear-fix/cap-0.png",
+          "sha256": "6a5b1317a523f71707c243d90b2058d8ee718818070195fc42477fd69a8afec3"
+        },
+        {
+          "name": "final-headwear-fix/beanie-0.png",
+          "sha256": "2002740019611cd3738a6b75f4ac50c934b981ea20439cebb79a248b63383717"
+        },
+        {
+          "name": "final-headwear-fix/headband-0.png",
+          "sha256": "4db7416ead35b6f77976e36f2e408d0e15f8a7a31c3380dfa0444bd64e698574"
+        },
+        {
+          "name": "final-headwear-fix/bucket-0.png",
+          "sha256": "6d3463f5efb55ca58fbe96d1cc14ee6ee764e4c74f168dcb30bb8f03bd3ae55c"
+        },
+        {
+          "name": "final-headwear-fix/cowboy-0.png",
+          "sha256": "2fd724f8b135003c99128c052ae91ef8c55df9397d7e9822f7cd2eff73249511"
+        },
+        {
+          "name": "final-headwear-fix/tophat-0.png",
+          "sha256": "fb27970af9ab086c59a4447db1eeeaf043e54b27bb994fd59fde059fe3160b18"
+        },
+        {
+          "name": "final-headwear-fix/fedora-0.png",
+          "sha256": "aaaa0ca4a1577a57c3fdb7454102efc0be00838ad78f8cb36039e864f11deba4"
+        },
+        {
+          "name": "final-headwear-fix/wizard-0.png",
+          "sha256": "44d7b1cd3ef887e7c7392dac35872dc4088c4d94e8bdec3e1b29f569a963ea6a"
+        },
+        {
+          "name": "final-headwear-fix/crown-0.png",
+          "sha256": "bb15ac950aefd6c7b06633e20741970598c0e2bded35f0619662f49fb6726ace"
+        },
+        {
+          "name": "final-headwear-fix/hardhat-0.png",
+          "sha256": "664e644fc9e0044083861851001feb59b294cbf6ff88219fa4962c4bbfc4ff91"
+        },
+        {
+          "name": "final-headwear-fix/chef-0.png",
+          "sha256": "1f447f7443ec8de7c224df213a5bad94c7d0696b7713a0a5f26fc9feb5210fd1"
+        },
+        {
+          "name": "final-headwear-fix/viking-0.png",
+          "sha256": "bc267d5c028520c3ee108c3eec38b718941482946b3f7fa92ad0b0c7c16bfcbe"
+        },
+        {
+          "name": "final-headwear-fix/party-0.png",
+          "sha256": "923e1ef67e89fc702bf13516007ebb3584defc3a7827852d3f2390b269da6c31"
+        },
+        {
+          "name": "final-headwear-fix/beret-0.png",
+          "sha256": "adbfa700a355c16abe022820e4cc16a3b2322b09041c089348777745ae498861"
+        },
+        {
+          "name": "final-headwear-fix/propeller-0.png",
+          "sha256": "36e5be64ca79b13768c6f82bcb1bc4db0a9dbcd06b9ddc1a739d406460b0ebd9"
+        },
+        {
+          "name": "final-headwear-fix/halo-0.png",
+          "sha256": "0b9740d0c36fa801bae699997d15fa16fe330246d880817f25c1deb72a3fa347"
+        },
+        {
+          "name": "final-headwear-fix/horns-0.png",
+          "sha256": "0b8c56b7ea44802d07876988ca4b53dd74d8e4dbee0a2f0ca4987752dc6de83d"
+        },
+        {
+          "name": "final-headwear-fix/santa-0.png",
+          "sha256": "074d7e7ec6aac427e54ee00bc9583095ccf6a10608410cdd91ec8d7cacb920ed"
+        },
+        {
+          "name": "final-headwear-fix/none-0.png",
+          "sha256": "4299739e5b6b24652270611859ad29c81aad5f06e7e0eb9ee60eee2ebc6dc7c1"
+        }
+      ]
+    },
+    {
+      "mode": "poses",
+      "cases": 660,
+      "definition": "15 held objects \u00d7 4 shapes \u00d7 11 gestures; wrench and salute subsets supersede earlier cells",
+      "runs": [
+        {
+          "run": "final-poses",
+          "cases": 660,
+          "exports": 0,
+          "maxExportBytes": 0,
+          "errors": 0,
+          "cropFindings": 0
+        },
+        {
+          "run": "final-poses-2",
+          "cases": 100,
+          "exports": 0,
+          "maxExportBytes": 0,
+          "errors": 0,
+          "cropFindings": 0
+        }
+      ],
+      "reviewedSheets": [
+        {
+          "name": "final-poses/laptop-0.png",
+          "sha256": "c7c9deb85ccff7c083db2bb18fdeb714190791449295564ccfe8b14739c8ec34"
+        },
+        {
+          "name": "final-poses/coffee-0.png",
+          "sha256": "3363fdab5ec448c3b55a5572d30e42f6197f1067c7ef183e22f0dbb94fa4e8fd"
+        },
+        {
+          "name": "final-poses/boba-0.png",
+          "sha256": "bfa8ffc2f940ec8e8aea0746b977423cc57ef8750eb4f97bb62126f30d773d9d"
+        },
+        {
+          "name": "final-poses/phone-0.png",
+          "sha256": "d57cb892d24cde7d3466051abffe4b5e5b6f179541abd3e1d7e0fa489227644d"
+        },
+        {
+          "name": "final-poses/controller-0.png",
+          "sha256": "b29002ebbae3ba74acfbafb7fd5c73dbec3a12b03e33b915a8db7e0ab71480a3"
+        },
+        {
+          "name": "final-poses/sign-0.png",
+          "sha256": "ba67b89d5be3c1121b1ad316e5cf68ea192d76a4a9edce7f2103fcbb89e65165"
+        },
+        {
+          "name": "final-poses/pizza-0.png",
+          "sha256": "4e24de463ee71542dc39b68075545a15d2af8c3ab9927771ef910d309ec0d841"
+        },
+        {
+          "name": "final-poses/donut-0.png",
+          "sha256": "374def6b46ec31ed1c039889bd4d2c31c969f92b151fb220654e9f470089261f"
+        },
+        {
+          "name": "final-poses/duck-0.png",
+          "sha256": "73a8cc613939f9a292fddd0ae196ccc13828cbaf639eca7db4e87dffb15a1a7d"
+        },
+        {
+          "name": "final-poses/book-0.png",
+          "sha256": "2e7e15aa3d27856277233d80920182764eea2423feaa93c01efdf2e0f32f2dd5"
+        },
+        {
+          "name": "final-poses/mic-0.png",
+          "sha256": "bfe6dc93892e6837b6489a2f6b10f31707f6a651486415433322e26c2835c9b7"
+        },
+        {
+          "name": "final-poses/trophy-0.png",
+          "sha256": "66c735b8d40d6cb9d93ced22b5902d21fd5d613a729e3ca58b0879135046b261"
+        },
+        {
+          "name": "final-poses/plant-0.png",
+          "sha256": "169ab26b42fe67685b9a0374b2b2b2b6f17743beb7d0a5af44f68730d70d0049"
+        },
+        {
+          "name": "final-poses/none-0.png",
+          "sha256": "dc2a9d781ef6cac46c649ff42391e3f99ecdea8137fce8e2f13095ed567b5dce"
+        },
+        {
+          "name": "final-poses-2/laptop-0.png",
+          "sha256": "01daf8562d68c3e92bb396ef956db6e1dc64e7b1c4da4f22691aae4a51fc16ba"
+        },
+        {
+          "name": "final-poses-2/coffee-0.png",
+          "sha256": "68f3503eab2a3ec7388e1f8cbd2145287bcfec53b3d4c6412fe0c833b919ef1e"
+        },
+        {
+          "name": "final-poses-2/boba-0.png",
+          "sha256": "6507216955424b0713f12727557786e9bae7d1e3081beb25d8284e68693613d5"
+        },
+        {
+          "name": "final-poses-2/phone-0.png",
+          "sha256": "a7cae7000a1065b05ebb106c67215e1bbf53e2700777dda9d58b34164e35e4f5"
+        },
+        {
+          "name": "final-poses-2/controller-0.png",
+          "sha256": "96ba4ae5d27ee50a57bfe2e677b38a4e9357bc30a9ed5a26916a25cc11a73a56"
+        },
+        {
+          "name": "final-poses-2/sign-0.png",
+          "sha256": "94074027356d634a72dd9c207e9b510e6fab7cf0e0a8c574b4e45d644fa78c4f"
+        },
+        {
+          "name": "final-poses-2/pizza-0.png",
+          "sha256": "6baef728dd9c4b3bb2b244fdf4d493d107d9815349ff702fcb9ccd5531df2e51"
+        },
+        {
+          "name": "final-poses-2/donut-0.png",
+          "sha256": "473939ed2eb15b12467649bb387d9b7d070d13dfc6c781a97345b1da326f6a02"
+        },
+        {
+          "name": "final-poses-2/duck-0.png",
+          "sha256": "b0ce80b5c87de785d990f66e0cc2fd8a6ed8cd655b354edefc467872e32f6088"
+        },
+        {
+          "name": "final-poses-2/wrench-0.png",
+          "sha256": "1aa8b5821f561e00af6f1a81148dc812bd190545090ba487851e91a11de680b5"
+        },
+        {
+          "name": "final-poses-2/book-0.png",
+          "sha256": "f6f1029cab062a4e1df2aafac28bd63c25d1d77d69dfec4cd1f626a58ae2525d"
+        },
+        {
+          "name": "final-poses-2/mic-0.png",
+          "sha256": "c3d8bd53f27b0d9d05db81d96b857899555ad58f674d1577e3568e6cb47e0221"
+        },
+        {
+          "name": "final-poses-2/trophy-0.png",
+          "sha256": "26081ed5cc34704508ec697f893172c35c3adf3c9480735b804ee52859660fe9"
+        },
+        {
+          "name": "final-poses-2/plant-0.png",
+          "sha256": "15d4a9009761722bd7b2c38d5e13a0e1a6b69671d83339199bcd358d37b82ff4"
+        },
+        {
+          "name": "final-poses-2/none-0.png",
+          "sha256": "3a0cd90707d7a4ff3e269b3a67b0f3504190441ccb0150625e2b11092c24cc1e"
+        }
+      ]
+    },
+    {
+      "mode": "colors",
+      "cases": 1056,
+      "definition": "22 recolorable parts \u00d7 4 shapes \u00d7 12 colors",
+      "runs": [
+        {
+          "run": "final-colors",
+          "cases": 1056,
+          "exports": 0,
+          "maxExportBytes": 0,
+          "errors": 0,
+          "cropFindings": 0
+        },
+        {
+          "run": "final-colors-2",
+          "cases": 720,
+          "exports": 0,
+          "maxExportBytes": 0,
+          "errors": 0,
+          "cropFindings": 0
+        }
+      ],
+      "reviewedSheets": [
+        {
+          "name": "final-colors-2/hat-backwardCap-0.png",
+          "sha256": "afa1c6bcb13c440ea57a9e88984a3129502b629b90c4d75e0e35f29d3f58884b"
+        },
+        {
+          "name": "final-colors-2/hat-cap-0.png",
+          "sha256": "03112c58d99c052f28acea0036fac38ffeee55e0a503378da0748514c66d32ad"
+        },
+        {
+          "name": "final-colors-2/hat-beanie-0.png",
+          "sha256": "a546963b6a317a973873675f5a5da5a3bbf3b5a847be31709b6c1c0be6d5b243"
+        },
+        {
+          "name": "final-colors-2/hat-headband-0.png",
+          "sha256": "f839ae6f75ca69e1b1b6c5f0a69366f9749251e20aa9545425354667248ea90a"
+        },
+        {
+          "name": "final-colors-2/hat-bucket-0.png",
+          "sha256": "e86ce5393b0a422f3ecd2701c2b9a6533bbce95a5a3dfa5b6650d9b95f837f66"
+        },
+        {
+          "name": "final-colors-2/hat-cowboy-0.png",
+          "sha256": "4fb95af7b56494b72b63a122a33b5411b62c88e21ca18985f63b17e05c4b4fa4"
+        },
+        {
+          "name": "final-colors-2/hat-tophat-0.png",
+          "sha256": "ac26e83226aae337b4426a52342ec791e0a9916fe289c6bb9b819a93128ad74b"
+        },
+        {
+          "name": "final-colors-2/hat-fedora-0.png",
+          "sha256": "66b8edd9cd4225354a408f6cdfc88ca1b6e72a525c91c8f7251bc43798ab8dac"
+        },
+        {
+          "name": "final-colors-2/hat-wizard-0.png",
+          "sha256": "d3e1bda809d02df6b4b10a81a1747df6e162e11dd2aea78ffdae782bfbfe5768"
+        },
+        {
+          "name": "final-colors-2/hat-hardhat-0.png",
+          "sha256": "71310f88832ba2921985ab8b56626a95ac57507e15fc3106bd761147dcf841db"
+        },
+        {
+          "name": "final-colors-2/hat-party-0.png",
+          "sha256": "994c75b8b6240b31352d66c331221c25857c245e2f347e2a94d6368384f674e7"
+        },
+        {
+          "name": "final-colors-2/hat-beret-0.png",
+          "sha256": "e5ee47d08f0ae032b8f67e4795483d23e9f846a7af7102e700ef8aace0723ae1"
+        },
+        {
+          "name": "final-colors-2/hat-propeller-0.png",
+          "sha256": "64a73a9216e37ec203cafe409b6153d188023c40fa51e5cb4f4bc6e3cbb58229"
+        },
+        {
+          "name": "final-colors-2/hat-horns-0.png",
+          "sha256": "6cce370aaea80012a73df9eb2e3e66c8314646fd4ad8fb8da19a8d340ea8b965"
+        },
+        {
+          "name": "final-colors-2/hat-santa-0.png",
+          "sha256": "b9e04b35f434e9cabe790b5e927998ce07624ea67039f6185e437cd11325fcaf"
+        },
+        {
+          "name": "final-colors/neckwear-bowtie-0.png",
+          "sha256": "cfb8c385d9a0b66952a4a9614b3c89a0ab92571af6f2b0676530d8994e10fecb"
+        },
+        {
+          "name": "final-colors/neckwear-tie-0.png",
+          "sha256": "613e8388e09e4ba0ea1f9216411c36d83e968c3cc0462cfc194c0d23960bb171"
+        },
+        {
+          "name": "final-colors/neckwear-scarf-0.png",
+          "sha256": "7b9f65bde72f56e82395c0ed23e44079c340ce4359971186ee747ae78310c20a"
+        },
+        {
+          "name": "final-colors/neckwear-lanyard-0.png",
+          "sha256": "3718485d9e97d8a33712f51bcd6f374dee7638bac29dfa2638b25abcbed78636"
+        },
+        {
+          "name": "final-colors/neckwear-bandana-0.png",
+          "sha256": "de3c539b1a9a593ff676825da3d81488ae5cf7b461033eb2537dde1240445dab"
+        },
+        {
+          "name": "final-colors/extra-headphones-0.png",
+          "sha256": "ddb07e743dbf909a2a7a6977cffc8a204b89dbffb3f77655bc580a7d9b3f10f4"
+        },
+        {
+          "name": "final-colors/item-coffee-0.png",
+          "sha256": "199ddd9e0dd06d0e73fb421ba4fd626da99a75ca13a8ee8e4c7212715403b26e"
+        }
+      ]
+    },
+    {
+      "mode": "backgrounds",
+      "cases": 168,
+      "definition": "12 patterns \u00d7 14 colors",
+      "runs": [
+        {
+          "run": "final-backgrounds",
+          "cases": 168,
+          "exports": 0,
+          "maxExportBytes": 0,
+          "errors": 0,
+          "cropFindings": 0
+        }
+      ],
+      "reviewedSheets": [
+        {
+          "name": "final-backgrounds/solid-0.png",
+          "sha256": "5fd8d029b5e9730fc86f45a17761c3eaef7625ac0060924b24e32f145e0c2957"
+        },
+        {
+          "name": "final-backgrounds/spotlight-0.png",
+          "sha256": "981653603f4fd2db7146759138796f808497d866b453f6f0f2a2e0bd80f13e16"
+        },
+        {
+          "name": "final-backgrounds/dots-0.png",
+          "sha256": "c2a7d7262808f32d158554a88f0f0851a3230a8e4ab1ec62791ce4b19804f88f"
+        },
+        {
+          "name": "final-backgrounds/rays-0.png",
+          "sha256": "910408f344ae073d8ede8e97cf7b5cb951494832d1d9c4e468e56ff29c76cbe6"
+        },
+        {
+          "name": "final-backgrounds/grid-0.png",
+          "sha256": "7e523875cbf5f58990167604f773af89ee8bb383d188b197a49a37de3660cb91"
+        },
+        {
+          "name": "final-backgrounds/stripes-0.png",
+          "sha256": "c7f124f3fdd41b68f12011f74901ae9c58f56f59d271fb302687d1e3aba1ad1d"
+        },
+        {
+          "name": "final-backgrounds/confetti-0.png",
+          "sha256": "6f02c555fb4014ce433429e111412d35c693d600abb6062a78da98bd1fa56c92"
+        },
+        {
+          "name": "final-backgrounds/stars-0.png",
+          "sha256": "6fbc272b7c4d7e1c74e019efd515fb6d39d2ac4638d4de4a06ae21d44c77d018"
+        },
+        {
+          "name": "final-backgrounds/hearts-0.png",
+          "sha256": "c2e85a988dfdc21ee06e23f9f7b4a46f1b3268fa13af93f03370729b5231a212"
+        },
+        {
+          "name": "final-backgrounds/circuit-0.png",
+          "sha256": "73dd32285a6463b7ae85687ff39a4037143b0a43033e29074f4ef9ed5f261090"
+        },
+        {
+          "name": "final-backgrounds/hex-0.png",
+          "sha256": "b8f93889d03e7b84a8e62683459d1fef7e5d53f22ec50b57c130c7f41bb8aded"
+        },
+        {
+          "name": "final-backgrounds/code-0.png",
+          "sha256": "c5c726c572cc6547e28bd4e0ef92bcf44d9bcad075c7a60ff175d141aa47a9b8"
+        }
+      ]
+    },
+    {
+      "mode": "details",
+      "cases": 292,
+      "definition": "80 salute/hat + 32 text boundary + 28 sticker-count + 40 preset + 112 seeded random outfit cases",
+      "runs": [
+        {
+          "run": "final-details-2",
+          "cases": 292,
+          "exports": 0,
+          "maxExportBytes": 0,
+          "errors": 0,
+          "cropFindings": 0
+        }
+      ],
+      "reviewedSheets": [
+        {
+          "name": "final-details-2/salute-hats-0.png",
+          "sha256": "b5dc36813315a6225d9252885fa2cb98633673f715af8596fa5b8dd1ce9dbda6"
+        },
+        {
+          "name": "final-details-2/salute-hats-56.png",
+          "sha256": "2d2cf6f50ef6c9345c40a4e71aea952654e87abecb031cfde6ebf7b60886c16f"
+        },
+        {
+          "name": "final-details-2/text-0.png",
+          "sha256": "6151bacedc9bab4b1c1c2f9795d7907a4d87d6d51e2f25bc257517c03631a549"
+        },
+        {
+          "name": "final-details-2/sticker-layouts-0.png",
+          "sha256": "487690721a4b669d27cfde727a4b0aed8b877fe4573bc1e3f87861003581b1c7"
+        },
+        {
+          "name": "final-details-2/presets-0.png",
+          "sha256": "d28a074e5b04e2e4300378ca84faf7dcb72c47d663bc85344bd020baf0f59890"
+        },
+        {
+          "name": "final-details-2/random-outfits-0.png",
+          "sha256": "4375ff216cd767e5f31f3e326314128a8782aa01e75ff2633c05b36410df7dbd"
+        },
+        {
+          "name": "final-details-2/random-outfits-56.png",
+          "sha256": "36b666b8120758f0a539661d4100872d6ce733d7173e6a949377124d0ac8371d"
+        }
+      ]
+    }
+  ],
+  "visualReview": {
+    "method": "AI visual inspection of circular contact sheets; targeted repairs reviewed again. Automated success was not used as visual approval.",
+    "result": "Accepted within the recorded review scope",
+    "sheetFilesCommitted": false,
+    "reproduce": "Run scripts/audit-project.mjs in every listed mode; PNG review sheets and report.json are generated in the requested directory."
+  },
+  "editor": {
+    "automationRun": "final-ui-3",
+    "checks": [
+      "All five tabs render their option thumbnails without failed images.",
+      "Keyboard tabs, selected states, focus and skip link preserve the avatar.",
+      "Text normalization, copied share URL and reload reproduce the exact canvas.",
+      "512 px download: valid PNG, 446766 bytes.",
+      "1024 px download: valid PNG, 1869161 bytes.",
+      "Crop toggle, reset and Surprise me update the real preview.",
+      "Laptop sticker limit permits six selections and rejects a seventh.",
+      "390 px light/dark layouts: no horizontal overflow; all visible buttons meet 44 \u00d7 44 px.",
+      "Failed body request shows retry; retry recovers after the connection is restored.",
+      "Fitting tool includes empty holding hand, guards invalid scale input and fits its mobile controls without overflow.",
+      "Editor and fitting tool make no third-party requests."
+    ],
+    "errors": [],
+    "visuallyReviewed": [
+      {
+        "name": "final-ui-2/desktop-bg.png",
+        "sha256": "52e349a1adfda4eb7afcdc47de53e73bde5ba20a72d810cdb1e716fed11ebd8f"
+      },
+      {
+        "name": "final-ui-2/desktop-face-section0.jpg",
+        "sha256": "d53af5d87f3a9e4208ae985d01f6b3d07a0d18b8d11080b8842622fb67f4d68c"
+      },
+      {
+        "name": "final-ui-2/desktop-face-section1000.jpg",
+        "sha256": "2d86a4da3a029903099ce16630732e797601aedc4ca4bf260838276ce698ddd4"
+      },
+      {
+        "name": "final-ui-2/desktop-face-section2000.jpg",
+        "sha256": "29f5d2f3268097cf36d58702ee4e8bac57a34842773473fb0db3c5757a80ec46"
+      },
+      {
+        "name": "final-ui-2/desktop-gear-section0.jpg",
+        "sha256": "ac5987292040f2715d2f7f813d16296b102d9178ab9b3336f66ff5d33ee29d61"
+      },
+      {
+        "name": "final-ui-2/desktop-gear-section1000.jpg",
+        "sha256": "449cc88feb96d18ef30854c72d8b301886079c27bb0fd795159b653cc7c70dd6"
+      },
+      {
+        "name": "final-ui-2/desktop-gear-section2000.jpg",
+        "sha256": "543ee52b76b8484408b8693eade73e1067af1ebeef93e1327cd3a31c11a7424f"
+      },
+      {
+        "name": "final-ui-2/desktop-gear-section3000.jpg",
+        "sha256": "01718edeee0b95baa0707ad847f46eca662e1c42af8cd99256fb28d008348483"
+      },
+      {
+        "name": "final-ui-2/desktop-hat-section0.jpg",
+        "sha256": "ddf68ce7a6ab185ce6346f4969b4d41a6b11adeb884fffae3b55cb77030fbfc1"
+      },
+      {
+        "name": "final-ui-2/desktop-hat-section1000.jpg",
+        "sha256": "ba09619c64a9e1b8e532482eb3c3490294f4fd41e70e26e502cfa31704a679b6"
+      },
+      {
+        "name": "final-ui-2/desktop-light.png",
+        "sha256": "6434d5c31879b36d8ada62a24f0c23eaf6ed15cdfee18df51d3b8cb9dbb94325"
+      },
+      {
+        "name": "final-ui-2/mobile-dark-controls-section0.jpg",
+        "sha256": "d174b52b1bb0f9e6f5016011f447dd8868d97a7e32ea7ed73aae2942da1bc02d"
+      },
+      {
+        "name": "final-ui-2/mobile-dark-controls-section1000.jpg",
+        "sha256": "6ecab2fc63377d66c0e35f325e2b16bfbd52263b725d5c9393f357b3147217c8"
+      },
+      {
+        "name": "final-ui-2/mobile-dark-section0.jpg",
+        "sha256": "8b69e1df87ace3d885543384d6139df9373448340dfdcc4bf6b5dc3ca85689b6"
+      },
+      {
+        "name": "final-ui-2/mobile-dark-section1000.jpg",
+        "sha256": "df597e1c216bda5fb28976eb67b3621c48bbdd10b680b41332ca4c3a07448a6c"
+      },
+      {
+        "name": "final-ui-2/mobile-light-controls-section0.jpg",
+        "sha256": "9da6feac1a39391a3377849a18a320e5860b056c73498d4d7b64e214332921d5"
+      },
+      {
+        "name": "final-ui-2/mobile-light-controls-section1000.jpg",
+        "sha256": "773d6ebc137d48c5a7f8519a7c5ab5699cd32699da12aca2e807fe079ffb0702"
+      },
+      {
+        "name": "final-ui-2/mobile-light-section0.jpg",
+        "sha256": "5903d0affa7f846ec2c4d098585eaa5baf50754b5585fd0f5a6db168e2f243a0"
+      },
+      {
+        "name": "final-ui-2/mobile-light-section1000.jpg",
+        "sha256": "93b31a9c22beefd92c547f5960f93226ec42aa83729c962a90aa5d52d4b98824"
+      },
+      {
+        "name": "final-ui-3/fit-tool.png",
+        "sha256": "71cf57a93adea16b44785d6a7b2ae184108020321f6d2fce1448b48924b879c0"
+      }
+    ]
+  },
+  "documentationImages": {
+    "favicon.png": "b03c0d6fc840a1afbadf0c3ba654f1e8e60e50b02f7f7b2605eac3261766e892",
+    "docs/hero.png": "d868c398dcefe7fb7311f8c772a3d231b2c68eb10558bc51fb89145541c90585",
+    "docs/og.png": "16ff9546a21a137b0d542cf34187cda759ba0184eb9775089760aa0080160e9b",
+    "docs/completion-preview.png": "4ebb8601733e15e99f8e95ac2e7b978d000cd91fb831baf51d70a3e88917137d",
+    "docs/screenshot.png": "c967a47e6f612067f7d3ae06137ce095b512e49e08fb56f2a94b009272e7ff55"
+  },
+  "sourceHashes": {
+    "assets/manifest.json": "32a9e3ae1871b2b5ce546b66a042b06b4034dee9b3735b65a47bb52102274128",
+    "fit.html": "d1784c8ec6e64b07c10cb929f2103f78718920a0237b7d4925fe63c32c83f2f4",
+    "index.html": "4190221a5a37892436a047c3b868b5f2d844a0eddfb3ab025fb727fdb43e00fb",
+    "scripts/audit-project.mjs": "542a4886e04e21699cc6a67b5dc78c103b9773004df3f542b44e8944d7c530d2",
+    "scripts/audit-ui.mjs": "f01144e7d36aa495e4bf55fec9b5617a182915575a7ad642360ee78ca996557c",
+    "src/assets.js": "d7f5927c4c8825d35c508774754a769af877306b7780b9ca0f52257689002b57",
+    "src/cache.js": "5053de81876be68728dd6e9da056cd228f0c4bbca241ec7095230c2f719c06d8",
+    "src/compose.js": "c1621092b4002e8e09cbe730075d157f9b5056a3293fba0e92fa868c5f697300",
+    "src/draw.js": "e4064c7b1a8b11c7af991d78c0e35164c825224c7bdbcedbff3809f009f2e3e6",
+    "src/export.js": "9e56290d94665d5a9cd879636edde1b4d9d6d438f6de4ca8dc633adba47694a7",
+    "src/fit-data.js": "1a8a91ee4c0e2a9864332f810b50bd831c4629de9fefd65f042fab16051c3cab",
+    "src/fit.js": "e02bb276a09a71c6e05314a35ca68478f863342f2a42551fc0e095a5b7be374e",
+    "src/main.js": "dff98df66197973a7807756dcb6ba05488eebf8c494c061245c9944e16a465d5",
+    "src/options.js": "c472b838449cf02ab1825132d606ad530af7a8d3b78811e88c888793c21ebc09",
+    "src/parts/accessories.js": "2d7edc1faca9798539495bafd8d9292669b574e954163467c6446fea99ee170c",
+    "src/parts/background.js": "31c19226db0c2c4669d065742b3e1da2ada5f1bce0ddc93f5b76a1b329cbd4c1",
+    "src/parts/body.js": "1293e01e4eaf82c4f9b445894f2ad9bb1d88583345513509ce4bdfaefce9ece1",
+    "src/parts/face.js": "aa9ef25e5ba98cc145e9ea98de72cc444095a0d2ce9308a94703b052bea934ed",
+    "src/parts/hands.js": "8505af72956ddd8eda16441ac009d6ac182795247f9f65fd98b658f96d507c84",
+    "src/parts/hats.js": "70bc04d4d91209b42f0c68f58e8c942a76bc02bbe7143159c6b95b547215361c",
+    "src/parts/items.js": "dfec1cf24454c1c1d0274e0f24fa4411048945ff5b2eb28ceb759aa8aef53456",
+    "src/parts/stickers.js": "b64ea0592a981658e3b66844fdd6dabe5c204edea00eae7dab32641d4c7b014f",
+    "src/raster.js": "28962f1b761b97bfe7d54477e2dd3bce3051b964e380f7f4909b84a6d2540359",
+    "src/state.js": "2f13d505340fe00fbc816aefe6c1caf5454ce975d894d2eec54c8af49cad1991",
+    "src/styles.css": "f6d072422093e388ebd36a5ef09cb20a6d17e6be4dcc0147919becf41bc4da46",
+    "src/surface.js": "88615480aaf54bb440fd305307a598c6696638d6fdb894e7aa3f29f5959d5752",
+    "src/surprise.js": "c8f3f466ae5a097c4eedc28ab93de654f85197da6a90f3b9fa29cbc92c4540c1"
+  },
+  "limits": [
+    "Chromium in a Linux managed environment; physical Safari/iOS and Android not verified.",
+    "Manual VoiceOver/NVDA and Lighthouse audits remain open.",
+    "2D compositing approximates contact shading and material matching; this is not a 3D model or a guarantee for every possible outfit.",
+    "Review-sheet PNGs are reproducible outputs and are not all included in the repository; hashes identify the reviewed local outputs."
+  ],
+  "browser": "Chromium 153.0.8010.0, managed Linux"
+}

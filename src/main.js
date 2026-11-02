@@ -93,6 +93,7 @@ async function renderPreview() {
     if (token !== previewToken) return; // a newer render finished first
     previewCanvas.getContext('2d').drawImage(frame, 0, 0);
     preview.classList.remove('is-loading', 'is-failed');
+    preview.querySelector('.preview-status').textContent = '';
     document.body.dataset.rendered = 'true';
     preview.setAttribute('aria-busy', 'false');
     preview.setAttribute('aria-label', `${OPTIONS.skin[state.skin]} ${OPTIONS.body[state.body].toLowerCase()} potato: ${OPTIONS.eyes[state.eyes].toLowerCase()} eyes, ${OPTIONS.mouth[state.mouth].toLowerCase()} mouth, ${OPTIONS.hat[state.hat].toLowerCase()}, holding ${OPTIONS.item[state.item].toLowerCase()}, ${OPTIONS.gesture[state.gesture].toLowerCase()} gesture.`);

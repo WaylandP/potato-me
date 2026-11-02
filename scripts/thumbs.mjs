@@ -12,6 +12,8 @@ import { fileURLToPath } from 'node:url';
 const root = fileURLToPath(new URL('..', import.meta.url));
 const manifest = JSON.parse(await readFile(root + 'assets/manifest.json', 'utf8'));
 const THUMB = 256;
+const only = new Set(process.argv.slice(2));
+for (const key of only) if (!manifest.assets.some(a => `${a.group}/${a.key}` === key)) throw Error(`Unknown asset: ${key}`);
 
 let chromium;
 try {
@@ -26,6 +28,7 @@ const page = await browser.newPage();
 await page.goto('about:blank');
 let n = 0;
 for (const a of manifest.assets) {
+  if (only.size && !only.has(`${a.group}/${a.key}`)) continue;
   const png = await readFile(root + a.path);
   const dataUrl = 'data:image/png;base64,' + png.toString('base64');
   const out = await page.evaluate(
