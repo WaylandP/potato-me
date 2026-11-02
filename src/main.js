@@ -28,7 +28,7 @@ const TABS = {
   ],
   hat: [
     { key: 'hat', title: 'Hat', kind: 'thumb' },
-    { key: 'hatColor', title: 'Hat, mug & tie color', kind: 'swatch', colors: HAT_COLORS },
+    { key: 'hatColor', title: 'Fabric & mug color', kind: 'swatch', colors: HAT_COLORS, help: 'Colors supported hats, neckwear, headphones and the coffee mug. Metal and white trim keep their own colors.' },
     {
       key: 'capText',
       title: 'Cap initials',
@@ -85,18 +85,27 @@ async function renderPreview() {
   const token = ++previewToken;
   document.body.dataset.rendered = 'false';
   preview.classList.add('is-loading');
+  preview.setAttribute('aria-busy', 'true');
+  preview.querySelector('.preview-status').textContent = 'Loading potato…';
+  $('#retry-preview').hidden = true;
   try {
     const frame = await renderPotato(state, { size: 1024 });
     if (token !== previewToken) return; // a newer render finished first
     previewCanvas.getContext('2d').drawImage(frame, 0, 0);
     preview.classList.remove('is-loading', 'is-failed');
+    preview.querySelector('.preview-status').textContent = '';
     document.body.dataset.rendered = 'true';
+    preview.setAttribute('aria-busy', 'false');
+    preview.setAttribute('aria-label', `${OPTIONS.skin[state.skin]} ${OPTIONS.body[state.body].toLowerCase()} potato: ${OPTIONS.eyes[state.eyes].toLowerCase()} eyes, ${OPTIONS.mouth[state.mouth].toLowerCase()} mouth, ${OPTIONS.hat[state.hat].toLowerCase()}, holding ${OPTIONS.item[state.item].toLowerCase()}, ${OPTIONS.gesture[state.gesture].toLowerCase()} gesture.`);
   } catch (err) {
     if (token !== previewToken) return;
     preview.classList.remove('is-loading');
     preview.classList.add('is-failed');
+    preview.setAttribute('aria-busy', 'false');
+    preview.querySelector('.preview-status').textContent = 'Couldn’t load your potato.';
+    $('#retry-preview').hidden = false;
     console.error(err);
-    toast('Some parts failed to load. Check your connection and reload.');
+    toast('Some parts failed to load. Check your connection, then try again.');
   }
 }
 
@@ -145,7 +154,15 @@ async function drainThumbs() {
 function potatoThumb(candidate, category) {
   const holder = document.createElement('span');
   holder.className = 'thumb';
-  queueThumb(holder, candidate, category);
+  // A thumbnail must reveal the part being offered, even when the main
+  // avatar is wearing shades, a beard or a brim that would cover it.
+  const shown = { ...candidate };
+  if (['eyes', 'brows', 'mouth', 'cheeks', 'facialHair', 'preset'].includes(category)) {
+    shown.hat = 'none'; shown.extra = 'none'; shown.eyewear = 'none';
+    if (category !== 'facialHair' && category !== 'preset') shown.facialHair = 'none';
+  }
+  if (category === 'neckwear') shown.facialHair = 'none';
+  queueThumb(holder, shown, category);
   return holder;
 }
 
@@ -197,8 +214,8 @@ function textField(group) {
   wrap.className = 'text-field';
   const id = `${group.key}-input`;
   wrap.innerHTML = `<label for="${id}">${group.title}</label>
-<input id="${id}" type="text" maxlength="${spec.max}" autocomplete="off" spellcheck="false" placeholder="${group.placeholder || ''}">
-<span class="hint">${group.help || ''}</span>`;
+<input id="${id}" type="text" maxlength="${spec.max}" autocomplete="off" spellcheck="false" aria-describedby="${id}-help" placeholder="${group.placeholder || ''}">
+<span class="hint" id="${id}-help">${group.help || ''}</span>`;
   const input = wrap.querySelector('input');
   input.value = state[group.key];
   input.addEventListener('input', () => {
@@ -281,7 +298,7 @@ function render() {
   const focused = document.activeElement;
   const refocus = focused?.classList?.contains('opt') ? [focused.dataset.key, focused.dataset.value] : null;
   renderPanel();
-  if (refocus) panel.querySelector(`[data-key="${refocus[0]}"][data-value="${refocus[1]}"]`)?.focus();
+  if (refocus) panel.querySelector(`[data-key="${refocus[0]}"][data-value="${refocus[1]}"]`)?.focus({ preventScroll: true });
 }
 
 function toast(msg) {
@@ -292,6 +309,13 @@ function toast(msg) {
 }
 
 // --- events -----------------------------------------------------------------
+
+$('.skip').addEventListener('click', e => {
+  e.preventDefault();
+  $('#controls').focus();
+  $('#controls').scrollIntoView({ block: 'start' });
+});
+$('#retry-preview').addEventListener('click', () => render());
 
 panel.addEventListener('click', (e) => {
   const btn = e.target.closest('.opt');
@@ -346,7 +370,7 @@ $('#randomize').addEventListener('click', () => {
 
 $('#reset').addEventListener('click', () => {
   commit(DEFAULT_STATE);
-  toast('Back to the original potato.');
+  toast('Back to the starter potato.');
 });
 
 async function download(size) {

@@ -12,7 +12,8 @@ import { normalizeState } from './state.js';
 import { Defs } from './draw.js';
 import { background } from './parts/background.js';
 import { stickerSVG } from './parts/stickers.js';
-import { bodySurface, surfaceTransform, integratedLayer, contactShadow } from './surface.js';
+import { bodySurface, surfaceTransform, integratedLayer, contactShadow, drawTransformed, hatFrame } from './surface.js';
+import { LruCache } from './cache.js';
 
 const RED = '#C8372D';
 
@@ -71,7 +72,7 @@ export function drawableState(rawState) {
 
 // ------------------------------------------------------------- image cache
 
-const images = new Map();
+const images = new LruCache(12 * 1024 * 1024);
 
 /** Load (and decode) an image once. Rejects on a missing file so callers can report it. */
 export function loadImage(src) {
@@ -88,6 +89,7 @@ export function loadImage(src) {
         };
         img.src = src;
       }),
+      src.includes('/thumbs/') ? 256 * 256 : src.startsWith('data:') ? 512 * 512 : 1024 * 1024,
     );
   }
   return images.get(src);
@@ -171,8 +173,7 @@ function remap(data, win, base, target) {
 }
 
 const RED_WINDOW = { hue: 2, hueWidth: 16, sMin: 0.42, lMin: 0.07, lMax: 0.86 };
-const processed = new Map();
-const PROCESSED_MAX = 60;
+const processed = new LruCache(6 * 1024 * 1024);
 
 /** Garment recoloring only; skin is harmonized against the actual body later. */
 async function processedPart(group, key, src, { hatColor }) {
@@ -181,10 +182,7 @@ async function processedPart(group, key, src, { hatColor }) {
   if (!wantsRecolor) return img;
   const cacheKey = `${src}|${hatColor}`;
   if (processed.has(cacheKey)) {
-    const v = processed.get(cacheKey);
-    processed.delete(cacheKey);
-    processed.set(cacheKey, v); // refresh LRU position
-    return v;
+    return processed.get(cacheKey);
   }
   const c = document.createElement('canvas');
   c.width = img.naturalWidth;
@@ -194,8 +192,7 @@ async function processedPart(group, key, src, { hatColor }) {
   const id = ctx.getImageData(0, 0, c.width, c.height);
   if (wantsRecolor) remap(id.data, RED_WINDOW, RED, hatColor);
   ctx.putImageData(id, 0, 0);
-  processed.set(cacheKey, c);
-  if (processed.size > PROCESSED_MAX) processed.delete(processed.keys().next().value);
+  processed.set(cacheKey, c, c.width * c.height);
   return c;
 }
 
@@ -254,8 +251,12 @@ export function layersFor(rawState) {
   const s = drawableState(rawState);
   // Extras draw under the hat by default; headphones go over caps and beanies, band across the hat.
   let order = LAYER_ORDER;
+  if (['mustache', 'handlebar'].includes(s.facialHair)) {
+    order = order.filter(g => g !== 'facialHair');
+    order.splice(order.indexOf('mouth') + 1, 0, 'facialHair');
+  }
   if (s.extra === 'headphones' && FIT.headphonesOver.includes(s.hat)) {
-    order = LAYER_ORDER.filter((g) => g !== 'extra');
+    order = order.filter((g) => g !== 'extra');
     order.splice(order.indexOf('hat') + 1, 0, 'extra');
   }
   const layers = [];
@@ -267,7 +268,7 @@ export function layersFor(rawState) {
   return layers;
 }
 
-const bgImages = new Map();
+const bgImages = new LruCache(12);
 
 /** The SVG background drawn by the vector renderer, rasterized once per color/pattern. */
 function backgroundImage(bg, pattern) {
@@ -413,6 +414,13 @@ function drawSignText(ctx, s, transform) {
 
 // ---------------------------------------------------------------- render
 
+let letteringFont;
+function readyLettering() {
+  // Direct share links can render before CSS font loading finishes. Keep the
+  // preview and downloaded lettering identical; fall back if the font fails.
+  return letteringFont ||= document.fonts?.load('700 32px Fredoka').catch(() => []) || Promise.resolve();
+}
+
 /**
  * Draw a potato onto a canvas.
  * @param {object} rawState
@@ -428,6 +436,7 @@ export async function renderPotato(rawState, opts = {}) {
   const thumbs = Boolean(opts.thumbs);
   const canvas = opts.canvas || document.createElement('canvas');
   const hatColor = HAT_COLORS[s.hatColor].value;
+  if ((s.capText && FIT.capText[s.hat]) || (s.item === 'sign' && s.sign)) await readyLettering();
 
   // Load everything first so the frame is drawn in one go (no flashing).
   const layers = layersFor(s);
@@ -446,14 +455,23 @@ export async function renderPotato(rawState, opts = {}) {
   const body = imgs[layers.findIndex(l => l.group === 'body')];
   const surface = bodySurface(body, s.body);
   const workSize = thumbs ? 256 : 1024;
+  const transforms = layers.map((l, i) => l.group === 'body' ? l.transform : surfaceTransform(l, imgs[i], surface, s));
+  const hi = layers.findIndex(l => l.group === 'hat');
+  if (hi !== -1) {
+    const frame = hatFrame(imgs[hi], layers[hi].key, transforms[hi]);
+    ctx.translate(512, 512); ctx.scale(frame.scale, frame.scale); ctx.translate(-512, -frame.centerY);
+  }
   for (let i = 0; i < layers.length; i++) {
     const l = layers[i];
     if (l.group === 'body') { drawLayer(ctx, imgs[i], l.group, l.key, l.transform); continue; }
-    const transform = surfaceTransform(l, imgs[i], surface, s);
+    const transform = transforms[i];
     const plane = integratedLayer(imgs[i], l.group, l.key, transform, surface, workSize);
-    const shadow = contactShadow(plane, body, l.group, workSize);
+    const shadow = l.group === 'hat' && l.key === 'halo' ? null : contactShadow(plane, body, l.group, workSize);
     if (shadow) ctx.drawImage(shadow, 0, 0, CANVAS, CANVAS);
-    ctx.drawImage(plane, 0, 0, CANVAS, CANVAS);
+    // Wearables can extend beyond the original 1024 world canvas. Draw their
+    // original image into the fitted scene so tall tips are never pre-clipped.
+    if (['hat', 'extra', 'neckwear', 'eyewear', 'brows'].includes(l.group)) drawTransformed(ctx, imgs[i], l.group, l.key, transform);
+    else ctx.drawImage(plane, 0, 0, CANVAS, CANVAS);
     if (l.group === 'item' && l.key === 'laptop') await drawStickers(ctx, s, thumbs, transform);
     if (l.group === 'item' && l.key === 'sign') drawSignText(ctx, s, transform);
     if (l.group === 'hat') drawCapText(ctx, s, transform);
@@ -476,7 +494,7 @@ export async function exportPng(rawState, size = 512) {
 export function cropBox(category) {
   if (['eyes', 'brows', 'mouth', 'cheeks', 'facialHair', 'eyewear', 'preset'].includes(category)) return [292, 300, 440, 440];
   if (['hat', 'hatColor', 'capText', 'extra'].includes(category)) return [212, 0, 600, 600];
-  if (category === 'neckwear') return [292, 520, 440, 440];
+  if (category === 'neckwear') return [180, 450, 664, 500];
   if (category === 'item') return [0, 380, 620, 620];
   if (category === 'gesture') return [404, 380, 620, 620];
   return [0, 0, CANVAS, CANVAS];

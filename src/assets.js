@@ -2,7 +2,7 @@
 // Which part images exist, with the box each one occupies on the 1024 px canvas.
 
 export const CANVAS = 1024;
-export const LAYER_ORDER = ["body","cheeks","facialHair","mouth","eyes","brows","eyewear","neckwear","extra","hat","item","gesture"];
+export const LAYER_ORDER = ["body","cheeks","neckwear","facialHair","mouth","eyes","brows","eyewear","extra","hat","item","gesture"];
 export const NO_IMAGE = {"brows":["none"],"cheeks":["off"],"facialHair":["none"],"hat":["none"],"eyewear":["none"],"neckwear":["none"],"extra":["none"]};
 export const PARTS = {
   "body": {
@@ -311,10 +311,10 @@ export const PARTS = {
   },
   "brows": {
     "smug": [
-      353,
-      350,
-      671,
-      407
+      340,
+      338,
+      684,
+      419
     ],
     "thick": [
       356,
@@ -323,22 +323,22 @@ export const PARTS = {
       396
     ],
     "angry": [
-      380,
-      327,
-      645,
-      396
+      340,
+      333,
+      684,
+      423
     ],
     "worried": [
-      408,
-      327,
-      615,
-      396
+      365,
+      328,
+      658,
+      428
     ],
     "flat": [
-      350,
-      338,
-      674,
-      385
+      340,
+      356,
+      684,
+      400
     ],
     "uni": [
       392,
@@ -467,18 +467,18 @@ export const PARTS = {
       718
     ],
     "stubble": [
-      372,
-      555,
-      652,
-      718
+      352,
+      550,
+      672,
+      697
     ]
   },
   "hat": {
     "backwardCap": [
-      313,
-      30,
-      751,
-      295
+      302,
+      24,
+      754,
+      300
     ],
     "cap": [
       375,
@@ -629,40 +629,40 @@ export const PARTS = {
   },
   "neckwear": {
     "bowtie": [
-      432,
-      627,
-      593,
-      715
+      8,
+      390,
+      1016,
+      728
     ],
     "tie": [
-      463,
-      667,
-      561,
-      793
+      43,
+      198,
+      983,
+      814
     ],
     "scarf": [
-      418,
-      605,
-      605,
-      786
+      174,
+      389,
+      902,
+      917
     ],
     "chain": [
-      400,
-      605,
-      623,
-      786
+      19,
+      295,
+      1006,
+      734
     ],
     "lanyard": [
-      428,
-      613,
-      595,
-      799
+      62,
+      300,
+      962,
+      841
     ],
     "bandana": [
-      394,
-      605,
-      631,
-      786
+      47,
+      362,
+      1013,
+      855
     ]
   },
   "extra": {
@@ -723,10 +723,10 @@ export const PARTS = {
       694
     ],
     "none": [
-      172,
-      575,
-      380,
-      901
+      692,
+      550,
+      943,
+      850
     ],
     "phone": [
       136,
@@ -839,10 +839,10 @@ export const PARTS = {
       773
     ],
     "rest": [
-      698,
-      594,
-      910,
-      882
+      692,
+      550,
+      943,
+      850
     ],
     "salute": [
       682,

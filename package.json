@@ -1,6 +1,6 @@
 {
   "name": "potato-me",
-  "version": "0.3.1",
+  "version": "0.4.0",
   "description": "Build a potato avatar with expressive faces, fitted accessories and hand poses. Browser-based PNG export, share links and zero runtime dependencies.",
   "type": "module",
   "private": true,
@@ -28,7 +28,9 @@
     "test": "node --test",
     "assets": "node scripts/thumbs.mjs",
     "hero": "node scripts/hero.mjs",
-    "shot": "node scripts/shot.mjs"
+    "shot": "node scripts/shot.mjs",
+    "audit": "node scripts/audit-project.mjs",
+    "audit:ui": "node scripts/audit-ui.mjs"
   },
   "engines": {
     "node": ">=20"

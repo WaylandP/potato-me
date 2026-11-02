@@ -29,8 +29,8 @@ export function composeSVG(rawState, opts = {}) {
   // The skin gradient is shared by the body and anything that must blend into it (eyelids).
   const skinFill = defs.radial('skin', { cx: CX - 70, cy: b.top + 90, r: 300 }, [[0, skin.light], [0.42, skin.base], [1, skin.shade]]);
   const ctx = { defs, b, skin, skinFill, hatColor, state };
-  // Interim shim until the eyewear/neckwear/facial-hair modules land: the old
-  // accessory module draws whichever of its four parts the new keys ask for.
+  // Legacy compatibility: this vector compositor supports only these four
+  // accessory choices. The live Canvas renderer supports the full inventory.
   const legacyAccessory =
     state.eyewear === 'shades' ? 'shades' : state.eyewear === 'round' ? 'glasses' : state.facialHair === 'mustache' ? 'mustache' : state.neckwear === 'bowtie' ? 'bowtie' : 'none';
 

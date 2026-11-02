@@ -66,9 +66,10 @@ export function surprise(rng = Math.random, available = OPTIONS, keep = {}) {
   s.gesture = pickFrom(rng, keys('gesture'));
   const stickerKeys = Object.keys(MULTI.stickers.options);
   const count = 3 + Math.floor(rng() * 3);
-  const stickers = new Set();
-  while (stickers.size < count) stickers.add(pickFrom(rng, stickerKeys));
-  s.stickers = [...stickers];
+  s.stickers = [];
+  while (s.stickers.length < count && stickerKeys.length) {
+    s.stickers.push(stickerKeys.splice(Math.floor(rng() * stickerKeys.length) % stickerKeys.length, 1)[0]);
+  }
   s.sign = keep.sign ?? DEFAULT_STATE.sign;
 
   let worn = 0;

@@ -9,6 +9,14 @@ const seeded = (seed) => () => {
   return seed / 2147483647;
 };
 
+test('surprise terminates with a constant random source and returns unique stickers', () => {
+  for (const n of [0, .5, .999999]) {
+    const s = surprise(() => n);
+    assert.equal(new Set(s.stickers).size, s.stickers.length);
+    assert.ok(s.stickers.length >= 3 && s.stickers.length <= 5);
+  }
+});
+
 test('surprise is repeatable and always valid', () => {
   assert.deepEqual(surprise(seeded(3)), surprise(seeded(3)));
   const rng = seeded(77);

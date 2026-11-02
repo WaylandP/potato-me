@@ -1,6 +1,6 @@
 #!/usr/bin/env node
-// Builds the reusable banner (docs/hero.png) and the link-preview card
-// (docs/og.png) from the real app, so the docs never drift from the art.
+// Builds the banner, link-preview card, eight-avatar gallery and favicon
+// from the real app, so the docs never drift from the art.
 //
 //   npm run hero
 //
@@ -10,6 +10,7 @@
 import { createRequire } from 'node:module';
 import { spawn } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
+import { writeFile } from 'node:fs/promises';
 
 const root = fileURLToPath(new URL('..', import.meta.url));
 
@@ -55,6 +56,15 @@ try {
   await hero.screenshot({ path: root + 'docs/hero.png', omitBackground: true });
   console.log(`wrote docs/hero.png (${W}×${H})`);
 
+  const icon = await page.evaluate(async src => {
+    const img = new Image(); img.src = src; await img.decode();
+    const c = document.createElement('canvas'); c.width = c.height = 128;
+    const ctx = c.getContext('2d'); ctx.beginPath(); ctx.arc(64, 64, 64, 0, Math.PI * 2); ctx.clip(); ctx.drawImage(img, 0, 0, 128, 128);
+    return c.toDataURL().split(',')[1];
+  }, potatoes[2]);
+  await writeFile(root + 'favicon.png', Buffer.from(icon, 'base64'));
+  console.log('wrote favicon.png');
+
   // Link preview card, 1200 x 630.
   const og = await browser.newPage({ viewport: { width: 1200, height: 630 } });
   const row = [2, 0, 1, 3, 4]
@@ -70,6 +80,29 @@ p{position:absolute;left:76px;top:200px;margin:0;font-size:34px;font-weight:600;
 </style></head><body><h1>potato-me</h1><p>Build a potato. Become the potato.</p><p class="sub">Free potato avatars for GitHub, Slack and anywhere else. Nothing uploaded.</p><div class="pill">Open source · no build step</div><div class="row">${row}</div></body></html>`);
   await og.screenshot({ path: root + 'docs/og.png' });
   console.log('wrote docs/og.png');
+
+  // Keep the larger artwork gallery reproducible as well.
+  const gallerySpec = [
+    ['Ship it.', '#capText=A%2BW'],
+    ['Cozy company.', '#body=round&skin=gold&hat=beanie&hatColor=red&neckwear=scarf&item=boba&gesture=wave&eyes=wide&brows=raised&mouth=laugh&bg=coral'],
+    ['Tiny victory.', '#body=long&skin=purple&hat=wizard&hatColor=purple&item=trophy&gesture=fist&eyes=stars&brows=raised&mouth=grin&bg=navy'],
+    ['Chef approved.', '#body=lumpy&skin=sweet&hat=chef&item=pizza&gesture=ok&eyes=wink&brows=smug&mouth=tongue&bg=mint'],
+    ['Game face.', '#skin=blue&hatColor=teal&item=controller&gesture=rock&eyes=angry&brows=angry&mouth=grit&bg=sky'],
+    ['Excellent taste.', '#body=round&skin=red&hat=beret&hatColor=navy&item=donut&gesture=peace&eyes=side&brows=flat&mouth=smile&bg=cream'],
+    ['Rooting for you.', '#body=lumpy&skin=ghost&hat=fedora&hatColor=brown&item=plant&gesture=flex&extra=flower&eyes=wide&brows=raised&mouth=smile&bg=lavender'],
+    ['Your words.', '#body=long&skin=gold&hat=none&item=sign&sign=POTATO!&gesture=salute&eyes=wide&brows=raised&mouth=grin'],
+  ];
+  const gallery = [];
+  for (const [label, hash] of gallerySpec) {
+    await page.goto(`http://localhost:${port}/${hash}`);
+    await page.waitForFunction(() => document.body.dataset.rendered === 'true');
+    gallery.push([label, await page.evaluate(() => document.querySelector('#preview canvas').toDataURL())]);
+  }
+  const galleryPage = await browser.newPage({ viewport: { width: 1600, height: 1060 } });
+  await galleryPage.setContent(`<body style="margin:0;padding:28px;box-sizing:border-box;background:#edf6f3;color:#123d40;font-family:system-ui"><h1 style="font-size:42px;margin:0">A little potato. A lot of personality.</h1><p style="font-size:22px;margin:8px 0 30px;color:#526d6b">Made in potato-me · actual editor output</p><div style="display:grid;grid-template-columns:repeat(4,1fr);gap:28px 24px">${gallery.map(([label, src]) => `<figure style="margin:0;text-align:center"><img src="${src}" width="360" height="360" style="border-radius:50%"><figcaption style="font-size:25px;font-weight:700;margin-top:8px">${label}</figcaption></figure>`).join('')}</div></body>`);
+  await galleryPage.screenshot({ path: root + 'docs/completion-preview.png' });
+  console.log('wrote docs/completion-preview.png');
+
 } finally {
   await browser.close();
   server.kill();

@@ -8,6 +8,14 @@ const seeded = (seed) => () => {
   return seed / 2147483647;
 };
 
+test('randomState terminates with a constant random source and returns unique stickers', () => {
+  for (const n of [0, .5, .999999]) {
+    const s = randomState(() => n);
+    assert.equal(new Set(s.stickers).size, s.stickers.length);
+    assert.ok(s.stickers.length >= 2 && s.stickers.length <= MULTI.stickers.max);
+  }
+});
+
 test('normalizeState fills gaps and rejects unknown values', () => {
   assert.deepEqual(normalizeState(undefined), { ...DEFAULT_STATE });
   const s = normalizeState({ body: 'round', hat: 'sombrero', eyes: 42 });

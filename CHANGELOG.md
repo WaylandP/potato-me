@@ -2,6 +2,26 @@
 
 Notable changes to the source. Version numbers match `package.json`; tags and downloadable release archives are listed separately on [GitHub Releases](https://github.com/WaylandP/potato-me/releases).
 
+## 0.4.0 — 2026-11-02
+
+### Artwork and fitting
+
+- Rebuild all six neckwear pieces around the broad potato torso, including a knitted scarf with fitted ends, formal collars and a smaller lanyard badge.
+- Replace the backward cap with detailed twill/topographic stitching; rebuild smug, angry, worried and flat brows, both resting-hand layers, and sparse transparent stubble.
+- Improve skin-edge blending, blush transparency, laptop support and shaka proportions. Preserve the wrench's red paint and whistle's music notes.
+- Fit closed hat crowns over the body tip and reframe the whole character for tall hats; float the halo above the crown.
+- Align the monocle lens and eyepatch to their eyes, stretch only eyepatch straps, move flowers below hat brims, and place mustaches above each mouth.
+
+### Editor and maintenance
+
+- Bundle Fredoka locally under its SIL Open Font License; wait for the font before drawing custom lettering.
+- Add image-loading feedback and retry, clear the completed loading overlay immediately, and preserve the avatar when using the keyboard skip link.
+- Reveal face parts in option thumbnails, clarify the shared fabric/mug color control, preserve selection focus, and describe the preview for assistive technology.
+- Bound image/composition caches, prevent constant-RNG randomization loops, guard fitting-tool numeric input, repair its mobile control layout, and handle malformed development-server URLs.
+- Add full inventory/interaction audit modes and a real-control UI audit; regenerate documentation artwork from the renderer.
+
+See [PUBLIC_AUDIT.md](docs/PUBLIC_AUDIT.md) for exact visual coverage, test results, repaired findings and remaining limits. All public option keys remain supported. The inventory remains 164 source images; replacement artwork is not counted as additional options.
+
 ## 0.3.1 — 2026-11-01
 
 ### Character fitting

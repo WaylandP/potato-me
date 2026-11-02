@@ -13,12 +13,12 @@
   "layerOrder": [
     "body",
     "cheeks",
+    "neckwear",
     "facialHair",
     "mouth",
     "eyes",
     "brows",
     "eyewear",
-    "neckwear",
     "extra",
     "hat",
     "item",
@@ -1727,7 +1727,7 @@
     },
     {
       "path": "assets/parts/brows/smug.png",
-      "request": "Only the eyebrows: thick dark brown brows, the viewer's-right one raised high, the left one lowered, like the reference.",
+      "request": "Distinct smug sculpted dark potato eyebrows with detailed pores and fine wrinkles.",
       "group": "brows",
       "key": "smug",
       "targetBox": [
@@ -1745,19 +1745,19 @@
         1254
       ],
       "sourceCrop": [
-        29,
-        465,
-        1227,
-        801
+        44,
+        457,
+        1211,
+        733
       ],
       "placedBox": [
-        353,
-        350,
-        671,
-        407
+        340,
+        338,
+        684,
+        419
       ],
       "flippedForConvention": false,
-      "sha256": "994d411cf915563605705a4ff584706bb0e66b2ec4ac04265a7e379c50ba4411"
+      "sha256": "35ae10a977d9f6df3c58d714bf81a9cdcdb72596e3d1839ef3960a146722d240"
     },
     {
       "path": "assets/parts/brows/thick.png",
@@ -1795,7 +1795,7 @@
     },
     {
       "path": "assets/parts/brows/angry.png",
-      "request": "Only the eyebrows: thick brows slanted down toward the center.",
+      "request": "Distinct angry sculpted dark potato eyebrows with detailed pores and fine wrinkles.",
       "group": "brows",
       "key": "angry",
       "targetBox": [
@@ -1813,23 +1813,23 @@
         1254
       ],
       "sourceCrop": [
-        20,
-        456,
-        1238,
-        773
+        41,
+        473,
+        1212,
+        781
       ],
       "placedBox": [
-        380,
-        327,
-        645,
-        396
+        340,
+        333,
+        684,
+        423
       ],
       "flippedForConvention": false,
-      "sha256": "f090d6e20141e5769e2acdf3a88400f0815202c2a6b5e327d8651d4347e26831"
+      "sha256": "b095b48e5dae5a662f0f35ac0f51d535ab7f8f9dc01625385e50672e74c5dc51"
     },
     {
       "path": "assets/parts/brows/worried.png",
-      "request": "Only the eyebrows: thick brows slanted up toward the center, anxious.",
+      "request": "Distinct worried sculpted dark potato eyebrows with detailed pores and fine wrinkles.",
       "group": "brows",
       "key": "worried",
       "targetBox": [
@@ -1847,23 +1847,23 @@
         1254
       ],
       "sourceCrop": [
-        58,
-        451,
-        1197,
-        831
+        80,
+        425,
+        1174,
+        798
       ],
       "placedBox": [
-        408,
-        327,
-        615,
-        396
+        365,
+        328,
+        658,
+        428
       ],
       "flippedForConvention": false,
-      "sha256": "977adf346740d4626a667336fbdf6170c66b1969e5760028924fc55112adc7d2"
+      "sha256": "2d8d87798c7c543079de50ae44f22782bfe7284c82ff4309ff14881c0951c2ff"
     },
     {
       "path": "assets/parts/brows/flat.png",
-      "request": "Only the eyebrows: thick, straight and low, unimpressed.",
+      "request": "Distinct flat sculpted dark potato eyebrows with detailed pores and fine wrinkles.",
       "group": "brows",
       "key": "flat",
       "targetBox": [
@@ -1881,19 +1881,19 @@
         1254
       ],
       "sourceCrop": [
-        16,
-        527,
-        1238,
-        706
+        43,
+        528,
+        1212,
+        677
       ],
       "placedBox": [
-        350,
-        338,
-        674,
-        385
+        340,
+        356,
+        684,
+        400
       ],
       "flippedForConvention": false,
-      "sha256": "0dc7e6681155f2f5fb609bc3922abbe1d462b74ebb053fde0e44b49250aa1c0a"
+      "sha256": "4968645db7384828df7550dfe18859c50641e869085aa1c26aea1e66f38a1a2c"
     },
     {
       "path": "assets/parts/brows/uni.png",
@@ -2561,53 +2561,53 @@
         1254
       ],
       "sourceCrop": [
-        24,
-        328,
-        1234,
-        1033
+        78,
+        388,
+        1172,
+        890
       ],
       "placedBox": [
-        372,
-        555,
-        652,
-        718
+        352,
+        550,
+        672,
+        697
       ],
       "flippedForConvention": false,
-      "sha256": "e8bd357adcef5c11ce091a61dc448017c4c2f13e94fc6f26503ff4b988315aa4"
+      "sha256": "58713104034c9ace703a2af7ccf10bc957c055d68434449752053d88b82620cc"
     },
     {
       "path": "assets/parts/hat/backwardCap.png",
-      "request": "Only the hat: a backward baseball cap in pure red with a subtle woven fabric texture, the adjustable strap and clasp facing the viewer, a button on top, seams, the brim pointing back-right.",
+      "request": "Backward twill cap with tonal topographic embroidery, black snap strap and fine stitched detail.",
       "group": "hat",
       "key": "backwardCap",
       "targetBox": [
-        270,
-        30,
-        794,
-        295
+        300,
+        24,
+        756,
+        300
       ],
       "status": "generated",
       "width": 1024,
       "height": 1024,
       "alpha": true,
       "sourceSize": [
-        1254,
-        1254
+        1536,
+        1024
       ],
       "sourceCrop": [
-        46,
-        235,
-        1232,
-        953
+        175,
+        114,
+        1453,
+        895
       ],
       "placedBox": [
-        313,
-        30,
-        751,
-        295
+        302,
+        24,
+        754,
+        300
       ],
       "flippedForConvention": false,
-      "sha256": "8bdeb7a1c18cf2ec206dae5f1cc6d7c72db6602664273f22187eb791ab2739ca"
+      "sha256": "0b9d5dcdf08a9a033b13916dc4ba5525077155e5f40933ab6359665fcdb49b92"
     },
     {
       "path": "assets/parts/hat/cap.png",
@@ -3428,7 +3428,7 @@
     },
     {
       "path": "assets/parts/neckwear/bowtie.png",
-      "request": "Only the neckwear: a pure red satin bow tie.",
+      "request": "Broad front-only bowtie with a continuous wrap around the potato torso, detailed material and physical construction.",
       "group": "neckwear",
       "key": "bowtie",
       "targetBox": [
@@ -3442,27 +3442,27 @@
       "height": 1024,
       "alpha": true,
       "sourceSize": [
-        1254,
-        1254
+        1536,
+        1024
       ],
       "sourceCrop": [
-        8,
-        302,
-        1246,
-        978
+        0,
+        0,
+        1536,
+        1024
       ],
       "placedBox": [
-        432,
-        627,
-        593,
-        715
+        8,
+        390,
+        1016,
+        728
       ],
       "flippedForConvention": false,
-      "sha256": "a8e2041b418e0063af880168089832bb5471d04fe4578ea188c8552f19b54ee7"
+      "sha256": "926e118ff960063d6b7a389c835e7b96247444fb43ced239f7efa3e618216740"
     },
     {
       "path": "assets/parts/neckwear/tie.png",
-      "request": "Only the neckwear: a pure red necktie with a small knot, hanging down the front.",
+      "request": "Broad front-only tie with a continuous wrap around the potato torso, detailed material and physical construction.",
       "group": "neckwear",
       "key": "tie",
       "targetBox": [
@@ -3476,27 +3476,27 @@
       "height": 1024,
       "alpha": true,
       "sourceSize": [
-        1254,
-        1254
+        1536,
+        1024
       ],
       "sourceCrop": [
-        167,
-        47,
-        1088,
-        1231
+        0,
+        0,
+        1536,
+        1024
       ],
       "placedBox": [
-        463,
-        667,
-        561,
-        793
+        43,
+        198,
+        983,
+        814
       ],
       "flippedForConvention": false,
-      "sha256": "b2ae3ef0f22417270467933da0eac62bdee38640336661109b8c95aaa84b436d"
+      "sha256": "7ab661a7d5b31082b9983ffb4bffed45bfe792c6f5379809644ae53a0b95c2de"
     },
     {
       "path": "assets/parts/neckwear/scarf.png",
-      "request": "Only the neckwear: a chunky pure red knit scarf wrapped once with the ends hanging to one side.",
+      "request": "Wide front-only knitted scarf wrapping a neckless potato body; no exposed back loop.",
       "group": "neckwear",
       "key": "scarf",
       "targetBox": [
@@ -3514,23 +3514,23 @@
         1254
       ],
       "sourceCrop": [
-        121,
-        92,
-        1234,
-        1170
+        0,
+        0,
+        1254,
+        1254
       ],
       "placedBox": [
-        418,
-        605,
-        605,
-        786
+        174,
+        389,
+        902,
+        917
       ],
       "flippedForConvention": false,
-      "sha256": "60869e8648c79f5de8d0aeed2efd232a26da12fc084f50c46f408d41ebf6cceb"
+      "sha256": "591acf8a7654fa0ccd0321a9b3a4edad9461002ab0b0c6db61f5e34a4feed3e5"
     },
     {
       "path": "assets/parts/neckwear/chain.png",
-      "request": "Only the neckwear: a chunky gold chain necklace.",
+      "request": "Broad front-only chain with a continuous wrap around the potato torso, detailed material and physical construction.",
       "group": "neckwear",
       "key": "chain",
       "targetBox": [
@@ -3544,27 +3544,27 @@
       "height": 1024,
       "alpha": true,
       "sourceSize": [
-        1254,
-        1254
+        1800,
+        874
       ],
       "sourceCrop": [
-        59,
-        177,
-        1195,
-        1100
+        0,
+        0,
+        1800,
+        874
       ],
       "placedBox": [
-        400,
-        605,
-        623,
-        786
+        19,
+        295,
+        1006,
+        734
       ],
       "flippedForConvention": false,
-      "sha256": "bfaf030ea99559a3cd30b627614527f19457adc096665a5848932b0cc1d33ada"
+      "sha256": "ee652fb2ce676f32f833e5e746dd893ecae37af729cbb0c278366f5c59c11026"
     },
     {
       "path": "assets/parts/neckwear/lanyard.png",
-      "request": "Only the neckwear: a pure red conference lanyard with a blank white badge hanging on the chest.",
+      "request": "Broad front-only lanyard with a continuous wrap around the potato torso, detailed material and physical construction.",
       "group": "neckwear",
       "key": "lanyard",
       "targetBox": [
@@ -3582,23 +3582,23 @@
         1254
       ],
       "sourceCrop": [
-        124,
-        55,
-        1156,
-        1207
+        10,
+        376,
+        1244,
+        1118
       ],
       "placedBox": [
-        428,
-        613,
-        595,
-        799
+        62,
+        300,
+        962,
+        841
       ],
       "flippedForConvention": false,
-      "sha256": "abe024f83685d022f7657e21fbceea2efd01955361411e9f7d5cb9eccdcacfe4"
+      "sha256": "94eb7a7b7ea3b8b247ff714da8200bb71e39388cec4dfb586535d090bdbf3a32"
     },
     {
       "path": "assets/parts/neckwear/bandana.png",
-      "request": "Only the neckwear: a pure red paisley bandana knotted at the front.",
+      "request": "Broad front-only bandana with a continuous wrap around the potato torso, detailed material and physical construction.",
       "group": "neckwear",
       "key": "bandana",
       "targetBox": [
@@ -3612,23 +3612,23 @@
       "height": 1024,
       "alpha": true,
       "sourceSize": [
-        1254,
-        1254
+        1448,
+        1086
       ],
       "sourceCrop": [
-        42,
-        227,
-        1209,
-        1117
+        0,
+        0,
+        1448,
+        1086
       ],
       "placedBox": [
-        394,
-        605,
-        631,
-        786
+        47,
+        362,
+        1013,
+        855
       ],
       "flippedForConvention": false,
-      "sha256": "01bfecdf8faf03461297450b41221a74952f0dcb71d48f4040acfb41d1194683"
+      "sha256": "3b0908a380a61659a1f95f1f709eabf63ff2bb5c45ca7c43c6f193bbb0410bb3"
     },
     {
       "path": "assets/parts/extra/headphones.png",
@@ -4905,26 +4905,36 @@
     },
     {
       "path": "assets/parts/gesture/rest.png",
-      "request": "Only the viewer's-right arm and hand: resting relaxed at the side, hand open.",
+      "request": "Detailed chunky relaxed potato arm with curled fingers.",
       "group": "gesture",
       "key": "rest",
       "targetBox": [
-        729,
-        603,
-        832,
-        813
+        685,
+        550,
+        950,
+        850
       ],
       "status": "generated",
       "width": 1024,
       "height": 1024,
       "alpha": true,
       "placedBox": [
-        698,
-        594,
-        910,
-        882
+        692,
+        550,
+        943,
+        850
       ],
-      "sha256": "8405ef4e68dcd0748148f1c051778bc36bfe4448e919acb584ad10b79f7a5482"
+      "sha256": "0fd70a05458a67ab52af3a2f55de965e69d7d7c5518cd77dc679524e9a19b268",
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        195,
+        143,
+        1017,
+        1125
+      ]
     },
     {
       "path": "assets/parts/gesture/salute.png",
@@ -4974,26 +4984,36 @@
     },
     {
       "path": "assets/parts/item/none.png",
-      "request": "Only the viewer's-left arm and hand: the arm resting relaxed at the side, hand open, holding nothing.",
+      "request": "Detailed chunky relaxed potato arm with curled fingers.",
       "group": "item",
       "key": "none",
       "targetBox": [
-        192,
-        603,
-        295,
-        813
+        685,
+        550,
+        950,
+        850
       ],
       "status": "generated",
       "width": 1024,
       "height": 1024,
       "alpha": true,
       "placedBox": [
-        172,
-        575,
-        380,
-        901
+        692,
+        550,
+        943,
+        850
       ],
-      "sha256": "fa24373eeb0484bec15137b0d6c21b755ebc210f70330c693024ba9b4cc6ff0e"
+      "sha256": "0fd70a05458a67ab52af3a2f55de965e69d7d7c5518cd77dc679524e9a19b268",
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        195,
+        143,
+        1017,
+        1125
+      ]
     },
     {
       "path": "assets/parts/item/phone.png",

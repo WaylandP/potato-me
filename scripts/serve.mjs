@@ -25,11 +25,13 @@ const TYPES = {
   '.txt': 'text/plain; charset=utf-8',
   '.ico': 'image/x-icon',
   '.webmanifest': 'application/manifest+json',
+  '.ttf': 'font/ttf',
 };
 
 const server = createServer((req, res) => {
-  const url = new URL(req.url, `http://${req.headers.host}`);
-  let pathname = decodeURIComponent(url.pathname);
+  let pathname;
+  try { pathname = decodeURIComponent(new URL(req.url, 'http://localhost').pathname); }
+  catch { res.writeHead(400).end('Malformed URL'); return; }
   if (pathname.endsWith('/')) pathname += 'index.html';
 
   // Resolve inside the project folder only.
