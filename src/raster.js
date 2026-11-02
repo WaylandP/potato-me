@@ -35,7 +35,7 @@ export function availableOptions() {
   for (const [group, options] of Object.entries(OPTIONS)) {
     if (group === 'body') out.body = Object.fromEntries(Object.entries(options).filter(([shape]) => Object.keys(SKINS).some((s) => hasBody(shape, s))));
     else if (group === 'skin') out.skin = Object.fromEntries(Object.entries(options).filter(([skin]) => Object.keys(OPTIONS.body).some((b) => hasBody(b, skin))));
-    else if (['bg', 'pattern', 'hatColor', 'hairColor'].includes(group)) out[group] = options;
+    else if (['character', 'bg', 'pattern', 'hatColor', 'hairColor'].includes(group)) out[group] = options;
     else out[group] = Object.fromEntries(Object.entries(options).filter(([key]) => hasPart(group, key)));
   }
   return out;
@@ -46,7 +46,7 @@ export function missingParts() {
   const avail = availableOptions();
   const out = {};
   for (const [group, options] of Object.entries(OPTIONS)) {
-    if (['bg', 'pattern', 'hatColor', 'hairColor', 'body', 'skin'].includes(group)) continue;
+    if (['character', 'bg', 'pattern', 'hatColor', 'hairColor', 'body', 'skin'].includes(group)) continue;
     const missing = Object.keys(options).filter((k) => !(k in avail[group]));
     if (missing.length) out[group] = missing;
   }
@@ -193,10 +193,13 @@ async function processedPart(group, key, src, { hatColor, hairColor }) {
   const id = ctx.getImageData(0, 0, c.width, c.height);
   if (wantsRecolor) remap(id.data, RED_WINDOW, RED, hatColor);
   if (wantsHair) {
-    // This image contains hair only: preserve strand contrast and alpha,
+    // Preserve strand contrast and alpha, protecting the ponytail's satin tie,
     // while using an independent material color for the whole hairstyle.
     const target = hexToRgb(hairColor);
     for (let i = 0; i < id.data.length; i += 4) if (id.data[i + 3]) {
+      const x = (i / 4 % c.width) * CANVAS / c.width, y = Math.floor(i / 4 / c.width) * CANVAS / c.height;
+      const r = id.data[i], g = id.data[i + 1], b = id.data[i + 2];
+      if (key === 'ponytail' && x > 640 && x < 725 && y > 385 && y < 465 && r > g * 1.8 && r - g > 3 * (g - b)) continue;
       const light = (.2126 * id.data[i] + .7152 * id.data[i + 1] + .0722 * id.data[i + 2]) / 75;
       for (let c = 0; c < 3; c++) id.data[i + c] = Math.min(255, target[c] * Math.pow(light, .9));
     }
@@ -471,7 +474,7 @@ export async function renderPotato(rawState, opts = {}) {
   const surface = bodySurface(body, s.body);
   const workSize = thumbs ? 256 : 1024;
   const transforms = layers.map((l, i) => l.group === 'body' ? l.transform : surfaceTransform(l, imgs[i], surface, s));
-  const head = layers.flatMap((l, i) => ['hat', 'hair'].includes(l.group) ? [{ ...l, img: imgs[i], transform: transforms[i] }] : []);
+  const head = layers.flatMap((l, i) => ['hat', 'hair', 'item', 'gesture', 'extra', 'neckwear'].includes(l.group) ? [{ ...l, img: imgs[i], transform: transforms[i] }] : []);
   if (head.length) {
     const frame = headFrame(head);
     ctx.translate(512, 512); ctx.scale(frame.scale, frame.scale); ctx.translate(-512, -frame.centerY);
@@ -482,11 +485,11 @@ export async function renderPotato(rawState, opts = {}) {
     const transform = transforms[i];
     const plane = integratedLayer(imgs[i], l.group, l.key, transform, surface, workSize);
     const shadow = l.group === 'hat' && l.key === 'halo' ? null : contactShadow(plane, body, l.group === 'gesture' && l.key === 'hip' ? 'handOnHip' : l.group, workSize);
-    if (shadow) ctx.drawImage(shadow, 0, 0, CANVAS, CANVAS);
+    if (shadow) ctx.drawImage(shadow, ...(shadow.worldBox || [0, 0, CANVAS, CANVAS]));
     // Wearables can extend beyond the original 1024 world canvas. Draw their
     // original image into the fitted scene so tall tips are never pre-clipped.
     if (['hair', 'hat', 'extra', 'neckwear', 'eyewear', 'brows', 'jewelry'].includes(l.group)) drawTransformed(ctx, imgs[i], l.group, l.key, transform);
-    else ctx.drawImage(plane, 0, 0, CANVAS, CANVAS);
+    else ctx.drawImage(plane, ...(plane.worldBox || [0, 0, CANVAS, CANVAS]));
     if (l.group === 'item' && l.key === 'laptop') await drawStickers(ctx, s, thumbs, transform);
     if (l.group === 'item' && l.key === 'sign') drawSignText(ctx, s, transform);
     if (l.group === 'hat') drawCapText(ctx, s, transform);

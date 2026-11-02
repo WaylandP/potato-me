@@ -16,11 +16,11 @@ const root = fileURLToPath(new URL('..', import.meta.url));
 
 // Five potatoes that show off the range in the banner and link-preview card.
 export const HERO_POTATOES = [
-  '#body=pear&skin=pink&hair=waves&hairColor=blonde&hat=flowerCrown&neckwear=pendant&item=bouquet&gesture=hip&eyes=almond&brows=softArch&mouth=smile&bg=mint&pattern=spotlight',
-  '#body=petite&skin=gold&hair=curls&hairColor=black&hat=bow&hatColor=pink&jewelry=pearlDrops&item=teacup&gesture=palmUp&eyes=joyLashes&brows=softArch&mouth=laugh&bg=coral',
-  '#',
+  '#character=female&body=pear&skin=russet&hair=ponytail&hairColor=chestnut&hat=none&neckwear=pendant&item=bouquet&gesture=hip&eyes=almond&brows=softArch&mouth=roseSmile&bg=mint&pattern=spotlight',
+  '#character=female&body=petite&skin=gold&hair=curls&hairColor=black&hat=bow&hatColor=pink&jewelry=pearlDrops&item=teacup&gesture=palmUp&eyes=joyLashes&brows=softArch&mouth=laugh&bg=coral',
+  '#capText=A%2BW',
   '#body=long&skin=purple&hat=wizard&hatColor=purple&eyes=wide&brows=raised&mouth=grin&item=book&gesture=fist&bg=navy&pattern=stars',
-  '#body=round&skin=ghost&hair=braids&hairColor=copper&hat=sunhat&hatColor=teal&item=palette&gesture=peace&eyes=almond&brows=softArch&mouth=smile&bg=sky',
+  '#character=female&body=round&skin=ghost&hair=braids&hairColor=copper&hat=sunhat&hatColor=teal&item=palette&gesture=peace&eyes=almond&brows=softArch&mouth=smile&bg=sky',
 ];
 
 let chromium;
@@ -89,8 +89,8 @@ p{position:absolute;left:76px;top:200px;margin:0;font-size:34px;font-weight:600;
     ['Tiny victory.', '#body=long&skin=purple&hat=wizard&hatColor=purple&item=trophy&gesture=fist&eyes=stars&brows=raised&mouth=grin&bg=navy'],
     ['Chef approved.', '#body=lumpy&skin=sweet&hat=chef&item=pizza&gesture=ok&eyes=wink&brows=smug&mouth=tongue&bg=mint'],
     ['Make something.', HERO_POTATOES[4]],
-    ['One more chapter.', '#skin=blue&hair=bun&hairColor=silver&hat=none&eyewear=catEye&hatColor=red&jewelry=hoops&item=book&gesture=palmUp&eyes=almond&brows=softArch&mouth=smile&bg=cream'],
-    ['Your words.', '#body=petite&skin=pink&hair=pixie&hairColor=rose&hat=none&item=sign&sign=LOVE%20YOU&gesture=fingerHeart&eyes=lashWink&brows=softArch&mouth=smile&bg=lavender'],
+    ['One more chapter.', '#character=female&skin=blue&hair=bun&hairColor=silver&hat=none&eyewear=catEye&hatColor=red&jewelry=hoops&item=book&gesture=palmUp&eyes=almond&brows=softArch&mouth=smile&bg=cream'],
+    ['Your words.', '#character=female&body=petite&skin=pink&hair=pixie&hairColor=rose&hat=none&item=sign&sign=LOVE%20YOU&gesture=fingerHeart&eyes=lashWink&brows=softArch&mouth=smile&bg=lavender'],
   ];
   const gallery = [];
   for (const [label, hash] of gallerySpec) {

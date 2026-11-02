@@ -89,3 +89,23 @@ test('randomState is repeatable with a seeded rng and always valid', () => {
     assert.equal(s.sign, DEFAULT_STATE.sign);
   }
 });
+
+test('character starters preserve body, skin, props, text and background', async () => {
+  const { characterLook } = await import('../src/options.js');
+  const custom = normalizeState({ body: 'pear', skin: 'purple', item: 'book', sign: 'LOVE YOU', bg: 'mint', stickers: ['books'] });
+  const female = characterLook(custom, 'female');
+  for (const key of ['body', 'skin', 'item', 'sign', 'bg', 'stickers']) assert.deepEqual(female[key], custom[key]);
+  assert.equal(female.character, 'female'); assert.equal(female.mouth, 'roseSmile'); assert.equal(female.hair, 'waves');
+  assert.deepEqual(decodeState(encodeState(female)), female);
+  const restored = characterLook(female, 'male', { hair: 'pixie', mouth: 'laugh', jewelry: 'hoops' });
+  assert.equal(restored.hair, 'pixie'); assert.equal(restored.jewelry, 'hoops');
+  assert.equal(restored.body, 'pear');
+});
+
+test('character labels never restrict manually chosen parts', () => {
+  for (const character of ['male', 'female']) {
+    const s = normalizeState({ character, hair: 'ponytail', facialHair: 'beard', jewelry: 'pearlDrops', mouth: 'roseSmile' });
+    assert.equal(s.hair, 'ponytail'); assert.equal(s.facialHair, 'beard');
+    assert.deepEqual(decodeState(encodeState(s)), s);
+  }
+});

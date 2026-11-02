@@ -1,4 +1,4 @@
-import { OPTIONS, MULTI, TEXT, PRESETS, BG_COLORS, HAT_COLORS, HAIR_COLORS, STICKERS, DEFAULT_STATE } from './options.js';
+import { OPTIONS, MULTI, TEXT, PRESETS, BG_COLORS, HAT_COLORS, HAIR_COLORS, STICKERS, DEFAULT_STATE, CHARACTER_LOOK_KEYS, characterLook } from './options.js';
 import { encodeState, decodeState, cleanText } from './state.js';
 import { surprise } from './surprise.js';
 import { renderPotato, exportPng, availableOptions, missingParts, drawableState, cropBox, hasSticker, partSrc } from './raster.js';
@@ -62,6 +62,7 @@ const MISSING = missingParts();
 
 let state = drawableState(decodeState(location.hash));
 let activeTab = 'body';
+const savedLooks = new Map();
 
 const $ = (sel) => document.querySelector(sel);
 const preview = $('#preview');
@@ -299,6 +300,7 @@ function renderTabs() {
 
 function render() {
   renderPreview();
+  for (const input of document.querySelectorAll('input[name="character"]')) input.checked = input.value === state.character;
   renderTabs();
   // Keep focus on the option the person just picked after the panel redraws.
   const focused = document.activeElement;
@@ -322,6 +324,13 @@ $('.skip').addEventListener('click', e => {
   $('#controls').scrollIntoView({ block: 'start' });
 });
 $('#retry-preview').addEventListener('click', () => render());
+
+document.querySelector('.character-picker').addEventListener('change', e => {
+  if (e.target.name !== 'character') return;
+  savedLooks.set(state.character, Object.fromEntries(CHARACTER_LOOK_KEYS.map(key => [key, state[key]])));
+  const next = e.target.value;
+  commit(characterLook(state, next, savedLooks.get(next)));
+});
 
 panel.addEventListener('click', (e) => {
   const btn = e.target.closest('.opt');
@@ -368,14 +377,15 @@ $('#crop-toggle').addEventListener('change', (e) => {
 });
 
 $('#randomize').addEventListener('click', () => {
-  commit(surprise(Math.random, AVAILABLE, { sign: state.sign, capText: state.capText }));
+  commit(surprise(Math.random, AVAILABLE, { sign: state.sign, capText: state.capText, character: state.character }));
   preview.classList.remove('wiggle');
   void preview.offsetWidth; // restart the animation
   preview.classList.add('wiggle');
 });
 
 $('#reset').addEventListener('click', () => {
-  commit(DEFAULT_STATE);
+  savedLooks.delete(state.character);
+  commit(characterLook(DEFAULT_STATE, state.character));
   toast('Back to the starter potato.');
 });
 

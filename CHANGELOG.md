@@ -2,6 +2,16 @@
 
 Notable changes to the source. Version numbers match `package.json`; tags and downloadable release archives are listed separately on [GitHub Releases](https://github.com/WaylandP/potato-me/releases).
 
+## 0.6.0 — 2026-11-02
+
+- Add a Male/Female starting-look switch with keyboard support, remembered session styling and share-link state. Keep all controls available in both modes; preserve body, skin, props, text, stickers and background when switching.
+- Match both arms to robust shadow/midtone/highlight samples from the selected body, including cool shadows and pale highlights. Preserve held-object materials with masks.
+- Calibrate palm spans and shoulder anchors; frame the entire character instead of shrinking each arm to fit the crop independently. Pad limb layers before framing to avoid early clipping.
+- Replace the hip arm with a shorter, textured pose and place its hand against the torso. Preserve shaka fingers where they cross the body.
+- Add a detailed side ponytail with a fitted face opening and protected satin tie, plus a rose-tinted smile. The catalog now contains 224 source images.
+- Replace the low-resolution frown and wavy mouth, the square glasses with visible folded temples, and the party hat with its exposed underside. Recolor closed-mouth edges and dot-eye rims with the selected potato skin.
+- Use HI THERE! for the default sign. Update the documentation and distinguish rendering checks from visual approval; see [COHESION_REVIEW.md](docs/COHESION_REVIEW.md).
+
 ## 0.5.0 — 2026-11-02
 
 ### More ways to make it yours

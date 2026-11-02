@@ -28,19 +28,27 @@ export function bodySurface(img, shape) {
   };
   let crownY = 154;
   for (let y = 12; y < 80; y++) if (original.data[(y * SIZE + 128) * 4 + 3] > 245) { crownY = y * 4; break; }
-  const shoulderY = { classic: 638, lumpy: 648, round: 620, long: 640, pear: 638, petite: 640 }[shape];
+  const shoulderY = { classic: 608, lumpy: 618, round: 590, long: 610, pear: 608, petite: 610 }[shape];
   const [left, right] = row(shoulderY);
   const eyeY = { classic: 432, lumpy: 439, round: 438, long: 433, pear: 430, petite: 475 }[shape];
   const [faceLeft, faceRight] = row(eyeY);
   const center = (faceLeft + faceRight) / 2;
   const materialSamples = [];
-  for (let y = Math.round(eyeY / 4); y < Math.round((shoulderY - 30) / 4); y += 2) for (let x = Math.round((center - (faceRight - faceLeft) * .22) / 4); x < Math.round((center + (faceRight - faceLeft) * .22) / 4); x += 2) {
+  for (let y = Math.round(eyeY / 4); y < Math.round((shoulderY + 105) / 4); y += 2) for (let x = Math.round((center - (right - left) * .39) / 4); x < Math.round((center + (right - left) * .39) / 4); x += 2) {
     const i = (y * SIZE + x) * 4;
     if (original.data[i + 3] > 245) materialSamples.push([original.data[i], original.data[i + 1], original.data[i + 2]]);
   }
   materialSamples.sort((a, b) => lum(...a) - lum(...b));
-  const material = materialSamples[Math.floor(materialSamples.length * .48)] || [180, 125, 70];
-  const surface = { ...original, soft: soft.data, row, eyeY, shoulderY, left, right, faceWidth: faceRight - faceLeft, featureWidth: clamp(faceRight - faceLeft, 350, 480), center, material, crownY };
+  const average = rows => rows.length ? [0, 1, 2].map(c => rows.reduce((n, rgb) => n + rgb[c], 0) / rows.length) : [180, 125, 70];
+  // Robust material samples, not one arbitrary freckle or shiny pixel. The
+  // same material palette is used for both arms; baked shading stays local.
+  const quantile = q => {
+    const at = Math.floor(materialSamples.length * q), spread = Math.max(4, Math.floor(materialSamples.length * .05));
+    return average(materialSamples.slice(Math.max(0, at - spread), at + spread));
+  };
+  const material = quantile(.55);
+  const palette = [quantile(.10), material, quantile(.90)];
+  const surface = { ...original, soft: soft.data, row, eyeY, shoulderY, left, right, faceWidth: faceRight - faceLeft, featureWidth: clamp(faceRight - faceLeft, 350, 480), center, material, palette, crownY };
   planes.set(img, surface); return surface;
 }
 function polygonContains(x, y, polygon) {
@@ -75,7 +83,7 @@ function skinAnalysis(img, group, key) {
       return ((nx - .5) / inset[0]) ** 2 + ((ny - inset[1]) / inset[2]) ** 2 < 1;
     }
     if (group === 'eyes') {
-      if (['happy', 'squint', 'dead', 'joyLashes'].includes(key) || (['wink', 'lashWink'].includes(key) && x >= 128)) return false;
+      if (['dots', 'happy', 'squint', 'dead', 'joyLashes'].includes(key) || (['wink', 'lashWink'].includes(key) && x >= 128)) return false;
       const b = eyeBoxes[x < 128 ? 0 : 1];
       const nx = (x - b[0]) / (b[2] - b[0]), ny = (y - b[1]) / (b[3] - b[1]);
       const opening = { smug: [.68, .22], sleepy: [.76, .12], angry: [.62, .23], side: [.62, .30], wink: [.62, .27] }[key] || [.5, .39];
@@ -88,7 +96,7 @@ function skinAnalysis(img, group, key) {
     const x = p % SIZE, y = (p / SIZE) | 0;
     const max = Math.max(r, g, b), min = Math.min(r, g, b);
     const facial = ['eyes', 'mouth', 'cheeks', 'facialHair'].includes(group);
-    const warm = facial ? r > g * .98 && g > b * 1.03 && r - b > 12 && max > 38 : r > g * 1.035 && g > b * 1.07 && r - b > 40 && max > 58 && (max - min) / max > .28;
+    const warm = facial ? r > g * .98 && g > b * 1.03 && r - b > 12 && max > 38 : r >= g * .97 && g >= b * .98 && r - b > 5 && max > 20;
     candidate[p] = data[i + 3] > 12 && warm && !protectedRegions.some(poly => polygonContains(x * 4, y * 4, poly)) && !enclosedFeature(x, y) && !(group === 'facialHair' && max < 145) ? 1 : 0;
     dist[p] = data[i + 3] < 20 ? 0 : 100;
   }
@@ -102,12 +110,33 @@ function skinAnalysis(img, group, key) {
     const p = queue[head++];
     for (const q of [p - 1, p + 1, p - SIZE, p + SIZE]) if (q >= 0 && q < count && candidate[q] && !mask[q]) { mask[q] = 1; queue[tail++] = q; }
   }
+  // Gestures contain nothing except potato skin. Mask their complete alpha,
+  // including cool shadows, pale highlights and dark pores. On mixed layers,
+  // fill only tiny enclosed pigment gaps; prop masks remain authoritative.
+  if (group === 'mouth' && ['smirk', 'smile', 'frown', 'flat', 'wavy', 'kiss', 'whistle'].includes(key)) {
+    // Closed lips are entirely potato material, including neutral crease
+    // shadows. A warm-color test alone leaves gray/green rims on other skins.
+    for (let p = 0; p < count; p++) mask[p] = data[p * 4 + 3] > 0 && !protectedRegions.some(poly => polygonContains((p % SIZE) * 4, Math.floor(p / SIZE) * 4, poly)) ? 1 : 0;
+  } else if (group === 'gesture' || (group === 'item' && key === 'none')) {
+    for (let p = 0; p < count; p++) mask[p] = data[p * 4 + 3] > 0 ? 1 : 0;
+  } else if (group === 'item') {
+    const filled = mask.slice();
+    for (let y = 2; y < SIZE - 2; y++) for (let x = 2; x < SIZE - 2; x++) {
+      const p = y * SIZE + x;
+      if (mask[p] || data[p * 4 + 3] < 20 || protectedRegions.some(poly => polygonContains(x * 4, y * 4, poly))) continue;
+      let near = 0;
+      for (const [dx, dy] of [[-2,0],[2,0],[0,-2],[0,2],[-1,-1],[1,1],[-1,1],[1,-1]]) near += mask[p + dy * SIZE + dx];
+      if (near >= 6) filled[p] = 1;
+    }
+    mask.set(filled);
+  }
   for (let y = 1; y < SIZE; y++) for (let x = 1; x < SIZE; x++) { const p = y * SIZE + x; dist[p] = Math.min(dist[p], dist[p - 1] + 1, dist[p - SIZE] + 1); }
   for (let y = SIZE - 2; y >= 0; y--) for (let x = SIZE - 2; x >= 0; x--) { const p = y * SIZE + x; dist[p] = Math.min(dist[p], dist[p + 1] + 1, dist[p + SIZE] + 1); }
   const samples = [];
   for (let p = 0; p < count; p++) if (mask[p]) samples.push(lum(data[p * 4], data[p * 4 + 1], data[p * 4 + 2]));
   samples.sort((a, b) => a - b);
-  const base = samples[Math.floor(samples.length * .65)] || 150;
+  const base = samples[Math.floor(samples.length * .55)] || 150;
+  const levels = [.10, .55, .90].map(q => samples[Math.floor(samples.length * q)] || base);
   const limb = group === 'item' || group === 'gesture';
   let edge = group === 'item' ? 0 : SIZE - 1;
   if (limb) for (let p = 0; p < count; p++) if (mask[p] && data[p * 4 + 3] > 200) {
@@ -120,11 +149,11 @@ function skinAnalysis(img, group, key) {
   const root = [edge * 4, (n ? totalY / n : 160) * 4];
   const c = canvas(SIZE), ctx = c.getContext('2d'), id = ctx.createImageData(SIZE, SIZE);
   for (let p = 0; p < count; p++) {
-    const i = p * 4; id.data[i] = 255; id.data[i + 1] = Math.round(255 * smooth(dist[p] / 2.5)); id.data[i + 2] = 0;
+    const i = p * 4; id.data[i] = 255; id.data[i + 1] = Math.round(255 * smooth(dist[p] / 2.5)); id.data[i + 2] = (FIT.skinFront?.[`${group}/${key}`] || []).some(poly => polygonContains((p % SIZE) * 4, Math.floor(p / SIZE) * 4, poly)) ? 255 : 0;
     id.data[i + 3] = mask[p] ? 255 : 0;
   }
   ctx.putImageData(id, 0, 0);
-  const value = { mask: c, base, root, dist, data, skin: mask };
+  const value = { mask: c, base, levels, root, dist, data, skin: mask };
   skins.set(img, value); return value;
 }
 function projected(point, t, pivot) {
@@ -143,35 +172,27 @@ export function surfaceTransform(layer, img, surface, state) {
     if (specificRoot?.flip) t.flip = !t.flip;
     // The laptop sits partly in front of the torso, as an object held in a
     // bent arm would. Its supporting hand must not be shrunk into a thumbnail.
-    const inset = specificRoot?.inset ?? (key === 'laptop' ? 135 : key === 'shaka' ? 58 : 30);
-    if (key === 'laptop') t.scale = 1.05;
-    if (key === 'shaka') t.scale *= 1.16;
-    if (specificRoot?.scale) t.scale = specificRoot.scale;
+    const palmWidth = FIT.palmWidth[group][key];
+    const handSize = clamp((surface.right - surface.left) * .23, 85, 120);
+    t.scale = handSize / palmWidth * (specificRoot?.foreshorten || 1);
+    const inset = specificRoot?.inset ?? (key === 'laptop' ? 125 : 65);
     if (specificRoot?.rot) t.rot = specificRoot.rot;
     const x = group === 'item' ? surface.left + inset : surface.right - inset;
     const y = surface.shoulderY + (specificRoot?.dy || 0);
     move(root, [x, y]);
     t.root = [x, y];
-    // Keep the hand/prop inside an avatar crop without moving its shoulder.
-    const alpha = skinAnalysis(img, group, key).data;
-    for (let attempt = 0; attempt < 18; attempt++) {
-      let outside = false;
-      for (let p = 0; p < SIZE * SIZE; p += 2) if (alpha[p * 4 + 3] > 48) {
-        const at = projected([(p % SIZE) * 4, ((p / SIZE) | 0) * 4], t, pivot);
-        if (Math.hypot(at[0] - 512, at[1] - 512) > 492) { outside = true; break; }
-      }
-      if (!outside) break;
-      t.scale *= .95;
-      move(root, t.root);
-    }
+    // Crop fitting happens to the WHOLE character. Never shrink one hand
+    // independently just because its prop reaches farther from the body.
   } else if (group === 'hair') {
     // Fit the face opening, not just the outside of a wig. The crown follows
     // the body's actual top; length is bounded independently of body width.
     const referenceY = box[1] + height * (['pixie', 'bun'].includes(key) ? .78 : .52);
-    t.scale = Math.min(1.6, Math.max(surface.faceWidth, surface.featureWidth) * 1.35 / width);
+    const openingCenter = key === 'ponytail' ? 465 : center[0];
+    const openingWidth = key === 'ponytail' ? width * .80 : width;
+    t.scale = Math.min(1.6, Math.max(surface.faceWidth, surface.featureWidth) * 1.35 / openingWidth);
     const targetTop = surface.crownY - 32;
     t.aspectY = (surface.eyeY - targetTop) / ((referenceY - box[1]) * t.scale);
-    move([center[0], referenceY], [surface.center, surface.eyeY]);
+    move([openingCenter, referenceY], [surface.center, surface.eyeY]);
     // The hat's own alpha occludes hair. A horizontal clipping line would
     // visibly cut side locks, and would incorrectly erase hair above a band.
   } else if (group === 'eyes') {
@@ -183,7 +204,7 @@ export function surfaceTransform(layer, img, surface, state) {
     const lift = key === 'raised' ? 21 : key === 'worried' ? 8 : 0;
     move(center, [surface.center, surface.eyeY - (['wide', 'surprised', 'stars', 'heart', 'rolling'].includes(state.eyes) ? 76 : 56) - lift]);
   } else if (group === 'mouth') {
-    const ratio = { smirk: .48, grin: .49, laugh: .46, smile: .45, flat: .35, frown: .39, oh: .20, tongue: .44, grit: .42, whistle: .23, kiss: .23, wavy: .40 }[key];
+    const ratio = { smirk: .48, grin: .49, laugh: .46, smile: .45, roseSmile: .33, flat: .35, frown: .39, oh: .20, tongue: .44, grit: .42, whistle: .23, kiss: .23, wavy: .40 }[key];
     // Musical notes sit beside the whistling lips; they are not part of the
     // mouth's anatomical width or center.
     t.scale = surface.featureWidth * ratio / (key === 'whistle' ? 108 : width);
@@ -373,51 +394,63 @@ export function integratedLayer(img, group, key, t, surface, size) {
   const cacheKey = `${idFor(img)}|${idFor(surface)}|${group}/${key}|${size}|${JSON.stringify(t)}`;
   if (integrated.has(cacheKey)) return integrated.get(cacheKey);
   const result = integrate(img, group, key, t, surface, size);
-  integrated.set(cacheKey, result, size * size);
+  integrated.set(cacheKey, result, result.width * result.height);
   return result;
 }
 function integrate(img, group, key, t, surface, size) {
-  const c = canvas(size), ctx = c.getContext('2d', { willReadFrequently: true });
-  ctx.scale(size / CANVAS, size / CANVAS); drawTransformed(ctx, img, group, key, t);
+  const limb = group === 'item' || group === 'gesture';
+  const padding = limb ? 512 : 0, dimension = limb ? size * 2 : size;
+  const c = canvas(dimension), ctx = c.getContext('2d', { willReadFrequently: true });
+  c.worldBox = [-padding, -padding, CANVAS + padding * 2, CANVAS + padding * 2];
+  ctx.scale(size / CANVAS, size / CANVAS); ctx.translate(padding, padding);
+  drawTransformed(ctx, img, group, key, t);
   if ((group === 'cheeks' && key === 'on') || (group === 'facialHair' && key === 'stubble')) {
     // Blush and fine stubble reveal the body's own texture through them.
     ctx.globalCompositeOperation = 'destination-in'; ctx.globalAlpha = key === 'on' ? .32 : .58;
     ctx.fillRect(0, 0, CANVAS, CANVAS); return c;
   }
-  const limb = group === 'item' || group === 'gesture', face = group === 'eyes' || group === 'mouth' || group === 'cheeks' || (group === 'facialHair' && ['stubble', 'beard'].includes(key));
+  const face = group === 'eyes' || (group === 'mouth' && key !== 'roseSmile') || group === 'cheeks' || (group === 'facialHair' && ['stubble', 'beard'].includes(key));
   if (!limb && !face) return c;
   const analysis = skinAnalysis(img, group, key);
-  const mask = canvas(size), mctx = mask.getContext('2d', { willReadFrequently: true });
-  mctx.scale(size / CANVAS, size / CANVAS); drawTransformed(mctx, analysis.mask, group, key, t);
-  const weights = mctx.getImageData(0, 0, size, size).data;
-  const id = ctx.getImageData(0, 0, size, size), data = id.data;
+  const mask = canvas(dimension), mctx = mask.getContext('2d', { willReadFrequently: true });
+  mctx.scale(size / CANVAS, size / CANVAS); mctx.translate(padding, padding); drawTransformed(mctx, analysis.mask, group, key, t);
+  const weights = mctx.getImageData(0, 0, dimension, dimension).data;
+  const id = ctx.getImageData(0, 0, dimension, dimension), data = id.data;
   const sample = (x, y, raw = false) => {
     const sx = clamp(Math.round(x / 4), 0, 255), sy = clamp(Math.round(y / 4), 0, 255), p = (sy * 256 + sx) * 4;
     const b = raw ? surface.data : surface.soft; return [b[p], b[p + 1], b[p + 2], b[p + 3] / 255];
   };
-  const shoulder = limb ? sample(t.root[0] + (group === 'item' ? 115 : -115), t.root[1] - 40) : null;
-  const front = limb ? [...surface.material, 1] : null;
-  const target = limb ? shoulder.map((v, i) => v * .40 + front[i] * .60) : null;
-  for (let y = 0; y < size; y++) for (let x = 0; x < size; x++) {
-    const i = (y * size + x) * 4; if (!data[i + 3]) continue;
-    const wx = x * CANVAS / size, wy = y * CANVAS / size, w = weights[i + 3] / 255;
+  const paletteColor = value => {
+    const [lo, mid, hi] = analysis.levels;
+    const p = surface.palette;
+    if (value < lo) return p[0].map(v => v * Math.pow(value / Math.max(1, lo), .9));
+    if (value > hi) return p[2].map(v => v + (255 - v) * (value - hi) / Math.max(1, 255 - hi) * .8);
+    const first = value < mid, k = first ? (value - lo) / Math.max(1, mid - lo) : (value - mid) / Math.max(1, hi - mid);
+    const a = first ? p[0] : p[1], b = first ? p[1] : p[2];
+    return a.map((v, c) => v + (b[c] - v) * k);
+  };
+  for (let y = 0; y < dimension; y++) for (let x = 0; x < dimension; x++) {
+    const i = (y * dimension + x) * 4; if (!data[i + 3]) continue;
+    const wx = x * CANVAS / size - padding, wy = y * CANVAS / size - padding, w = weights[i + 3] / 255;
     if (w > .01) {
-      const color = target || sample(wx, wy);
-      const relative = Math.pow(lum(data[i], data[i + 1], data[i + 2]) / analysis.base, face ? .85 : .9);
+      const valueLum = lum(data[i], data[i + 1], data[i + 2]);
+      const color = limb ? paletteColor(valueLum) : sample(wx, wy);
+      const relative = limb ? 1 : Math.pow(valueLum / analysis.base, .85);
       for (let channel = 0; channel < 3; channel++) {
         const value = Math.min(255, color[channel] * relative);
         data[i + channel] = data[i + channel] * (1 - w) + value * w;
       }
       if (face) {
         // Translucent skin rims reveal the body's own pores and shading.
-        data[i + 3] *= 1 - w * (.16 + .84 * (1 - weights[i + 1] / 255));
+        const rimFade = group === 'mouth' ? .20 : .38;
+        data[i + 3] *= 1 - w * (rimFade + (1 - rimFade) * (1 - weights[i + 1] / 255));
       }
     }
     if (limb && w > .01) {
       const distance = Math.hypot(wx - t.root[0], wy - t.root[1]);
       // Occlude only exposed potato skin at the attachment. A laptop lid,
       // drink or other protected prop can overlap the torso without holes.
-      const underBody = w * sample(wx, wy, true)[3] * smooth((104 - distance) / 50);
+      const underBody = w * (1 - weights[i + 2] / 255) * sample(wx, wy, true)[3] * smooth((104 - distance) / 50);
       data[i + 3] *= 1 - underBody;
     }
   }
@@ -428,10 +461,11 @@ export function contactShadow(layer, body, group, size) {
   const settings = { handOnHip: [5, 3, .18], jewelry: [3, 2, .17], hair: [7, 4, .23], eyes: [4, 0, .13], mouth: [3, 1, .10], hat: [9, 7, .25], eyewear: [4, 3, .17], neckwear: [8, 5, .20], extra: [6, 3, .18], facialHair: [3, 2, .12], brows: [2, 1, .10] }[group];
   if (!settings) return null;
   if (shadows.has(layer)) return shadows.get(layer);
-  const c = canvas(size), ctx = c.getContext('2d', { willReadFrequently: true });
+  const c = canvas(layer.width), ctx = c.getContext('2d', { willReadFrequently: true });
+  c.worldBox = layer.worldBox || [0, 0, CANVAS, CANVAS];
   ctx.filter = `blur(${settings[0] * size / CANVAS}px)`;
   ctx.drawImage(layer, 0, settings[1] * size / CANVAS);
-  ctx.filter = 'none'; ctx.globalCompositeOperation = 'source-in'; ctx.fillStyle = `rgba(27, 15, 8, ${settings[2]})`; ctx.fillRect(0, 0, size, size);
-  ctx.globalCompositeOperation = 'destination-in'; ctx.drawImage(body, 0, 0, size, size);
+  ctx.filter = 'none'; ctx.globalCompositeOperation = 'source-in'; ctx.fillStyle = `rgba(27, 15, 8, ${settings[2]})`; ctx.fillRect(0, 0, c.width, c.height);
+  ctx.globalCompositeOperation = 'destination-in'; ctx.drawImage(body, -c.worldBox[0] * size / CANVAS, -c.worldBox[1] * size / CANVAS, size, size);
   shadows.set(layer, c); return c;
 }

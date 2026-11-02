@@ -59,6 +59,14 @@
     </section>
 
     <section id="controls" class="controls" aria-label="Customize" tabindex="-1">
+      <fieldset class="character-picker" aria-describedby="character-help">
+        <legend>Your potato</legend>
+        <div class="character-switch">
+          <label><input type="radio" name="character" value="male" checked><span>Male</span></label>
+          <label><input type="radio" name="character" value="female"><span>Female</span></label>
+        </div>
+        <p id="character-help">Choose a starting look. Every part stays available.</p>
+      </fieldset>
       <div class="tabs" role="tablist" aria-label="Parts">
         <button type="button" role="tab" id="tab-body" aria-controls="panel" aria-selected="true" data-tab="body">Body</button>
         <button type="button" role="tab" id="tab-face" aria-controls="panel" aria-selected="false" tabindex="-1" data-tab="face">Face</button>

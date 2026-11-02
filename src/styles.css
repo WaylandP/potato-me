@@ -164,6 +164,15 @@ body {
   overflow: hidden;
 }
 .preview svg, .preview canvas { display: block; width: 100%; height: 100%; }
+.character-picker { margin: 0; padding: 20px 22px 16px; border: 0; border-bottom: 1px solid var(--line); }
+.character-picker legend { float: left; width: 100%; margin-bottom: 10px; font: 600 18px var(--display); }
+.character-switch { clear: both; display: grid; grid-template-columns: 1fr 1fr; gap: 4px; padding: 4px; background: var(--surface-2); border: 1px solid var(--line); border-radius: 14px; }
+.character-switch label { position: relative; cursor: pointer; }
+.character-switch input { position: absolute; width: 1px; height: 1px; opacity: 0; }
+.character-switch span { display: flex; align-items: center; justify-content: center; min-height: 46px; border: 2px solid transparent; border-radius: 10px; font: 600 17px var(--display); }
+.character-switch input:checked + span { background: var(--accent-soft); color: var(--ink); border-color: var(--accent); }
+.character-switch input:focus-visible + span { outline: 3px solid var(--teal); outline-offset: 2px; }
+.character-picker p { margin: 9px 0 0; font-size: 13px; color: var(--muted); }
 .preview-status {
   position: absolute;
   inset: 0;
