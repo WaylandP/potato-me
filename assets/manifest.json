@@ -2850,7 +2850,7 @@
     },
     {
       "path": "assets/parts/hat/crown.png",
-      "request": "Only the hat: a gold royal crown with five points, red velvet inside, and jewels: one ruby in front, two sapphires.",
+      "request": "Front eye-level worn gold crown, red velvet, ruby and sapphires, detailed gold beadwork; solid front band with no empty underside oval. Transparent background, upper-left light.",
       "group": "hat",
       "key": "crown",
       "targetBox": [
@@ -2868,19 +2868,19 @@
         1254
       ],
       "sourceCrop": [
-        33,
-        140,
-        1220,
-        1109
+        58,
+        237,
+        1194,
+        1027
       ],
       "placedBox": [
-        365,
+        373,
         38,
-        659,
-        278
+        651,
+        231
       ],
       "flippedForConvention": false,
-      "sha256": "3e74e742771a0b1b2f97945bec5affe79528d30abdba28c03d2c00af02f06e8c"
+      "sha256": "5d2d94697933d78feb7cbf06d519657925e9d84a6b59d029b309761f13d13528"
     },
     {
       "path": "assets/parts/hat/hardhat.png",
@@ -2918,7 +2918,7 @@
     },
     {
       "path": "assets/parts/hat/chef.png",
-      "request": "Only the hat: a tall white pleated chef's toque.",
+      "request": "Worn front-view white cotton chef toque with detailed pleats and broad opaque cuff; no visible underside or hollow interior. Transparent background, upper-left studio light.",
       "group": "hat",
       "key": "chef",
       "targetBox": [
@@ -2936,23 +2936,23 @@
         1254
       ],
       "sourceCrop": [
-        29,
-        69,
-        1228,
-        1215
+        327,
+        57,
+        933,
+        561
       ],
       "placedBox": [
-        375,
+        365,
         10,
-        649,
-        272
+        659,
+        255
       ],
       "flippedForConvention": false,
-      "sha256": "c5bd784680375c5620f776c39fd1dbe630dc8b7d633d04d36fbc0cdc44a5d950"
+      "sha256": "11404ab1c1645ab23eedefca2706f799430295384cf0db9676b9c1b0a351e909"
     },
     {
       "path": "assets/parts/hat/viking.png",
-      "request": "Only the hat: a brushed steel viking helmet with a nose guard and two curved ivory horns.",
+      "request": "Front eye-level worn fantasy horned steel helmet, detailed rivets and ivory grain; clean front brow band, no hollow underside, cheek flaps or nose guard. Transparent background, upper-left light.",
       "group": "hat",
       "key": "viking",
       "targetBox": [
@@ -2970,19 +2970,19 @@
         1254
       ],
       "sourceCrop": [
-        11,
-        92,
-        1243,
-        1162
+        61,
+        205,
+        1193,
+        986
       ],
       "placedBox": [
-        374,
+        367,
         38,
-        650,
-        278
+        657,
+        238
       ],
       "flippedForConvention": false,
-      "sha256": "3fb8ffc9b4e84655f02a2ed33f5c44e2649d00ef19272dbe44ac40964397ce1b"
+      "sha256": "7977dac68da43b63d31adfb1a3dd25b3d35fe2fdb48caa424451b8a5c60e0cc9"
     },
     {
       "path": "assets/parts/hat/party.png",

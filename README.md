@@ -28,7 +28,7 @@ The app combines **224 transparent PNG assets** on a Canvas in your browser. The
 | **Hand pose** | 14 poses, including finger heart, open palm, hand on hip, wave, peace and salute |
 | **Accessories** | 7 eyewear styles · 8 neckwear styles · 3 earring pairs · 7 extras, including flower and ribbon clips |
 | **Laptop stickers** | 38 designs · select up to 6 at once |
-| **Background** | 14 colors · 12 patterns, including solid and spotlight |
+| **Background** | 26 colors · 18 scenes/patterns, including aurora, coast, mountains, botanical garden, cosmic orbit and dunes |
 
 The **Male/Female switch** applies a starting look and remembers styling edits when you switch back during the session. Body, skin, held object, stickers, custom text and background stay selected. Reset returns to the selected starter; Surprise me keeps that selection. All parts remain available in either mode. Feminine options include lash expressions, a rose-tinted smile, soft brows, seven hairstyles, floral headwear, bows, earrings and necklaces. The six shapes are **Classic, Lumpy, Round, Petite, Pear and Wide**. Petite is the smaller, slender shape; Wide is the short, broad shape. Stickers now include books, music, pets, photography, gardening and crafts. The sign starts with **HI THERE!**. Older links can still use LGTM (“Looks good to me”).
 
@@ -36,20 +36,22 @@ The **Male/Female switch** applies a starting look and remembers styling edits w
 
 Hair clips add a bob when no hair is selected; choosing no hair removes the clip.
 
-Optional parts can be removed, and the holding hand can be left empty. Start with a vibe or **Surprise me**, then adjust the five editor tabs. Check the circular crop guide before downloading; the exported PNG itself is square. Custom text is uppercased and restricted to supported characters.
+![Aurora, coast, mountains, botanical garden, cosmic orbit and desert scenes rendered in the app](docs/scenes.png)
+
+Optional parts can be removed, and the holding hand can be left empty. Start with a vibe or **Surprise me**, then use the nine sections: **Body, Face, Hair, Headwear, Accessories, Props, Gestures, Stickers and Background**. Check the circular crop guide before downloading; the exported PNG itself is square. Custom text is uppercased and restricted to supported characters.
 
 <details>
 <summary><strong>See the editor</strong></summary>
 
-![The editor with a live avatar preview and Body, Face, Style, Gear and Background tabs](docs/screenshot.png)
+![The editor with a live avatar preview and nine focused customization sections](docs/screenshot.png)
 
 </details>
 
 ## Project status
 
-Version **0.6.1** corrects Petite’s proportions and the misleading shape names. The complete Petite character is scaled to 82%, with camera framing capped against Classic wearing the same outfit. Hair fitting preserves the length of lower locks and the volume of a bun. This update also corrects short-forehead headwear, skin masks on faces and held objects, the eye-patch strap and Wide’s lanyard.
+Version **0.7.0** fits headwear to measured wearing openings and the selected hairstyle. Hair fitting separates the face opening, crown and free lengths; continuous sampling preserves strands at the joins. Small accessories scale with body width, and contact shadows fall on the hair or clothing underneath. The chef hat, crown and Viking helmet have new front-view artwork. The editor now has nine sections, six new illustrated scenes and twelve new colors.
 
-The [current review record](docs/SHAPE_REVIEW.md) describes the fixes, measured checks and limitations. Earlier audit counts did not establish visual quality: follow-up review found mismatched limbs and poor attachments. The [v0.5 record](docs/EVERYDAY_AUDIT.md) is historical, not approval of the current artwork. This is a modular 2D compositor, and no exhaustive full-outfit or pixel-perfect claim is made.
+The [current review record](docs/WEARABLE_REVIEW.md) documents the inspected cases, automated coverage and remaining limits. The [v0.6.1 shape review](docs/SHAPE_REVIEW.md) and earlier audits are historical. This is a modular 2D compositor, and no exhaustive full-outfit or pixel-perfect claim is made.
 
 ## Run locally
 
@@ -69,7 +71,7 @@ npm test          # State, asset integrity and renderer geometry checks
 
 ## How it works
 
-The editor validates choices, loads the selected PNG layers, fits them to the body silhouette and composites them in Canvas. Skin masks match exposed limbs and facial edges to the body while preserving prop materials. Colors, sign lettering, cap initials and laptop stickers are applied at render time.
+The editor validates choices, loads the selected PNG layers, fits them to the body silhouette and composites them in Canvas. Measured openings determine wearable placement; the fitted hairstyle contributes to head width and receives shadows. Skin masks match exposed limbs and facial edges to the body while preserving prop materials. Colors, sign lettering, cap initials and laptop stickers are applied at render time.
 
 | Start here | Purpose |
 | --- | --- |
@@ -96,6 +98,7 @@ npx playwright install chromium
 
 npm run assets    # Rebuild thumbnails and src/assets.js from the manifest
 npm run hero      # Rebuild the banner, gallery, social preview and favicon
+npm run shot -- docs/scenes.png docs/scenes-spec.json --cell 400 --cols 3
 npm run shot -- preview.png '#item=sign&sign=SHIP%20IT&gesture=thumbsUp'
 npm run audit -- /tmp/potato-audit inventory
 npm run audit:cohesion -- /tmp/potato-cohesion

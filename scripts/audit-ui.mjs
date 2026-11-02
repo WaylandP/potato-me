@@ -25,12 +25,14 @@ try {
   const ready = () => page.waitForFunction(() => document.body.dataset.rendered === 'true');
   const thumbs = () => page.waitForFunction(() => [...document.querySelectorAll('.thumb')].every(t => t.querySelector('canvas, svg') || (t.querySelector('img')?.complete && t.querySelector('img')?.naturalWidth > 0)), null, { timeout: 60000 });
   const shot = async name => { await thumbs(); await page.screenshot({ path: `${out}/${name}.png`, fullPage: true }); report.screenshots.push(name + '.png'); };
-  const pick = async (key, value) => { await page.locator(`[data-key="${key}"][data-value="${value}"]`).click(); await ready(); assert.equal(await page.locator(`[data-key="${key}"][data-value="${value}"]`).getAttribute('aria-pressed'), 'true'); };
+  const pick = async (key, value) => {
+    const section = { body:'body', skin:'body', hair:'hair', hairColor:'hair', hat:'hat', hatColor:'hat', item:'props', gesture:'gestures', eyewear:'accessories', neckwear:'accessories', jewelry:'accessories', extra:'accessories', stickers:'stickers', bg:'bg', pattern:'bg' }[key] || 'face';
+    await page.locator(`#tab-${section}`).click(); await thumbs(); await page.locator(`[data-key="${key}"][data-value="${value}"]`).click(); await ready(); assert.equal(await page.locator(`[data-key="${key}"][data-value="${value}"]`).getAttribute('aria-pressed'), 'true'); };
   const tab = async key => { await page.locator(`#tab-${key}`).click(); await thumbs(); };
   await page.goto(base); await ready(); await thumbs();
   await shot('desktop-light');
-  for (const key of ['body', 'face', 'hat', 'gear', 'bg']) { await tab(key); await shot(`desktop-${key}`); }
-  report.checks.push('All five tabs render their option thumbnails without failed images.');
+  for (const key of ['body', 'face', 'hair', 'hat', 'accessories', 'props', 'gestures', 'stickers', 'bg']) { await tab(key); await shot(`desktop-${key}`); }
+  report.checks.push('All nine sections render their option thumbnails without failed images.');
   await tab('body');
   assert.equal(await page.locator('[data-key="body"][data-value="long"]').innerText(), 'Petite');
   assert.equal(await page.locator('[data-key="body"][data-value="petite"]').innerText(), 'Wide');
@@ -46,6 +48,8 @@ try {
   await page.locator('#tab-body').focus(); await page.keyboard.press('ArrowRight'); assert.equal(await page.locator('#tab-face').getAttribute('aria-selected'), 'true');
   await page.keyboard.press('End'); assert.equal(await page.locator('#tab-bg').getAttribute('aria-selected'), 'true');
   await page.keyboard.press('Home'); assert.equal(await page.locator('#tab-body').getAttribute('aria-selected'), 'true');
+  await page.keyboard.press('ArrowDown'); assert.equal(await page.locator('#tab-hat').getAttribute('aria-selected'), 'true');
+  await page.keyboard.press('ArrowUp'); assert.equal(await page.locator('#tab-body').getAttribute('aria-selected'), 'true');
   report.checks.push('Keyboard tabs, selected states, focus and skip link preserve the avatar.');
   await page.getByRole('radio', { name: 'Female', exact: true }).check(); await ready();
   let femaleHash = new URL(page.url()).hash;
@@ -62,10 +66,15 @@ try {
   assert.equal(new URL(page.url()).hash, '');
   report.checks.push('Male/Female switch preserves the body and props, restores styling, supports arrow keys, share/reload, Surprise me and style-specific reset.');
 
+  await tab('bg'); await pick('pattern', 'aurora'); await pick('bg', 'indigo'); await page.reload(); await ready();
+  assert.ok(new URL(page.url()).hash.includes('pattern=aurora')); assert.ok(new URL(page.url()).hash.includes('bg=indigo'));
+  await tab('props'); await pick('item', 'bouquet'); await tab('stickers'); await page.getByRole('button', { name: 'Hold a laptop', exact: true }).click(); await ready();
+  assert.ok(await page.locator('[data-key="stickers"]').count() > 20);
+  report.checks.push('New scenes/colors survive reload; the Stickers section can equip the laptop.');
   await tab('body'); await pick('body', 'pear');
   await tab('hat'); await pick('hair', 'waves'); await pick('hairColor', 'silver');
   await pick('hat', 'backwardCap'); await page.locator('#capText-input').fill('a+w'); await ready(); assert.equal(await page.locator('#capText-input').inputValue(), 'A+W');
-  await tab('gear'); await pick('item', 'sign'); await page.locator('#sign-input').fill('ship it'); await ready(); assert.equal(await page.locator('#sign-input').inputValue(), 'SHIP IT');
+  await tab('accessories'); await pick('item', 'sign'); await page.locator('#sign-input').fill('ship it'); await ready(); assert.equal(await page.locator('#sign-input').inputValue(), 'SHIP IT');
   await pick('jewelry', 'pearlDrops'); await pick('neckwear', 'pearls'); await pick('gesture', 'fingerHeart');
   await page.locator('#copy-link').click(); const copied = await page.evaluate(() => navigator.clipboard.readText()); assert.equal(copied, page.url());
   const beforeReload = await page.locator('#preview canvas').evaluate(c => c.toDataURL());
@@ -82,7 +91,7 @@ try {
   await page.locator('#reset').click(); await ready(); assert.equal(new URL(page.url()).hash, '');
   await page.locator('#randomize').click(); await ready(); assert.notEqual(new URL(page.url()).hash, '');
   report.checks.push('Crop toggle, reset and Surprise me update the real preview.');
-  await page.goto(base); await ready(); await tab('gear');
+  await page.goto(base); await ready(); await tab('stickers');
   const all = page.locator('[data-key="stickers"]');
   for (const button of await all.all()) if (await button.getAttribute('aria-pressed') === 'true') await button.click();
   for (let i = 0; i < 7; i++) await all.nth(i).click();
@@ -93,11 +102,11 @@ try {
   assert.equal(await page.locator('[data-key="stickers"][aria-pressed="true"]').count(), 6);
   await shot('new-stickers');
   await tab('body'); await pick('body', 'petite'); await tab('hat'); await pick('hair', 'braids'); await pick('hairColor', 'copper'); await pick('hat', 'flowerCrown');
-  await tab('gear'); await pick('jewelry', 'hoops'); await pick('item', 'bouquet'); await pick('gesture', 'hip'); await shot('everyday-style');
+  await tab('accessories'); await pick('jewelry', 'hoops'); await pick('item', 'bouquet'); await pick('gesture', 'hip'); await shot('everyday-style');
   report.checks.push('New body shapes, hair colors, jewelry, props, gestures and six new stickers are reachable through the actual controls.');
-  await tab('hat'); await pick('hair', 'none'); await tab('gear'); await pick('extra', 'barrette');
-  await tab('hat'); assert.equal(await page.locator('[data-key="hair"][data-value="bob"]').getAttribute('aria-pressed'), 'true');
-  await pick('hair', 'none'); await tab('gear'); assert.equal(await page.locator('[data-key="extra"][data-value="none"]').getAttribute('aria-pressed'), 'true');
+  await tab('hat'); await pick('hair', 'none'); await tab('accessories'); await pick('extra', 'barrette');
+  await tab('hair'); assert.equal(await page.locator('[data-key="hair"][data-value="bob"]').getAttribute('aria-pressed'), 'true');
+  await pick('hair', 'none'); await tab('accessories'); assert.equal(await page.locator('[data-key="extra"][data-value="none"]').getAttribute('aria-pressed'), 'true');
   report.checks.push('Hair clips add a hairstyle; explicitly choosing no hair removes the clip.');
   for (const colorScheme of ['light', 'dark']) {
     await page.setViewportSize({ width: 390, height: 844 }); await page.emulateMedia({ colorScheme, reducedMotion: 'reduce' });
@@ -119,7 +128,7 @@ try {
     });
     assert.deepEqual(incomplete, []);
     await shot(`mobile-${colorScheme}`);
-    for (const key of ['body', 'face', 'hat', 'gear', 'bg']) {
+    for (const key of ['body', 'face', 'hair', 'hat', 'accessories', 'props', 'gestures', 'stickers', 'bg']) {
       await tab(key);
       assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth));
       const small = await page.locator('button:not([hidden])').evaluateAll(els => els.filter(e => { const r = e.getBoundingClientRect(); return r.width && (r.width < 44 || r.height < 44); }).map(e => e.textContent));

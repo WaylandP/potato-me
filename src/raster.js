@@ -12,7 +12,7 @@ import { normalizeState } from './state.js';
 import { Defs } from './draw.js';
 import { background } from './parts/background.js';
 import { stickerSVG } from './parts/stickers.js';
-import { bodySurface, surfaceTransform, integratedLayer, contactShadow, drawTransformed, headFrame } from './surface.js';
+import { bodySurface, withHairSurface, surfaceTransform, integratedLayer, contactShadow, drawTransformed, headFrame } from './surface.js';
 import { LruCache } from './cache.js';
 
 const RED = '#C8372D';
@@ -193,7 +193,7 @@ async function processedPart(group, key, src, { hatColor, hairColor }) {
   const ctx = c.getContext('2d', { willReadFrequently: true });
   ctx.drawImage(img, 0, 0);
   const id = ctx.getImageData(0, 0, c.width, c.height);
-  if (wantsRecolor) remap(id.data, RED_WINDOW, RED, hatColor);
+  if (wantsRecolor) remap(id.data, group === 'hat' ? { ...RED_WINDOW, sMin: .30, lMin: .015 } : RED_WINDOW, RED, hatColor);
   if (wantsHair) {
     // Preserve strand contrast and alpha, protecting the ponytail's satin tie,
     // while using an independent material color for the whole hairstyle.
@@ -450,6 +450,47 @@ function readyLettering() {
  *   thumbs: use the 256 px thumbnails instead of full-size parts (for option grids).
  * @returns {Promise<HTMLCanvasElement>}
  */
+const capApertures = new WeakMap();
+function apertureBacking(cap, receiver, transform, surface, size) {
+  let mask = capApertures.get(cap);
+  if (!mask) {
+    mask = document.createElement('canvas'); mask.width = mask.height = CANVAS;
+    const ctx = mask.getContext('2d'); ctx.beginPath(); ctx.ellipse(447,211,91,57,0,0,Math.PI*2); ctx.fill();
+    ctx.globalCompositeOperation = 'destination-out'; ctx.drawImage(cap,0,0,CANVAS,CANVAS);
+    capApertures.set(cap,mask);
+  }
+  const c = document.createElement('canvas'); c.width = c.height = size;
+  const ctx = c.getContext('2d', {willReadFrequently:true}); ctx.scale(size/CANVAS,size/CANVAS);
+  drawTransformed(ctx,mask,'hat','backwardCap',transform); ctx.resetTransform();
+  const output = ctx.getImageData(0,0,size,size), source = receiver.getContext('2d').getImageData(0,0,size,size).data;
+  const cx=surface.center*size/CANVAS, cy=surface.eyeY*size/CANVAS;
+  // Continue the actual material at the aperture edge. Reflecting inward
+  // samples preserves its color/texture boundary, including hair; an unrelated
+  // scalp patch produces an obvious seam or a skin crescent above the hair.
+  for(let y=0;y<size;y++) for(let x=0;x<size;x++) {
+    const i=(y*size+x)*4, alpha=output.data[i+3]*(1-source[i+3]/255);
+    if(alpha<.5){output.data[i+3]=0;continue;}
+    const length=Math.hypot(cx-x,cy-y), dx=(cx-x)/length, dy=(cy-y)/length;
+    let distance=0, at=i;
+    while(distance<length) {
+      const sx=Math.max(0,Math.min(size-1,Math.round(x+dx*distance))),sy=Math.max(0,Math.min(size-1,Math.round(y+dy*distance)));
+      at=(sy*size+sx)*4;if(source[at+3]>245)break;distance++;
+    }
+    const reach=Math.min(length,distance*1.8+1), sx=Math.max(0,Math.min(size-1,Math.round(x+dx*reach))),sy=Math.max(0,Math.min(size-1,Math.round(y+dy*reach)));
+    const inside=(sy*size+sx)*4;if(source[inside+3]>245)at=inside;
+    output.data[i]=source[at];output.data[i+1]=source[at+1];output.data[i+2]=source[at+2];output.data[i+3]=alpha;
+  }
+  ctx.putImageData(output,0,0);return c;
+}
+
+function fittedLayers(layers, imgs, body, state) {
+  let surface = bodySurface(body, state.body);
+  const hairIndex = layers.findIndex(l => l.group === 'hair');
+  const hairTransform = hairIndex < 0 ? null : surfaceTransform(layers[hairIndex], imgs[hairIndex], surface, state);
+  if (hairTransform) surface = withHairSurface(surface, imgs[hairIndex], state.hair, hairTransform);
+  return { surface, transforms: layers.map((l, i) => i === hairIndex ? hairTransform : l.group === 'body' ? l.transform : surfaceTransform(l, imgs[i], surface, state)) };
+}
+
 export async function renderPotato(rawState, opts = {}) {
   const s = drawableState(rawState);
   const size = opts.size || 1024;
@@ -479,9 +520,10 @@ export async function renderPotato(rawState, opts = {}) {
   const bodySize = BODY_PROFILES[s.body].size;
   ctx.translate(512, 880); ctx.scale(bodySize, bodySize); ctx.translate(-512, -880);
   const body = imgs[layers.findIndex(l => l.group === 'body')];
-  const surface = bodySurface(body, s.body);
-  const workSize = thumbs ? 256 : 1024;
-  const transforms = layers.map((l, i) => l.group === 'body' ? l.transform : surfaceTransform(l, imgs[i], surface, s));
+  const { surface, transforms } = fittedLayers(layers, imgs, body, s);
+  // Match temporary skin/shadow planes to the requested pixel density.
+  // Full preview and both downloads still compose at native 1024 px.
+  const workSize = thumbs ? 256 : Math.min(1024, Math.max(256, Math.ceil(size * CANVAS / crop[2])));
   const head = layers.flatMap((l, i) => ['hat', 'hair', 'item', 'gesture', 'extra', 'neckwear'].includes(l.group) ? [{ ...l, img: imgs[i], transform: transforms[i] }] : []);
   if (head.length) {
     const frame = headFrame(head);
@@ -490,23 +532,52 @@ export async function renderPotato(rawState, opts = {}) {
       // must not look larger simply because its narrow body needs less zoom.
       const referenceState = { ...s, body: 'classic' };
       const referenceBody = await loadImage(partSrc('body', `classic-${s.skin}`, thumbs));
-      const referenceSurface = bodySurface(referenceBody, 'classic');
-      const referenceHead = head.map(l => ({ ...l, transform: surfaceTransform({ ...l, transform: layerTransform(l.group, l.key, 'classic') }, l.img, referenceSurface, referenceState) }));
+      const referenceLayers = layers.map(l => ({ ...l, transform: layerTransform(l.group, l.key, 'classic') }));
+      const reference = fittedLayers(referenceLayers, imgs, referenceBody, referenceState);
+      const referenceHead = referenceLayers.flatMap((l, i) => ['hat', 'hair', 'item', 'gesture', 'extra', 'neckwear'].includes(l.group) ? [{ ...l, img: imgs[i], transform: reference.transforms[i] }] : []);
       frame.scale = Math.min(frame.scale, headFrame(referenceHead).scale);
     }
     ctx.translate(512, 512); ctx.scale(frame.scale, frame.scale); ctx.translate(-512, -frame.centerY);
   }
+  // A world-space silhouette of everything already worn. Hat shadows land
+  // on hair; glasses and clips land on the actual underlying material.
+  const receiver = document.createElement('canvas');
+  receiver.width = receiver.height = workSize;
+  const receiverCtx = receiver.getContext('2d');
+  receiverCtx.scale(workSize / CANVAS, workSize / CANVAS);
+  receiverCtx.drawImage(body, 0, 0, CANVAS, CANVAS);
   for (let i = 0; i < layers.length; i++) {
     const l = layers[i];
     if (l.group === 'body') { drawLayer(ctx, imgs[i], l.group, l.key, l.transform); continue; }
     const transform = transforms[i];
-    const plane = integratedLayer(imgs[i], l.group, l.key, transform, surface, workSize);
-    const shadow = l.group === 'hat' && l.key === 'halo' ? null : contactShadow(plane, body, l.group === 'gesture' && l.key === 'hip' ? 'handOnHip' : l.group, workSize);
+    if (l.group === 'hat' && l.key === 'backwardCap') ctx.drawImage(apertureBacking(imgs[i], receiver, transform, surface, workSize), 0, 0, CANVAS, CANVAS);
+    let plane = integratedLayer(imgs[i], l.group, l.key, transform, surface, workSize);
+    const wrappedBand = l.group === 'hat' && l.key === 'headband';
+    if (wrappedBand) {
+      const clipped = document.createElement('canvas'); clipped.width = clipped.height = workSize;
+      const bandCtx = clipped.getContext('2d'); bandCtx.drawImage(plane, 0, 0);
+      // Cloth wraps the main head contour; sprouts and loose flyaways are
+      // not fabric supports. A median contour excludes those small protrusions.
+      const contour = document.createElement('canvas'); contour.width = contour.height = workSize;
+      const contourCtx = contour.getContext('2d'); contourCtx.scale(workSize / CANVAS, workSize / CANVAS);
+      const left = [], right = [], row = surface.headRow || surface.row;
+      for (let y = surface.crownY - 80; y <= surface.eyeY + 140; y += 4) {
+        const rows = Array.from({length:17}, (_,j) => row(y+(j-8)*4));
+        const median = side => rows.map(r=>r[side]).sort((a,b)=>a-b)[8];
+        left.push([median(0)+3,y]); right.push([median(1)-3,y]);
+      }
+      contourCtx.beginPath(); for (const [i,[x,y]] of [...left,...right.reverse()].entries()) i ? contourCtx.lineTo(x,y) : contourCtx.moveTo(x,y);
+      contourCtx.closePath(); contourCtx.fill();
+      bandCtx.globalCompositeOperation = 'destination-in'; bandCtx.drawImage(contour, 0, 0); plane = clipped;
+    }
+    const shadow = l.group === 'hat' && l.key === 'halo' ? null : contactShadow(plane, receiver, l.group === 'gesture' && l.key === 'hip' ? 'handOnHip' : l.group, workSize);
     if (shadow) ctx.drawImage(shadow, ...(shadow.worldBox || [0, 0, CANVAS, CANVAS]));
     // Wearables can extend beyond the original 1024 world canvas. Draw their
     // original image into the fitted scene so tall tips are never pre-clipped.
-    if (['hair', 'hat', 'extra', 'neckwear', 'eyewear', 'brows', 'jewelry'].includes(l.group)) drawTransformed(ctx, imgs[i], l.group, l.key, transform);
+    if (!wrappedBand && ['hair', 'hat', 'extra', 'neckwear', 'eyewear', 'brows', 'jewelry'].includes(l.group)) drawTransformed(ctx, imgs[i], l.group, l.key, transform);
     else ctx.drawImage(plane, ...(plane.worldBox || [0, 0, CANVAS, CANVAS]));
+    if (!wrappedBand && ['hair', 'hat', 'extra', 'neckwear', 'eyewear', 'brows', 'jewelry'].includes(l.group)) drawTransformed(receiverCtx, imgs[i], l.group, l.key, transform);
+    else receiverCtx.drawImage(plane, ...(plane.worldBox || [0, 0, CANVAS, CANVAS]));
     if (l.group === 'item' && l.key === 'laptop') await drawStickers(ctx, s, thumbs, transform);
     if (l.group === 'item' && l.key === 'sign') drawSignText(ctx, s, transform);
     if (l.group === 'hat') drawCapText(ctx, s, transform);

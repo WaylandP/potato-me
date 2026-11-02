@@ -51,6 +51,22 @@ export function bodySurface(img, shape) {
   const surface = { ...original, soft: soft.data, row, eyeY, shoulderY, left, right, faceWidth: faceRight - faceLeft, featureWidth: clamp(faceRight - faceLeft, 350, 480), center, material, palette, crownY };
   planes.set(img, surface); return surface;
 }
+// The wearer includes the selected hairstyle. This object belongs to one
+// render, so concurrent option thumbnails never overwrite one another's fit.
+const wornSurfaces = new WeakMap();
+export function withHairSurface(surface, img, key, transform) {
+  const layer = integratedLayer(img, 'hair', key, transform, surface, 256);
+  if (wornSurfaces.has(layer)) return wornSurfaces.get(layer);
+  const data = layer.getContext('2d').getImageData(0, 0, 256, 256).data;
+  const hairRow = y => {
+    const yy = clamp(Math.round(y / 4), 0, 255); let left = 256, right = -1;
+    for (let x = 0; x < 256; x++) if (data[(yy * 256 + x) * 4 + 3] > 160) { left = Math.min(left, x); right = x; }
+    return right < left ? surface.row(y) : [left * 4, right * 4];
+  };
+  const headRow = y => { const b = surface.row(y), h = hairRow(y); return [Math.min(b[0], h[0]), Math.max(b[1], h[1])]; };
+  const worn = { ...surface, hairRow, headRow };
+  wornSurfaces.set(layer, worn); return worn;
+}
 function polygonContains(x, y, polygon) {
   let inside = false;
   for (let i = 0, j = polygon.length - 1; i < polygon.length; j = i++) {
@@ -196,24 +212,25 @@ export function surfaceTransform(layer, img, surface, state) {
     // Crop fitting happens to the WHOLE character. Never shrink one hand
     // independently just because its prop reaches farther from the body.
   } else if (group === 'hair') {
-    // Fit the face opening, not just the outside of a wig. The crown follows
-    // the body's actual top; length is bounded independently of body width.
-    const referenceY = box[1] + height * (['pixie', 'bun'].includes(key) ? .78 : .52);
-    const openingCenter = key === 'ponytail' ? 465 : center[0];
-    const openingWidth = key === 'ponytail' ? width * .80 : width;
-    t.scale = Math.min(1.6, Math.max(surface.faceWidth, surface.featureWidth) * 1.35 / openingWidth);
+    const opening = FIT.hairOpenings[key];
+    const cx = (opening.left + opening.right) / 2;
+    const short = ['pixie', 'bun'].includes(key);
+    const eyeRatio = { dots: .46, happy: .57, wide: .57, wink: .59, sleepy: .61, angry: .60, surprised: .57, side: .61, squint: .58, rolling: .58, heart: .55, stars: .55, dead: .54, joyLashes: .62 }[state.eyes] || .64;
+    const gap = Math.min(surface.faceWidth * .94, Math.max(surface.featureWidth * eyeRatio + 24, surface.faceWidth * (short ? .84 : .68)));
+    const volume = clamp(surface.faceWidth * .11, key === 'curls' ? 75 : short ? 36 : 55, 78);
+    const shell = opening.shell || [box[0], box[2]];
+    // Fit the inner temples and the outer volume independently. Enlarging a
+    // curly wig uniformly to open its face also doubles its side volume.
+    const left = surface.faceWidth / 2 + volume, right = opening.shell ? surface.faceWidth * .48 + volume * .35 : left;
+    t.fitX = [[shell[0], cx - left], [opening.left, cx - gap / 2], [opening.right, cx + gap / 2], [shell[1], cx + right]];
+    t.fitCrown = { top: box[1], eye: opening.y, left: shell[0], right: shell[1], toLeft: cx - left, toRight: cx + right };
+    if (opening.shell) t.fitX.push([box[2], cx + right + clamp(surface.faceWidth * .18, 70, 115)]);
     const raisedBun = key === 'bun' && ['none', 'headband', 'bow', 'flowerCrown', 'halo', 'horns', 'crown'].includes(state.hat);
-    // A raised bun can pass through open headwear. Under a closed hat its
-    // crown is tucked down, so it cannot protrude around the hat's dome.
-    const targetTop = surface.crownY - (raisedBun ? 170 : 32);
-    const fittedAspect = (surface.eyeY - targetTop) / ((referenceY - box[1]) * t.scale);
-    // Compress the crown to fit a short forehead, not the entire hairstyle.
-    // Side locks and the ponytail retain their length and strand proportions.
-    t.aspectY = Math.max(.85, fittedAspect);
-    if (fittedAspect < .85) t.warp = { sourceTop: box[1], join: referenceY, topOffset: referenceY - box[1] - (surface.eyeY - targetTop) / (t.scale * t.aspectY) };
-    move([openingCenter, referenceY], [surface.center, surface.eyeY]);
-    // The hat's own alpha occludes hair. A horizontal clipping line would
-    // visibly cut side locks, and would incorrectly erase hair above a band.
+    const crownVolume = raisedBun ? 155 : clamp(surface.faceWidth * .13, 40, 75);
+    const length = Math.min(opening.length * clamp(surface.faceWidth / 450, .78, 1.12), surface.shoulderY + 85 - surface.eyeY);
+    t.fitY = [[box[1], opening.y + surface.crownY - crownVolume - surface.eyeY], [opening.y, opening.y], [box[3], opening.y + length]];
+    t.scale = 1;
+    move([cx, opening.y], [surface.center, surface.eyeY]);
   } else if (group === 'eyes') {
     const ratio = { smug: .64, dots: .46, happy: .57, wide: .57, wink: .59, sleepy: .61, angry: .60, surprised: .57, side: .61, squint: .58, rolling: .58, heart: .55, stars: .55, dead: .54, almond: .64, lashWink: .64, joyLashes: .62 }[key];
     t.scale = surface.featureWidth * ratio / width;
@@ -260,7 +277,7 @@ export function surfaceTransform(layer, img, surface, state) {
     }
   } else if (group === 'jewelry') {
     const desiredHeight = { hoops: 76, pearlDrops: 63, starStuds: 32 }[key];
-    t.scale = desiredHeight / height;
+    t.scale = desiredHeight * clamp(surface.faceWidth / 450, .66, 1.28) / height;
     const sides = surface.row(surface.eyeY + 50);
     const alpha = pixels(img).data;
     const centers = [0, 1].map(side => {
@@ -272,46 +289,47 @@ export function surfaceTransform(layer, img, surface, state) {
     move([(centers[0] + centers[1]) / 2, box[1] + height * .06], [surface.center, surface.eyeY + 50]);
   } else if (group === 'hat' && key === 'bow') {
     t.scale = surface.featureWidth * .48 / width;
-    move([center[0], box[3] - height * .18], [surface.center - surface.faceWidth * .22, surface.crownY + 35]);
+    move([center[0], box[3] - height * .18], [surface.center - surface.faceWidth * .22, surface.crownY + (surface.hairRow ? 10 : 35)]);
   } else if (group === 'hat' && key === 'flowerCrown') {
-    const seat = Math.min(surface.crownY + 95, surface.eyeY - 165), sides = surface.row(seat + 16);
+    const seat = Math.min(surface.crownY + 95, surface.eyeY - 165), sides = (surface.headRow || surface.row)(seat + 16);
     t.scale = (sides[1] - sides[0] + 34) / width;
     move(center, [surface.center, seat]);
   } else if (group === 'hat' && key === 'halo') {
     t.scale = surface.featureWidth * .42 / width;
     move([center[0], box[3]], [surface.center, surface.crownY - (state.hair !== 'none' ? 54 : 22)]);
   } else if (group === 'hat') {
-    const fitting = {
-      backwardCap: [290, 1.12], cap: [270, 1.10], beanie: [300, 1.02], headband: [307, 1.08], bucket: [290, 1.18], cowboy: [265, 1.50], tophat: [272, 1.27], fedora: [270, 1.35], wizard: [268, 1.23], crown: [268, .95], hardhat: [285, 1.14], chef: [285, 1.55], viking: [285, 1.62], party: [260, .76], beret: [287, 1.18], propeller: [285, 1.02], halo: [192, .95], horns: [265, 1.18], santa: [285, 1.10], sunhat: [275, 1.65],
-    }[key];
-    let seat = fitting[0] + (key === 'halo' ? 0 : key === 'headband' ? 14 : 48);
-    // Keep the brim above the eye opening on short, wide bodies too. The
-    // source's lower edge extends below this anchor, especially on tall hats.
-    seat = Math.min(surface.eyeY - 100, seat + Math.max(0, surface.crownY - 180));
-    if (key === 'headband') seat = surface.eyeY - 110;
-    const baseY = key === 'headband' ? center[1] : box[3] - height * (['cowboy', 'fedora', 'tophat', 'wizard', 'sunhat'].includes(key) ? .10 : .05);
-    // A narrow, tall potato needs its hat higher than a round one. Fit the
-    // crown over the actual top of the body, then match the brim to that row.
-    // Uniform scaling preserves the material and shape of every hat.
-    for (let attempt = 0; attempt < 100; attempt++) {
-      const sides = surface.row(seat);
-      const headWidth = Math.max(sides[1] - sides[0], state.hair !== 'none' ? surface.featureWidth * .8 : 0);
-      t.scale = headWidth * fitting[1] / width;
-      if (key === 'headband') t.aspectY = Math.min(1, Math.max(75, (surface.eyeY - surface.crownY) * .52) / (height * t.scale));
-      const openingY = { backwardCap: 160, viking: 220 }[key];
-      if (openingY !== undefined) {
-        // Open headwear must reveal potato, not background, through its gap.
-        // Fit its crown height within the actual forehead depth on Wide.
-        const crownClearance = surface.crownY + 24 + (state.hair !== 'none' ? 12 : 0);
-        const offset = Math.max(0, baseY - (seat - crownClearance) / t.scale - openingY);
-        if (offset) t.crownWarp = { top: box[1], join: openingY, end: baseY, offset };
-      }
-      move([center[0], baseY], [surface.center, seat]);
-      const roof = FIT.hatCrownY[key];
-      if (roof === undefined || projected([center[0], roof], t, pivot)[1] <= surface.crownY - 10) break;
-      seat -= 2;
+    const fit = FIT.hatOpenings[key];
+    const forehead = surface.eyeY - surface.crownY;
+    const headRow = surface.headRow || surface.row;
+    let seat = surface.crownY + forehead * fit.depth;
+    const sides = headRow(seat);
+    t.scale = (sides[1] - sides[0] + surface.faceWidth * .025) / fit.width;
+    // A shallow, broad forehead needs a broad, shallow crown. Keep the band
+    // and brim at their fitted width while shaping the fabric above them.
+    // Moving a uniformly tiny hat onto the apex would merely perch it there.
+    const maxHeight = (880 - surface.crownY) * ({ chef:.54, cap:.43, backwardCap:.43, beanie:.44, bucket:.40, sunhat:.38, wizard:.68, tophat:.55 }[key] || .48);
+    const crownHeight = Math.min((fit.y - box[1]) * t.scale, maxHeight);
+    const bandJoin = Math.max(box[1] + 10, fit.y - 36);
+    const bandHeight = Math.min(36 * t.scale, crownHeight * .25);
+    t.fitY = [[box[1], fit.y - crownHeight / t.scale], [bandJoin, fit.y - bandHeight / t.scale], [fit.y, fit.y], [CANVAS, CANVAS]];
+    seat = Math.min(seat, surface.eyeY - 90 - (box[3] - fit.y) * t.scale);
+    const ornamentJoin = { beanie: 110, party: 80 }[key];
+    if (ornamentJoin) {
+      const joinedY = mapAxis(ornamentJoin, t.fitY);
+      t.fitY = [[box[1], joinedY - (ornamentJoin - box[1])], [ornamentJoin, joinedY], ...t.fitY.filter(([y]) => y > ornamentJoin)];
     }
-    if (state.hair !== 'none' && key !== 'headband') t.dy -= 12;
+    if (key === 'headband') {
+      delete t.fitY;
+      t.frontBandCurve = true;
+      t.aspectY = Math.min(1, clamp(forehead * .38, 65, 105) / (205 * t.scale));
+      seat = surface.eyeY - 100;
+    }
+    move([fit.x, fit.y], [surface.center, seat]);
+    const roof = FIT.hatCrownY[key];
+    if (roof !== undefined) {
+      const roofY = fittedPoint(group, key, t, [fit.x, roof])[1];
+      t.dy -= Math.max(0, roofY - (surface.crownY - 12));
+    }
   } else if (group === 'neckwear') {
     // A potato has no neck: the cloth wraps the upper torso. The visible
     // front band reaches both silhouette edges; its tails hang below it.
@@ -345,20 +363,21 @@ export function surfaceTransform(layer, img, surface, state) {
     const sourceTop = projected([center[0], box[1]], t, pivot)[1];
     t.warp = { sourceTop: box[1], join: box[1] + height * .54, topOffset: (top - sourceTop) / t.scale };
   } else if (group === 'extra' && key === 'earbuds') {
-    t.scale = .92;
+    t.scale = .92 * clamp(surface.faceWidth / 450, .66, 1.28);
     t.spread = (surface.faceWidth / 2 + 1) - width * .33 * t.scale;
     move(center, [surface.center, surface.eyeY + 5]);
   } else if (group === 'extra' && key === 'earring') {
-    t.scale = .92;
+    t.scale = .92 * clamp(surface.faceWidth / 450, .66, 1.28);
     const sides = surface.row(surface.eyeY + 70);
     move([box[0], box[1] + 6], [sides[1] - 3, surface.eyeY + 70]);
   } else if (group === 'extra' && key === 'bandaid') {
     t.scale = Math.min(1.25, surface.faceWidth * .15 / width);
     move(center, [surface.center + surface.faceWidth * .29, surface.eyeY + 66]);
   } else if (group === 'extra' && ['flower', 'barrette', 'scrunchie'].includes(key)) {
-    t.scale = .82;
+    t.scale = .82 * clamp(surface.faceWidth / 450, .66, 1.28);
     const seat = surface.eyeY - 48;
-    move(center, [surface.row(seat)[0] + 8, seat]);
+    const edge = surface.hairRow ? surface.hairRow(seat)[0] : surface.row(seat)[0];
+    move(center, [edge + width * t.scale * .45, seat]);
   }
   // Manual corrections are applied after anatomy fitting, around the attachment
   // or feature center, so fit.html controls remain effective.
@@ -383,6 +402,11 @@ export function frameForPoints(points) {
   for (const [x, y] of points) radius = Math.max(radius, Math.hypot(x - 512, y - centerY));
   return { scale: Math.min(1, 492 / radius), centerY };
 }
+export function fittedPoint(group, key, t, [x, y]) {
+  const xx = t.fitX ? mappedX(x, y, t) : t.lowerScale && y >= t.warp.join ? 512 + (x - 512) * t.lowerScale : x;
+  const yy = t.fitY ? mapAxis(y, t.fitY) : t.warp ? mappedWarpY(y, t) : t.crownWarp ? crownY(y, t.crownWarp) : y;
+  return projected([xx, yy], t, FIT.pivots[`${group}/${key}`] || FIT.pivots[group] || [512, 512]);
+}
 const silhouettes = new WeakMap();
 function framingPoints(img, group, key, transform) {
   if (!silhouettes.has(img)) {
@@ -390,13 +414,67 @@ function framingPoints(img, group, key, transform) {
     for (let y = 0; y < 128; y++) for (let x = 0; x < 128; x++) if (data[(y * 128 + x) * 4 + 3] > 48) points.push([x * 8, y * 8]);
     silhouettes.set(img, points);
   }
-  return silhouettes.get(img).map(([x, y]) => projected([transform.lowerScale && y >= transform.warp.join ? 512 + (x - 512) * transform.lowerScale : x, transform.warp ? mappedWarpY(y, transform) : transform.crownWarp ? crownY(y, transform.crownWarp) : y], transform, FIT.pivots[`${group}/${key}`] || FIT.pivots[group]));
+  return silhouettes.get(img).map(p => fittedPoint(group, key, transform, p));
+}
+function mapAxis(value, knots) {
+  let i = 0;
+  while (i < knots.length - 2 && value > knots[i + 1][0]) i++;
+  const [a, b] = [knots[i], knots[i + 1]];
+  return a[1] + (value - a[0]) / (b[0] - a[0]) * (b[1] - a[1]);
+}
+function mappedX(x, y, t) {
+  const fitted = mapAxis(x, t.fitX), c = t.fitCrown;
+  if (!c) return fitted;
+  const crown = c.toLeft + (x - c.left) / (c.right - c.left) * (c.toRight - c.toLeft);
+  // Opening correction belongs at the temples. Applying it to every row
+  // creates vertical walls through the upper crown of a narrow hairstyle.
+  const blend = smooth((y - c.top - (c.eye - c.top) * .15) / ((c.eye - c.top) * .85));
+  return crown * (1 - blend) + fitted * blend;
 }
 const warpedY = (y, warp) => y + warp.topOffset * clamp((warp.join - y) / (warp.join - warp.sourceTop));
 const mappedWarpY = (y, t) => t.lowerScale && y >= t.warp.join ? t.warp.join + (y - t.warp.join) * t.lowerScale : warpedY(y, t.warp);
 const crownY = (y, warp) => y + warp.offset * clamp(y < warp.join ? (y - warp.top) / (warp.join - warp.top) : (warp.end - y) / (warp.end - warp.join));
 export function headFrame(parts) { return frameForPoints(parts.flatMap(({ img, group, key, transform }) => framingPoints(img, group, key, transform))); }
 export function hatFrame(img, key, transform) { return headFrame([{ img, group: 'hat', key, transform }]); }
+const hairMeshes = new LruCache(16 * 1024 * 1024);
+const sourcePixels = new WeakMap();
+function hairMesh(img, key, t) {
+  const cacheKey = `${idFor(img)}|${JSON.stringify([t.fitX, t.fitY, t.fitCrown])}`;
+  if (hairMeshes.has(cacheKey)) return hairMeshes.get(cacheKey);
+  const unit = (img.naturalWidth || img.width) / CANVAS;
+  let source = sourcePixels.get(img);
+  if (!source) { source = pixels(img, Math.round(CANVAS * unit)); sourcePixels.set(img, source); }
+  const box = PARTS.hair[key];
+  const y0 = Math.floor(mapAxis(box[1], t.fitY)) - 2, y1 = Math.ceil(mapAxis(box[3], t.fitY)) + 2;
+  const xx = [box[1], t.fitCrown.eye, box[3]].flatMap(y => [mappedX(box[0], y, t), mappedX(box[2], y, t)]);
+  const x0 = Math.floor(Math.min(...xx)) - 2, x1 = Math.ceil(Math.max(...xx)) + 2;
+  const c = document.createElement('canvas'); c.width = Math.ceil((x1-x0)*unit); c.height = Math.ceil((y1-y0)*unit);
+  c.worldBox = [x0, y0, c.width/unit, c.height/unit];
+  const ctx = c.getContext('2d'), output = ctx.createImageData(c.width, c.height), input = source.data;
+  const sourceSize = Math.round(CANVAS*unit), inverseY = t.fitY.map(([a,b]) => [b,a]);
+  // Inverse-map every output pixel into the original image. One continuous
+  // bilinear sample avoids seams at mesh joins and stair-steps in fine strands.
+  for (let y = 0; y < c.height; y++) {
+    const sy = mapAxis(y0 + (y+.5)/unit, inverseY), py = sy*unit-.5, iy = Math.floor(py), fy = py-iy;
+    if (iy < 0 || iy >= sourceSize-1) continue;
+    const knots = t.fitX.map(([x]) => [mappedX(x,sy,t), x]);
+    let segment = 0;
+    for (let x = 0; x < c.width; x++) {
+      const target = x0+(x+.5)/unit;
+      while (segment < knots.length-2 && target > knots[segment+1][0]) segment++;
+      const a=knots[segment], b=knots[segment+1];
+      const px=(a[1]+(target-a[0])/(b[0]-a[0])*(b[1]-a[1]))*unit-.5, ix=Math.floor(px), fx=px-ix;
+      if (ix < 0 || ix >= sourceSize-1) continue;
+      const offsets=[(iy*sourceSize+ix)*4,(iy*sourceSize+ix+1)*4,((iy+1)*sourceSize+ix)*4,((iy+1)*sourceSize+ix+1)*4];
+      const weights=[(1-fx)*(1-fy),fx*(1-fy),(1-fx)*fy,fx*fy];
+      let alpha=0,r=0,g=0,bv=0;
+      for(let j=0;j<4;j++){const i=offsets[j],w=weights[j]*input[i+3];alpha+=w;r+=input[i]*w;g+=input[i+1]*w;bv+=input[i+2]*w;}
+      const i=(y*c.width+x)*4;
+      if(alpha){output.data[i]=r/alpha;output.data[i+1]=g/alpha;output.data[i+2]=bv/alpha;output.data[i+3]=alpha;}
+    }
+  }
+  ctx.putImageData(output,0,0); hairMeshes.set(cacheKey,c,c.width*c.height*4); return c;
+}
 export function drawTransformed(ctx, img, group, key, t) {
   const pivot = FIT.pivots[`${group}/${key}`] || FIT.pivots[group] || [512, 512];
   const draw = (side = 0) => {
@@ -404,8 +482,22 @@ export function drawTransformed(ctx, img, group, key, t) {
     if (t.clipAbove !== undefined) { ctx.beginPath(); ctx.rect(-1024, t.clipAbove, 3072, 3072); ctx.clip(); }
     ctx.translate(pivot[0] + t.dx + side * t.spread, pivot[1] + t.dy);
     ctx.scale(t.scale * (t.flip ? -1 : 1), t.scale * (t.aspectY || 1)); ctx.rotate(t.rot * Math.PI / 180); ctx.translate(-pivot[0], -pivot[1]);
+    if (t.frontBandCurve) {
+      ctx.beginPath(); ctx.moveTo(-1024,-1024); ctx.lineTo(2048,-1024); ctx.lineTo(1024,460);
+      ctx.quadraticCurveTo(512,610,0,460); ctx.closePath(); ctx.clip();
+    }
     if (side) { ctx.beginPath(); ctx.rect(side < 0 ? -CANVAS : pivot[0], -CANVAS, CANVAS + (side < 0 ? pivot[0] : CANVAS), CANVAS * 3); ctx.clip(); }
-    if (t.strapX) {
+    if (t.fitCrown) {
+      const fitted = hairMesh(img, key, t); ctx.drawImage(fitted, ...fitted.worldBox);
+    } else if (t.fitX || t.fitY) {
+      const unit = (img.naturalWidth || img.width) / CANVAS;
+      const xs = [...new Set([0, ...(t.fitX || []).map(k => k[0]), CANVAS])].sort((a,b) => a-b);
+      const ys = [...new Set([0, ...(t.fitY || []).map(k => k[0]), CANVAS])].sort((a,b) => a-b);
+      const mx = (x,y) => t.fitX ? mappedX(x, y, t) : x, my = y => t.fitY ? mapAxis(y, t.fitY) : y;
+      for (let x = 0; x < xs.length - 1; x++) for (let y = 0; y < ys.length - 1; y++) {
+        ctx.drawImage(img, xs[x]*unit, ys[y]*unit, (xs[x+1]-xs[x])*unit, (ys[y+1]-ys[y])*unit, mx(xs[x], (ys[y]+ys[y+1])/2), my(ys[y]), mx(xs[x+1], (ys[y]+ys[y+1])/2)-mx(xs[x], (ys[y]+ys[y+1])/2), my(ys[y+1])-my(ys[y]));
+      }
+    } else if (t.strapX) {
       const n = (img.naturalWidth || img.width) / CANVAS;
       const [left, right] = t.strapX;
       ctx.drawImage(img, 384 * n, 0, 22 * n, CANVAS * n, left, 0, 406 - left, CANVAS);
@@ -505,15 +597,25 @@ function integrate(img, group, key, t, surface, size) {
   ctx.putImageData(id, 0, 0); return c;
 }
 const shadows = new WeakMap();
-export function contactShadow(layer, body, group, size) {
-  const settings = { handOnHip: [5, 3, .18], jewelry: [3, 2, .17], hair: [7, 4, .23], eyes: [4, 0, .13], mouth: [3, 1, .10], hat: [9, 7, .25], eyewear: [4, 3, .17], neckwear: [8, 5, .20], extra: [6, 3, .18], facialHair: [3, 2, .12], brows: [2, 1, .10] }[group];
+export function contactShadow(layer, receiver, group, size) {
+  const settings = { handOnHip: [5, 3, .18], jewelry: [3, 2, .17], hair: [7, 4, .23], eyes: [4, 0, .13], mouth: [3, 1, .10], hat: [7, 5, .30], eyewear: [4, 3, .17], neckwear: [8, 5, .20], extra: [5, 3, .22], facialHair: [3, 2, .12], brows: [2, 1, .10] }[group];
   if (!settings) return null;
-  if (shadows.has(layer)) return shadows.get(layer);
-  const c = canvas(layer.width), ctx = c.getContext('2d', { willReadFrequently: true });
+  // Cache the caster, never the receiver: the same hat can sit on a bare
+  // head, curls or a bob. Reusing a body-clipped shadow erases that contact.
+  let caster = shadows.get(layer);
+  if (!caster) {
+    caster = canvas(layer.width);
+    const ctx = caster.getContext('2d');
+    ctx.filter = `blur(${settings[0] * size / CANVAS}px)`;
+    ctx.drawImage(layer, 0, settings[1] * size / CANVAS);
+    ctx.filter = 'none'; ctx.globalCompositeOperation = 'source-in';
+    ctx.fillStyle = `rgba(27, 15, 8, ${settings[2]})`; ctx.fillRect(0, 0, caster.width, caster.height);
+    shadows.set(layer, caster);
+  }
+  const c = canvas(layer.width), ctx = c.getContext('2d');
   c.worldBox = layer.worldBox || [0, 0, CANVAS, CANVAS];
-  ctx.filter = `blur(${settings[0] * size / CANVAS}px)`;
-  ctx.drawImage(layer, 0, settings[1] * size / CANVAS);
-  ctx.filter = 'none'; ctx.globalCompositeOperation = 'source-in'; ctx.fillStyle = `rgba(27, 15, 8, ${settings[2]})`; ctx.fillRect(0, 0, c.width, c.height);
-  ctx.globalCompositeOperation = 'destination-in'; ctx.drawImage(body, -c.worldBox[0] * size / CANVAS, -c.worldBox[1] * size / CANVAS, size, size);
-  shadows.set(layer, c); return c;
+  ctx.drawImage(caster, 0, 0);
+  ctx.globalCompositeOperation = 'destination-in';
+  ctx.drawImage(receiver, -c.worldBox[0] * size / CANVAS, -c.worldBox[1] * size / CANVAS, size, size);
+  return c;
 }
