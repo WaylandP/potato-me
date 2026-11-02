@@ -1,0 +1,26 @@
+[
+  [
+    "Aurora",
+    "#body=classic&skin=russet&hair=ponytail&hat=beanie&hatColor=navy&item=coffee&gesture=peace&eyes=almond&brows=softArch&mouth=roseSmile&bg=indigo&pattern=aurora"
+  ],
+  [
+    "Coastal morning",
+    "#body=round&skin=gold&hat=sunhat&hair=braids&hairColor=black&eyes=joyLashes&mouth=laugh&brows=softArch&item=teacup&gesture=palmUp&bg=sky&pattern=coast"
+  ],
+  [
+    "Mountain dusk",
+    "#body=long&skin=red&hat=beanie&hatColor=teal&item=book&gesture=wave&eyes=wide&mouth=smile&bg=plum&pattern=mountains"
+  ],
+  [
+    "Botanical garden",
+    "#body=pear&skin=ghost&hair=waves&hat=flowerCrown&item=bouquet&gesture=fingerHeart&eyes=almond&brows=softArch&mouth=roseSmile&bg=sage&pattern=botanical"
+  ],
+  [
+    "Cosmic orbit",
+    "#body=lumpy&skin=purple&hat=wizard&hatColor=purple&item=trophy&gesture=fist&eyes=stars&mouth=grin&bg=indigo&pattern=orbit"
+  ],
+  [
+    "Desert glow",
+    "#body=petite&skin=russet&hat=none&hair=curls&hairColor=black&item=handbag&gesture=hip&eyes=almond&brows=softArch&mouth=roseSmile&bg=terracotta&pattern=dunes"
+  ]
+]

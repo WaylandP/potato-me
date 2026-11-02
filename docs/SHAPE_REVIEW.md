@@ -1,5 +1,7 @@
 # Shape and variation review — v0.6.1
 
+Historical v0.6.1 record. The [v0.7 wearable review](WEARABLE_REVIEW.md) records the current fitting work and its limits.
+
 Review date: 2026-11-02. This follows the [v0.6.0 review](COHESION_REVIEW.md). That review missed a misleading body label and material/fit defects that became clear in enlarged renders. Its successful render counts were not evidence that every detail looked correct.
 
 ## Corrections

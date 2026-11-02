@@ -26,10 +26,12 @@ const TABS = {
     { key: 'cheeks', title: 'Cheeks', kind: 'thumb' },
     { key: 'facialHair', title: 'Facial hair', kind: 'thumb' },
   ],
-  hat: [
+  hair: [
     { key: 'hair', title: 'Hair', kind: 'thumb', help: 'Every style works with every body. Mix hair, hats and accessories your way.' },
     { key: 'hairColor', title: 'Hair color', kind: 'swatch', colors: HAIR_COLORS, onlyWhen: s => s.hair !== 'none', hint: 'Choose a hairstyle to change its color.' },
-    { key: 'hat', title: 'Hat', kind: 'thumb' },
+  ],
+  hat: [
+    { key: 'hat', title: 'Headwear', kind: 'thumb' },
     { key: 'hatColor', title: 'Accent color', kind: 'swatch', colors: HAT_COLORS, help: 'Colors supported hats, neckwear, headphones, ribbon clips, cat-eye frames and the coffee mug. Straw, metal, pearls and white trim keep their own colors.' },
     {
       key: 'capText',
@@ -41,19 +43,25 @@ const TABS = {
       help: 'Up to 3 characters, embroidered on the hat.',
     },
   ],
-  gear: [
+  props: [
     { key: 'item', title: 'Holding', kind: 'thumb' },
-    { key: 'stickers', title: 'Laptop stickers', kind: 'multi', onlyWhen: (s) => s.item === 'laptop', hint: 'Hold the laptop to pick its stickers.', help: 'Pick up to 6, in the order you want them.' },
     { key: 'sign', title: 'Sign text', kind: 'text', placeholder: 'HI THERE!', onlyWhen: (s) => s.item === 'sign', hint: 'Hold the sign to write on it.', help: 'Up to 10 characters. Try HI THERE!, LOVE YOU or YOU GOT IT. LGTM means “Looks good to me”.' },
+  ],
+  gestures: [
     { key: 'gesture', title: 'Free hand', kind: 'thumb' },
+  ],
+  accessories: [
     { key: 'eyewear', title: 'Eyewear', kind: 'thumb' },
     { key: 'neckwear', title: 'Neckwear', kind: 'thumb' },
     { key: 'jewelry', title: 'Earrings', kind: 'thumb', help: 'Long hair may cover earrings, just as it does when worn.' },
     { key: 'extra', title: 'Extras', kind: 'thumb', help: 'Hair clips add a bob if no hairstyle is selected. Choosing no hair removes the clip.' },
   ],
+  stickers: [
+    { key: 'stickers', title: 'Laptop stickers', kind: 'multi', onlyWhen: (s) => s.item === 'laptop', hint: 'Give your laptop a little personality.', action: { label: 'Hold a laptop', patch: { item: 'laptop' } }, help: 'Pick up to 6, in the order you want them.' },
+  ],
   bg: [
     { key: 'bg', title: 'Color', kind: 'swatch', colors: BG_COLORS },
-    { key: 'pattern', title: 'Pattern', kind: 'thumb' },
+    { key: 'pattern', title: 'Scenes & patterns', kind: 'thumb' },
   ],
 };
 
@@ -244,6 +252,7 @@ function note(text, className = 'hint') {
 function renderPanel() {
   panel.replaceChildren();
   thumbJobs.length = 0;
+  panel.append(note({ body: 'Start with the silhouette and potato skin.', face: 'Build an expression, from eyes to the smallest smile.', hair: 'Choose a cut, then find your favorite shade.', hat: 'Headwear fits the selected head and hairstyle.', accessories: 'The finishing touches: glasses, jewelry and more.', props: 'Choose what your potato carries.', gestures: 'Say it with a wave, a heart or a little attitude.', stickers: 'Make the laptop yours. Pick up to six stickers.', bg: 'Set the scene, then choose its color palette.' }[activeTab], 'panel-intro'));
   for (const group of TABS[activeTab]) {
     const fieldset = document.createElement('fieldset');
     fieldset.className = 'group';
@@ -253,6 +262,12 @@ function renderPanel() {
 
     if (group.onlyWhen && !group.onlyWhen(state)) {
       fieldset.append(note(group.hint));
+      if (group.action) {
+        const button = document.createElement('button');
+        button.type = 'button'; button.className = 'btn btn-small'; button.textContent = group.action.label;
+        button.addEventListener('click', () => setState(group.action.patch));
+        fieldset.append(button);
+      }
       panel.append(fieldset);
       continue;
     }
@@ -363,6 +378,8 @@ tablist.addEventListener('keydown', (e) => {
   const i = tabs.findIndex((t) => t.dataset.tab === activeTab);
   let next = null;
   if (e.key === 'ArrowRight') next = tabs[(i + 1) % tabs.length];
+  if (e.key === 'ArrowDown') next = tabs[(i + 3) % tabs.length];
+  if (e.key === 'ArrowUp') next = tabs[(i - 3 + tabs.length) % tabs.length];
   if (e.key === 'ArrowLeft') next = tabs[(i - 1 + tabs.length) % tabs.length];
   if (e.key === 'Home') next = tabs[0];
   if (e.key === 'End') next = tabs[tabs.length - 1];

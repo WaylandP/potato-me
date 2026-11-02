@@ -16,6 +16,37 @@
 // laptop:  the lid's four corners (TL, TR, BR, BL) for sticker projection.
 
 export const FIT = {
+  // Measured source-space openings, separate from the decorative silhouette.
+  hairOpenings: {
+    bob: { left: 377, right: 698, y: 422, length: 235 },
+    braids: { left: 371, right: 656, y: 454, length: 300 },
+    bun: { left: 397, right: 634, y: 387, length: 120 },
+    curls: { left: 389, right: 638, y: 411, length: 255 },
+    pixie: { left: 362, right: 667, y: 396, length: 110 },
+    waves: { left: 378, right: 653, y: 459, length: 300 },
+    ponytail: { left: 285, right: 598, y: 449, length: 285, shell: [216, 707] },
+  },
+  hatOpenings: {
+    backwardCap: { x: 503, y: 282, width: 397, depth: .53 },
+    cap: { x: 532, y: 232, width: 308, depth: .48 },
+    bucket: { x: 512, y: 240, width: 288, depth: .48 },
+    chef: { x: 512, y: 244, width: 188, depth: .40 },
+    sunhat: { x: 510, y: 272, width: 272, depth: .40 },
+    beanie: { x: 512, y: 266, width: 242, depth: .44 },
+    cowboy: { x: 510, y: 238, width: 242, depth: .43 },
+    tophat: { x: 512, y: 245, width: 212, depth: .42 },
+    fedora: { x: 512, y: 249, width: 250, depth: .43 },
+    wizard: { x: 510, y: 244, width: 178, depth: .40 },
+    crown: { x: 512, y: 222, width: 258, depth: .33 },
+    hardhat: { x: 512, y: 247, width: 286, depth: .48 },
+    viking: { x: 512, y: 223, width: 208, depth: .44 },
+    party: { x: 512, y: 258, width: 200, depth: .18 },
+    beret: { x: 542, y: 239, width: 252, depth: .42 },
+    propeller: { x: 512, y: 253, width: 236, depth: .45 },
+    santa: { x: 486, y: 226, width: 236, depth: .44 },
+    headband: { x: 512, y: 535, width: 764, depth: .68 },
+    horns: { x: 512, y: 197, width: 221, depth: .20 },
+  },
   pivots: {
     body: [512, 922],
     hair: [512, 300],

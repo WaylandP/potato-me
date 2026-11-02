@@ -33,6 +33,18 @@ export const BG_COLORS = {
   navy: { label: 'Navy', value: '#1E2A4A' },
   charcoal: { label: 'Charcoal', value: '#2E3440' },
   black: { label: 'Black', value: '#121214' },
+  lagoon: { label: 'Lagoon', value: '#187D87' },
+  forest: { label: 'Forest', value: '#315B4A' },
+  sage: { label: 'Sage', value: '#A6BA9B' },
+  ice: { label: 'Glacier', value: '#C4E6ED' },
+  periwinkle: { label: 'Periwinkle', value: '#7C8BDB' },
+  indigo: { label: 'Midnight indigo', value: '#36376D' },
+  plum: { label: 'Plum', value: '#663C6B' },
+  berry: { label: 'Berry', value: '#A64D73' },
+  rosewater: { label: 'Rosewater', value: '#E8C7CC' },
+  peach: { label: 'Peach sorbet', value: '#F3BF9D' },
+  sand: { label: 'Warm sand', value: '#CDB58D' },
+  terracotta: { label: 'Terracotta', value: '#B56B52' },
 };
 
 export const HAT_COLORS = {
@@ -184,6 +196,12 @@ export const OPTIONS = {
   pattern: {
     solid: 'Solid',
     spotlight: 'Spotlight',
+    aurora: 'Aurora',
+    coast: 'Coastal morning',
+    mountains: 'Mountain dusk',
+    botanical: 'Botanical garden',
+    orbit: 'Cosmic orbit',
+    dunes: 'Desert glow',
     dots: 'Dots',
     rays: 'Rays',
     grid: 'Grid',

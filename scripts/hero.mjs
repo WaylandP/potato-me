@@ -16,11 +16,11 @@ const root = fileURLToPath(new URL('..', import.meta.url));
 
 // Five potatoes that show off the range in the banner and link-preview card.
 export const HERO_POTATOES = [
-  '#character=female&body=pear&skin=russet&hair=ponytail&hairColor=chestnut&hat=none&neckwear=pendant&item=bouquet&gesture=hip&eyes=almond&brows=softArch&mouth=roseSmile&bg=mint&pattern=spotlight',
-  '#character=female&body=petite&skin=gold&hair=curls&hairColor=black&hat=bow&hatColor=pink&jewelry=pearlDrops&item=teacup&gesture=palmUp&eyes=joyLashes&brows=softArch&mouth=laugh&bg=coral',
+  '#character=female&body=pear&skin=russet&hair=ponytail&hairColor=chestnut&hat=none&neckwear=pendant&item=bouquet&gesture=hip&eyes=almond&brows=softArch&mouth=roseSmile&bg=sage&pattern=botanical',
+  '#character=female&body=petite&skin=gold&hair=curls&hairColor=black&hat=bow&hatColor=pink&jewelry=pearlDrops&item=teacup&gesture=palmUp&eyes=joyLashes&brows=softArch&mouth=laugh&bg=berry&pattern=aurora',
   '#capText=A%2BW',
-  '#body=long&skin=purple&hat=wizard&hatColor=purple&eyes=wide&brows=raised&mouth=grin&item=book&gesture=fist&bg=navy&pattern=stars',
-  '#character=female&body=round&skin=ghost&hair=braids&hairColor=copper&hat=sunhat&hatColor=teal&item=palette&gesture=peace&eyes=almond&brows=softArch&mouth=smile&bg=sky',
+  '#body=long&skin=purple&hat=wizard&hatColor=purple&eyes=wide&brows=raised&mouth=grin&item=book&gesture=fist&bg=indigo&pattern=orbit',
+  '#character=female&body=round&skin=ghost&hair=braids&hairColor=copper&hat=sunhat&hatColor=teal&item=palette&gesture=peace&eyes=almond&brows=softArch&mouth=smile&bg=sky&pattern=coast',
 ];
 
 let chromium;

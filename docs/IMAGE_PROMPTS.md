@@ -274,3 +274,11 @@ LGTM stickers. See `ASSET_COMPLETION.md` for integration and verification status
 - Preserves skin texture and source shading, protects prop colors, adds contact shadows, and reframes tall hats with the complete character.
 - Recolors supported red materials, projects laptop stickers, and draws editable cap/sign text.
 - Exports a square 512 × 512 or 1024 × 1024 PNG. The circle is a preview guide.
+
+## v0.7 chef replacement — November 2, 2026
+
+Built-in ChatGPT image generation edited `hat/chef.png` because the original product view exposed an empty underside. The replacement is a worn, front-facing white cotton toque with detailed pleats, weave and seams, upper-left lighting and a broad opaque cuff. The prompt explicitly excluded a visible underside ellipse, hollow interior, head/body, text and canvas shadow, and requested transparency. The generated alpha was retained; the asset was cropped and proportionally placed on the standard 1024 canvas. Its source crop, placed bounds and SHA-256 are recorded in `assets/manifest.json`.
+
+New background scenes are deterministic SVG artwork in `src/parts/background.js`, not generated raster images. All derive their palette from the chosen background color.
+
+The crown and fantasy Viking helmet were also regenerated with the built-in tool to remove empty product-view interiors. Crown: retain gold beadwork, five points, red velvet, central ruby and two sapphires, but use an opaque front band. Helmet: retain steel panels, rivets and two ivory horns, with a clean brow band instead of hollow lining, cheek flaps and a nose guard. Both use frontal eye-level perspective, upper-left light, transparent backgrounds and no head/body. Exact placement and checksums are in the manifest.

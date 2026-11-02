@@ -2,6 +2,16 @@
 
 Notable changes to the source. Version numbers match `package.json`; tags and downloadable release archives are listed separately on [GitHub Releases](https://github.com/WaylandP/potato-me/releases).
 
+## 0.7.0 — 2026-11-02
+
+- Split customization into nine sections: Body, Face, Hair, Headwear, Accessories, Props, Gestures, Stickers and Background. Add a laptop action in Stickers and vertical keyboard navigation in the section grid.
+- Add six palette-responsive illustrated scenes and twelve colors (26 colors and 18 scenes/patterns total).
+- Fit hats from measured wearing openings and hairstyle contours; limit crown height independently from the band/brim. Keep narrow-body tips covered and wrap headband ends around the wearer.
+- Fit hair openings at the temples, preserve side volume, bound lengths and use continuous inverse sampling to prevent join seams and stepped strands.
+- Scale earrings, earbuds and hair ornaments with body width; attach clips to the hair. Cast contact shadows onto the actual preceding layers.
+- Replace the chef hat, crown and Viking helmet's empty underside views with detailed front-view artwork. Keep the 224-image inventory and all existing share keys.
+- Refresh documentation and app-rendered examples. See [WEARABLE_REVIEW.md](docs/WEARABLE_REVIEW.md) for review scope.
+
 ## 0.6.1 — 2026-11-02
 
 - Rename Long to Petite and the former broad Petite to Wide, retaining historical share keys.

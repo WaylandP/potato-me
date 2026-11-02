@@ -1,6 +1,6 @@
 {
   "name": "potato-me",
-  "version": "0.6.1",
+  "version": "0.7.0",
   "description": "Create a potato avatar with six body shapes, expressive faces, hairstyles, jewelry, props and stickers. Browser-based PNG export and share links, with zero runtime dependencies.",
   "type": "module",
   "private": true,
