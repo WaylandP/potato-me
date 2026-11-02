@@ -43,9 +43,19 @@ The broad runs used source digest `d589d43aa92db02998c750a6b5a20d526871266540749
 
 An independent code review found no blocking issue in source-resolution handling, split-image caching, front/rear registration, receiving-layer order, combined headphone fitting, temple rendering, halo clearance or existing share-state compatibility. All 224 original PNGs remain unchanged. The banner, link-preview card, gallery and favicon were regenerated from the actual renderer.
 
-## Publication status
+## Publication and production verification
 
-This is a completed local review of an unpublished change based on main commit `84f08afcea90e39124a02d9fca6a3eb471e9dfd1`. A new GitHub CI run and verification of the corresponding Vercel production commit remain pending. The roadmap deliberately leaves this work unshipped until the deployed-site checks succeed.
+Published and verified on **2026-11-02** at [potato-me.vercel.app](https://potato-me.vercel.app/). [PR #11](https://github.com/WaylandP/potato-me/pull/11) merged the reviewed application tree as commit [`48360e6db51d1d16c0e1c24c0358d5788408206f`](https://github.com/WaylandP/potato-me/commit/48360e6db51d1d16c0e1c24c0358d5788408206f). The [pull-request CI run](https://github.com/WaylandP/potato-me/actions/runs/41543384428) and [main-push CI run](https://github.com/WaylandP/potato-me/actions/runs/41543762201) both passed. Vercel deployment `dpl_CQSJz1SnATwWHjAnDFfLgKxcpghB` reached `READY` for that exact commit and held the production alias. This records the application deployment verified on that date; later documentation-only commits do not change its renderer.
+
+| Production check | Observed result |
+| --- | --- |
+| Public page and source identity | Homepage returned HTTP 200. Ten served runtime/manifest files matched their reviewed SHA-256 hashes exactly, with TLS verification enabled. |
+| Native PNG exports | Downloaded and individually inspected four 1024 × 1024 PNGs from the live editor: headband/curls, halo/headphones/bun, sunhat/bob, and round body/flower crown/waves. The repaired contact and overlap boundaries were present in the actual exports. |
+| Share URL reload | Reloading the public hash URL retained the avatar. Real 512 × 512 downloads before and after reload were byte-for-byte identical: 374,282 bytes, SHA-256 `052e41aa8f915aa31fdcdbe7a816cc8f17bff76068cc16afb47fa16cc3b86520`. |
+| Copy link control | The live control displayed its success toast. The managed browser's clipboard read returned no data, so clipboard contents were not independently verified on production; exact clipboard/state checks remain part of the local UI audit. |
+| Application console | No application-origin warning or error was observed during these production checks. The browser extension logged unrelated metadata-delivery errors. |
+
+Production interaction was checked in the managed Chrome browser at its desktop viewport. The local 390 px/mobile, light/dark and broad matrix results above were not rerun on production. Preview build/status metadata was verified; protected-preview page access was unavailable, so the live interaction checks used the public production alias. [wrap-evidence.json](wrap-evidence.json) records the deployment identifiers, served-file hashes and actual download hashes separately from the earlier local audit.
 
 ## Remaining limits
 
