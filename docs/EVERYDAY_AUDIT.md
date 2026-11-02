@@ -100,4 +100,6 @@ Verification used Chromium on Linux, including mobile viewport emulation. Physic
 
 ## Deployment
 
-Production verification is recorded separately after the release reaches the public Vercel alias. Local checks above do not by themselves prove that a deployment serves the same files.
+The [public editor](https://potato-me.vercel.app/) was verified on November 2, 2026 at runtime commit `504f8ded07f3e3c40a96e968d255b037066327ba`, Vercel deployment `dpl_68mdZUJwYq7ZNDZiYvdoMsgQUgPc`. All **495 checked public assets and source files** returned HTTP 200 with SHA-256 hashes matching the reviewed repository. This includes the complete source/thumbnail catalog, fonts, renderer/editor code, HTML, favicon and four documentation images. Vercel returned 404 for `package.json`; it is repository metadata and is not needed by the browser.
+
+All **13 browser check groups also passed against the public URL**, with no browser errors or missing catalog parts. This includes actual share/reload, PNG downloads, mobile layouts, failure/retry and fitting-tool interactions. The [production evidence](everyday-production-verification.json) contains individual file hashes and the browser checks. The follow-up commit records these results without changing runtime files.

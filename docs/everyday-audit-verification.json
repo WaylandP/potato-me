@@ -2362,6 +2362,11 @@
     "Physical Safari/iOS and Android, manual VoiceOver/NVDA and Lighthouse pending"
   ],
   "production": {
-    "status": "Not recorded in this local audit; see deployment follow-up."
+    "status": "Verified on the public alias",
+    "url": "https://potato-me.vercel.app/",
+    "commit": "504f8ded07f3e3c40a96e968d255b037066327ba",
+    "publicFilesVerified": 495,
+    "browserCheckGroups": 13,
+    "evidence": "everyday-production-verification.json"
   }
 }
