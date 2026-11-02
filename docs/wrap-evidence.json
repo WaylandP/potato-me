@@ -1,7 +1,7 @@
 {
   "version": "0.7.1",
   "date": "2026-11-02",
-  "status": "Locally verified; unpublished; GitHub CI and corresponding Vercel production verification pending.",
+  "status": "Published and verified on production on 2026-11-02; local audit and production checks are recorded separately.",
   "baseCommit": "84f08afcea90e39124a02d9fca6a3eb471e9dfd1",
   "sourceAssets": 224,
   "sourceAssetsChanged": 0,
@@ -998,7 +998,7 @@
       "New body shapes, hair colors, jewelry, props, gestures and six new stickers are reachable through the actual controls.",
       "Hair clips add a hairstyle; explicitly choosing no hair removes the clip.",
       "Concurrent body/skin thumbnails match sequential renders in both mobile themes (2-channel-value tolerance).",
-      "390 px light/dark layouts: no horizontal overflow; all visible buttons meet 44 × 44 px.",
+      "390 px light/dark layouts: no horizontal overflow; all visible buttons meet 44 \u00d7 44 px.",
       "Failed body request shows retry; retry recovers after the connection is restored.",
       "Fitting tool includes empty holding hand, guards invalid scale input and fits its mobile controls without overflow.",
       "Editor and fitting tool make no third-party requests.",
@@ -1245,5 +1245,257 @@
     "Original separate 2D images retain baked lighting.",
     "Physical Safari/iOS and Android device testing remains outstanding.",
     "Interrupted preliminary and cancelled optional runs are excluded."
-  ]
+  ],
+  "publication": {
+    "date": "2026-11-02",
+    "event": "Initial application deployment; later documentation-only commits may follow without changing the reviewed renderer.",
+    "repository": "https://github.com/WaylandP/potato-me",
+    "pullRequest": {
+      "number": 11,
+      "url": "https://github.com/WaylandP/potato-me/pull/11",
+      "headSha": "05e1c3513d7840f63a3c114d2c49686843c412bc"
+    },
+    "mainCommit": "48360e6db51d1d16c0e1c24c0358d5788408206f",
+    "applicationTree": "271a2469b7ea0b6322f76fd01f1c64b615e951c0",
+    "ci": [
+      {
+        "event": "pull_request",
+        "workflow": "CI",
+        "check": "test",
+        "runId": 41543384428,
+        "url": "https://github.com/WaylandP/potato-me/actions/runs/41543384428",
+        "conclusion": "success"
+      },
+      {
+        "event": "push",
+        "workflow": "CI",
+        "check": "test",
+        "headSha": "48360e6db51d1d16c0e1c24c0358d5788408206f",
+        "runId": 41543762201,
+        "url": "https://github.com/WaylandP/potato-me/actions/runs/41543762201",
+        "conclusion": "success"
+      }
+    ],
+    "production": {
+      "deploymentId": "dpl_CQSJz1SnATwWHjAnDFfLgKxcpghB",
+      "deploymentUrl": "https://potato-lf48xkj86-waylandp.vercel.app",
+      "alias": "https://potato-me.vercel.app/",
+      "state": "READY",
+      "target": "production",
+      "gitSha": "48360e6db51d1d16c0e1c24c0358d5788408206f"
+    },
+    "preview": {
+      "deploymentId": "dpl_4YXf8pXrfkVQ3VJRAsGrMzYVYAFc",
+      "state": "READY",
+      "gitSha": "05e1c3513d7840f63a3c114d2c49686843c412bc",
+      "pageAccess": "Protected preview page was unavailable to the verification connector; public production was used for browser checks."
+    }
+  },
+  "productionVerification": {
+    "date": "2026-11-02",
+    "origin": "https://potato-me.vercel.app/",
+    "applicationCommit": "48360e6db51d1d16c0e1c24c0358d5788408206f",
+    "rendererDigest": "4e615207b9c4736ff5715965ea14b0c2594660caa5d8136ce1b121048e085bcf",
+    "environment": {
+      "browser": "Managed Chrome",
+      "viewport": "Desktop; current managed-browser viewport",
+      "localOnly": false,
+      "scope": "Four live native exports and a share URL reload. Broad local matrices, mobile layouts and theme checks were not rerun on production."
+    },
+    "httpSourceVerification": {
+      "date": "2026-11-02T23:17:18.511662+00:00",
+      "origin": "https://potato-me.vercel.app/",
+      "expectedCommit": "48360e6db51d1d16c0e1c24c0358d5788408206f",
+      "tlsVerificationEnabled": true,
+      "homepage": {
+        "status": 200,
+        "url": "https://potato-me.vercel.app/",
+        "bytes": 6114
+      },
+      "files": [
+        {
+          "file": "src/main.js",
+          "status": 200,
+          "bytes": 18771,
+          "remoteHash": "79b45a9cddc5eda3ad8c4badbf01a04c2c88d9b7eb623fdc80b1a6b67f96c45d",
+          "localHash": "79b45a9cddc5eda3ad8c4badbf01a04c2c88d9b7eb623fdc80b1a6b67f96c45d",
+          "match": true
+        },
+        {
+          "file": "src/raster.js",
+          "status": 200,
+          "bytes": 32032,
+          "remoteHash": "69959fbdad09c7c4b102a3ff09b9c7530875da28762cb5d76ea7b15e99eb351f",
+          "localHash": "69959fbdad09c7c4b102a3ff09b9c7530875da28762cb5d76ea7b15e99eb351f",
+          "match": true
+        },
+        {
+          "file": "src/surface.js",
+          "status": 200,
+          "bytes": 43658,
+          "remoteHash": "915077c350d9e3f173ff19364ccb46117ee3fff52e0651a7ab016212cb1bed7a",
+          "localHash": "915077c350d9e3f173ff19364ccb46117ee3fff52e0651a7ab016212cb1bed7a",
+          "match": true
+        },
+        {
+          "file": "src/wrap.js",
+          "status": 200,
+          "bytes": 1840,
+          "remoteHash": "58afd5839967c47b16d4104b72e5f0fb4f781a9ab0367048c7e2901ccc0cb800",
+          "localHash": "58afd5839967c47b16d4104b72e5f0fb4f781a9ab0367048c7e2901ccc0cb800",
+          "match": true
+        },
+        {
+          "file": "src/fit-data.js",
+          "status": 200,
+          "bytes": 18271,
+          "remoteHash": "f37a545657a6cd66dffe2928ef96a4aba3094b1e117d6e14aeaecaa5a2bb55f8",
+          "localHash": "f37a545657a6cd66dffe2928ef96a4aba3094b1e117d6e14aeaecaa5a2bb55f8",
+          "match": true
+        },
+        {
+          "file": "src/options.js",
+          "status": 200,
+          "bytes": 13399,
+          "remoteHash": "7d09b061034c6750e9756768d058c0205b20d40b882d2eb215adfd2fcbb800d6",
+          "localHash": "7d09b061034c6750e9756768d058c0205b20d40b882d2eb215adfd2fcbb800d6",
+          "match": true
+        },
+        {
+          "file": "src/state.js",
+          "status": 200,
+          "bytes": 3341,
+          "remoteHash": "2f13d505340fe00fbc816aefe6c1caf5454ce975d894d2eec54c8af49cad1991",
+          "localHash": "2f13d505340fe00fbc816aefe6c1caf5454ce975d894d2eec54c8af49cad1991",
+          "match": true
+        },
+        {
+          "file": "src/assets.js",
+          "status": 200,
+          "bytes": 15782,
+          "remoteHash": "46bc90ddafdf5a3a690a6864030bd75180fec72a3457ee06761ecef9f2ddbe56",
+          "localHash": "46bc90ddafdf5a3a690a6864030bd75180fec72a3457ee06761ecef9f2ddbe56",
+          "match": true
+        },
+        {
+          "file": "src/export.js",
+          "status": 200,
+          "bytes": 1029,
+          "remoteHash": "9e56290d94665d5a9cd879636edde1b4d9d6d438f6de4ca8dc633adba47694a7",
+          "localHash": "9e56290d94665d5a9cd879636edde1b4d9d6d438f6de4ca8dc633adba47694a7",
+          "match": true
+        },
+        {
+          "file": "assets/manifest.json",
+          "status": 200,
+          "bytes": 194284,
+          "remoteHash": "457b2863d58598140fcf77ec042ea26cb1fe868fd6e5118ccb268963ab6f0b25",
+          "localHash": "457b2863d58598140fcf77ec042ea26cb1fe868fd6e5118ccb268963ab6f0b25",
+          "match": true
+        }
+      ]
+    },
+    "actualDownloads": [
+      {
+        "label": "halo-headphones-bun",
+        "dimensions": [
+          1024,
+          1024
+        ],
+        "bytes": 1658600,
+        "sha256": "a0edb8a40b45726aaa25ef740e43adbbcdc51069180adecbfa882dcb0c5a4113"
+      },
+      {
+        "label": "headband-curls",
+        "dimensions": [
+          1024,
+          1024
+        ],
+        "bytes": 1661773,
+        "sha256": "c0135ce6736f0e96a08e1e5f29c4a09a39443023a9d4cd4953ad4799227533ca"
+      },
+      {
+        "label": "round-flowerCrown-waves",
+        "dimensions": [
+          1024,
+          1024
+        ],
+        "bytes": 1668925,
+        "sha256": "96d549c8b477f59755cc0e564104ee06910863e40d274f7b7295860da71749ce"
+      },
+      {
+        "label": "share-after-reload",
+        "dimensions": [
+          512,
+          512
+        ],
+        "bytes": 374282,
+        "sha256": "052e41aa8f915aa31fdcdbe7a816cc8f17bff76068cc16afb47fa16cc3b86520"
+      },
+      {
+        "label": "share-before",
+        "dimensions": [
+          512,
+          512
+        ],
+        "bytes": 374282,
+        "sha256": "052e41aa8f915aa31fdcdbe7a816cc8f17bff76068cc16afb47fa16cc3b86520"
+      },
+      {
+        "label": "sunhat-bob",
+        "dimensions": [
+          1024,
+          1024
+        ],
+        "bytes": 1790692,
+        "sha256": "7478db13b7e0162ad5468cf6d68510c74fd74e60e67cabef1b305e9e1abbae75"
+      }
+    ],
+    "nativeVisualInspection": {
+      "count": 4,
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "method": "Each actual production download was viewed at its original resolution.",
+      "outcomes": [
+        {
+          "label": "headband-curls",
+          "result": "Pass: intact knit texture, smooth lateral contact with curls, no chopped edge or projecting spike."
+        },
+        {
+          "label": "halo-headphones-bun",
+          "result": "Pass: halo clears bun and band; hair overlaps rear band; ear cushions retain rounded shape."
+        },
+        {
+          "label": "sunhat-bob",
+          "result": "Pass: rear underside behind hair, continuous front brim, intact straw texture, ribbon and bow."
+        },
+        {
+          "label": "round-flowerCrown-waves",
+          "result": "Pass: rear branch tips hidden from eyebrows; complete front flowers and leaves contact hair coherently."
+        }
+      ],
+      "materialFindings": []
+    },
+    "shareReload": {
+      "exactPngBytesMatch": true,
+      "dimensions": [
+        512,
+        512
+      ],
+      "bytes": 374282,
+      "sha256": "052e41aa8f915aa31fdcdbe7a816cc8f17bff76068cc16afb47fa16cc3b86520",
+      "publicHashRetained": true
+    },
+    "copyLink": {
+      "successToastObserved": true,
+      "clipboardBytesVerified": false,
+      "limitation": "The managed browser clipboard API returned no data. Exact clipboard/state equality was verified by the earlier local UI audit."
+    },
+    "console": {
+      "applicationOriginWarningsOrErrorsObserved": 0,
+      "unrelatedBrowserExtensionMetadataErrorsObserved": true
+    }
+  }
 }

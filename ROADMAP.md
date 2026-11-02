@@ -25,10 +25,9 @@ The earlier asset-completion and character-fitting work was verified on November
 
 - [x] Nine focused editor sections, six illustrated scenes and twelve more background colors.
 - [x] Measured wearable openings, joint hair/headwear fitting, body-relative small accessories, layered contact shadows and replacement chef artwork. See the [v0.7 review](docs/WEARABLE_REVIEW.md).
+- [x] Headgear overlap follow-up: front/rear hat composition, fitted headphone bands, halo clearance, glasses temples, earbud insertion and headband side contact. Published and verified on production on November 2, 2026. See [WRAP_REVIEW.md](docs/WRAP_REVIEW.md).
 
 ## Next priorities
-
-- [ ] **Headgear overlap follow-up:** front/rear hat composition, fitted headphone bands, halo clearance, glasses temples, earbud insertion and headband side contact. Implemented and locally verified; publication and deployed-site verification are pending. See [WRAP_REVIEW.md](docs/WRAP_REVIEW.md).
 
 - [ ] **Broader device coverage:** verify the current rendering on physical iOS/Safari and Android devices, beyond the recorded Chromium checks.
 
@@ -44,7 +43,7 @@ The earlier asset-completion and character-fitting work was verified on November
 
 ## Earlier milestones
 
-The v0.1 prototype used a layered SVG renderer. The v0.2 milestone added shaded vector artwork and contributor tools. The v0.3 work introduced rendered PNG parts and the Canvas compositor; v0.3.1 introduced silhouette fitting; v0.4.0 rebuilds unsuitable artwork and expands interaction coverage; v0.5.0 broadens body shapes, personal styling and everyday interests; v0.6.0 corrects limb fitting/materials and adds Male/Female starters. v0.6.1 corrects body naming/proportions and further fit/material defects. v0.7.0 reworks wearable fitting, organizes the editor and expands backgrounds. These version names describe development milestones, not a claim that historical GitHub releases were published.
+The v0.1 prototype used a layered SVG renderer. The v0.2 milestone added shaded vector artwork and contributor tools. The v0.3 work introduced rendered PNG parts and the Canvas compositor; v0.3.1 introduced silhouette fitting; v0.4.0 rebuilds unsuitable artwork and expands interaction coverage; v0.5.0 broadens body shapes, personal styling and everyday interests; v0.6.0 corrects limb fitting/materials and adds Male/Female starters. v0.6.1 corrects body naming/proportions and further fit/material defects. v0.7.0 reworks wearable fitting, organizes the editor and expands backgrounds. v0.7.1 corrects headgear overlap and stacked accessory contact. These version names describe development milestones, not a claim that historical GitHub releases were published.
 
 ## Outside the current scope
 

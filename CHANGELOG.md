@@ -2,7 +2,7 @@
 
 Notable changes to the source. Version numbers match `package.json`; tags and downloadable release archives are listed separately on [GitHub Releases](https://github.com/WaylandP/potato-me/releases).
 
-## 0.7.1 — Unreleased
+## 0.7.1 — 2026-11-02
 
 - Split measured rear hat interiors and returning branches behind the head/hair, keeping front brims, trim and decorations intact. Reuse all existing PNG artwork.
 - Fit headphone pads to the worn head while preserving cup dimensions; let raised buns overlap the band. Float halos above the actual hair and headphone envelope.
