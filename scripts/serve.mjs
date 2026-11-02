@@ -11,7 +11,10 @@ import { extname, join, normalize, resolve, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const root = resolve(fileURLToPath(new URL('..', import.meta.url)));
-const port = Number(process.env.PORT) || 5173;
+const args = process.argv.slice(2);
+const option = name => args.includes(name) ? args[args.indexOf(name) + 1] : undefined;
+const port = Number(option('--port') || process.env.PORT) || 5173;
+const host = option('--host') || '0.0.0.0';
 
 const TYPES = {
   '.html': 'text/html; charset=utf-8',
@@ -61,6 +64,6 @@ const server = createServer((req, res) => {
   createReadStream(file).pipe(res);
 });
 
-server.listen(port, () => {
+server.listen(port, host, () => {
   console.log(`potato-me is cooking at http://localhost:${port}/ (Ctrl+C to stop)`);
 });

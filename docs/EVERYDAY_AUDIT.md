@@ -1,5 +1,7 @@
 # Everyday-expression audit — v0.5.0
 
+> **Historical record, superseded by [the v0.6 review](COHESION_REVIEW.md).** Subsequent user testing exposed mismatched arm colors, inconsistent hand sizes and an unsuitable hip pose. The visual conclusions below were too strong; the test counts establish only the listed executions, not correctness or aesthetic quality.
+
 Reviewed November 2, 2026. This record covers the expanded 222-image catalog and the browser editor. It supersedes the v0.4 visual coverage in [PUBLIC_AUDIT.md](PUBLIC_AUDIT.md). The [machine-readable evidence](everyday-audit-verification.json) records suite totals, source hashes and the filenames/checksums of the 526 final review sheets.
 
 ## What changed

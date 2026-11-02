@@ -60,6 +60,7 @@ export const HAIR_COLORS = {
 };
 
 export const OPTIONS = {
+  character: { male: 'Male', female: 'Female' },
   body: { classic: 'Classic', lumpy: 'Lumpy', round: 'Round', long: 'Long', pear: 'Pear', petite: 'Petite' },
   skin: Object.fromEntries(Object.entries(SKINS).map(([k, v]) => [k, v.label])),
   eyes: {
@@ -95,10 +96,11 @@ export const OPTIONS = {
     whistle: 'Whistle',
     kiss: 'Kiss',
     wavy: 'Wavy',
+    roseSmile: 'Soft rose smile',
   },
   cheeks: { off: 'Plain', on: 'Blush', freckles: 'Freckles' },
   facialHair: { none: 'None', mustache: 'Mustache', handlebar: 'Handlebar', goatee: 'Goatee', beard: 'Beard', stubble: 'Stubble' },
-  hair: { none: 'No hair', bob: 'Side-part bob', waves: 'Soft waves', curls: 'Natural curls', pixie: 'Pixie crop', braids: 'Twin braids', bun: 'Soft bun' },
+  hair: { none: 'No hair', bob: 'Side-part bob', waves: 'Soft waves', curls: 'Natural curls', pixie: 'Pixie crop', braids: 'Twin braids', bun: 'Soft bun', ponytail: 'Side ponytail' },
   hairColor: Object.fromEntries(Object.entries(HAIR_COLORS).map(([k, v]) => [k, v.label])),
   hat: {
     backwardCap: 'Backward cap',
@@ -267,6 +269,7 @@ export const LEGACY = {
 };
 
 export const DEFAULT_STATE = Object.freeze({
+  character: 'male',
   body: 'classic',
   skin: 'russet',
   eyes: 'smug',
@@ -287,6 +290,20 @@ export const DEFAULT_STATE = Object.freeze({
   bg: 'ocean',
   pattern: 'spotlight',
   stickers: MULTI.stickers.default,
-  sign: 'LGTM',
+  sign: 'HI THERE!',
   capText: '',
 });
+
+// Starting looks, not restrictions: every control remains available in either.
+// Body, skin, background and held object are deliberately kept when switching.
+export const CHARACTER_LOOKS = Object.freeze({
+  male: { eyes: 'smug', brows: 'smug', mouth: 'smirk', cheeks: 'off', facialHair: 'none', hair: 'none', hairColor: 'chestnut', hat: 'backwardCap', hatColor: 'black', jewelry: 'none', neckwear: 'none', extra: 'none', eyewear: 'none', gesture: 'shaka' },
+  female: { eyes: 'almond', brows: 'softArch', mouth: 'roseSmile', cheeks: 'off', facialHair: 'none', hair: 'waves', hairColor: 'chestnut', hat: 'none', hatColor: 'red', jewelry: 'pearlDrops', neckwear: 'none', extra: 'none', eyewear: 'none', gesture: 'hip' },
+});
+
+export const CHARACTER_LOOK_KEYS = Object.keys(CHARACTER_LOOKS.male);
+export function characterLook(state, character, savedLook) {
+  const selected = Object.hasOwn(CHARACTER_LOOKS, character) ? character : 'male';
+  const look = savedLook || CHARACTER_LOOKS[selected];
+  return { ...state, ...Object.fromEntries(CHARACTER_LOOK_KEYS.map(key => [key, look[key]])), character: selected };
+}

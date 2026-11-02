@@ -120,24 +120,42 @@ export const FIT = {
   },
   // Corrections applied after silhouette fitting; edited by fit.html.
   surfaceNudges: { shapes: {}, parts: {} },
+  // Reference palm spans calibrated against the visible hand silhouette. Props
+  // and extended fingers are excluded; pose foreshortening is explicit below.
+  palmWidth: {
+    item: { laptop: 95, coffee: 75, wrench: 110, book: 90, none: 115,
+      phone: 140, boba: 125, controller: 160, sign: 120, pizza: 155,
+      donut: 140, duck: 220, mic: 160, trophy: 160, plant: 210,
+      bouquet: 80, handbag: 90, teacup: 80, palette: 130 },
+    gesture: { shaka: 135, thumbsUp: 140, wave: 180, peace: 145,
+      point: 145, rock: 150, ok: 190, fist: 155, rest: 115,
+      salute: 130, flex: 120, fingerHeart: 105, palmUp: 110, hip: 100 },
+  },
   // These original arms were painted facing inward. Mirror about their real
   // shoulder, keeping the hand and prop together as one rigid image.
   surfaceRoots: {
+    'gesture/shaka': { point: [706, 693], inset: 50 },
     'gesture/rest': { point: [735, 592] },
     'item/none': { point: [735, 592], flip: true },
     'item/coffee': { point: [57, 603], flip: true },
     'item/book': { point: [64, 604], flip: true },
-    'item/bouquet': { point: [363, 565], inset: 110 },
-    'item/handbag': { point: [352, 550], inset: 110, dy: -30 },
-    'item/teacup': { point: [355, 577], inset: 110 },
-    'item/palette': { point: [355, 565], inset: 110 },
+    'item/bouquet': { point: [363, 565], inset: 65 },
+    'item/handbag': { point: [352, 550], inset: 65, dy: -30 },
+    'item/teacup': { point: [355, 577], inset: 65 },
+    'item/palette': { point: [355, 565], inset: 65 },
     'gesture/fingerHeart': { point: [700, 673], inset: 58 },
     'gesture/palmUp': { point: [683, 606], inset: 85, scale: 1.1 },
-    'gesture/hip': { point: [690, 550], inset: 60, dy: -35, scale: .8, rot: 20 },
+    'gesture/hip': { point: [690, 550], inset: 90, dy: -40, foreshorten: .85, rot: 10 },
   },
   // Prop silhouettes in the original 1024 px part canvas. Restore these after
   // skin tint so food, gold, wood and clay keep their rendered material colors.
+  // Fingers crossing the torso must stay in front of it, even near the shoulder.
+  skinFront: { 'gesture/shaka': [[[715, 520], [980, 520], [980, 655], [715, 655]]] },
   skinProtect: {
+    'item/laptop': [[[15,500],[205,510],[235,630],[305,648],[300,666],[215,680],[180,674],[170,668],[158,659],[148,666],[137,662],[127,655],[115,658],[98,649],[88,657],[78,656],[45,662]]],
+    'item/phone': [[[157,448],[282,448],[282,700],[169,700],[169,690],[177,680],[180,660],[172,648],[181,634],[179,613],[171,600],[181,587],[180,565],[170,552],[180,539],[181,519],[166,509],[157,509]]],
+    'item/controller': [[[55,495],[280,495],[280,504],[300,513],[320,536],[335,582],[345,646],[330,688],[305,713],[284,711],[277,690],[254,676],[237,679],[216,670],[201,677],[181,669],[163,673],[144,662],[126,671],[115,661],[102,667],[80,705],[55,705]]],
+    'item/mic': [[[130,405],[273,405],[273,575],[251,590],[230,593],[231,619],[209,618],[209,738],[215,738],[215,776],[186,786],[161,774],[161,756],[170,756],[183,746],[179,729],[167,722],[184,707],[182,687],[165,680],[184,663],[180,643],[166,637],[182,623],[179,602],[163,594],[161,565],[130,548]]],
     'item/palette': [
       [[65,578],[223,578],[224,624],[207,624],[198,626],[195,639],[216,651],[232,657],[232,664],[217,664],[213,678],[188,687],[187,676],[177,672],[169,675],[164,686],[157,675],[149,675],[142,679],[139,690],[130,682],[96,672],[65,650]],
     ],

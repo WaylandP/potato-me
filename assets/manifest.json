@@ -5,8 +5,8 @@
     "height": 1024
   },
   "sourceRepository": "WaylandP/potato-me",
-  "expectedAssetCount": 222,
-  "generatedAssetCount": 222,
+  "expectedAssetCount": 224,
+  "generatedAssetCount": 224,
   "coordinates": "viewer-relative; held item left, gesture right",
   "layerOrder": [
     "body",
@@ -2067,13 +2067,13 @@
     },
     {
       "path": "assets/parts/mouth/frown.png",
-      "request": "Only the mouth: a sad downturned frown.",
+      "request": "See docs/cohesion-prompts.json for the exact image-generation prompt.",
       "group": "mouth",
       "key": "frown",
       "targetBox": [
-        393,
-        535,
-        631,
+        392,
+        530,
+        632,
         590
       ],
       "status": "generated",
@@ -2081,23 +2081,23 @@
       "height": 1024,
       "alpha": true,
       "sourceSize": [
-        1254,
-        1254
+        2019,
+        779
       ],
       "sourceCrop": [
-        75,
-        360,
-        1180,
-        932
+        371,
+        264,
+        1644,
+        599
       ],
       "placedBox": [
-        459,
-        535,
-        565,
+        398,
+        530,
+        626,
         590
       ],
       "flippedForConvention": false,
-      "sha256": "797c1f5d9cee297ebfbe46468ab07cfe653595fbbc4749f23131207f8917c3aa"
+      "sha256": "79d9f4b1eff13151c1b6b86dfa67da4b4990475b2cbf9ad0809a8481d178f818"
     },
     {
       "path": "assets/parts/mouth/oh.png",
@@ -2271,37 +2271,37 @@
     },
     {
       "path": "assets/parts/mouth/wavy.png",
-      "request": "Only the mouth: a nervous wavy squiggle mouth.",
+      "request": "See docs/cohesion-prompts.json for the exact image-generation prompt.",
       "group": "mouth",
       "key": "wavy",
       "targetBox": [
-        407,
-        559,
-        617,
-        579
+        392,
+        538,
+        632,
+        582
       ],
       "status": "generated",
       "width": 1024,
       "height": 1024,
       "alpha": true,
       "sourceSize": [
-        1254,
-        1254
+        1942,
+        809
       ],
       "sourceCrop": [
-        137,
-        464,
-        1117,
-        871
+        252,
+        301,
+        1691,
+        565
       ],
       "placedBox": [
-        488,
-        559,
-        536,
-        579
+        392,
+        538,
+        632,
+        582
       ],
       "flippedForConvention": false,
-      "sha256": "d717c1659a03e6ecfe1cd8dfca535b56f86afbd6018cdb8f16182f4591a8643a"
+      "sha256": "a6be1188578f84a38e2c95f444381d11044534e6cc2aadbdce7e2122c1463f2b"
     },
     {
       "path": "assets/parts/cheeks/on.png",
@@ -2986,14 +2986,14 @@
     },
     {
       "path": "assets/parts/hat/party.png",
-      "request": "Only the hat: a pure red cone party hat with white diagonal stripes and a white pom-pom on the tip, slightly tilted.",
+      "request": "See docs/cohesion-prompts.json for the exact image-generation prompt.",
       "group": "hat",
       "key": "party",
       "targetBox": [
-        240,
+        410,
         10,
-        784,
-        272
+        614,
+        270
       ],
       "status": "generated",
       "width": 1024,
@@ -3004,19 +3004,19 @@
         1254
       ],
       "sourceCrop": [
-        201,
-        45,
-        1085,
-        1202
+        213,
+        104,
+        1026,
+        1119
       ],
       "placedBox": [
-        412,
-        10,
-        612,
-        272
+        410,
+        13,
+        614,
+        268
       ],
       "flippedForConvention": false,
-      "sha256": "c15690192f11e9e245553ed16bb42bf84a0a605981f5b5ec680d559f13552eeb"
+      "sha256": "995572dd764262f34e13115c7d0f381b961b3899dd2b2ed0335ba394c71be9bc"
     },
     {
       "path": "assets/parts/hat/beret.png",
@@ -3292,14 +3292,14 @@
     },
     {
       "path": "assets/parts/eyewear/square.png",
-      "request": "Only the eyewear: black rectangular-framed glasses with clear lenses.",
+      "request": "See docs/cohesion-prompts.json for the exact image-generation prompt.",
       "group": "eyewear",
       "key": "square",
       "targetBox": [
-        335,
-        386,
-        689,
-        484
+        342,
+        384,
+        682,
+        490
       ],
       "status": "generated",
       "width": 1024,
@@ -3310,19 +3310,19 @@
         1254
       ],
       "sourceCrop": [
-        23,
-        429,
-        1232,
-        820
+        55,
+        467,
+        1201,
+        836
       ],
       "placedBox": [
-        360,
-        386,
-        663,
-        484
+        348,
+        384,
+        677,
+        490
       ],
       "flippedForConvention": false,
-      "sha256": "6aadd1312eb572fc0915ac8726fddc150981aa426eba0572e2a7e1e9457ba384"
+      "sha256": "00154361f7466792859d4a84e5c79620f0fa8c28b4ef5af972eeb3e3ea7b1047"
     },
     {
       "path": "assets/parts/eyewear/monocle.png",
@@ -4551,7 +4551,7 @@
     },
     {
       "path": "assets/parts/stickers/lambda.png",
-      "request": "The Greek lowercase lambda symbol \u03bb, white against a rich orange rounded tile.",
+      "request": "The Greek lowercase lambda symbol λ, white against a rich orange rounded tile.",
       "group": "stickers",
       "key": "lambda",
       "targetBox": [
@@ -6525,39 +6525,6 @@
       "sha256": "2a43f9990116e4a34cf65c37e13b9d064e122c519c284bc126fb0b17a20fd2b4"
     },
     {
-      "path": "assets/parts/gesture/hip.png",
-      "request": "Use case: stylized-concept. Asset type: ONE isolated modular potato-character arm with attached hand, transparent PNG. No body, face, shoulder torso, other arm, full character, backdrop, floor, text or watermark. Warm russet potato skin, detailed natural pores and small freckles, soft upper-left studio light and lower-right shadow, rounded appealing 3D cartoon realism. Anatomically coherent single hand, exactly five fingers total including thumb, no extra digits or fused fingers. The arm is short and softly curved with a natural wrist and elbow; its blunt shoulder end will attach to a body in a compositor. Entire arm and object contained with generous margin. A bent arm for a hand-on-hip pose: blunt shoulder end at UPPER LEFT, upper arm slopes out to elbow at RIGHT, forearm bends back inward to hand at LOWER LEFT. The open relaxed hand rests on an invisible hip, thumb pointing inward, four fingers together pointing downward. Hand is fully visible and empty. Clear triangular bend with transparent opening between arm segments. No body or hip visible. Natural compact pose, no extra limbs.",
-      "group": "gesture",
-      "key": "hip",
-      "targetBox": [
-        650,
-        510,
-        915,
-        810
-      ],
-      "status": "generated",
-      "width": 1024,
-      "height": 1024,
-      "alpha": true,
-      "sourceSize": [
-        1312,
-        1199
-      ],
-      "sourceCrop": [
-        198,
-        16,
-        1179,
-        1179
-      ],
-      "placedBox": [
-        656,
-        510,
-        909,
-        810
-      ],
-      "sha256": "76c8c08211a16e2bcc47cae8353b0c158bb0ba17be17c130911464789fb56b37"
-    },
-    {
       "path": "assets/parts/item/bouquet.png",
       "request": "Use case: stylized-concept. Asset type: ONE isolated modular potato-character arm with attached hand, transparent PNG. No body, face, shoulder torso, other arm, full character, backdrop, floor, text or watermark. Warm russet potato skin, detailed natural pores and small freckles, soft upper-left studio light and lower-right shadow, rounded appealing 3D cartoon realism. Anatomically coherent single hand, exactly five fingers total including thumb, no extra digits or fused fingers. The arm is short and softly curved with a natural wrist and elbow; its blunt shoulder end will attach to a body in a compositor. Entire arm and object contained with generous margin. Arm starts at blunt shoulder end at UPPER RIGHT and bends down to a hand at LEFT holding the stems of a small beautiful bouquet upright. Hand wraps naturally around tied green stems below blossoms, thumb opposed to fingers, grip makes physical contact. Bouquet has three pink peonies, two cream daisies, eucalyptus leaves, a small red ribbon around stems. Delicate layered petals and leaf veins. Flowers at upper-left, hand below, arm to right. No wrapping paper.",
       "group": "item",
@@ -7249,9 +7216,108 @@
         485
       ],
       "sha256": "ab466b6efa1592c4c05f64ce875d689a650820fa8b8168c328ca9386be1b7848"
+    },
+    {
+      "path": "assets/parts/gesture/hip.png",
+      "request": "See docs/cohesion-prompts.json for the exact image-generation prompt.",
+      "group": "gesture",
+      "key": "hip",
+      "targetBox": [
+        650,
+        510,
+        915,
+        810
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        368,
+        212,
+        1015,
+        1056
+      ],
+      "placedBox": [
+        668,
+        510,
+        898,
+        810
+      ],
+      "sha256": "6f9e2429747d6143952772ce58f4d5ca4b3aec3b39d483bbe00ff3e28d84ff59"
+    },
+    {
+      "path": "assets/parts/mouth/roseSmile.png",
+      "request": "See docs/cohesion-prompts.json for the exact image-generation prompt.",
+      "group": "mouth",
+      "key": "roseSmile",
+      "targetBox": [
+        410,
+        531,
+        614,
+        591
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "sourceSize": [
+        1774,
+        887
+      ],
+      "sourceCrop": [
+        286,
+        269,
+        1486,
+        641
+      ],
+      "placedBox": [
+        415,
+        531,
+        609,
+        591
+      ],
+      "sha256": "b06907acab24c03e25901e5c92c9c27a8310b4bab008dbc2c9b4076dbc2edbb1"
+    },
+    {
+      "path": "assets/parts/hair/ponytail.png",
+      "request": "See docs/cohesion-prompts.json for the exact image-generation prompt.",
+      "group": "hair",
+      "key": "ponytail",
+      "targetBox": [
+        210,
+        80,
+        850,
+        790
+      ],
+      "status": "generated",
+      "width": 1024,
+      "height": 1024,
+      "alpha": true,
+      "sourceSize": [
+        1344,
+        1170
+      ],
+      "sourceCrop": [
+        159,
+        0,
+        1291,
+        1170
+      ],
+      "placedBox": [
+        210,
+        105,
+        850,
+        766
+      ],
+      "sha256": "eb97a75f7d080c318dfda2754e2dc65fa716d36745827c45455030cfbfabab73"
     }
   ],
-  "fittingStatus": "Shape-aware fitting is implemented in src/surface.js and src/fit-data.js. See docs/EVERYDAY_AUDIT.md for v0.5 coverage and limitations.",
+  "fittingStatus": "Body-relative fitting and shared limb palettes are implemented in src/surface.js and src/fit-data.js. See docs/COHESION_REVIEW.md for v0.6 checks and limitations.",
   "noImageRequired": {
     "brows": [
       "none"

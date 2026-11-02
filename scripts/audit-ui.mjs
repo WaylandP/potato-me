@@ -38,6 +38,21 @@ try {
   await page.keyboard.press('End'); assert.equal(await page.locator('#tab-bg').getAttribute('aria-selected'), 'true');
   await page.keyboard.press('Home'); assert.equal(await page.locator('#tab-body').getAttribute('aria-selected'), 'true');
   report.checks.push('Keyboard tabs, selected states, focus and skip link preserve the avatar.');
+  await page.getByRole('radio', { name: 'Female', exact: true }).check(); await ready();
+  let femaleHash = new URL(page.url()).hash;
+  assert.ok(femaleHash.includes('character=female')); assert.ok(femaleHash.includes('body=round')); assert.ok(femaleHash.includes('skin=purple'));
+  await tab('hat'); await pick('hair', 'ponytail'); await pick('hairColor', 'copper');
+  await page.getByRole('radio', { name: 'Male', exact: true }).check(); await ready();
+  await page.getByRole('radio', { name: 'Male', exact: true }).focus(); await page.keyboard.press('ArrowRight'); await ready();
+  assert.ok(new URL(page.url()).hash.includes('character=female')); assert.ok(new URL(page.url()).hash.includes('hair=ponytail'));
+  await page.reload(); await ready(); assert.equal(await page.getByRole('radio', { name: 'Female', exact: true }).isChecked(), true);
+  await page.locator('#randomize').click(); await ready(); assert.ok(new URL(page.url()).hash.includes('character=female'));
+  await page.locator('#reset').click(); await ready(); assert.ok(new URL(page.url()).hash.includes('character=female')); assert.ok(new URL(page.url()).hash.includes('hair=waves'));
+  await shot('female-starter');
+  await page.getByRole('radio', { name: 'Male', exact: true }).check(); await ready(); await page.locator('#reset').click(); await ready();
+  assert.equal(new URL(page.url()).hash, '');
+  report.checks.push('Male/Female switch preserves the body and props, restores styling, supports arrow keys, share/reload, Surprise me and style-specific reset.');
+
   await tab('body'); await pick('body', 'pear');
   await tab('hat'); await pick('hair', 'waves'); await pick('hairColor', 'silver');
   await pick('hat', 'backwardCap'); await page.locator('#capText-input').fill('a+w'); await ready(); assert.equal(await page.locator('#capText-input').inputValue(), 'A+W');

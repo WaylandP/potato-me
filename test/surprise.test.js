@@ -52,3 +52,11 @@ test('surprise keeps potatoes coherent: a vibe face, few accessories, no clashin
   }
   assert.ok(worn > 100, 'accessories still show up regularly');
 });
+
+test('Surprise me retains the selected character style', () => {
+  for (const character of ['male', 'female']) for (const n of [0, .3, .8, .999999]) {
+    const s = surprise(() => n, undefined, { character });
+    assert.equal(s.character, character);
+    if (character === 'female') assert.equal(s.facialHair, 'none');
+  }
+});

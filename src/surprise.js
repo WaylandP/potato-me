@@ -44,6 +44,7 @@ const chance = (rng, p) => rng() < p;
 export function surprise(rng = Math.random, available = OPTIONS, keep = {}) {
   const keys = (group) => Object.keys(available[group] || OPTIONS[group]);
   const s = { ...DEFAULT_STATE };
+  s.character = keep.character === 'female' ? 'female' : 'male';
 
   s.body = pickFrom(rng, keys('body'));
   s.skin = pickFrom(rng, keys('skin'));
@@ -53,10 +54,15 @@ export function surprise(rng = Math.random, available = OPTIONS, keep = {}) {
   for (const [k, v] of Object.entries(vibe)) if (k in OPTIONS && keys(k).includes(v)) s[k] = v;
   if (chance(rng, 0.35)) s.mouth = pickFrom(rng, keys('mouth'));
   if (chance(rng, 0.25)) s.cheeks = pickFrom(rng, keys('cheeks'));
-  s.facialHair = chance(rng, 0.22) ? pickFrom(rng, keys('facialHair').filter((k) => k !== 'none')) : 'none';
-  s.hair = chance(rng, .65) ? pickFrom(rng, keys('hair').filter(k => k !== 'none')) : 'none';
+  s.facialHair = s.character === 'male' && chance(rng, 0.22) ? pickFrom(rng, keys('facialHair').filter((k) => k !== 'none')) : 'none';
+  s.hair = chance(rng, s.character === 'female' ? .95 : .45) ? pickFrom(rng, keys('hair').filter(k => k !== 'none')) : 'none';
+  if (s.character === 'female') {
+    s.eyes = pickFrom(rng, ['almond', 'lashWink', 'joyLashes'].filter(k => keys('eyes').includes(k)));
+    s.brows = 'softArch';
+    s.mouth = pickFrom(rng, ['roseSmile', 'smile', 'smirk', 'laugh'].filter(k => keys('mouth').includes(k)));
+  }
   s.hairColor = pickFrom(rng, keys('hairColor'));
-  s.jewelry = chance(rng, .35) ? pickFrom(rng, keys('jewelry').filter(k => k !== 'none')) : 'none';
+  s.jewelry = chance(rng, s.character === 'female' ? .65 : .18) ? pickFrom(rng, keys('jewelry').filter(k => k !== 'none')) : 'none';
 
   // Hat and colors.
   s.hat = chance(rng, s.hair === 'none' ? .85 : .38) ? pickFrom(rng, keys('hat').filter((k) => k !== 'none')) : 'none';
