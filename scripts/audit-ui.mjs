@@ -54,8 +54,23 @@ try {
   assert.equal(await page.locator('#preview canvas').evaluate(c => c.toDataURL()), ideaPixels);
   report.checks.push('Six lazy-rendered inspiration cards shuffle without repeats or changing the current potato; keyboard selection loads the complete look and share/reload reproduces its canvas.');
 
+  // Exercise the real hosting path before intercepting it. A mock alone once
+  // hid a production 404 while every local update-notice check passed.
+  const publicVersionUrl = new URL('version.json', base).href;
+  const expectedVersion = JSON.parse(await readFile(root + 'version.json', 'utf8')).version;
+  const realProbe = page.waitForResponse(r => r.url() === publicVersionUrl && r.request().method() === 'GET');
+  await page.evaluate(() => document.dispatchEvent(new Event('visibilitychange')));
+  const realResponse = await realProbe;
+  assert.equal(realResponse.status(), 200, 'the real public version file is served');
+  assert.match(realResponse.headers()['content-type'] || '', /application\/json/i);
+  assert.equal((await realResponse.json()).version, expectedVersion);
+  assert.equal(await page.locator('#app-version').innerText(), `v${expectedVersion}`);
+  assert.equal(await page.locator('#update-notice').isHidden(), true);
+  report.checks.push(`Real version.json returned HTTP 200 with version ${expectedVersion}; the matching editor footer is visible and no update notice appears.`);
+  // A new page load starts a new check window; do not bypass the 60s throttle.
+  await page.reload(); await ready();
   let versionChecks = 0;
-  await page.route('**/package.json', route => { versionChecks++; return route.fulfill({ contentType: 'application/json', body: JSON.stringify({ version: '999.0.0' }) }); });
+  await page.route('**/version.json', route => { versionChecks++; return route.fulfill({ contentType: 'application/json', body: JSON.stringify({ version: '999.0.0' }) }); });
   const beforeUpdate = page.url();
   await page.evaluate(() => document.dispatchEvent(new Event('visibilitychange')));
   await page.locator('#update-notice').waitFor({ state: 'visible' });
@@ -66,7 +81,7 @@ try {
   await page.locator('#refresh-editor').click(); await refreshed; await ready();
   assert.equal(page.url(), beforeUpdate);
   assert.equal(await page.locator('#preview canvas').evaluate(c => c.toDataURL()), ideaPixels);
-  await page.unroute('**/package.json');
+  await page.unroute('**/version.json');
   report.checks.push('A mocked new version shows a nonblocking update notice; checks are throttled and Refresh editor preserves the exact shared state and canvas.');
   await page.goto(base); await ready(); await thumbs();
   for (const key of ['body', 'face', 'hair', 'hat', 'accessories', 'props', 'gestures', 'stickers', 'bg']) { await tab(key); await shot(`desktop-${key}`); }

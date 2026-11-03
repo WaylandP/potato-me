@@ -4,7 +4,7 @@ These prompts produce the art for a layered PNG version of potato-me: ChatGPT
 renders every part as its own 1024 × 1024 transparent PNG, drawn as if it were
 sitting on one shared base potato, and the app stacks the layers.
 
-This is the original generation guide for the first 164 assets. The current inventory has 224 source PNGs; the 58 v0.5 additions and replacement smile are recorded in [expansion-prompts.json](expansion-prompts.json). The v0.6 ponytail, rose smile and replacements for the hip arm, frown, wavy mouth, square glasses and party hat are recorded in [cohesion-prompts.json](cohesion-prompts.json). See [COHESION_REVIEW.md](COHESION_REVIEW.md) for current fitting and verification. For earlier replacement neckwear, cap, brows, resting hands and stubble, use the [audit prompts](PUBLIC_AUDIT_PROMPTS.json) and [fitting requirements](PUBLIC_AUDIT.md); those supersede the short original prompts below.
+This is the original generation guide for the first 164 assets. The current inventory has 224 source PNGs; the 58 v0.5 additions and replacement smile are recorded in [expansion-prompts.json](expansion-prompts.json). The v0.6 ponytail, rose smile and replacements for the hip arm, frown, wavy mouth, square glasses and party hat are recorded in [cohesion-prompts.json](cohesion-prompts.json). See the [review index](README.md) for release-specific fitting and verification. For earlier replacement neckwear, cap, brows, resting hands and stubble, use the [audit prompts](PUBLIC_AUDIT_PROMPTS.json) and [fitting requirements](https://github.com/WaylandP/potato-me/blob/03a220abe33a12552ff05bf6a2f9abae09f073d4/docs/PUBLIC_AUDIT.md); those supersede the short original prompts below.
 
 How to use this file:
 
@@ -264,7 +264,7 @@ layers, including the studio spotlight and floor.
 The original count above was corrected against `assets/manifest.json`. All 164
 assets are now generated. `ASSET_COMPLETION_PROMPTS.json` records the precise
 prompts used for the final 26 layers, including the 404, skull, mountains and
-LGTM stickers. See `ASSET_COMPLETION.md` for integration and verification status.
+LGTM stickers. See the [original completion record](https://github.com/WaylandP/potato-me/blob/03a220abe33a12552ff05bf6a2f9abae09f073d4/docs/ASSET_COMPLETION.md) for integration and verification at that release.
 
 ## What the app does with them
 

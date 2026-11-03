@@ -1,6 +1,6 @@
 # Working on potato-me
 
-A static, zero-dependency potato avatar builder that composites rendered PNG parts on a canvas. Read README.md for the layout of the code, CONTRIBUTING.md for the part guide, and ROADMAP.md for what's next.
+A static, zero-dependency potato avatar builder that composites rendered PNG parts on a canvas. Read README.md for the project overview, CONTRIBUTING.md for the code map and part guide, and ROADMAP.md for proposed work.
 
 ## Ground rules
 
@@ -18,11 +18,11 @@ A static, zero-dependency potato avatar builder that composites rendered PNG par
 ## Checks before you say it's done
 
 1. `npm test` passes (it also checks the asset index against the manifest and that every fit entry names a real part).
-2. `npm run dev`, then look at the change in the browser at desktop and phone widths, light and dark; or `npm run shot out.png '#hash'` / `--page` for screenshots.
-3. For broad art changes, run `npm run audit -- /tmp/potato-art-audit inventory` and visually inspect every resulting sheet. Run affected interaction modes from `docs/EVERYDAY_AUDIT.md` plus `npm run audit:ui -- /tmp/potato-ui`. Inventory and export checks alone are not proof of visual quality. Inspect arms and contact points at 1024 px as well as sheets; record exact failures and fixes in docs/WEARABLE_REVIEW.md. For anything visual, check all six body shapes and all nine skins, inside the avatar crop circle and in the thumbnail grid. `npm run shot grid.png spec.json --cell 256 --cols 4` renders a review sheet.
+2. `npm run dev`, then look at the change in the browser at desktop and phone widths, light and dark; or `npm run shot -- out.png '#hash'` / `--page` for screenshots.
+3. For broad art changes, run `npm run audit -- /tmp/potato-art-audit inventory` and visually inspect every resulting sheet. Run the affected interaction modes described in CONTRIBUTING.md and the relevant scripts, plus `npm run audit:ui -- /tmp/potato-ui`. Inventory and export checks alone are not proof of visual quality. Inspect arms and contact points at 1024 px as well as sheets; record concrete failures and fixes in the PR and link any new review from docs/README.md. For anything visual, check all six body shapes and all nine skins, inside the avatar crop circle and in the thumbnail grid. `npm run shot -- grid.png spec.json --cell 256 --cols 4` renders a review sheet.
 4. Download a 512 px PNG and confirm it stays under 1 MB.
-5. If the artwork changed, `npm run hero` and commit `docs/hero.png`, `docs/og.png`, `docs/completion-preview.png` and `favicon.png`. Update `docs/screenshot.png` when the visible editor changes.
-6. Update ROADMAP.md: check items off only when they're built and tested. Keep README.md accurate: option counts, file map, commands, the "not drawn yet" list.
+5. If the artwork changed, `npm run hero` and commit `docs/hero.png`, `docs/og.png`, `docs/scene-examples.jpg` and `favicon.png` when their output changes. Keep historical proof screenshots attached to their own release.
+6. Update ROADMAP.md: check items off only when they're built and tested. Keep README.md accurate: public features, examples, export sizes and the local startup command. Maintain the code map and detailed checks in CONTRIBUTING.md.
 
 ## UI standards
 

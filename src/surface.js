@@ -341,8 +341,32 @@ export function surfaceTransform(layer, img, surface, state) {
     const forehead = surface.eyeY - surface.crownY;
     const headRow = surface.headRow || surface.row;
     let seat = surface.crownY + forehead * fit.depth;
-    const sides = headRow(seat);
-    t.scale = (sides[1] - sides[0] + surface.faceWidth * .025) / fit.width;
+    const clearance = surface.eyeY - 90;
+    const widthAt = y => {
+      const [left, right] = headRow(y);
+      return right - left + surface.faceWidth * .025;
+    };
+    if (fit.brim) {
+      // Seat a wide brim on the row it will actually touch. Measuring lower on
+      // the hairstyle and then lifting the entire hat produces a dinner plate.
+      // The underside can curve up independently of the head-sized crown.
+      const dropAt = y => Math.min((box[3] - fit.y) / fit.width, fit.brim.drop) * widthAt(y);
+      if (seat + dropAt(seat) > clearance) {
+        let low = Math.min(surface.headTop ?? surface.crownY, clearance), high = seat;
+        for (let i = 0; i < 10; i++) {
+          const mid = (low + high) / 2;
+          if (mid + dropAt(mid) <= clearance) low = mid; else high = mid;
+        }
+        seat = low;
+      }
+      // Keep the woven crown/ribbon at the measured head width. Only the
+      // decorative wings outside its two sides are made shorter.
+      const left = fit.x - fit.width / 2, right = fit.x + fit.width / 2;
+      const overhang = fit.width * fit.brim.overhang;
+      t.fitX = [[box[0], Math.max(box[0], left - overhang)], [left, left],
+        [right, right], [box[2], Math.min(box[2], right + overhang)]];
+    }
+    t.scale = widthAt(seat) / fit.width;
     // A shallow, broad forehead needs a broad, shallow crown. Keep the band
     // and brim at their fitted width while shaping the fabric above them.
     // Moving a uniformly tiny hat onto the apex would merely perch it there.
@@ -351,7 +375,12 @@ export function surfaceTransform(layer, img, surface, state) {
     const bandJoin = Math.max(box[1] + 10, fit.y - 36);
     const bandHeight = Math.min(36 * t.scale, crownHeight * .25);
     t.fitY = [[box[1], fit.y - crownHeight / t.scale], [bandJoin, fit.y - bandHeight / t.scale], [fit.y, fit.y], [CANVAS, CANVAS]];
-    seat = Math.min(seat, surface.eyeY - 90 - (box[3] - fit.y) * t.scale);
+    if (fit.brim) {
+      const hem = Math.min(box[3] - fit.y, fit.width * fit.brim.drop);
+      t.fitY.splice(-1, 0, [box[3], fit.y + hem]);
+    } else {
+      seat = Math.min(seat, clearance - (box[3] - fit.y) * t.scale);
+    }
     const ornamentJoin = { beanie: 110, party: 80 }[key];
     if (ornamentJoin) {
       const joinedY = mapAxis(ornamentJoin, t.fitY);
