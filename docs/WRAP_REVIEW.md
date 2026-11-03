@@ -1,5 +1,7 @@
 # Headgear overlap review — v0.7.1
 
+See [ATTACHMENT_REVIEW.md](ATTACHMENT_REVIEW.md) for the v0.8.0 re-audit, including the exact reported Lumpy/gold/silver-waves/flower-crown reconstruction, broader accessory stacks and native grip corrections. This document retains the historical v0.7.1 results.
+
 Reviewed 2026-11-02. This follows the v0.7 wearable-fitting work and addresses the visible rear edges that made fitted headgear look laid over the character. All 224 source images are reused; no artwork or asset inventory was regenerated.
 
 ## What changed

@@ -40,6 +40,8 @@ Hair clips add a bob when no hair is selected; choosing no hair removes the clip
 
 Optional parts can be removed, and the holding hand can be left empty. Start with a vibe or **Surprise me**, then use the nine sections: **Body, Face, Hair, Headwear, Accessories, Props, Gestures, Stickers and Background**. Check the circular crop guide before downloading; the exported PNG itself is square. Custom text is uppercased and restricted to supported characters.
 
+The **A little inspiration** shelf offers six editable potatoes drawn from 18 complete looks. **Shuffle ideas** replaces the six suggestions; choosing one loads its outfit, colors, background and details. Shape choices use simple, accessory-free previews in the selected skin so Classic, Lumpy and the other silhouettes are easy to compare.
+
 <details>
 <summary><strong>See the editor</strong></summary>
 
@@ -49,9 +51,9 @@ Optional parts can be removed, and the holding hand can be left empty. Start wit
 
 ## Project status
 
-Source version **0.7.1** separates rear hat interiors from their front brims so the selected head and hair overlap them naturally. Headphone bands fit the hair while their ear cups keep their proportions; buns can sit in front of the band, and halos clear both. Glasses have fitted temple arms and earbuds sit into the body contour. Front details—including the Santa hat's fur cuff and the gold leaf barrette—remain intact. The existing 224-image catalog, nine editor sections, scenes and colors are preserved.
+Source version **0.8.0** makes body silhouettes clear in the selector, repairs the near-Classic Zombie Lumpy artwork, and corrects grip masks that left orange fingertips or recolored parts of held objects. Color changes now preserve the same framing. Section buttons have complete, legible borders in both themes, and a new inspiration shelf fills the area below the preview. A visible version and optional refresh notice help identify an older open editor while preserving the current potato.
 
-The [current review record](docs/WRAP_REVIEW.md) documents the inspected cases, automated coverage and remaining limits. The [v0.7 wearable review](docs/WEARABLE_REVIEW.md), [v0.6.1 shape review](docs/SHAPE_REVIEW.md) and earlier audits are historical. This is a modular 2D compositor, and no exhaustive full-outfit or pixel-perfect claim is made.
+The [current attachment review](docs/ATTACHMENT_REVIEW.md) documents the reported flower-crown reconstruction, native grip findings, body/skin and interaction coverage, and the editor checks. The [v0.7.1 overlap review](docs/WRAP_REVIEW.md), [v0.7 wearable review](docs/WEARABLE_REVIEW.md), [v0.6.1 shape review](docs/SHAPE_REVIEW.md) and earlier audits are historical. This is a modular 2D compositor; the recorded matrices do not cover every possible complete outfit.
 
 ## Run locally
 
@@ -76,6 +78,7 @@ The editor validates choices, loads the selected PNG layers, fits them to the bo
 | Start here | Purpose |
 | --- | --- |
 | [src/main.js](src/main.js) | Editor controls, preview and downloads |
+| [src/inspiration.js](src/inspiration.js) / [src/version.js](src/version.js) | Complete inspiration looks, neutral shape previews and visible release version |
 | [src/options.js](src/options.js) / [src/state.js](src/state.js) | Choices, presets, validation and share-link encoding |
 | [src/raster.js](src/raster.js) / [src/surface.js](src/surface.js) | Canvas composition, body fitting and skin blending |
 | [src/wrap.js](src/wrap.js) | Separate source artwork into front and rear surfaces for natural overlap |
@@ -104,6 +107,10 @@ npm run shot -- preview.png '#item=sign&sign=SHIP%20IT&gesture=thumbsUp'
 npm run audit -- /tmp/potato-audit inventory
 npm run audit:cohesion -- /tmp/potato-cohesion
 npm run audit:shapes -- /tmp/potato-shapes
+npm run audit:attachments -- /tmp/potato-attachments inventory
+npm run audit:attachments -- /tmp/potato-materials materials
+npm run audit:attachments -- /tmp/potato-interactions interactions
+npm run audit:color-framing -- /tmp/potato-color-framing
 npm run audit -- /tmp/potato-hair hair
 npm run audit -- /tmp/potato-pairs pairwise
 npm run audit:ui -- /tmp/potato-ui
@@ -115,7 +122,7 @@ Playwright is optional development tooling. Visual changes need inspection on al
 
 Deploy the repository root to a static host. Use **no build command** and **`.` as the publish directory**, including `assets/` and `src/`. The connected Vercel project deploys `main` to [potato-me.vercel.app](https://potato-me.vercel.app/).
 
-Avatar composition and PNG export happen in the browser. The app has no accounts, upload endpoint, database or bundled analytics. **A share link is the save file:** its URL fragment contains the choices and custom text, and anyone with it can recreate the avatar. Use a hosted instance when sharing with others; a localhost link points to the recipient's own machine.
+Avatar composition and PNG export happen in the browser. Inspiration looks ship with the app; there is no public posting service. The app has no accounts, upload endpoint, database or bundled analytics. **A share link is the save file:** its URL fragment contains the choices and custom text, and anyone with it can recreate the avatar. Use a hosted instance when sharing with others; a localhost link points to the recipient's own machine.
 
 Fredoka is served locally from `assets/fonts/`; the editor makes no third-party requests. It still needs the static files to load, and does not install an offline service worker.
 

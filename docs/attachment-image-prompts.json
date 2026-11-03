@@ -1,0 +1,28 @@
+{
+  "version": "0.8.0",
+  "date": "2026-11-02",
+  "method": "Built-in image generation; project asset normalized with the existing transparent PNG pipeline.",
+  "replacements": [
+    {
+      "path": "assets/parts/body/lumpy-zombie.png",
+      "reason": "The former Zombie Lumpy had almost the same smooth silhouette as Classic Zombie. Other Lumpy skins already had visible lobes.",
+      "references": [
+        "assets/parts/body/lumpy-russet.png: exact silhouette, composition and proportions",
+        "prior assets/parts/body/lumpy-zombie.png: zombie material and color only"
+      ],
+      "previousSha256": "5f94db5468c69a129c07068e988a3dbebfe4c0ba57869ef2f6d7462bd735536b",
+      "finalSha256": "8ece20f9aab902c9a1d9394c99a0804091ef9a72f2941168ecc02fe11345ec62",
+      "transparentBackground": true,
+      "prompt": "Use case: precise-object-edit. Asset type: a replacement transparent PNG body layer for the Potato-Me avatar editor. Image 1 is the EXACT SHAPE AND COMPOSITION reference to preserve: a distinctive naturally knobbly lumpy potato, asymmetrical crown, broad left mid-body lobe and pronounced right upper-side bulge, two short stubby legs and feet. Image 2 is the MATERIAL AND COLOR reference ONLY: muted olive gray zombie potato skin, detailed pores, earthy dark mottling, subtle fine cracks. Re-create Image 1 with the zombie skin material and colors of Image 2. Keep Image 1's silhouette, limb/foot placement, overall size, facing direction, camera and lighting as closely as possible. Preserve several obvious soft irregular potato lobes so this is unmistakably Lumpy rather than a smooth oval. Render the entire body and both feet in a 1024x1024 square, centered in the same framing as the references (body/feet occupy approximately x235 to789, y154 to922). Detailed realistic stylized 3D potato skin, tiny natural sprouts, subtle contact shadow below the feet fading into transparency. Completely blank body for compositing: NO face, NO eyes, NO eyebrows, NO mouth, NO arms, NO hands, NO clothing, NO accessories, NO text. Genuine transparent RGBA background; no checkerboard, no solid background, no outline or border. One character only.",
+      "normalization": {
+        "sourceSize": [1254, 1254],
+        "alphaCropThreshold": 8,
+        "sourceCrop": [290, 189, 966, 1130],
+        "targetBox": [235, 154, 789, 922],
+        "placedBox": [236, 154, 788, 922],
+        "outputSize": [1024, 1024],
+        "thumbnailSize": [256, 256]
+      }
+    }
+  ]
+}

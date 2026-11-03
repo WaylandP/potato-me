@@ -2,6 +2,18 @@
 
 Notable changes to the source. Version numbers match `package.json`; tags and downloadable release archives are listed separately on [GitHub Releases](https://github.com/WaylandP/potato-me/releases).
 
+## 0.8.0 — Unreleased
+
+- Show neutral body-choice previews in the selected skin, arranged in a consistent 3-by-2 grid. Preserve the edited outfit when choosing a body.
+- Replace the near-Classic Zombie Lumpy artwork with the established uneven Lumpy silhouette; add an actual-PNG contour regression across all nine skins. The catalog remains 224 source images.
+- Retrace eleven held-object masks around fingers, thumbs and object edges. Preserve phone hardware, book pages, laptop metal, yellow rubber, food, clay, paint, ribbon and cup details while recoloring exposed hands.
+- Sample item skin masks at 512 px and align polygon tests to source-pixel centers; keep shoulder detection and small pigment-gap filling in world coordinates.
+- Keep camera framing stable when changing colors. Measure each recolored part from its original PNG silhouette so browser sampling differences cannot shift or resize the avatar.
+- Repair complete section-button borders, selected states and action-button contrast in light and dark themes.
+- Add 18 complete inspiration looks, six at a time, with shuffle and one-click customization. Load small gallery thumbnails near the viewport and preserve share-link behavior.
+- Display the editor version and offer an optional state-preserving refresh when a newer release is detected on returning to the tab.
+- Add a reproducible attachment audit with exact case lists, source fingerprints, native reported-state controls and separate visual-review records. See [ATTACHMENT_REVIEW.md](docs/ATTACHMENT_REVIEW.md).
+
 ## 0.7.1 — 2026-11-02
 
 - Split measured rear hat interiors and returning branches behind the head/hair, keeping front brims, trim and decorations intact. Reuse all existing PNG artwork.

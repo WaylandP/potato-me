@@ -46,6 +46,10 @@ Automatic placement is in `src/surface.js`: it anchors arms inside the body silh
 
 The faster `npm run audit:cohesion -- /tmp/potato-cohesion` uses Sharp and Chromium to check each asset on all 54 body/skin contexts at 256 px. It checks crop bounds and share round trips; it does not replace 1024 px inspection or PNG export tests. Optional trailing group names limit the run.
 
+The current attachment audit is `npm run audit:attachments -- /tmp/potato-attachments inventory`. Its `materials`, `interactions` and `reported` modes cover material palettes, hairstyle/accessory stacks and the reported flower-crown look. Use `--plan` for the exact case list. `AUDIT_GROUPS`, `AUDIT_MATCH` and `AUDIT_LIMIT` select an explicit subset; reports record those filters so a partial run cannot be mistaken for complete coverage. `AUDIT_SIZE=1024` produces native proofs, `AUDIT_SOURCE=full|thumbs` selects actual source files, and `CHROME_EXECUTABLE` selects an installed Chromium binary. Inspect the resulting contact sheets and enlarge suspicious boundaries. See [ATTACHMENT_REVIEW.md](docs/ATTACHMENT_REVIEW.md).
+
+Run `npm run audit:color-framing -- /tmp/potato-color-framing` after changing recoloring or framing. It compares actual Chromium renders and original/copy geometry across every bun color and body, using full and thumbnail sources plus native proofs. Register recolored canvases against their original image with `registerFramingSource`; the camera must not depend on differences in how the browser downsamples an Image versus a Canvas. The optional audit rejects an occupied server port before rendering.
+
 ### Art checklist
 
 - Offer every style on every body shape. Keep labels understandable without developer jargon. Preserve existing share keys.

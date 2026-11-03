@@ -4,6 +4,8 @@ import { surprise } from './surprise.js';
 import { renderPotato, exportPng, availableOptions, missingParts, drawableState, cropBox, hasSticker, partSrc } from './raster.js';
 import { downloadBlob } from './export.js';
 import { stickerSVG } from './parts/stickers.js';
+import { bodyPreviewState, pickInspiration } from './inspiration.js';
+import { APP_VERSION } from './version.js';
 
 // Which option groups live on which tab, and how each group is drawn.
 //   thumb   one mini potato per option
@@ -15,7 +17,7 @@ import { stickerSVG } from './parts/stickers.js';
 const CAP_TEXT_HATS = ['backwardCap', 'cap', 'beanie', 'headband'];
 const TABS = {
   body: [
-    { key: 'body', title: 'Shape', kind: 'thumb' },
+    { key: 'body', title: 'Shape', kind: 'thumb', help: 'Shapes shown without accessories so you can compare them.' },
     { key: 'skin', title: 'Skin', kind: 'thumb' },
   ],
   face: [
@@ -93,6 +95,8 @@ const setState = (patch) => commit({ ...state, ...patch, ...(patch.hair === 'non
 // --- preview ----------------------------------------------------------------
 
 let previewToken = 0;
+let finishFirstPreview;
+const firstPreview = new Promise(resolve => { finishFirstPreview = resolve; });
 async function renderPreview() {
   const token = ++previewToken;
   document.body.dataset.rendered = 'false';
@@ -118,8 +122,120 @@ async function renderPreview() {
     $('#retry-preview').hidden = false;
     console.error(err);
     toast('Some parts failed to load. Check your connection, then try again.');
+  } finally {
+    finishFirstPreview();
   }
 }
+
+// --- inspiration ------------------------------------------------------------
+
+const inspirationGrid = $('#inspiration-grid');
+const shuffleIdeas = $('#shuffle-ideas');
+const ideaFrames = new Map(); // Bounded by the small, local catalog of looks.
+let shownIdeas = [];
+let ideasLoading = false;
+
+function inspirationCard(idea, frame) {
+  const button = document.createElement('button');
+  button.type = 'button';
+  button.className = 'inspiration-card';
+  button.dataset.idea = idea.id;
+  const s = idea.state;
+  const description = [
+    `${OPTIONS.skin[s.skin]} ${OPTIONS.body[s.body].toLowerCase()} potato`,
+    s.hair !== 'none' && `${OPTIONS.hair[s.hair].toLowerCase()} hair`,
+    s.hat !== 'none' && OPTIONS.hat[s.hat].toLowerCase(),
+    s.item !== 'none' && `holding ${OPTIONS.item[s.item].toLowerCase()}`,
+  ].filter(Boolean).join(', ');
+  button.setAttribute('aria-label', `Customize ${idea.name}: ${description}.`);
+  const art = document.createElement('span');
+  art.className = 'inspiration-art';
+  frame.setAttribute('aria-hidden', 'true');
+  art.append(frame);
+  const name = document.createElement('span');
+  name.className = 'inspiration-name';
+  name.textContent = idea.name;
+  button.append(art, name);
+  return button;
+}
+
+async function ideaFrame(idea) {
+  if (!ideaFrames.has(idea.id)) {
+    const frame = renderPotato(idea.state, { size: 192, thumbs: true }).catch(error => {
+      ideaFrames.delete(idea.id);
+      throw error;
+    });
+    ideaFrames.set(idea.id, frame);
+  }
+  return ideaFrames.get(idea.id);
+}
+
+async function showInspiration() {
+  if (ideasLoading) return;
+  ideasLoading = true;
+  shuffleIdeas.disabled = true;
+  shuffleIdeas.querySelector('span').textContent = 'Finding ideas…';
+  inspirationGrid.setAttribute('aria-busy', 'true');
+  const ideas = pickInspiration(shownIdeas.map(idea => idea.id));
+  const cards = new Array(ideas.length);
+  // The editor's first full preview gets priority. The shelf only requests
+  // 256 px source assets, and at most two small composites run at once.
+  await firstPreview;
+  let next = 0;
+  async function worker() {
+    while (next < ideas.length) {
+      const i = next++;
+      try { cards[i] = inspirationCard(ideas[i], await ideaFrame(ideas[i])); }
+      catch { /* Keep the previous shelf if a new idea cannot load. */ }
+      await new Promise(requestAnimationFrame);
+    }
+  }
+  await Promise.all([worker(), worker()]);
+  const complete = cards.filter(Boolean);
+  if (complete.length === ideas.length || !shownIdeas.length) {
+    inspirationGrid.replaceChildren(...complete);
+    shownIdeas = ideas.filter((_, i) => cards[i]);
+    if (!complete.length) inspirationGrid.append(note('Ideas couldn’t load. Try shuffling again.', 'inspiration-error'));
+  }
+  $('#inspiration-status').textContent = complete.length === ideas.length
+    ? 'Six new ideas are ready. Choose one to customize.'
+    : 'Some ideas couldn’t load. Shuffle again to retry.';
+  inspirationGrid.setAttribute('aria-busy', 'false');
+  shuffleIdeas.querySelector('span').textContent = 'Shuffle ideas';
+  shuffleIdeas.disabled = false;
+  ideasLoading = false;
+}
+
+function initInspiration() {
+  for (let i = 0; i < 6; i++) {
+    const placeholder = document.createElement('div');
+    placeholder.className = 'inspiration-card inspiration-placeholder';
+    placeholder.setAttribute('aria-hidden', 'true');
+    placeholder.innerHTML = '<span class="inspiration-art"></span><span class="inspiration-name"></span>';
+    inspirationGrid.append(placeholder);
+  }
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver(entries => {
+      if (!entries.some(entry => entry.isIntersecting)) return;
+      observer.disconnect();
+      showInspiration();
+    }, { rootMargin: '200px' });
+    observer.observe($('#inspiration'));
+  } else showInspiration();
+}
+
+shuffleIdeas.addEventListener('click', showInspiration);
+inspirationGrid.addEventListener('click', event => {
+  const button = event.target.closest('[data-idea]');
+  const idea = shownIdeas.find(look => look.id === button?.dataset.idea);
+  if (!idea) return;
+  savedLooks.clear();
+  activeTab = 'body';
+  commit(idea.state);
+  $('#controls').focus({ preventScroll: true });
+  $('.stage').scrollIntoView({ block: 'start', behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
+  toast(`${idea.name} is yours to customize.`);
+});
 
 // --- option buttons ---------------------------------------------------------
 
@@ -168,7 +284,7 @@ function potatoThumb(candidate, category) {
   holder.className = 'thumb';
   // A thumbnail must reveal the part being offered, even when the main
   // avatar is wearing shades, a beard or a brim that would cover it.
-  const shown = { ...candidate };
+  const shown = category === 'body' ? bodyPreviewState(candidate) : { ...candidate };
   if (['eyes', 'brows', 'mouth', 'cheeks', 'facialHair', 'preset'].includes(category)) {
     shown.hat = 'none'; shown.hair = 'none'; shown.extra = 'none'; shown.eyewear = 'none';
     if (category !== 'facialHair' && category !== 'preset') shown.facialHair = 'none';
@@ -281,7 +397,7 @@ function renderPanel() {
     if (group.hint && group.kind === 'preset') fieldset.append(note(group.hint));
 
     const grid = document.createElement('div');
-    grid.className = `grid grid-${group.kind}`;
+    grid.className = `grid grid-${group.kind} grid-${group.key}`;
     const entries =
       group.kind === 'multi'
         ? Object.entries(MULTI[group.key].options)
@@ -439,5 +555,28 @@ window.addEventListener('hashchange', () => {
   render();
 });
 
+// Returning to an old tab can otherwise leave an old renderer open for days.
+// Checking a public version file sends no avatar state; refreshing is optional.
+$('#app-version').textContent = `v${APP_VERSION}`;
+let lastVersionCheck = 0;
+document.addEventListener('visibilitychange', async () => {
+  if (document.visibilityState !== 'visible' || Date.now() - lastVersionCheck < 60000) return;
+  lastVersionCheck = Date.now();
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 5000);
+  try {
+    const response = await fetch(new URL('package.json', document.baseURI), { cache: 'no-store', signal: controller.signal });
+    if (!response.ok) return;
+    const remote = await response.json();
+    if (typeof remote.version === 'string' && remote.version !== APP_VERSION) $('#update-notice').hidden = false;
+  } catch { /* Offline editing continues without an update prompt. */ }
+  finally { clearTimeout(timeout); }
+});
+$('#refresh-editor').addEventListener('click', () => {
+  history.replaceState(null, '', location.pathname + location.search + encodeState(state));
+  location.reload();
+});
+
 // Rewrite the URL once on load so links in an older format are upgraded in place.
 commit(state);
+initInspiration();

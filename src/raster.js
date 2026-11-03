@@ -12,7 +12,7 @@ import { normalizeState } from './state.js';
 import { Defs } from './draw.js';
 import { background } from './parts/background.js';
 import { stickerSVG } from './parts/stickers.js';
-import { bodySurface, withHairSurface, surfaceTransform, integratedLayer, contactShadow, drawTransformed, headFrame } from './surface.js';
+import { bodySurface, withHairSurface, surfaceTransform, integratedLayer, contactShadow, drawTransformed, headFrame, registerFramingSource } from './surface.js';
 import { LruCache } from './cache.js';
 import { splitWearable } from './wrap.js';
 
@@ -208,6 +208,7 @@ async function processedPart(group, key, src, { hatColor, hairColor }) {
     }
   }
   ctx.putImageData(id, 0, 0);
+  registerFramingSource(c, img);
   processed.set(cacheKey, c, c.width * c.height);
   return c;
 }
