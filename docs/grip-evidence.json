@@ -1,12 +1,17 @@
 {
   "schemaVersion": 2,
-  "status": "local-validation-complete-ci-and-production-pending",
+  "status": "published-production-verified",
   "compiledAt": "2026-11-03T02:39:07.375960+00:00",
   "release": {
-    "plannedVersion": "0.8.1",
-    "date": "2026-11-02",
+    "version": "0.8.1",
+    "date": "2026-11-03",
     "timeZone": "America/New_York",
-    "publicationStatus": "PENDING: release CI, deployment and production byte/UI verification have not been recorded."
+    "publicationStatus": "published and verified in production",
+    "applicationCommit": "da44f5d8b7f0238236cd827b8d1312ca6784d185",
+    "tree": "7cbbd42db039b1b680019951e0541ac557476783",
+    "pullRequest": "https://github.com/WaylandP/potato-me/pull/15",
+    "mergedAt": "2026-11-03T12:45:29Z",
+    "productionRecord": "docs/grip-production.json"
   },
   "baselineCommit": "726073b047a73bf730814bc532910d9025992814",
   "summary": {
@@ -1245,7 +1250,7 @@
       "tests": 85,
       "passed": 85,
       "failed": 0,
-      "provenance": "Final frozen-source result reported by root; preserved transcript not yet supplied."
+      "provenance": "The release coordinator reported this 85-test local result on the frozen source. GitHub PR and main CI results are recorded separately in finalChecks.ci."
     },
     "shapeRegression": {
       "status": "passed",
@@ -1519,18 +1524,100 @@
           ]
         }
       ],
-      "scope": "Visual acceptance of these exact files; production delivery remains pending."
+      "scope": "Visual acceptance of these exact local files. Deployment and live verification are recorded separately in docs/grip-production.json."
     },
     "ci": {
-      "status": "PENDING",
-      "commit": null,
-      "run": null
+      "status": "passed",
+      "commit": "da44f5d8b7f0238236cd827b8d1312ca6784d185",
+      "run": "https://github.com/WaylandP/potato-me/actions/runs/41638407515",
+      "pullRequest": {
+        "number": 15,
+        "url": "https://github.com/WaylandP/potato-me/pull/15",
+        "commit": "07ca52e0da76da34e45c498b44358aebf91a5f76",
+        "tree": "7cbbd42db039b1b680019951e0541ac557476783",
+        "workflowRunId": 41638222921,
+        "workflowUrl": "https://github.com/WaylandP/potato-me/actions/runs/41638222921",
+        "testJobId": 125924733425,
+        "testJobUrl": "https://github.com/WaylandP/potato-me/actions/runs/41638222921/job/125924733425",
+        "conclusion": "success",
+        "testCompletedAt": "2026-11-03T12:44:33Z"
+      },
+      "mainPush": {
+        "event": "push",
+        "branch": "main",
+        "commit": "da44f5d8b7f0238236cd827b8d1312ca6784d185",
+        "tree": "7cbbd42db039b1b680019951e0541ac557476783",
+        "workflowRunId": 41638407515,
+        "workflowUrl": "https://github.com/WaylandP/potato-me/actions/runs/41638407515",
+        "testJobId": 125925355327,
+        "testJobUrl": "https://github.com/WaylandP/potato-me/actions/runs/41638407515/job/125925355327",
+        "conclusion": "success",
+        "workflowStartedAt": "2026-11-03T12:45:32Z",
+        "testCompletedAt": "2026-11-03T12:45:48Z"
+      },
+      "publicationRecord": "docs/grip-production.json"
     },
     "production": {
-      "status": "PENDING",
-      "commit": null,
-      "deployment": null,
-      "verification": null
+      "status": "published-and-verified",
+      "commit": "da44f5d8b7f0238236cd827b8d1312ca6784d185",
+      "tree": "7cbbd42db039b1b680019951e0541ac557476783",
+      "target": "production",
+      "state": "READY",
+      "deployment": "dpl_4dPQ7FkAuKfUSgdyeFpe6WP8A11U",
+      "deploymentUrl": "https://potato-d765c1g3q-waylandp.vercel.app/",
+      "dashboardUrl": "https://vercel.com/waylandp/potato-me/4dPQ7FkAuKfUSgdyeFpe6WP8A11U",
+      "readyAt": "2026-11-03T12:45:45.005Z",
+      "aliasAtPublication": {
+        "url": "https://potato-me.vercel.app/",
+        "deployment": "dpl_4dPQ7FkAuKfUSgdyeFpe6WP8A11U",
+        "updatedAt": "2026-11-03T12:45:45.390Z",
+        "projectId": "prj_XWLAMiXdxuGqjYDg6yGv1MYEUh7Q",
+        "teamId": "team_ekANzkCXaHKjjEPaKDv2Z7KA"
+      },
+      "verification": {
+        "publicEditor": {
+          "look": "Moon mood",
+          "shareUrl": "https://potato-me.vercel.app/#character=female&body=round&skin=ghost&eyes=side&brows=softArch&mouth=smile&hair=bun&hairColor=silver&hat=halo&item=book&gesture=rest&jewelry=starStuds&bg=periwinkle&pattern=stars&stickers=",
+          "observedFooterText": "v0.8.1",
+          "observedState": "Moon mood book outfit loaded on the public editor",
+          "actions": [
+            {
+              "action": "Open the public Moon mood share link",
+              "result": "Moon mood book outfit and footer v0.8.1 displayed."
+            },
+            {
+              "action": "Select Tiny wizard from the inspiration shelf",
+              "result": "Tiny wizard loaded in the public editor."
+            },
+            {
+              "action": "Download the standard PNG",
+              "result": "Public download produced a 512 × 512 PNG.",
+              "width": 512,
+              "height": 512
+            }
+          ]
+        },
+        "record": "docs/grip-production.json",
+        "scope": "Application merge commit, production deployment and alias, observed public Moon mood/Tiny wizard flows, one 512 px download, and 15 ordinary HTTP paths with the documented 404 exception. The 595 render cases and 20 UI checks were local checks on the frozen application.",
+        "publicFileChecks": {
+          "requestedPaths": 15,
+          "matchingReviewedBytes": 14,
+          "unavailablePaths": [
+            {
+              "path": "/package.json",
+              "httpStatus": 404,
+              "effect": "The version probe used by the existing old-tab update notice is unavailable publicly. Direct page loads and normal refreshes work."
+            }
+          ],
+          "matchingRevisedArt": [
+            "assets/parts/item/book.png",
+            "assets/thumbs/item/book.png",
+            "assets/parts/item/donut.png",
+            "assets/thumbs/item/donut.png"
+          ],
+          "record": "docs/grip-production.json"
+        }
+      }
     },
     "independentEvidenceConsistencyReview": {
       "status": "passed",
@@ -1548,7 +1635,7 @@
     "Final native hand proofs cover Classic/Blue for items and Classic/Purple for gestures. Matrix review covers five corrected props across6bodies/9skins in actual512-export and192-thumbnail paths, not every outfit.",
     "Automated595 results, native anatomy review, sheet-scale matrix review, UI controls and production verification are separate claims.",
     "18 inspiration definitions and background scene code are unchanged; rendered new book/donut art and corrected material boundaries can change their pixels.",
-    "CI, deployment and production verification remain PENDING."
+    "The 595 render cases and 20 UI checks are local results. Live verification covered the recorded public editor actions and 15 HTTP paths: 14 matched reviewed bytes, and /package.json returned 404. The old-tab version notice is affected; direct loads and normal refreshes work."
   ],
   "sourceArtInvariants": {
     "baselineCommit": "726073b047a73bf730814bc532910d9025992814",
