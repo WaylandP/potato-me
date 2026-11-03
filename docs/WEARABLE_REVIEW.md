@@ -1,5 +1,7 @@
 # Wearable fitting and editor review — v0.7.0
 
+The current follow-up is [ATTACHMENT_REVIEW.md](ATTACHMENT_REVIEW.md), for v0.8.0. It records the Lumpy identity finding, eleven held-object mask defects visible at native resolution, button repairs and the inspiration shelf. The findings and counts below remain the historical v0.7.0 record; its successful render checks did not establish that those later grip defects were absent.
+
 Reviewed 2026-11-02. This release addresses headwear that floated above the head, hair that did not follow the temples, oversized small accessories, and an editor whose broad sections hid related controls. Earlier audit records describe earlier versions; passing render counts did not establish that their artwork looked natural.
 
 ## What changed

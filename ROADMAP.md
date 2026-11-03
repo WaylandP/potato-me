@@ -29,6 +29,8 @@ The earlier asset-completion and character-fitting work was verified on November
 
 ## Next priorities
 
+- [ ] **v0.8.0 publication verification:** clearer body choices, repaired Zombie Lumpy silhouette, precise grip masks, complete button borders and an editable inspiration shelf. Implementation is under final attachment and deployment review; see [ATTACHMENT_REVIEW.md](docs/ATTACHMENT_REVIEW.md).
+
 - [ ] **Broader device coverage:** verify the current rendering on physical iOS/Safari and Android devices, beyond the recorded Chromium checks.
 
 - [ ] **Undo / redo:** make it easy to compare edits and recover earlier choices.

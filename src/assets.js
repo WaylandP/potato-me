@@ -205,9 +205,9 @@ export const PARTS = {
       922
     ],
     "lumpy-zombie": [
-      246,
+      236,
       154,
-      777,
+      788,
       922
     ],
     "round-zombie": [

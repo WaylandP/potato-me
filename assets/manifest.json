@@ -1149,7 +1149,7 @@
     },
     {
       "path": "assets/parts/body/lumpy-zombie.png",
-      "request": "The lumpy body again with a sickly green-grey zombie skin, darker mottled patches, a couple of small cracks.",
+      "request": "Distinctive lumpy zombie potato body: preserve the lobed Lumpy russet silhouette and stubby feet, with muted olive-grey mottled skin and subtle cracks; blank body without face or arms; transparent background.",
       "group": "body",
       "key": "lumpy-zombie",
       "targetBox": [
@@ -1167,19 +1167,24 @@
         1254
       ],
       "sourceCrop": [
-        254,
-        70,
-        1015,
-        1171
+        290,
+        189,
+        966,
+        1130
       ],
       "placedBox": [
-        246,
+        236,
         154,
-        777,
+        788,
         922
       ],
       "flippedForConvention": false,
-      "sha256": "5f94db5468c69a129c07068e988a3dbebfe4c0ba57869ef2f6d7462bd735536b"
+      "sha256": "8ece20f9aab902c9a1d9394c99a0804091ef9a72f2941168ecc02fe11345ec62",
+      "replacement": {
+        "date": "2026-11-02",
+        "method": "Built-in image generation edit; Lumpy russet silhouette and prior zombie material references, normalized to the existing target box.",
+        "previousSha256": "5f94db5468c69a129c07068e988a3dbebfe4c0ba57869ef2f6d7462bd735536b"
+      }
     },
     {
       "path": "assets/parts/body/round-zombie.png",

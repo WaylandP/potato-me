@@ -84,11 +84,16 @@ function polygonContains(x, y, polygon) {
 const skins = new WeakMap();
 function skinAnalysis(img, group, key) {
   if (skins.has(img)) return skins.get(img);
-  const SIZE = ['eyes', 'mouth'].includes(group) ? 512 : 256, unit = CANVAS / SIZE;
+  // Gripping fingertips need the same fine boundary sampling as facial parts.
+  // A 256 px mask leaves visible russet slivers in a 1024 px export.
+  const SIZE = ['eyes', 'mouth', 'item'].includes(group) ? 512 : 256, unit = CANVAS / SIZE;
   const { data } = pixels(img, SIZE), count = SIZE * SIZE;
   const candidate = new Uint8Array(count), mask = new Uint8Array(count), dist = new Float32Array(count);
   const queue = new Int32Array(count); let head = 0, tail = 0;
   const protectedRegions = FIT.skinProtect?.[`${group}/${key}`] || [];
+  // Canvas downsampling samples the center of each source cell. Testing its
+  // upper-left corner instead shifts fine prop/skin boundaries by one pixel.
+  const protectedAt = (x, y) => protectedRegions.some(poly => polygonContains((x + (group === 'item' ? .5 : 0)) * unit, (y + (group === 'item' ? .5 : 0)) * unit, poly));
   const box = PARTS[group][key];
   const eyeBoxes = [];
   if (group === 'eyes') for (const side of [0, 1]) {
@@ -131,7 +136,7 @@ function skinAnalysis(img, group, key) {
     const max = Math.max(r, g, b), min = Math.min(r, g, b);
     const facial = ['eyes', 'mouth', 'cheeks', 'facialHair'].includes(group);
     const warm = facial ? r > g * .98 && g > b * 1.03 && r - b > 12 && max > 38 : r >= g * .97 && g >= b * .98 && r - b > 5 && max > 20;
-    candidate[p] = data[i + 3] > 12 && warm && !protectedRegions.some(poly => polygonContains(x * unit, y * unit, poly)) && !enclosedFeature(x, y) && !(group === 'facialHair' && max < 145) ? 1 : 0;
+    candidate[p] = data[i + 3] > 12 && warm && !protectedAt(x, y) && !enclosedFeature(x, y) && !(group === 'facialHair' && max < 145) ? 1 : 0;
     dist[p] = data[i + 3] < 20 ? 0 : 100;
   }
   // Only potato-colored regions connected to an exterior edge are skin. This
@@ -155,11 +160,12 @@ function skinAnalysis(img, group, key) {
     for (let p = 0; p < count; p++) mask[p] = data[p * 4 + 3] > 0 ? 1 : 0;
   } else if (group === 'item') {
     const filled = mask.slice();
-    for (let y = 2; y < SIZE - 2; y++) for (let x = 2; x < SIZE - 2; x++) {
+    const nearStep = 4 / unit, farStep = 8 / unit;
+    for (let y = farStep; y < SIZE - farStep; y++) for (let x = farStep; x < SIZE - farStep; x++) {
       const p = y * SIZE + x;
-      if (mask[p] || data[p * 4 + 3] < 20 || protectedRegions.some(poly => polygonContains(x * unit, y * unit, poly))) continue;
+      if (mask[p] || data[p * 4 + 3] < 20 || protectedAt(x, y)) continue;
       let near = 0;
-      for (const [dx, dy] of [[-2,0],[2,0],[0,-2],[0,2],[-1,-1],[1,1],[-1,1],[1,-1]]) near += mask[p + dy * SIZE + dx];
+      for (const [dx, dy] of [[-farStep,0],[farStep,0],[0,-farStep],[0,farStep],[-nearStep,-nearStep],[nearStep,nearStep],[-nearStep,nearStep],[nearStep,-nearStep]]) near += mask[p + dy * SIZE + dx];
       if (near >= 6) filled[p] = 1;
     }
     mask.set(filled);
@@ -175,12 +181,15 @@ function skinAnalysis(img, group, key) {
   let edge = group === 'item' ? 0 : SIZE - 1;
   if (limb) for (let p = 0; p < count; p++) if (mask[p] && data[p * 4 + 3] > 200) {
     const x = p % SIZE, y = (p / SIZE) | 0;
-    if (y < 125 || y > 209) continue;
+    if (y * unit < 500 || y * unit > 836) continue;
     if (group === 'item') edge = Math.max(edge, x); else edge = Math.min(edge, x);
   }
   let totalY = 0, n = 0;
-  if (limb) for (let p = 0; p < count; p++) if (mask[p] && Math.abs(p % SIZE - edge) <= 3 && ((p / SIZE) | 0) >= 125 && ((p / SIZE) | 0) <= 209) { totalY += ((p / SIZE) | 0); n++; }
-  const root = [edge * 4, (n ? totalY / n : 160) * 4];
+  if (limb) for (let p = 0; p < count; p++) {
+    const y = (p / SIZE) | 0;
+    if (mask[p] && Math.abs(p % SIZE - edge) * unit <= 12 && y * unit >= 500 && y * unit <= 836) { totalY += y; n++; }
+  }
+  const root = [edge * unit, n ? totalY / n * unit : 640];
   const c = canvas(SIZE), ctx = c.getContext('2d'), id = ctx.createImageData(SIZE, SIZE);
   for (let p = 0; p < count; p++) {
     const i = p * 4; id.data[i] = 255; id.data[i + 1] = Math.round(255 * smooth(dist[p] * unit / 10)); id.data[i + 2] = (FIT.skinFront?.[`${group}/${key}`] || []).some(poly => polygonContains((p % SIZE) * unit, Math.floor(p / SIZE) * unit, poly)) ? 255 : 0;
@@ -457,7 +466,14 @@ export function fittedPoint(group, key, t, [x, y]) {
   return projected([xx, yy], t, FIT.pivots[`${group}/${key}`] || FIT.pivots[group] || [512, 512]);
 }
 const silhouettes = new WeakMap();
+const framingSources = new WeakMap();
+// Chromium can downsample an Image and a same-size Canvas differently. Color
+// processing must not let those edge samples move the whole-character camera.
+export function registerFramingSource(processed, original) {
+  framingSources.set(processed, framingSources.get(original) || original);
+}
 function framingPoints(img, group, key, transform) {
+  img = framingSources.get(img) || img;
   if (!silhouettes.has(img)) {
     const { data } = pixels(img, 128), points = [];
     for (let y = 0; y < 128; y++) for (let x = 0; x < 128; x++) if (data[(y * 128 + x) * 4 + 3] > 48) points.push([x * 8, y * 8]);

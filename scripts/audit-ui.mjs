@@ -30,7 +30,45 @@ try {
     await page.locator(`#tab-${section}`).click(); await thumbs(); await page.locator(`[data-key="${key}"][data-value="${value}"]`).click(); await ready(); assert.equal(await page.locator(`[data-key="${key}"][data-value="${value}"]`).getAttribute('aria-pressed'), 'true'); };
   const tab = async key => { await page.locator(`#tab-${key}`).click(); await thumbs(); };
   await page.goto(base); await ready(); await thumbs();
+  await page.locator('#inspiration').scrollIntoViewIfNeeded();
+  await page.waitForFunction(() => document.querySelectorAll('.inspiration-card[data-idea] canvas').length === 6);
+  await page.evaluate(() => scrollTo(0, 0));
   await shot('desktop-light');
+  const firstIdeas = await page.locator('.inspiration-card[data-idea]').evaluateAll(cards => cards.map(card => card.dataset.idea));
+  const beforeIdeas = page.url();
+  await page.locator('#shuffle-ideas').click();
+  await page.waitForFunction(() => document.querySelector('#inspiration-grid').getAttribute('aria-busy') === 'false');
+  const nextIdeas = await page.locator('.inspiration-card[data-idea]').evaluateAll(cards => cards.map(card => card.dataset.idea));
+  assert.equal(new Set(nextIdeas).size, 6);
+  assert.ok(nextIdeas.every(id => !firstIdeas.includes(id)));
+  assert.equal(page.url(), beforeIdeas, 'browsing ideas does not change the current potato');
+  await page.locator('.inspiration-card[data-idea]').first().focus(); await page.keyboard.press('Enter'); await ready();
+  const expectedIdea = await page.evaluate(async id => {
+    const { INSPIRATION_LOOKS } = await import('./src/inspiration.js');
+    const { decodeState } = await import('./src/state.js');
+    return { expected: INSPIRATION_LOOKS.find(idea => idea.id === id).state, actual: decodeState(location.hash) };
+  }, nextIdeas[0]);
+  assert.deepEqual(expectedIdea.actual, expectedIdea.expected);
+  const ideaPixels = await page.locator('#preview canvas').evaluate(c => c.toDataURL());
+  await page.reload(); await ready();
+  assert.equal(await page.locator('#preview canvas').evaluate(c => c.toDataURL()), ideaPixels);
+  report.checks.push('Six lazy-rendered inspiration cards shuffle without repeats or changing the current potato; keyboard selection loads the complete look and share/reload reproduces its canvas.');
+
+  let versionChecks = 0;
+  await page.route('**/package.json', route => { versionChecks++; return route.fulfill({ contentType: 'application/json', body: JSON.stringify({ version: '999.0.0' }) }); });
+  const beforeUpdate = page.url();
+  await page.evaluate(() => document.dispatchEvent(new Event('visibilitychange')));
+  await page.locator('#update-notice').waitFor({ state: 'visible' });
+  assert.equal(page.url(), beforeUpdate, 'the update notice does not reload or edit the potato');
+  await page.evaluate(() => document.dispatchEvent(new Event('visibilitychange')));
+  assert.equal(versionChecks, 1, 'update checks are throttled');
+  const refreshed = page.waitForEvent('load');
+  await page.locator('#refresh-editor').click(); await refreshed; await ready();
+  assert.equal(page.url(), beforeUpdate);
+  assert.equal(await page.locator('#preview canvas').evaluate(c => c.toDataURL()), ideaPixels);
+  await page.unroute('**/package.json');
+  report.checks.push('A mocked new version shows a nonblocking update notice; checks are throttled and Refresh editor preserves the exact shared state and canvas.');
+  await page.goto(base); await ready(); await thumbs();
   for (const key of ['body', 'face', 'hair', 'hat', 'accessories', 'props', 'gestures', 'stickers', 'bg']) { await tab(key); await shot(`desktop-${key}`); }
   report.checks.push('All nine sections render their option thumbnails without failed images.');
   await tab('body');
@@ -116,10 +154,12 @@ try {
     const incomplete = await page.evaluate(async () => {
       const { renderPotato, cropBox } = await import('./src/raster.js');
       const { DEFAULT_STATE } = await import('./src/options.js');
+      const { bodyPreviewState } = await import('./src/inspiration.js');
       const mismatches = [];
       for (const button of document.querySelectorAll('[data-key="body"], [data-key="skin"]')) {
         const c = button.querySelector('canvas');
-        const fresh = await renderPotato({ ...DEFAULT_STATE, [button.dataset.key]: button.dataset.value }, { size: 176, crop: cropBox(button.dataset.key), thumbs: true });
+        const candidate = { ...DEFAULT_STATE, [button.dataset.key]: button.dataset.value };
+        const fresh = await renderPotato(button.dataset.key === 'body' ? bodyPreviewState(candidate) : candidate, { size: 176, crop: cropBox(button.dataset.key), thumbs: true });
         const actual = c.getContext('2d').getImageData(0, 0, 176, 176).data;
         const expected = fresh.getContext('2d').getImageData(0, 0, 176, 176).data;
         if (actual.some((v, i) => Math.abs(v - expected[i]) > 2)) mismatches.push(`${button.dataset.key}/${button.dataset.value}`);
@@ -127,6 +167,11 @@ try {
       return mismatches;
     });
     assert.deepEqual(incomplete, []);
+    const beforeShelf = report.requests.length;
+    await page.locator('#inspiration').scrollIntoViewIfNeeded();
+    await page.waitForFunction(() => document.querySelectorAll('.inspiration-card[data-idea] canvas').length === 6);
+    assert.deepEqual(report.requests.slice(beforeShelf).filter(url => url.includes('/assets/parts/')), [], 'inspiration uses thumbnail sources only');
+    await page.evaluate(() => scrollTo(0, 0));
     await shot(`mobile-${colorScheme}`);
     for (const key of ['body', 'face', 'hair', 'hat', 'accessories', 'props', 'gestures', 'stickers', 'bg']) {
       await tab(key);
@@ -137,6 +182,7 @@ try {
     await page.locator('#controls').screenshot({ path: `${out}/mobile-${colorScheme}-controls.png` });
   }
   report.checks.push('Concurrent body/skin thumbnails match sequential renders in both mobile themes (2-channel-value tolerance).');
+  report.checks.push('Phone inspiration shelves load on approach and request no full-resolution part files.');
   report.checks.push('390 px light/dark layouts: no horizontal overflow; all visible buttons meet 44 × 44 px.');
   const recovery = await context.newPage();
   await recovery.route('**/assets/parts/body/classic-russet.png', route => route.abort());
