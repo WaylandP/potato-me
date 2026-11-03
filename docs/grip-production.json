@@ -1,0 +1,181 @@
+{
+  "version": "0.8.1",
+  "productionDate": "2026-11-03",
+  "releaseTimeZone": "America/New_York",
+  "scope": "Application deployment and public editor checks, before the documentation-only verification record.",
+  "github": {
+    "repository": "WaylandP/potato-me",
+    "pullRequest": "https://github.com/WaylandP/potato-me/pull/15",
+    "pullRequestHead": "07ca52e0da76da34e45c498b44358aebf91a5f76",
+    "applicationCommit": "da44f5d8b7f0238236cd827b8d1312ca6784d185",
+    "applicationTree": "7cbbd42db039b1b680019951e0541ac557476783",
+    "pullRequestCI": {
+      "result": "success",
+      "url": "https://github.com/WaylandP/potato-me/actions/runs/41638222921/job/125924733425"
+    },
+    "mainCI": {
+      "result": "success",
+      "completedAt": "2026-11-03T12:45:48Z",
+      "url": "https://github.com/WaylandP/potato-me/actions/runs/41638407515/job/125925355327"
+    }
+  },
+  "vercel": {
+    "deploymentId": "dpl_4dPQ7FkAuKfUSgdyeFpe6WP8A11U",
+    "deploymentUrl": "https://potato-d765c1g3q-waylandp.vercel.app/",
+    "inspectionUrl": "https://vercel.com/waylandp/potato-me/4dPQ7FkAuKfUSgdyeFpe6WP8A11U",
+    "target": "production",
+    "status": "READY",
+    "readyAt": "2026-11-03T12:45:45.005Z",
+    "alias": "https://potato-me.vercel.app/",
+    "aliasAssignedAt": "2026-11-03T12:45:45.390Z",
+    "verifiedApplicationCommit": "da44f5d8b7f0238236cd827b8d1312ca6784d185"
+  },
+  "publicEditor": {
+    "observedVersion": "v0.8.1",
+    "moonMood": {
+      "url": "https://potato-me.vercel.app/#character=female&body=round&skin=ghost&eyes=side&brows=softArch&mouth=smile&hair=bun&hairColor=silver&hat=halo&item=book&gesture=rest&jewelry=starStuds&bg=periwinkle&pattern=stars&stickers=",
+      "observed": "Ghost round potato, silver bun and halo. The selected Book is supported from below in the preview.",
+      "screenshot": {
+        "path": "docs/production-v081.jpg",
+        "mimeType": "image/jpeg",
+        "width": 1348,
+        "height": 926,
+        "bytes": 133252,
+        "sha256": "f254f4b9100f20c1cc4066db02dde913a2478374e65266bd0ec6e66596a3076c"
+      }
+    },
+    "tinyWizard": {
+      "interaction": "Selected Customize Tiny wizard from the public inspiration shelf, then clicked Download PNG.",
+      "url": "https://potato-me.vercel.app/#body=long&skin=blue&eyes=stars&brows=raised&mouth=oh&hat=wizard&hatColor=purple&item=book&gesture=point&bg=plum&pattern=orbit&stickers=",
+      "observed": "Adirondack blue Petite potato, wizard hat, pointing free hand; the other palm supports the open book in the exported image.",
+      "download": {
+        "mimeType": "image/png",
+        "width": 512,
+        "height": 512,
+        "bytes": 243754,
+        "sha256": "7d7251f72b69be013713925d4c70bc1bd88d98c9a805fdc151648f01165216e8"
+      },
+      "copyLink": "The editor displayed its link-copied confirmation; the exact clipboard text was not independently verified in the production browser."
+    }
+  },
+  "localReviewEvidence": [
+    "docs/GRIP_REVIEW.md",
+    "docs/grip-render-evidence.json",
+    "docs/grip-evidence.json",
+    "docs/grip-comparison.jpg"
+  ],
+  "publicResponses": {
+    "checkedAt": "2026-11-03T12:50:12.271022+00:00",
+    "matched": 14,
+    "attempted": 15,
+    "method": "Ordinary HTTPS GET on the production alias; compare the successful response bytes to the final local application tree.",
+    "files": [
+      {
+        "file": "index.html",
+        "httpStatus": 200,
+        "responseBytes": 7387,
+        "responseSha256": "bd9afdb3e19346ce79cd221f86b3d67d3a4597164554a428f824905ba786ca4f",
+        "match": true
+      },
+      {
+        "file": "package.json",
+        "httpStatus": 404,
+        "responseBytes": 79,
+        "responseSha256": "b68326c783b99f913d6f9be7b66909287904dedc8a2d29617531eaeb441eab31",
+        "match": false
+      },
+      {
+        "file": "src/version.js",
+        "httpStatus": 200,
+        "responseBytes": 117,
+        "responseSha256": "89ce1d0e6d712b3a0377df5f3b6b84dee275e37f2166e14521b4a7aab4017d46",
+        "match": true
+      },
+      {
+        "file": "src/fit-data.js",
+        "httpStatus": 200,
+        "responseBytes": 23995,
+        "responseSha256": "74231fbcf9b79b6623456585796fe9d4ff2df72a07d1d42dfc909763041587f3",
+        "match": true
+      },
+      {
+        "file": "src/assets.js",
+        "httpStatus": 200,
+        "responseBytes": 15782,
+        "responseSha256": "c2968a90900aec1c9157ce2132324bc355c1db8101a22c492025cdce5b985f40",
+        "match": true
+      },
+      {
+        "file": "src/inspiration.js",
+        "httpStatus": 200,
+        "responseBytes": 5871,
+        "responseSha256": "b7b2db488145ec2d78d11af509f2300cb39583d425b3ea61800e28ac61c18975",
+        "match": true
+      },
+      {
+        "file": "assets/manifest.json",
+        "httpStatus": 200,
+        "responseBytes": 195055,
+        "responseSha256": "18c82f7f9f62dd2c4913ec73db68c2d781335dd04d9ef63ef48cc75843e20a49",
+        "match": true
+      },
+      {
+        "file": "assets/parts/item/book.png",
+        "httpStatus": 200,
+        "responseBytes": 175656,
+        "responseSha256": "b0c3626240066b250e3f1f3301d2fa0fda98cf7285033ed7bec9011cf47129fa",
+        "match": true
+      },
+      {
+        "file": "assets/parts/item/donut.png",
+        "httpStatus": 200,
+        "responseBytes": 280183,
+        "responseSha256": "74ce6528e859b306324126f9150e0a770af10e0b04532a6f30f9b31a331bc7d8",
+        "match": true
+      },
+      {
+        "file": "assets/thumbs/item/book.png",
+        "httpStatus": 200,
+        "responseBytes": 13460,
+        "responseSha256": "d26d66ee75f47a3e13f95faf62bbedd4b90ba64f4e5437b160a6403ef0b62686",
+        "match": true
+      },
+      {
+        "file": "assets/thumbs/item/donut.png",
+        "httpStatus": 200,
+        "responseBytes": 18878,
+        "responseSha256": "5e3d5e9759abea47147c8e08a16cedca45b2722d79fb6effe442813dbe9cfd1b",
+        "match": true
+      },
+      {
+        "file": "src/raster.js",
+        "httpStatus": 200,
+        "responseBytes": 32088,
+        "responseSha256": "e657ef329b18974b2349b3b3e549721af98e0f3678c111610f849a46900a2dff",
+        "match": true
+      },
+      {
+        "file": "src/surface.js",
+        "httpStatus": 200,
+        "responseBytes": 44593,
+        "responseSha256": "7017ce4c3849801f0aae737c65f7d513de8a148abb6b1f6e7772f0525ac99210",
+        "match": true
+      },
+      {
+        "file": "src/main.js",
+        "httpStatus": 200,
+        "responseBytes": 24724,
+        "responseSha256": "3067fbc64fddc50e0fe0509f4283aa9ee9a47178ef57e4cdf371e66afcbfb5e3",
+        "match": true
+      },
+      {
+        "file": "src/styles.css",
+        "httpStatus": 200,
+        "responseBytes": 15906,
+        "responseSha256": "770abda29bdd5b611779a2b0a6526c8c18c809754b23db9086a94e0f3a533288",
+        "match": true
+      }
+    ],
+    "limitation": "The root package.json endpoint returned 404. The optional return-to-tab update notice cannot read that endpoint; opening or refreshing the public editor loads v0.8.1. The editor, both updated full-size images and both thumbnails matched the release bytes."
+  }
+}

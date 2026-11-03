@@ -1,6 +1,6 @@
 # Hand and grip review — v0.8.1
 
-**Release date: November 2, 2026 (America/New_York). Local validation is complete; release CI and production verification are pending.**
+**Published and verified on November 3, 2026 (America/New_York).** [PR #15](https://github.com/WaylandP/potato-me/pull/15) shipped the reviewed application to [potato-me.vercel.app](https://potato-me.vercel.app/). The [production record](grip-production.json) identifies the exact commit and deployment.
 
 A fresh visual anatomy review covered **33 layers: 18 held objects, the empty item hand and all 14 free-hand gestures**. It selected two source-art revisions, book and donut, because their old grips made hand/object depth difficult to read. The other **31 source-art layers are retained**. The accepted book2 and donut1 source candidates have been normalized into the asset pack; fitting and material-mask integration are complete, and the final local rendering, visual and regression checks have passed.
 
@@ -33,7 +33,7 @@ Both raw candidates are 1254 × 1254 px. They were normalized to the 1024 × 102
 | `item/book` / book2 | `b2437b7a7c19` | `01799f0889c7` | `b0c362624006` |
 | `item/donut` / donut1 | `b5def482dc9e` | `ce45dc9f3ac5` | `74ce6528e859` |
 
-Full hashes, dimensions and normalization details are embedded in [grip-evidence.json](grip-evidence.json). These hashes identify accepted source files, not an accepted production deployment.
+Full hashes, dimensions and normalization details are embedded in [grip-evidence.json](grip-evidence.json). These hashes identify the accepted artwork; the [publication record](grip-production.json) identifies the deployment that delivered it.
 
 ## Additional material findings from the fresh native pass
 
@@ -128,6 +128,15 @@ The final source comparison confirms exactly **two changed source PNGs** among 2
 
 The JSON preserves the scope and limitations of each gate. Source-anatomy decisions, final native inspection, sheet-scale matrix judgments, automated output checks and real UI interactions are different kinds of evidence.
 
-## Publication verification pending
+## Publication verification
 
-**Release CI, deployment identity and production byte/UI verification are PENDING.** These local results do not establish that v0.8.1 is live. The publication record must be filled with the exact release commit, successful CI run, Vercel deployment and production verification after publication.
+[PR #15](https://github.com/WaylandP/potato-me/pull/15) merged into `main` at **12:45:29 UTC on November 3, 2026**. Its [application merge commit](https://github.com/WaylandP/potato-me/commit/da44f5d8b7f0238236cd827b8d1312ca6784d185) is `da44f5d8b7f0238236cd827b8d1312ca6784d185`; the tree `7cbbd42db039b1b680019951e0541ac557476783` matches the reviewed PR head.
+
+| Release check | Verified result |
+| --- | --- |
+| GitHub CI | The [PR test](https://github.com/WaylandP/potato-me/actions/runs/41638222921/job/125924733425) passed on head `07ca52e0da76da34e45c498b44358aebf91a5f76`. The separate [main push run](https://github.com/WaylandP/potato-me/actions/runs/41638407515) tested the merge commit; its [test job](https://github.com/WaylandP/potato-me/actions/runs/41638407515/job/125925355327) passed at 12:45:48 UTC. |
+| Vercel production | [Deployment `dpl_4dPQ7FkAuKfUSgdyeFpe6WP8A11U`](https://vercel.com/waylandp/potato-me/4dPQ7FkAuKfUSgdyeFpe6WP8A11U) reached `READY` at 12:45:45.005 UTC on the merge commit, with target `production`. The public alias pointed to that deployment at 12:45:45.390 UTC. |
+| Public editor | The [Moon mood share link](https://potato-me.vercel.app/#character=female&body=round&skin=ghost&eyes=side&brows=softArch&mouth=smile&hair=bun&hairColor=silver&hat=halo&item=book&gesture=rest&jewelry=starStuds&bg=periwinkle&pattern=stars&stickers=) opened the book outfit on the public site and displayed `v0.8.1` in the footer. Selecting Tiny wizard from the inspiration shelf loaded that look; the public download produced a 512 × 512 PNG. |
+| Public file checks | **14 of 15** requested paths served bytes matching the reviewed files, including the full-size book and donut PNGs and both thumbnails. The remaining path, `/package.json`, returned HTTP 404. |
+
+The 404 affects the existing update notice in an already-open tab: the editor cannot read its version probe at that public path. Direct loads and normal refreshes load the released application. [grip-production.json](grip-production.json) records the live verification. The 595 render cases and 20 UI checks above ran against the frozen local application; the publication checks identify the deployed revision and the public behavior actually inspected.
