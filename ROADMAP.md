@@ -26,10 +26,9 @@ The earlier asset-completion and character-fitting work was verified on November
 - [x] Nine focused editor sections, six illustrated scenes and twelve more background colors.
 - [x] Measured wearable openings, joint hair/headwear fitting, body-relative small accessories, layered contact shadows and replacement chef artwork. See the [v0.7 review](docs/WEARABLE_REVIEW.md).
 - [x] Headgear overlap follow-up: front/rear hat composition, fitted headphone bands, halo clearance, glasses temples, earbud insertion and headband side contact. Published and verified on production on November 2, 2026. See [WRAP_REVIEW.md](docs/WRAP_REVIEW.md).
+- [x] Clearer body choices, repaired Zombie Lumpy silhouette, precise grip masks, color-stable framing, complete button borders and an editable inspiration shelf. Published and verified on production on November 3, 2026. See [ATTACHMENT_REVIEW.md](docs/ATTACHMENT_REVIEW.md).
 
 ## Next priorities
-
-- [ ] **v0.8.0 publication verification:** clearer body choices, repaired Zombie Lumpy silhouette, precise grip masks, complete button borders and an editable inspiration shelf. Implementation is under final attachment and deployment review; see [ATTACHMENT_REVIEW.md](docs/ATTACHMENT_REVIEW.md).
 
 - [ ] **Broader device coverage:** verify the current rendering on physical iOS/Safari and Android devices, beyond the recorded Chromium checks.
 

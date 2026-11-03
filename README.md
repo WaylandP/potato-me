@@ -51,7 +51,7 @@ The **A little inspiration** shelf offers six editable potatoes drawn from 18 co
 
 ## Project status
 
-Source version **0.8.0** makes body silhouettes clear in the selector, repairs the near-Classic Zombie Lumpy artwork, and corrects grip masks that left orange fingertips or recolored parts of held objects. Color changes now preserve the same framing. Section buttons have complete, legible borders in both themes, and a new inspiration shelf fills the area below the preview. A visible version and optional refresh notice help identify an older open editor while preserving the current potato.
+Version **0.8.0**, published and verified on November 3, 2026, makes body silhouettes clear in the selector, repairs the near-Classic Zombie Lumpy artwork, and corrects grip masks that left orange fingertips or recolored parts of held objects. Color changes now preserve the same framing. Section buttons have complete, legible borders in both themes, and a new inspiration shelf fills the area below the preview. A visible version and optional refresh notice help identify an older open editor while preserving the current potato.
 
 The [current attachment review](docs/ATTACHMENT_REVIEW.md) documents the reported flower-crown reconstruction, native grip findings, body/skin and interaction coverage, and the editor checks. The [v0.7.1 overlap review](docs/WRAP_REVIEW.md), [v0.7 wearable review](docs/WEARABLE_REVIEW.md), [v0.6.1 shape review](docs/SHAPE_REVIEW.md) and earlier audits are historical. This is a modular 2D compositor; the recorded matrices do not cover every possible complete outfit.
 
