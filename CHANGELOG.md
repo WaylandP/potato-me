@@ -2,6 +2,17 @@
 
 Notable changes to the source. Version numbers match `package.json`; tags and downloadable release archives are listed separately on [GitHub Releases](https://github.com/WaylandP/potato-me/releases).
 
+## 0.8.1 — 2026-11-02 (America/New_York)
+
+- Review all 18 held-object grips, the empty item hand and all 14 free-hand gestures for finger direction, opposition, object support and continuous wrists.
+- Replace the ambiguous book grip with a palm under the lower spine and curled fingers at the cover. Anchor its new shoulder and remove the old source's mirroring.
+- Replace the donut grip with a front thumb opposing fingers behind the lower rim, including a visible index pad inside the hole. Trace skin protection around those contacts so food and fingers retain separate materials.
+- Protect the coffee mug's exposed handle arcs so ceramic follows the mug color instead of the selected body skin. Extend the sign's wood protection to the actual thumb boundary, and remove the trophy mask from its small upper fingertip.
+- Preserve all 18 inspiration definitions and existing share keys. Regenerate affected thumbnails and app-rendered documentation artwork.
+- Add a focused, reproducible grip audit with native proofs, body/skin export and thumbnail matrices, exact source fingerprints and independent visual-review records. See [GRIP_REVIEW.md](docs/GRIP_REVIEW.md).
+
+This entry uses America/New_York; earlier entries retain their originally recorded dates.
+
 ## 0.8.0 — 2026-11-03
 
 - Show neutral body-choice previews in the selected skin, arranged in a consistent 3-by-2 grid. Preserve the edited outfit when choosing a body.

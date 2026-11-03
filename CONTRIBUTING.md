@@ -50,6 +50,8 @@ The current attachment audit is `npm run audit:attachments -- /tmp/potato-attach
 
 Run `npm run audit:color-framing -- /tmp/potato-color-framing` after changing recoloring or framing. It compares actual Chromium renders and original/copy geometry across every bun color and body, using full and thumbnail sources plus native proofs. Register recolored canvases against their original image with `registerFramingSource`; the camera must not depend on differences in how the browser downsamples an Image versus a Canvas. The optional audit rejects an occupied server port before rendering.
 
+For grip artwork or arm changes, run `npm run audit:grips -- /tmp/potato-grips all`. Its `native`, `matrix` and `inspiration` modes retain native hand proofs, compare book/donut/coffee/sign/trophy across every body and skin through actual 512 px export and 192 px thumbnail paths, and render all inspiration definitions. `--plan` records exact coverage; `AUDIT_PORT`, `CHROME_EXECUTABLE`, `AUDIT_GROUPS`, `AUDIT_MATCH` and `AUDIT_LIMIT` configure explicit subsets. Inspect finger opposition, object support and wrists in the saved images. Root overlap and plausible transforms do not prove a convincing grip. See [GRIP_REVIEW.md](docs/GRIP_REVIEW.md) and [grip-image-prompts.json](docs/grip-image-prompts.json).
+
 ### Art checklist
 
 - Offer every style on every body shape. Keep labels understandable without developer jargon. Preserve existing share keys.

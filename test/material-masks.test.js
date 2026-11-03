@@ -49,12 +49,41 @@ test('duck protection follows the object around the supporting fingers and thumb
 });
 
 test('donut and controller masks leave the visible hand edges tintable', () => {
+  // Donut witnesses follow the replacement opposed grip, including the index
+  // pad inside the hole, front thumb, support fingers and their contact edges.
   for (const [key, skin, material] of [
-    ['donut', [[116,582], [132,585], [181,589], [140,610]], [[155,590], [180,565], [230,600]]],
+    ['donut', [[220,575], [210,590], [176,539], [174,531], [175,552], [120,640], [160,650]], [[229,441], [123,482], [179,629], [144,523], [209,523], [176,557], [198,585], [222,563]]],
     ['controller', [[325,689], [317,689], [309,685]], [[325,678], [320,670], [200,600]]],
   ]) {
     const protectedAt = point => FIT.skinProtect[`item/${key}`].some(polygon => contains(point, polygon));
     for (const point of skin) assert.equal(protectedAt(point), false, `${key}: skin at ${point} must follow the body`);
     for (const point of material) assert.equal(protectedAt(point), true, `${key}: object material at ${point} must retain its color`);
+  }
+});
+
+
+test('coffee ceramic handle stays separate from gripping fingers', () => {
+  const protectedAt = point => FIT.skinProtect['item/coffee'].some(polygon => contains(point, polygon));
+  // Observed source PNG witnesses on both exposed handle arcs and adjoining
+  // fingers. The old cup rectangle omitted every ceramic handle witness.
+  for (const point of [[211,625], [203,629], [197,631], [209,633], [207,693], [209,697], [215,699], [197,695]]) {
+    assert.equal(protectedAt(point), true, `ceramic handle at ${point} must follow the mug color`);
+  }
+  for (const point of [[205,615], [199,645], [201,663], [201,685], [199,689], [199,635]]) {
+    assert.equal(protectedAt(point), false, `finger at ${point} must follow the body skin`);
+  }
+});
+
+
+test('sign wood and trophy gold end at the observed gripping skin', () => {
+  // Current1024 source witnesses at the two native-review defects: the pole
+  // above the fist and the small index fingertip above the trophy support.
+  for (const [key, skin, material] of [
+    ['sign', [[190,636], [200,636], [173,637]], [[190,630], [190,633], [204,630], [190,775]]],
+    ['trophy', [[150,593], [155,594], [150,595], [150,610]], [[173,588], [180,440], [162,587]]],
+  ]) {
+    const protectedAt = point => FIT.skinProtect[`item/${key}`].some(polygon => contains(point, polygon));
+    for (const point of skin) assert.equal(protectedAt(point), false, `${key}: skin at ${point} must follow the body`);
+    for (const point of material) assert.equal(protectedAt(point), true, `${key}: object at ${point} must retain its material`);
   }
 });

@@ -51,9 +51,9 @@ The **A little inspiration** shelf offers six editable potatoes drawn from 18 co
 
 ## Project status
 
-Version **0.8.0**, published and verified on November 3, 2026, makes body silhouettes clear in the selector, repairs the near-Classic Zombie Lumpy artwork, and corrects grip masks that left orange fingertips or recolored parts of held objects. Color changes now preserve the same framing. Section buttons have complete, legible borders in both themes, and a new inspiration shelf fills the area below the preview. A visible version and optional refresh notice help identify an older open editor while preserving the current potato.
+Version **0.8.1** improves the book and donut hands so their support and finger opposition are readable, and separates ceramic, wood and gold from the gripping fingers on the mug, sign and trophy. A fresh visual review covers all 33 hand layers. All 18 inspiration themes remain available with the same settings, including Moon mood and Tiny wizard. Production verification for this revision is pending.
 
-The [current attachment review](docs/ATTACHMENT_REVIEW.md) documents the reported flower-crown reconstruction, native grip findings, body/skin and interaction coverage, and the editor checks. The [v0.7.1 overlap review](docs/WRAP_REVIEW.md), [v0.7 wearable review](docs/WEARABLE_REVIEW.md), [v0.6.1 shape review](docs/SHAPE_REVIEW.md) and earlier audits are historical. This is a modular 2D compositor; the recorded matrices do not cover every possible complete outfit.
+The [current hand and grip review](docs/GRIP_REVIEW.md) records source anatomy, material contacts and the exact rendered proofs inspected. The [v0.8.0 attachment review](docs/ATTACHMENT_REVIEW.md) covers body selectors, the reported flower-crown look, buttons and the inspiration shelf. The [v0.7.1 overlap review](docs/WRAP_REVIEW.md), [v0.7 wearable review](docs/WEARABLE_REVIEW.md), [v0.6.1 shape review](docs/SHAPE_REVIEW.md) and earlier audits are historical. This is a modular 2D compositor; the recorded matrices do not cover every possible complete outfit.
 
 ## Run locally
 
@@ -111,6 +111,7 @@ npm run audit:attachments -- /tmp/potato-attachments inventory
 npm run audit:attachments -- /tmp/potato-materials materials
 npm run audit:attachments -- /tmp/potato-interactions interactions
 npm run audit:color-framing -- /tmp/potato-color-framing
+npm run audit:grips -- /tmp/potato-grips all
 npm run audit -- /tmp/potato-hair hair
 npm run audit -- /tmp/potato-pairs pairwise
 npm run audit:ui -- /tmp/potato-ui
