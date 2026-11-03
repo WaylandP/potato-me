@@ -24662,15 +24662,558 @@
     ]
   },
   "publication": {
-    "status": "pending",
-    "authorization": "User explicitly authorized publication; no further confirmation requested.",
+    "verifiedAt": "2026-11-03T01:22:33.776Z",
+    "version": "0.8.0",
+    "applicationCommit": "81fa9f2929109f34e88d760c03683a57a062689a",
+    "sourceDigest": "230af7cc49ea1702503c904f28b130e41dd1b2673e40fcddd095b1a0ca5f8409",
+    "pullRequest": 13,
+    "pullRequestUrl": "https://github.com/WaylandP/potato-me/pull/13",
+    "reviewedLocalCommit": "c1668cdc3a106816408be2e7c18cde21d4dee437",
+    "applicationTree": "f8d187ad351731204563e68178769758eac56878",
+    "remoteTreeMatchesReviewedLocalTree": true,
     "productionUrl": "https://potato-me.vercel.app/",
-    "checksRemaining": [
-      "GitHub Actions for the release commit",
-      "Vercel READY production deployment with matching git commit and alias",
-      "Live browser controls, share reload and both PNG download sizes",
-      "Production file hash comparison"
-    ]
+    "deployment": {
+      "id": "dpl_8jrF1Xc6ZRepqXiseKRXFDpPpmU7",
+      "state": "READY",
+      "target": "production",
+      "aliases": [
+        "potato-me.vercel.app",
+        "potato-me-waylandp.vercel.app",
+        "potato-me-git-main-waylandp.vercel.app"
+      ],
+      "githubCommitSha": "81fa9f2929109f34e88d760c03683a57a062689a"
+    },
+    "mainCI": [
+      {
+        "id": 41558403012,
+        "name": "CI",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/WaylandP/potato-me/actions/runs/41558403012",
+        "headSha": "81fa9f2929109f34e88d760c03683a57a062689a",
+        "event": "push"
+      }
+    ],
+    "pullRequestChecks": [
+      {
+        "name": "Vercel Preview Comments",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://vercel.com/github",
+        "headSha": "07b247c4c7fa5f4cee5bb595203277ffe41572a5"
+      },
+      {
+        "name": "test",
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/WaylandP/potato-me/actions/runs/41558324827/job/125662569792",
+        "headSha": "07b247c4c7fa5f4cee5bb595203277ffe41572a5"
+      }
+    ],
+    "status": "verified",
+    "fileVerification": {
+      "baseUrl": "https://potato-me.vercel.app/",
+      "startedUtc": "2026-11-03T01:16:30.678Z",
+      "completedUtc": "2026-11-03T01:16:31.442Z",
+      "expectedProductionCommit": "81fa9f2929109f34e88d760c03683a57a062689a",
+      "localCommit": "c1668cdc3a106816408be2e7c18cde21d4dee437",
+      "appVersion": "0.8.0",
+      "tls": {
+        "verification": "Default SSL certificate and hostname validation, with additional trusted CA loaded into the default context.",
+        "additionalTrustedCA": "/usr/local/share/ca-certificates/nebula-dns.crt",
+        "checkHostname": true,
+        "verifyMode": "CERT_REQUIRED"
+      },
+      "requestHeaders": {
+        "Cache-Control": "no-cache",
+        "Accept-Encoding": "identity",
+        "User-Agent": "potato-me-release-verification/0.8.0"
+      },
+      "verificationMethod": "Direct HTTPS GETs; SHA-256 and exact byte equality against local release files. No browser used. Production Git commit linkage is verified separately by the parent release audit.",
+      "files": [
+        {
+          "path": "index.html",
+          "url": "https://potato-me.vercel.app/index.html",
+          "requestedUtc": "2026-11-03T01:16:30.745Z",
+          "localBytes": 7387,
+          "localSha256": "bd9afdb3e19346ce79cd221f86b3d67d3a4597164554a428f824905ba786ca4f",
+          "httpStatus": 200,
+          "finalUrl": "https://potato-me.vercel.app/index.html",
+          "completedUtc": "2026-11-03T01:16:30.869Z",
+          "remoteBytes": 7387,
+          "remoteSha256": "bd9afdb3e19346ce79cd221f86b3d67d3a4597164554a428f824905ba786ca4f",
+          "matches": true,
+          "headers": {
+            "Content-Type": "text/html; charset=utf-8",
+            "Content-Length": "7387",
+            "ETag": "\"b961a5756164555d9e530eb7ed59aaa1\"",
+            "Last-Modified": "Tue, 03 Nov 2026 01:16:30 GMT",
+            "Date": "Tue, 03 Nov 2026 01:16:30 GMT",
+            "Age": "0",
+            "x-vercel-cache": "MISS"
+          }
+        },
+        {
+          "path": "src/main.js",
+          "url": "https://potato-me.vercel.app/src/main.js",
+          "requestedUtc": "2026-11-03T01:16:30.747Z",
+          "localBytes": 24724,
+          "localSha256": "3067fbc64fddc50e0fe0509f4283aa9ee9a47178ef57e4cdf371e66afcbfb5e3",
+          "httpStatus": 200,
+          "finalUrl": "https://potato-me.vercel.app/src/main.js",
+          "completedUtc": "2026-11-03T01:16:30.846Z",
+          "remoteBytes": 24724,
+          "remoteSha256": "3067fbc64fddc50e0fe0509f4283aa9ee9a47178ef57e4cdf371e66afcbfb5e3",
+          "matches": true,
+          "headers": {
+            "Content-Type": "application/javascript; charset=utf-8",
+            "Content-Length": "24724",
+            "ETag": "\"55b65a540751b909d36a967018f06fb1\"",
+            "Last-Modified": "Tue, 03 Nov 2026 01:14:35 GMT",
+            "Date": "Tue, 03 Nov 2026 01:16:30 GMT",
+            "Age": "115",
+            "x-vercel-cache": "HIT"
+          }
+        },
+        {
+          "path": "src/styles.css",
+          "url": "https://potato-me.vercel.app/src/styles.css",
+          "requestedUtc": "2026-11-03T01:16:30.747Z",
+          "localBytes": 15906,
+          "localSha256": "770abda29bdd5b611779a2b0a6526c8c18c809754b23db9086a94e0f3a533288",
+          "httpStatus": 200,
+          "finalUrl": "https://potato-me.vercel.app/src/styles.css",
+          "completedUtc": "2026-11-03T01:16:30.825Z",
+          "remoteBytes": 15906,
+          "remoteSha256": "770abda29bdd5b611779a2b0a6526c8c18c809754b23db9086a94e0f3a533288",
+          "matches": true,
+          "headers": {
+            "Content-Type": "text/css; charset=utf-8",
+            "Content-Length": "15906",
+            "ETag": "\"bd4fdc8cfc982f758dd8fceab4429416\"",
+            "Last-Modified": "Tue, 03 Nov 2026 01:14:35 GMT",
+            "Date": "Tue, 03 Nov 2026 01:16:30 GMT",
+            "Age": "115",
+            "x-vercel-cache": "HIT"
+          }
+        },
+        {
+          "path": "src/raster.js",
+          "url": "https://potato-me.vercel.app/src/raster.js",
+          "requestedUtc": "2026-11-03T01:16:30.752Z",
+          "localBytes": 32088,
+          "localSha256": "e657ef329b18974b2349b3b3e549721af98e0f3678c111610f849a46900a2dff",
+          "httpStatus": 200,
+          "finalUrl": "https://potato-me.vercel.app/src/raster.js",
+          "completedUtc": "2026-11-03T01:16:30.844Z",
+          "remoteBytes": 32088,
+          "remoteSha256": "e657ef329b18974b2349b3b3e549721af98e0f3678c111610f849a46900a2dff",
+          "matches": true,
+          "headers": {
+            "Content-Type": "application/javascript; charset=utf-8",
+            "Content-Length": "32088",
+            "ETag": "\"19403bba42b22149d6f74bce1d9a5efe\"",
+            "Last-Modified": "Tue, 03 Nov 2026 01:14:35 GMT",
+            "Date": "Tue, 03 Nov 2026 01:16:30 GMT",
+            "Age": "115",
+            "x-vercel-cache": "HIT"
+          }
+        },
+        {
+          "path": "src/surface.js",
+          "url": "https://potato-me.vercel.app/src/surface.js",
+          "requestedUtc": "2026-11-03T01:16:30.825Z",
+          "localBytes": 44593,
+          "localSha256": "7017ce4c3849801f0aae737c65f7d513de8a148abb6b1f6e7772f0525ac99210",
+          "httpStatus": 200,
+          "finalUrl": "https://potato-me.vercel.app/src/surface.js",
+          "completedUtc": "2026-11-03T01:16:30.856Z",
+          "remoteBytes": 44593,
+          "remoteSha256": "7017ce4c3849801f0aae737c65f7d513de8a148abb6b1f6e7772f0525ac99210",
+          "matches": true,
+          "headers": {
+            "Content-Type": "application/javascript; charset=utf-8",
+            "Content-Length": "44593",
+            "ETag": "\"01911616840bcacb5befc521b4cf2ac4\"",
+            "Last-Modified": "Tue, 03 Nov 2026 01:14:35 GMT",
+            "Date": "Tue, 03 Nov 2026 01:16:30 GMT",
+            "Age": "114",
+            "x-vercel-cache": "HIT"
+          }
+        },
+        {
+          "path": "src/inspiration.js",
+          "url": "https://potato-me.vercel.app/src/inspiration.js",
+          "requestedUtc": "2026-11-03T01:16:30.844Z",
+          "localBytes": 5871,
+          "localSha256": "b7b2db488145ec2d78d11af509f2300cb39583d425b3ea61800e28ac61c18975",
+          "httpStatus": 200,
+          "finalUrl": "https://potato-me.vercel.app/src/inspiration.js",
+          "completedUtc": "2026-11-03T01:16:30.898Z",
+          "remoteBytes": 5871,
+          "remoteSha256": "b7b2db488145ec2d78d11af509f2300cb39583d425b3ea61800e28ac61c18975",
+          "matches": true,
+          "headers": {
+            "Content-Type": "application/javascript; charset=utf-8",
+            "Content-Length": "5871",
+            "ETag": "\"68c6d992d61c0ced9c8ba88e676b44cb\"",
+            "Last-Modified": "Tue, 03 Nov 2026 01:14:35 GMT",
+            "Date": "Tue, 03 Nov 2026 01:16:30 GMT",
+            "Age": "115",
+            "x-vercel-cache": "HIT"
+          }
+        },
+        {
+          "path": "src/version.js",
+          "url": "https://potato-me.vercel.app/src/version.js",
+          "requestedUtc": "2026-11-03T01:16:30.706Z",
+          "localBytes": 117,
+          "localSha256": "073d5f809e93ff73e8d378ab1e28aef48786fdd151d18aa303259cb6dabb874a",
+          "httpStatus": 200,
+          "finalUrl": "https://potato-me.vercel.app/src/version.js",
+          "completedUtc": "2026-11-03T01:16:30.744Z",
+          "remoteBytes": 117,
+          "remoteSha256": "073d5f809e93ff73e8d378ab1e28aef48786fdd151d18aa303259cb6dabb874a",
+          "matches": true,
+          "headers": {
+            "Content-Type": "application/javascript; charset=utf-8",
+            "Content-Length": "117",
+            "ETag": "\"fa5570a3d76598aa5f3f260390d4c0bf\"",
+            "Last-Modified": "Tue, 03 Nov 2026 01:14:35 GMT",
+            "Date": "Tue, 03 Nov 2026 01:16:30 GMT",
+            "Age": "114",
+            "x-vercel-cache": "HIT"
+          },
+          "appVersion": "0.8.0"
+        },
+        {
+          "path": "src/fit-data.js",
+          "url": "https://potato-me.vercel.app/src/fit-data.js",
+          "requestedUtc": "2026-11-03T01:16:30.846Z",
+          "localBytes": 21339,
+          "localSha256": "39519963bcfcb04f7a7859b060cb683c0cd155975347c0a57098ac42ce2b6cd4",
+          "httpStatus": 200,
+          "finalUrl": "https://potato-me.vercel.app/src/fit-data.js",
+          "completedUtc": "2026-11-03T01:16:30.880Z",
+          "remoteBytes": 21339,
+          "remoteSha256": "39519963bcfcb04f7a7859b060cb683c0cd155975347c0a57098ac42ce2b6cd4",
+          "matches": true,
+          "headers": {
+            "Content-Type": "application/javascript; charset=utf-8",
+            "Content-Length": "21339",
+            "ETag": "\"5a269782bf5a66ea1111df2c604be9c9\"",
+            "Last-Modified": "Tue, 03 Nov 2026 01:14:35 GMT",
+            "Date": "Tue, 03 Nov 2026 01:16:30 GMT",
+            "Age": "114",
+            "x-vercel-cache": "HIT"
+          }
+        },
+        {
+          "path": "src/assets.js",
+          "url": "https://potato-me.vercel.app/src/assets.js",
+          "requestedUtc": "2026-11-03T01:16:30.857Z",
+          "localBytes": 15782,
+          "localSha256": "d6ce836a4394b78093e3be12d4fa85008dc86e5e1e90252f8feaf4e43f6cec09",
+          "httpStatus": 200,
+          "finalUrl": "https://potato-me.vercel.app/src/assets.js",
+          "completedUtc": "2026-11-03T01:16:30.900Z",
+          "remoteBytes": 15782,
+          "remoteSha256": "d6ce836a4394b78093e3be12d4fa85008dc86e5e1e90252f8feaf4e43f6cec09",
+          "matches": true,
+          "headers": {
+            "Content-Type": "application/javascript; charset=utf-8",
+            "Content-Length": "15782",
+            "ETag": "\"56b9128e85d0eacd82cf593bf6423f7b\"",
+            "Last-Modified": "Tue, 03 Nov 2026 01:14:35 GMT",
+            "Date": "Tue, 03 Nov 2026 01:16:30 GMT",
+            "Age": "115",
+            "x-vercel-cache": "HIT"
+          }
+        },
+        {
+          "path": "assets/manifest.json",
+          "url": "https://potato-me.vercel.app/assets/manifest.json",
+          "requestedUtc": "2026-11-03T01:16:30.869Z",
+          "localBytes": 194693,
+          "localSha256": "e85f8384ddab2deaf511ccb13d47de7ee0e4e8e7a0a46ceb200860e0d53cd129",
+          "httpStatus": 200,
+          "finalUrl": "https://potato-me.vercel.app/assets/manifest.json",
+          "completedUtc": "2026-11-03T01:16:31.339Z",
+          "remoteBytes": 194693,
+          "remoteSha256": "e85f8384ddab2deaf511ccb13d47de7ee0e4e8e7a0a46ceb200860e0d53cd129",
+          "matches": true,
+          "headers": {
+            "Content-Type": "application/json; charset=utf-8",
+            "Content-Length": "194693",
+            "ETag": "\"8f8064f061f05b898175a6f327b0f394\"",
+            "Last-Modified": "Tue, 03 Nov 2026 01:16:31 GMT",
+            "Date": "Tue, 03 Nov 2026 01:16:31 GMT",
+            "Age": "0",
+            "x-vercel-cache": "MISS"
+          }
+        },
+        {
+          "path": "assets/parts/body/lumpy-zombie.png",
+          "url": "https://potato-me.vercel.app/assets/parts/body/lumpy-zombie.png",
+          "requestedUtc": "2026-11-03T01:16:30.880Z",
+          "localBytes": 998030,
+          "localSha256": "8ece20f9aab902c9a1d9394c99a0804091ef9a72f2941168ecc02fe11345ec62",
+          "httpStatus": 200,
+          "finalUrl": "https://potato-me.vercel.app/assets/parts/body/lumpy-zombie.png",
+          "completedUtc": "2026-11-03T01:16:30.945Z",
+          "remoteBytes": 998030,
+          "remoteSha256": "8ece20f9aab902c9a1d9394c99a0804091ef9a72f2941168ecc02fe11345ec62",
+          "matches": true,
+          "headers": {
+            "Content-Type": "image/png",
+            "Content-Length": "998030",
+            "ETag": "\"7a3aa0fe8d9d4b7bd1b6f4a73255ac3f\"",
+            "Last-Modified": "Tue, 03 Nov 2026 01:15:32 GMT",
+            "Date": "Tue, 03 Nov 2026 01:16:30 GMT",
+            "Age": "58",
+            "x-vercel-cache": "HIT"
+          }
+        },
+        {
+          "path": "assets/thumbs/body/lumpy-zombie.png",
+          "url": "https://potato-me.vercel.app/assets/thumbs/body/lumpy-zombie.png",
+          "requestedUtc": "2026-11-03T01:16:30.898Z",
+          "localBytes": 60281,
+          "localSha256": "d211db2c4535ab062e4a70ff50e3e1a02bd01b5e08d04ec98c434bec07d4d629",
+          "httpStatus": 200,
+          "finalUrl": "https://potato-me.vercel.app/assets/thumbs/body/lumpy-zombie.png",
+          "completedUtc": "2026-11-03T01:16:30.947Z",
+          "remoteBytes": 60281,
+          "remoteSha256": "d211db2c4535ab062e4a70ff50e3e1a02bd01b5e08d04ec98c434bec07d4d629",
+          "matches": true,
+          "headers": {
+            "Content-Type": "image/png",
+            "Content-Length": "60281",
+            "ETag": "\"dcbfe0ade7ec10f7896e9a51abf4722e\"",
+            "Last-Modified": "Tue, 03 Nov 2026 01:14:48 GMT",
+            "Date": "Tue, 03 Nov 2026 01:16:30 GMT",
+            "Age": "101",
+            "x-vercel-cache": "HIT"
+          }
+        },
+        {
+          "path": "docs/hero.png",
+          "url": "https://potato-me.vercel.app/docs/hero.png",
+          "requestedUtc": "2026-11-03T01:16:30.900Z",
+          "localBytes": 426200,
+          "localSha256": "e59fc12cf95a9337033418cbf237eba5a015619e380f38fb89dcdefb7f1ec88a",
+          "httpStatus": 200,
+          "finalUrl": "https://potato-me.vercel.app/docs/hero.png",
+          "completedUtc": "2026-11-03T01:16:31.207Z",
+          "remoteBytes": 426200,
+          "remoteSha256": "e59fc12cf95a9337033418cbf237eba5a015619e380f38fb89dcdefb7f1ec88a",
+          "matches": true,
+          "headers": {
+            "Content-Type": "image/png",
+            "Content-Length": "426200",
+            "ETag": "\"039d117fe0074f864eff1a60d9a0965c\"",
+            "Last-Modified": "Tue, 03 Nov 2026 01:16:31 GMT",
+            "Date": "Tue, 03 Nov 2026 01:16:31 GMT",
+            "Age": "0",
+            "x-vercel-cache": "MISS"
+          }
+        },
+        {
+          "path": "docs/og.png",
+          "url": "https://potato-me.vercel.app/docs/og.png",
+          "requestedUtc": "2026-11-03T01:16:30.946Z",
+          "localBytes": 433365,
+          "localSha256": "5edc231103eff98db9f6d7644e9cacf9c16e0a64840bc3cb70df4a21dcf8e61e",
+          "httpStatus": 200,
+          "finalUrl": "https://potato-me.vercel.app/docs/og.png",
+          "completedUtc": "2026-11-03T01:16:31.153Z",
+          "remoteBytes": 433365,
+          "remoteSha256": "5edc231103eff98db9f6d7644e9cacf9c16e0a64840bc3cb70df4a21dcf8e61e",
+          "matches": true,
+          "headers": {
+            "Content-Type": "image/png",
+            "Content-Length": "433365",
+            "ETag": "\"50f6a132bf1b1e0b037fa8739993a640\"",
+            "Last-Modified": "Tue, 03 Nov 2026 01:16:31 GMT",
+            "Date": "Tue, 03 Nov 2026 01:16:31 GMT",
+            "Age": "0",
+            "x-vercel-cache": "MISS"
+          }
+        },
+        {
+          "path": "docs/screenshot.png",
+          "url": "https://potato-me.vercel.app/docs/screenshot.png",
+          "requestedUtc": "2026-11-03T01:16:30.947Z",
+          "localBytes": 596901,
+          "localSha256": "de51db82d1b7d2c50cfb1daaac33fcfe452aab033c9ec17ae2554d33affc4790",
+          "httpStatus": 200,
+          "finalUrl": "https://potato-me.vercel.app/docs/screenshot.png",
+          "completedUtc": "2026-11-03T01:16:31.215Z",
+          "remoteBytes": 596901,
+          "remoteSha256": "de51db82d1b7d2c50cfb1daaac33fcfe452aab033c9ec17ae2554d33affc4790",
+          "matches": true,
+          "headers": {
+            "Content-Type": "image/png",
+            "Content-Length": "596901",
+            "ETag": "\"bef65dce936c02e5e7fe67f64a30d864\"",
+            "Last-Modified": "Tue, 03 Nov 2026 01:16:31 GMT",
+            "Date": "Tue, 03 Nov 2026 01:16:31 GMT",
+            "Age": "0",
+            "x-vercel-cache": "MISS"
+          }
+        },
+        {
+          "path": "docs/completion-preview.png",
+          "url": "https://potato-me.vercel.app/docs/completion-preview.png",
+          "requestedUtc": "2026-11-03T01:16:31.153Z",
+          "localBytes": 987289,
+          "localSha256": "67fce6bacaf6220a764eec7069ce2a62f3542b8f9e155c244b4c465dac5dfce3",
+          "httpStatus": 200,
+          "finalUrl": "https://potato-me.vercel.app/docs/completion-preview.png",
+          "completedUtc": "2026-11-03T01:16:31.429Z",
+          "remoteBytes": 987289,
+          "remoteSha256": "67fce6bacaf6220a764eec7069ce2a62f3542b8f9e155c244b4c465dac5dfce3",
+          "matches": true,
+          "headers": {
+            "Content-Type": "image/png",
+            "Content-Length": "987289",
+            "ETag": "\"6fa0b779a3e76381ddce6c33b76c2d85\"",
+            "Last-Modified": "Tue, 03 Nov 2026 01:16:31 GMT",
+            "Date": "Tue, 03 Nov 2026 01:16:31 GMT",
+            "Age": "0",
+            "x-vercel-cache": "MISS"
+          }
+        },
+        {
+          "path": "favicon.png",
+          "url": "https://potato-me.vercel.app/favicon.png",
+          "requestedUtc": "2026-11-03T01:16:31.208Z",
+          "localBytes": 29717,
+          "localSha256": "88ea799c521368e062cdcd00a6a96d0485748ed9bbc0aabcb81acd79e42c1f36",
+          "httpStatus": 200,
+          "finalUrl": "https://potato-me.vercel.app/favicon.png",
+          "completedUtc": "2026-11-03T01:16:31.244Z",
+          "remoteBytes": 29717,
+          "remoteSha256": "88ea799c521368e062cdcd00a6a96d0485748ed9bbc0aabcb81acd79e42c1f36",
+          "matches": true,
+          "headers": {
+            "Content-Type": "image/png",
+            "Content-Length": "29717",
+            "ETag": "\"f339610ad3e2367fda8444b0785497d4\"",
+            "Last-Modified": "Tue, 03 Nov 2026 01:14:35 GMT",
+            "Date": "Tue, 03 Nov 2026 01:16:31 GMT",
+            "Age": "115",
+            "x-vercel-cache": "HIT"
+          }
+        }
+      ],
+      "fileCount": 17,
+      "matchedFileCount": 17,
+      "allHttp200": true,
+      "allMatched": true,
+      "localFilesUnchangedDuringVerification": true
+    },
+    "liveBrowser": {
+      "startedAt": "2026-11-03T01:15:55.877Z",
+      "version": "v0.8.0",
+      "checks": [
+        {
+          "name": "inspiration shuffle",
+          "before": [
+            "Flower power",
+            "Hello sunshine",
+            "Trail mix",
+            "Night owl",
+            "Pixel pal",
+            "Tiny wizard"
+          ],
+          "after": [
+            "Cozy creature",
+            "Royal spud",
+            "Moon mood",
+            "Sweet sip",
+            "Weekend mode",
+            "Tea break"
+          ],
+          "pass": true
+        },
+        {
+          "name": "inspiration load",
+          "look": "Moon mood",
+          "pass": true,
+          "observedState": "female, round, ghost, bun, silver, halo, book, rest, starStuds, periwinkle, stars"
+        },
+        {
+          "name": "shape choice preserves outfit",
+          "pass": true,
+          "changed": "body=round to body=lumpy"
+        },
+        {
+          "name": "copy link",
+          "pass": false,
+          "url": "",
+          "resolution": "Initial clipboard read occurred before asynchronous copy feedback; retry after the success toast matched the exact URL. No code change."
+        },
+        {
+          "name": "copy link confirmed after feedback",
+          "pass": true,
+          "feedback": "Link copied. Anyone with it gets this exact potato.",
+          "url": "https://potato-me.vercel.app/#character=female&body=lumpy&skin=ghost&eyes=side&brows=softArch&mouth=smile&hair=bun&hairColor=silver&hat=halo&item=book&gesture=rest&jewelry=starStuds&bg=periwinkle&pattern=stars&stickers="
+        },
+        {
+          "name": "share reload",
+          "pass": true,
+          "observed": "Reload retained the full Moon mood state with body=lumpy and the matching preview description."
+        },
+        {
+          "name": "reported flower-crown production view",
+          "pass": true,
+          "observed": "Native1024 download visually inspected: rear branches tucked, front flowers intact, glasses and hair coherent, phone grip and waving arm connected."
+        }
+      ],
+      "appConsoleErrors": [],
+      "extensionErrorsExcluded": 19,
+      "downloadPaths": {
+        "512": "/home/oai/share/0bdb51a9-eadc-4279-90ae-30960a605e93/fc04b6a1-d96e-4d02-9b60-777c54f8c740",
+        "1024": "/home/oai/share/0bdb51a9-eadc-4279-90ae-30960a605e93/9c5997e8-9034-4ed9-9bdb-bb4e76fad0b9"
+      },
+      "completedAt": "2026-11-03T01:20:32.956Z",
+      "screenshot": "potato-me-v080-live-1793668913734.jpg",
+      "screenshotNote": "Full-page protocol capture timed out; this is the successfully captured live viewport."
+    },
+    "downloads": [
+      {
+        "requestedPixels": 512,
+        "file": "/workspace/scratch/0bdb51a9-eadc-4279-90ae-30960a605e93/fc04b6a1-d96e-4d02-9b60-777c54f8c740",
+        "format": "PNG",
+        "mode": "RGBA",
+        "width": 512,
+        "height": 512,
+        "bytes": 370040,
+        "sha256": "3d411b320e8b696a9caa74b4fcf2afc281e7e3fa9705701af635f75813cda5e8",
+        "pngVerified": true
+      },
+      {
+        "requestedPixels": 1024,
+        "file": "/workspace/scratch/0bdb51a9-eadc-4279-90ae-30960a605e93/9c5997e8-9034-4ed9-9bdb-bb4e76fad0b9",
+        "format": "PNG",
+        "mode": "RGBA",
+        "width": 1024,
+        "height": 1024,
+        "bytes": 1623822,
+        "sha256": "f57c20cc8c4c6f968dca0ae5af4d8addcaf4b894553a61a937928566ffee3565",
+        "pngVerified": true
+      }
+    ],
+    "finalCheckDisposition": "All final application checks passed. The initial empty clipboard read was resolved by waiting for the success toast. Browser input and full-page-capture timeouts are tooling limitations; both actual downloads completed and the live viewport was captured.",
+    "screenshot": {
+      "path": "docs/production-v080.jpg",
+      "sha256": "bd871b57737fdd11623b62f61ff1256c7ab68d357e0ece2283f91e925aff584a",
+      "bytes": 97319,
+      "width": 878,
+      "height": 936,
+      "source": "Same bytes captured from the production browser; no image editing."
+    }
   },
   "assembledForReleaseAt": "2026-11-03T01:12:11.368868+00:00"
 }

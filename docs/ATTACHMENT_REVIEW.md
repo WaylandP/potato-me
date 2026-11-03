@@ -1,6 +1,6 @@
 # Attachment, body identity and editor review — v0.8.0
 
-This follow-up starts from the user's reported Lumpy/gold/silver-waves look, flower-crown overlap, incomplete-looking section buttons and unused space beneath the preview. It records visible defects separately from automated rendering checks. Publication verification is pending.
+This follow-up starts from the user's reported Lumpy/gold/silver-waves look, flower-crown overlap, incomplete-looking section buttons and unused space beneath the preview. It records visible defects separately from automated rendering checks. Version 0.8.0 was published and verified on production on November 3, 2026.
 
 ## Findings and corrections
 
@@ -56,7 +56,21 @@ Completed body-art gate: all 54 body/skin combinations passed the existing inven
 
 Completed editor review: 20 browser check groups passed, including all nine sections, inspiration selection/shuffle, share/reload pixels, version-refresh state preservation, keyboard interaction, retry recovery, downloads, and 390 px light/dark layouts. There were no page errors or third-party requests. The tested 512 px download was 272,491 bytes and the 1024 px download was 988,923 bytes. Tablet widths 821, 900 and 901 px were also checked. This UI run preceded the final item-mask refinements; final artwork and production checks are recorded separately.
 
-The hero, social preview, completion gallery, favicon and editor screenshot were regenerated from the final source and visually inspected. Four additional layout/state-preservation checks passed with zero page errors; final 390 px controls and inspiration crops were inspected in both themes. Production commit, CI, Vercel identity and live-browser checks will be recorded after deployment.
+The hero, social preview, completion gallery, favicon and editor screenshot were regenerated from the final source and visually inspected. Four additional layout/state-preservation checks passed with zero page errors; final 390 px controls and inspiration crops were inspected in both themes. The final shape review additionally inspected 108 whole-frame states across all six shapes, nine skins and both presets; this is a visual sample of the 756 renders, not a claim that every shape-audit image was viewed.
+
+## Published verification — November 3, 2026
+
+[PR #13](https://github.com/WaylandP/potato-me/pull/13) published application commit **`81fa9f2929109f34e88d760c03683a57a062689a`**. The uploaded Git tree matched the reviewed local tree exactly. Both PR CI and the [main push CI run](https://github.com/WaylandP/potato-me/actions/runs/41558403012) passed. Vercel deployment **`dpl_8jrF1Xc6ZRepqXiseKRXFDpPpmU7`** reported `READY`, target `production`, that exact Git commit, and the `potato-me.vercel.app` alias.
+
+Validated HTTPS reads returned HTTP 200 for 17 release files and matched the reviewed local bytes and SHA-256 hashes. These include the page, editor/style/rendering modules, manifest, both Zombie Lumpy PNGs and all regenerated public preview images. Certificate and hostname validation remained enabled.
+
+The live Chromium editor showed v0.8.0 and the neutral gold/Zombie shape choices. A live shuffle replaced all six inspiration cards; loading Moon mood applied its complete state, and choosing Lumpy preserved the rest of the outfit. Copy link returned the exact encoded URL after its completion toast, and reloading retained the shared state. An initial clipboard read was made before the async copy completed; the successful follow-up is recorded rather than treating that early empty read as an application defect.
+
+The reconstructed flower-crown look was downloaded through both actual production buttons. The resulting valid RGBA PNGs measured **512 × 512 / 370,040 bytes** and **1024 × 1024 / 1,623,822 bytes**. The full-size download was visually inspected: front flowers remained intact, rear branches were tucked, and the phone grip and waving arm were connected. No application console errors were observed during the recorded live checks; browser-extension metadata errors are identified separately.
+
+The evidence index includes deployment identity, CI, production file hashes, actual download hashes and the live-browser record. These checks identify the application commit above; this documentation was completed afterward without changing its application files.
+
+![Production v0.8.0 with the reconstructed flower-crown look, neutral shape choices, complete control borders and inspiration shelf](production-v080.jpg)
 
 ## Reproduce the matrices
 
