@@ -7333,7 +7333,7 @@
       "sha256": "eb97a75f7d080c318dfda2754e2dc65fa716d36745827c45455030cfbfabab73"
     }
   ],
-  "fittingStatus": "Body-relative fitting and shared limb palettes are implemented in src/surface.js and src/fit-data.js. See docs/COHESION_REVIEW.md for v0.6 checks and limitations.",
+  "fittingStatus": "Body-relative fitting and shared limb palettes are implemented in src/surface.js and src/fit-data.js. See docs/README.md for current guides and archived release reviews.",
   "noImageRequired": {
     "brows": [
       "none"
@@ -7368,5 +7368,5 @@
     "sourceRef": "claude/awesome-ritchie-f0e8l9",
     "sourceCommit": "f77b86b18836f6e49f56a78a557d17313152ad37"
   },
-  "provenance": "Original source import is recorded separately. Later artwork revisions are documented in docs/IMAGE_PROMPTS.md, docs/CHARACTER_FITTING.md, docs/PUBLIC_AUDIT.md and docs/expansion-prompts.json."
+  "provenance": "Original source import is recorded separately. Later revisions are documented in docs/IMAGE_PROMPTS.md and the linked prompt records and release reviews in docs/README.md."
 }

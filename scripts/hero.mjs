@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// Builds the banner, link-preview card, eight-avatar gallery and favicon
+// Builds the banner, link-preview card, six-scene README gallery and favicon
 // from the real app, so the docs never drift from the art.
 //
 //   npm run hero
@@ -10,7 +10,7 @@
 import { createRequire } from 'node:module';
 import { spawn } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
-import { writeFile } from 'node:fs/promises';
+import { readFile, writeFile } from 'node:fs/promises';
 
 const root = fileURLToPath(new URL('..', import.meta.url));
 
@@ -44,7 +44,7 @@ try {
     potatoes.push(await page.evaluate(() => document.querySelector('#preview canvas').toDataURL('image/png')));
   }
 
-  // Banner: five circles on a transparent background, 1544 x 312 like before.
+  // Banner: five circles on a transparent background.
   const CELL = 280;
   const GAP = 28;
   const PAD = 16;
@@ -81,27 +81,45 @@ p{position:absolute;left:76px;top:200px;margin:0;font-size:34px;font-weight:600;
   await og.screenshot({ path: root + 'docs/og.png' });
   console.log('wrote docs/og.png');
 
-  // Keep the larger artwork gallery reproducible as well.
-  const gallerySpec = [
-    ['Ship it.', '#capText=A%2BW'],
-    ['Just for you.', HERO_POTATOES[0]],
-    ['Tea & company.', HERO_POTATOES[1]],
-    ['Tiny victory.', '#body=long&skin=purple&hat=wizard&hatColor=purple&item=trophy&gesture=fist&eyes=stars&brows=raised&mouth=grin&bg=navy'],
-    ['Chef approved.', '#body=lumpy&skin=sweet&hat=chef&item=pizza&gesture=ok&eyes=wink&brows=smug&mouth=tongue&bg=mint'],
-    ['Make something.', HERO_POTATOES[4]],
-    ['One more chapter.', '#character=female&skin=blue&hair=bun&hairColor=silver&hat=none&eyewear=catEye&hatColor=red&jewelry=hoops&item=book&gesture=palmUp&eyes=almond&brows=softArch&mouth=smile&bg=cream'],
-    ['Your words.', '#character=female&body=petite&skin=pink&hair=pixie&hairColor=rose&hat=none&item=sign&sign=LOVE%20YOU&gesture=fingerHeart&eyes=lashWink&brows=softArch&mouth=smile&bg=lavender'],
-  ];
-  const gallery = [];
-  for (const [label, hash] of gallerySpec) {
-    await page.goto(`http://localhost:${port}/${hash}`);
-    await page.waitForFunction(() => document.body.dataset.rendered === 'true');
-    gallery.push([label, await page.evaluate(() => document.querySelector('#preview canvas').toDataURL())]);
-  }
-  const galleryPage = await browser.newPage({ viewport: { width: 1600, height: 1060 } });
-  await galleryPage.setContent(`<body style="margin:0;padding:28px;box-sizing:border-box;background:#edf6f3;color:#123d40;font-family:system-ui"><h1 style="font-size:42px;margin:0">A little potato. A lot of personality.</h1><p style="font-size:22px;margin:8px 0 30px;color:#526d6b">Made in potato-me · actual editor output</p><div style="display:grid;grid-template-columns:repeat(4,1fr);gap:28px 24px">${gallery.map(([label, src]) => `<figure style="margin:0;text-align:center"><img src="${src}" width="360" height="360" style="border-radius:50%"><figcaption style="font-size:25px;font-weight:700;margin-top:8px">${label}</figcaption></figure>`).join('')}</div></body>`);
-  await galleryPage.screenshot({ path: root + 'docs/completion-preview.png' });
-  console.log('wrote docs/completion-preview.png');
+  // The README gallery uses the same recipes and Canvas path as the shared editor.
+  // Render at full resolution before scaling for the grid; a failed asset must stop publication.
+  const recipes = JSON.parse(await readFile(root + 'docs/scenes-spec.json', 'utf8'));
+  const scenes = await page.evaluate(async recipes => {
+    const { renderPotato, drawableState } = await import('./src/raster.js');
+    const { decodeState } = await import('./src/state.js');
+    const { OPTIONS } = await import('./src/options.js');
+    const scenes = [];
+    for (const [label, hash] of recipes) {
+      const state = decodeState(hash);
+      const drawable = drawableState(state);
+      for (const key of Object.keys(OPTIONS)) {
+        if (drawable[key] !== state[key]) throw new Error(`${label}: unavailable ${key}=${state[key]}`);
+      }
+      const canvas = await renderPotato(drawable, { size: 1024 });
+      scenes.push({ label, detail: `${OPTIONS.body[state.body]} · ${OPTIONS.item[state.item]}`, src: canvas.toDataURL('image/png') });
+    }
+    return scenes;
+  }, recipes);
+  const sheet = await browser.newPage({ viewport: { width: 1152, height: 900 }, deviceScaleFactor: 1 });
+  await sheet.setContent(`<style>
+    *{box-sizing:border-box}body{margin:0;background:#152825;font:20px system-ui,sans-serif;color:#f1f4ec}
+    main{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;padding:20px}
+    figure{margin:0;overflow:hidden;border-radius:16px;background:#223733}img{width:100%;display:block}
+    figcaption{padding:11px 16px 14px}
+    strong{display:block;font-size:22px;line-height:1.2}small{display:block;margin-top:3px;color:#bfd3cb;font-size:15px;line-height:1.3}
+  </style><main></main>`);
+  await sheet.evaluate(async scenes => {
+    const grid = document.querySelector('main');
+    for (const { label, detail, src } of scenes) {
+      const frame = document.createElement('figure'), picture = new Image();
+      picture.src = src; await picture.decode();
+      const caption = document.createElement('figcaption'), title = document.createElement('strong'), parts = document.createElement('small');
+      title.textContent = label; parts.textContent = detail;
+      caption.append(title, parts); frame.append(picture, caption); grid.append(frame);
+    }
+  }, scenes);
+  await sheet.locator('main').screenshot({ path: root + 'docs/scene-examples.jpg', type: 'jpeg', quality: 91 });
+  console.log('wrote docs/scene-examples.jpg');
 
 } finally {
   await browser.close();

@@ -2,6 +2,13 @@
 
 Notable changes to the source. Version numbers match `package.json`; tags and downloadable release archives are listed separately on [GitHub Releases](https://github.com/WaylandP/potato-me/releases).
 
+## 0.8.2 — 2026-11-03
+
+- Fit the straw sunhat and cowboy hat to the head and hair at the row where the hat actually sits. The ribbon and crown keep their width; the outer brim has a separate limit so it clears the eyes without spanning the whole avatar.
+- Rebuild the README examples from the editor’s current renderer. `npm run hero` now also regenerates the six-scene gallery from its saved outfits, including Coastal morning.
+- Replace obsolete import sheets and superseded review files with a [permanent history index](docs/README.md). The working tree retains the source art, thumbnails, font license, art provenance, audit tools and the hand review.
+- Serve a public `version.json` for the returning-tab update notice. Refresh preserves the selected avatar.
+
 ## 0.8.1 — 2026-11-03 (America/New_York)
 
 - Review all 18 held-object grips, the empty item hand and all 14 free-hand gestures for finger direction, opposition, object support and continuous wrists.
@@ -24,7 +31,7 @@ This entry uses America/New_York; earlier entries retain their originally record
 - Repair complete section-button borders, selected states and action-button contrast in light and dark themes.
 - Add 18 complete inspiration looks, six at a time, with shuffle and one-click customization. Load small gallery thumbnails near the viewport and preserve share-link behavior.
 - Display the editor version and offer an optional state-preserving refresh when a newer release is detected on returning to the tab.
-- Add a reproducible attachment audit with exact case lists, source fingerprints, native reported-state controls and separate visual-review records. See [ATTACHMENT_REVIEW.md](docs/ATTACHMENT_REVIEW.md).
+- Add a reproducible attachment audit with exact case lists, source fingerprints, native reported-state controls and separate visual-review records. See [ATTACHMENT_REVIEW.md](https://github.com/WaylandP/potato-me/blob/03a220abe33a12552ff05bf6a2f9abae09f073d4/docs/ATTACHMENT_REVIEW.md).
 - Publish the reviewed source to production, verify matching asset/module hashes, and check live inspiration editing, share/reload behavior and both PNG download sizes.
 
 ## 0.7.1 — 2026-11-02
@@ -33,7 +40,7 @@ This entry uses America/New_York; earlier entries retain their originally record
 - Fit headphone pads to the worn head while preserving cup dimensions; let raised buns overlap the band. Float halos above the actual hair and headphone envelope.
 - Extend glasses temples from the original hinge material without stretching lenses; tuck arms beneath hair. Seat earbud tips inside the actual side contours.
 - Correct the headband's front curve and lateral wrapping; preserve its knit texture and editable initials.
-- Add regression coverage and a current visual review that distinguishes inspected native images from automated render/crop/share checks. See [WRAP_REVIEW.md](docs/WRAP_REVIEW.md).
+- Add regression coverage and a current visual review that distinguishes inspected native images from automated render/crop/share checks. See [WRAP_REVIEW.md](https://github.com/WaylandP/potato-me/blob/03a220abe33a12552ff05bf6a2f9abae09f073d4/docs/WRAP_REVIEW.md).
 
 ## 0.7.0 — 2026-11-02
 
@@ -43,7 +50,7 @@ This entry uses America/New_York; earlier entries retain their originally record
 - Fit hair openings at the temples, preserve side volume, bound lengths and use continuous inverse sampling to prevent join seams and stepped strands.
 - Scale earrings, earbuds and hair ornaments with body width; attach clips to the hair. Cast contact shadows onto the actual preceding layers.
 - Replace the chef hat, crown and Viking helmet's empty underside views with detailed front-view artwork. Keep the 224-image inventory and all existing share keys.
-- Refresh documentation and app-rendered examples. See [WEARABLE_REVIEW.md](docs/WEARABLE_REVIEW.md) for review scope.
+- Refresh documentation and app-rendered examples. See [WEARABLE_REVIEW.md](https://github.com/WaylandP/potato-me/blob/03a220abe33a12552ff05bf6a2f9abae09f073d4/docs/WEARABLE_REVIEW.md) for review scope.
 
 ## 0.6.1 — 2026-11-02
 
@@ -64,7 +71,7 @@ This entry uses America/New_York; earlier entries retain their originally record
 - Replace the hip arm with a shorter, textured pose and place its hand against the torso. Preserve shaka fingers where they cross the body.
 - Add a detailed side ponytail with a fitted face opening and protected satin tie, plus a rose-tinted smile. The catalog now contains 224 source images.
 - Replace the low-resolution frown and wavy mouth, the square glasses with visible folded temples, and the party hat with its exposed underside. Recolor closed-mouth edges and dot-eye rims with the selected potato skin.
-- Use HI THERE! for the default sign. Update the documentation and distinguish rendering checks from visual approval; see [COHESION_REVIEW.md](docs/COHESION_REVIEW.md).
+- Use HI THERE! for the default sign. Update the documentation and distinguish rendering checks from visual approval; see [COHESION_REVIEW.md](https://github.com/WaylandP/potato-me/blob/03a220abe33a12552ff05bf6a2f9abae09f073d4/docs/COHESION_REVIEW.md).
 
 ## 0.5.0 — 2026-11-02
 
@@ -88,7 +95,7 @@ This entry uses America/New_York; earlier entries retain their originally record
 
 - Add complete PNG chunk/decompression checks, deterministic pairwise outfit generation with an independent coverage verifier, and hairstyle interaction audits.
 - Expand the existing inventory and interaction matrices to all six shapes; extend browser checks to new controls, sharing and downloads.
-- See [EVERYDAY_AUDIT.md](docs/EVERYDAY_AUDIT.md) for the actual checks, repairs and limitations. The inventory is 222 source images: 58 additions and one replacement smile. Existing share keys remain supported.
+- See [EVERYDAY_AUDIT.md](https://github.com/WaylandP/potato-me/blob/03a220abe33a12552ff05bf6a2f9abae09f073d4/docs/EVERYDAY_AUDIT.md) for the actual checks, repairs and limitations. The inventory is 222 source images: 58 additions and one replacement smile. Existing share keys remain supported.
 
 ## 0.4.0 — 2026-11-02
 
@@ -108,7 +115,7 @@ This entry uses America/New_York; earlier entries retain their originally record
 - Bound image/composition caches, prevent constant-RNG randomization loops, guard fitting-tool numeric input, repair its mobile control layout, and handle malformed development-server URLs.
 - Add full inventory/interaction audit modes and a real-control UI audit; regenerate documentation artwork from the renderer.
 
-See [PUBLIC_AUDIT.md](docs/PUBLIC_AUDIT.md) for exact visual coverage, test results, repaired findings and remaining limits. All public option keys remain supported. The inventory remains 164 source images; replacement artwork is not counted as additional options.
+See [PUBLIC_AUDIT.md](https://github.com/WaylandP/potato-me/blob/03a220abe33a12552ff05bf6a2f9abae09f073d4/docs/PUBLIC_AUDIT.md) for exact visual coverage, test results, repaired findings and remaining limits. All public option keys remain supported. The inventory remains 164 source images; replacement artwork is not counted as additional options.
 
 ## 0.3.1 — 2026-11-01
 
@@ -130,7 +137,7 @@ See [PUBLIC_AUDIT.md](docs/PUBLIC_AUDIT.md) for exact visual coverage, test resu
 
 ### Verification and limits
 
-The fitting update passed 37 Node tests and a 548-case browser inventory audit, with targeted face/eyewear reruns and visual review. See the [fitting record](docs/CHARACTER_FITTING.md) and its [machine-readable report](docs/character-fit-verification.json) for evidence and scope.
+The fitting update passed 37 Node tests and a 548-case browser inventory audit, with targeted face/eyewear reruns and visual review. See the [fitting record](https://github.com/WaylandP/potato-me/blob/03a220abe33a12552ff05bf6a2f9abae09f073d4/docs/CHARACTER_FITTING.md) and its [machine-readable report](https://github.com/WaylandP/potato-me/blob/03a220abe33a12552ff05bf6a2f9abae09f073d4/docs/character-fit-verification.json) for evidence and scope.
 
 Large accessory combinations can still overlap. Google Fonts is still an external request, and a full screen-reader and Lighthouse review is pending. This is a 2D image compositor, not a 3D rig.
 
@@ -138,6 +145,6 @@ Large accessory combinations can still overlap. Google Fonts is still an externa
 
 These entries summarize the history before the changelog was introduced. They do not imply previously published release tags.
 
-- **v0.3:** rendered PNG asset pipeline, Canvas compositor, fitting tools, expression presets, custom text and sticker controls; inventory completed at 164 images and deployed to Vercel. See the [asset-completion record](docs/ASSET_COMPLETION.md).
+- **v0.3:** rendered PNG asset pipeline, Canvas compositor, fitting tools, expression presets, custom text and sticker controls; inventory completed at 164 images and deployed to Vercel. See the [asset-completion record](https://github.com/WaylandP/potato-me/blob/03a220abe33a12552ff05bf6a2f9abae09f073d4/docs/ASSET_COMPLETION.md).
 - **v0.2:** shaded SVG artwork, additional parts, development server and contributor documentation.
 - **v0.1:** initial SVG avatar editor, exports, share links, themes and tests.

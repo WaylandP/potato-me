@@ -166,6 +166,30 @@ test('wide hats leave the eye line clear on a short body, with or without hair',
   }
 });
 
+test('wide brims follow the actual forehead row without enlarging the crown or hiding the eyes', () => {
+  // Round with braids: the hair flares outward below the crown. Measuring one
+  // row and placing the opening much higher previously produced a floating brim.
+  const headRow = y => {
+    const half = 190 + (y - 140) * 1.1;
+    return [510 - half, 510 + half];
+  };
+  const worn = { ...surface, crownY: 160, headTop: 90, headRow };
+  for (const key of ['sunhat', 'cowboy']) {
+    const b = PARTS.hat[key], opening = FIT.hatOpenings[key];
+    const t = fit('hat', key, worn, { ...DEFAULT_STATE, body: 'round', hair: 'braids', hat: key });
+    const at = (x,y) => point('hat',key,t,[x,y]);
+    const left = at(opening.x - opening.width/2, opening.y);
+    const right = at(opening.x + opening.width/2, opening.y);
+    const [headLeft, headRight] = headRow(left[1]);
+    assert.ok(left[0] <= headLeft && left[0] >= headLeft - 12);
+    assert.ok(right[0] >= headRight && right[0] <= headRight + 12);
+    assert.ok(left[1] > worn.crownY + 40, key + ' must sit around the forehead');
+    const ratio = (at(b[2],opening.y)[0] - at(b[0],opening.y)[0]) / (right[0]-left[0]);
+    assert.ok(ratio > 1.30 && ratio < 1.55, key + ' needs a visible, proportionate brim');
+    assert.ok(at(opening.x,b[3])[1] <= worn.eyeY - 88, key + ' must clear the brows');
+  }
+});
+
 test('Petite is the narrow profile at a smaller uniform size; the broad profile is Wide', () => {
   assert.equal(OPTIONS.body.long, 'Petite');
   assert.equal(OPTIONS.body.petite, 'Wide');

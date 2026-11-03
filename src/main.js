@@ -565,7 +565,7 @@ document.addEventListener('visibilitychange', async () => {
   const controller = new AbortController();
   const timeout = setTimeout(() => controller.abort(), 5000);
   try {
-    const response = await fetch(new URL('package.json', document.baseURI), { cache: 'no-store', signal: controller.signal });
+    const response = await fetch(new URL('version.json', document.baseURI), { cache: 'no-store', signal: controller.signal });
     if (!response.ok) return;
     const remote = await response.json();
     if (typeof remote.version === 'string' && remote.version !== APP_VERSION) $('#update-notice').hidden = false;
