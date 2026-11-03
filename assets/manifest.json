@@ -3876,14 +3876,14 @@
     },
     {
       "path": "assets/parts/item/book.png",
-      "request": "Only the viewer's-left arm, hand and item: the hand holds an open hardcover book with a dark blue cover.",
+      "request": "A viewer-left right arm entering from the right, palm supporting an open navy hardcover book beneath its spine, four fingers curled around the lower near cover, thumb naturally occluded behind the lower far cover.",
       "group": "item",
       "key": "book",
       "targetBox": [
-        36,
-        430,
-        323,
-        797
+        0,
+        0,
+        1024,
+        1024
       ],
       "status": "generated",
       "width": 1024,
@@ -3894,19 +3894,19 @@
         1254
       ],
       "sourceCrop": [
-        27,
-        335,
-        1239,
-        1012
+        0,
+        0,
+        1254,
+        1254
       ],
       "placedBox": [
-        36,
-        534,
-        323,
-        694
+        59,
+        522,
+        389,
+        765
       ],
       "flippedForConvention": false,
-      "sha256": "b2437b7a7c19fce5d438d4ae87dc51e4c5c4fc6366f2abbf8fab0b418d11b228"
+      "sha256": "b0c3626240066b250e3f1f3301d2fa0fda98cf7285033ed7bec9011cf47129fa"
     },
     {
       "path": "assets/parts/gesture/shaka.png",
@@ -5103,14 +5103,14 @@
     },
     {
       "path": "assets/parts/item/donut.png",
-      "request": "Only the viewer's-left arm, hand and item: the hand holds a pink-frosted donut with rainbow sprinkles, one bite taken.",
+      "request": "A viewer-left right arm holding a pink-frosted bitten ring donut with a front thumb opposing fingers behind the lower rim, an index fingertip visible through the lower hole, and underside palm support.",
       "group": "item",
       "key": "donut",
       "targetBox": [
-        36,
-        430,
-        323,
-        797
+        0,
+        0,
+        1024,
+        1024
       ],
       "status": "generated",
       "width": 1024,
@@ -5119,10 +5119,21 @@
       "placedBox": [
         64,
         405,
-        431,
-        787
+        429,
+        781
       ],
-      "sha256": "b5def482dc9e8fa85a10a2f8c426e4bfb1aa0ccd8e41e606feaad9e1f0341ec5"
+      "sha256": "74ce6528e859b306324126f9150e0a770af10e0b04532a6f30f9b31a331bc7d8",
+      "sourceSize": [
+        1254,
+        1254
+      ],
+      "sourceCrop": [
+        0,
+        0,
+        1254,
+        1254
+      ],
+      "flippedForConvention": false
     },
     {
       "path": "assets/parts/item/duck.png",

@@ -1,5 +1,7 @@
 # Attachment, body identity and editor review — v0.8.0
 
+The subsequent [v0.8.1 hand and grip review](GRIP_REVIEW.md) revisits anatomy and object support across every hand. It replaces the ambiguous book/donut grips and corrects mug/sign/trophy material boundaries. The v0.8.0 results below remain historical; mask, attachment and crop checks did not establish convincing grip anatomy.
+
 This follow-up starts from the user's reported Lumpy/gold/silver-waves look, flower-crown overlap, incomplete-looking section buttons and unused space beneath the preview. It records visible defects separately from automated rendering checks. Version 0.8.0 was published and verified on production on November 3, 2026.
 
 ## Findings and corrections

@@ -30,6 +30,8 @@ The earlier asset-completion and character-fitting work was verified on November
 
 ## Next priorities
 
+- [ ] **v0.8.1 publication verification:** revised book/donut support, mug/sign/trophy material separation and a fresh 33-layer hand review. Local checks are recorded in [GRIP_REVIEW.md](docs/GRIP_REVIEW.md); mark shipped after production verification.
+
 - [ ] **Broader device coverage:** verify the current rendering on physical iOS/Safari and Android devices, beyond the recorded Chromium checks.
 
 - [ ] **Undo / redo:** make it easy to compare edits and recover earlier choices.
